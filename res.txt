@@ -1,0 +1,203 @@
+Best Distance  : 385.35
+TOUR NUMERO 1
+Best Distance  : 280.254
+TOUR NUMERO 2
+Best Distance  : 280.254
+TOUR NUMERO 3
+Best Distance  : 280.254
+TOUR NUMERO 4
+Best Distance  : 280.254
+TOUR NUMERO 5
+Best Distance  : 265.249
+TOUR NUMERO 6
+Best Distance  : 252.266
+TOUR NUMERO 7
+Best Distance  : 246.879
+TOUR NUMERO 8
+Best Distance  : 225.247
+TOUR NUMERO 9
+Best Distance  : 207.75
+TOUR NUMERO 10
+Best Distance  : 207.75
+TOUR NUMERO 11
+Best Distance  : 207.75
+TOUR NUMERO 12
+Best Distance  : 207.75
+TOUR NUMERO 13
+Best Distance  : 207.75
+TOUR NUMERO 14
+Best Distance  : 207.75
+TOUR NUMERO 15
+Best Distance  : 207.75
+TOUR NUMERO 16
+Best Distance  : 207.75
+TOUR NUMERO 17
+Best Distance  : 207.75
+TOUR NUMERO 18
+Best Distance  : 207.75
+TOUR NUMERO 19
+Best Distance  : 207.75
+TOUR NUMERO 20
+Best Distance  : 207.75
+TOUR NUMERO 21
+Best Distance  : 207.75
+TOUR NUMERO 22
+Best Distance  : 207.75
+TOUR NUMERO 23
+Best Distance  : 207.75
+TOUR NUMERO 24
+Best Distance  : 207.75
+TOUR NUMERO 25
+Best Distance  : 207.75
+TOUR NUMERO 26
+Best Distance  : 207.75
+TOUR NUMERO 27
+Best Distance  : 207.75
+TOUR NUMERO 28
+Best Distance  : 207.75
+TOUR NUMERO 29
+Best Distance  : 207.75
+TOUR NUMERO 30
+Best Distance  : 207.75
+TOUR NUMERO 31
+Best Distance  : 207.75
+TOUR NUMERO 32
+Best Distance  : 207.75
+TOUR NUMERO 33
+Best Distance  : 207.75
+TOUR NUMERO 34
+Best Distance  : 207.75
+TOUR NUMERO 35
+Best Distance  : 207.75
+TOUR NUMERO 36
+Best Distance  : 207.75
+TOUR NUMERO 37
+Best Distance  : 207.75
+TOUR NUMERO 38
+Best Distance  : 207.75
+TOUR NUMERO 39
+Best Distance  : 207.75
+TOUR NUMERO 40
+Best Distance  : 207.75
+TOUR NUMERO 41
+Best Distance  : 207.75
+TOUR NUMERO 42
+Best Distance  : 207.75
+TOUR NUMERO 43
+Best Distance  : 207.75
+TOUR NUMERO 44
+Best Distance  : 207.75
+TOUR NUMERO 45
+Best Distance  : 207.75
+TOUR NUMERO 46
+Best Distance  : 207.75
+TOUR NUMERO 47
+Best Distance  : 207.75
+TOUR NUMERO 48
+Best Distance  : 207.75
+TOUR NUMERO 49
+Best Distance  : 207.75
+TOUR NUMERO 50
+Best Distance  : 207.75
+TOUR NUMERO 51
+Best Distance  : 207.75
+TOUR NUMERO 52
+Best Distance  : 207.75
+TOUR NUMERO 53
+Best Distance  : 207.75
+TOUR NUMERO 54
+Best Distance  : 207.75
+TOUR NUMERO 55
+Best Distance  : 207.75
+TOUR NUMERO 56
+Best Distance  : 207.75
+TOUR NUMERO 57
+Best Distance  : 207.75
+TOUR NUMERO 58
+Best Distance  : 207.75
+TOUR NUMERO 59
+Best Distance  : 207.75
+TOUR NUMERO 60
+Best Distance  : 207.75
+TOUR NUMERO 61
+Best Distance  : 207.75
+TOUR NUMERO 62
+Best Distance  : 207.75
+TOUR NUMERO 63
+Best Distance  : 207.75
+TOUR NUMERO 64
+Best Distance  : 207.75
+TOUR NUMERO 65
+Best Distance  : 207.75
+TOUR NUMERO 66
+Best Distance  : 207.75
+TOUR NUMERO 67
+Best Distance  : 207.75
+TOUR NUMERO 68
+Best Distance  : 207.75
+TOUR NUMERO 69
+Best Distance  : 207.75
+TOUR NUMERO 70
+Best Distance  : 207.75
+TOUR NUMERO 71
+Best Distance  : 207.75
+TOUR NUMERO 72
+Best Distance  : 207.75
+TOUR NUMERO 73
+Best Distance  : 207.75
+TOUR NUMERO 74
+Best Distance  : 207.75
+TOUR NUMERO 75
+Best Distance  : 207.75
+TOUR NUMERO 76
+Best Distance  : 207.75
+TOUR NUMERO 77
+Best Distance  : 207.75
+TOUR NUMERO 78
+Best Distance  : 207.75
+TOUR NUMERO 79
+Best Distance  : 207.75
+TOUR NUMERO 80
+Best Distance  : 207.75
+TOUR NUMERO 81
+Best Distance  : 207.75
+TOUR NUMERO 82
+Best Distance  : 207.75
+TOUR NUMERO 83
+Best Distance  : 207.75
+TOUR NUMERO 84
+Best Distance  : 207.75
+TOUR NUMERO 85
+Best Distance  : 207.75
+TOUR NUMERO 86
+Best Distance  : 207.75
+TOUR NUMERO 87
+Best Distance  : 207.75
+TOUR NUMERO 88
+Best Distance  : 207.75
+TOUR NUMERO 89
+Best Distance  : 207.75
+TOUR NUMERO 90
+Best Distance  : 201.101
+TOUR NUMERO 91
+Best Distance  : 175.03
+TOUR NUMERO 92
+Best Distance  : 175.03
+TOUR NUMERO 93
+Best Distance  : 175.03
+TOUR NUMERO 94
+Best Distance  : 175.03
+TOUR NUMERO 95
+Best Distance  : 175.03
+TOUR NUMERO 96
+Best Distance  : 175.03
+TOUR NUMERO 97
+Best Distance  : 175.03
+TOUR NUMERO 98
+Best Distance  : 175.03
+TOUR NUMERO 99
+Best Distance  : 175.03
+TOUR NUMERO 100
+Best Distance  : 175.03
+template<class T> void print(const T& l) { std::cout << l; } template<typename T,typename ...R> void print(const T& l,const R& ...p) { std::cout << l; print(p...); }
+Solution Finale  186 92 186 92 163 126 172 136 163 126 163 126 177 115 162 27 162 27 162 27
