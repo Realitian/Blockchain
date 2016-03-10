@@ -9,11 +9,7 @@
 
 #define MAX_X 200 // taille max en X de la Map de coordonnées pour le voyageur de commmerce
 #define MAX_Y 200   // ...en Y
-#define TAILLE_GENOME 10 // nombre de villes
-#define NOMBRE_GENERATION 5000 // nombre de génération
-#define PROB_MUTATION 300 // correspond a 1/15 que ca mute
-#define NBREGENOME 20 // nombre de genome
-#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION))
+#define TAILLE_GENOME 20 // nombre de villes
 
 class City;
 // vecteur de villes
@@ -74,8 +70,8 @@ public:
         if(&rhs == this)
             return *this;
         this->cities_.swap(rhs.cities_);
-        std::swap(this->fitness_,rhs.fitness_);
-        std::swap(this->distance_,rhs.distance_);
+        this->fitness_=rhs.fitness_;
+        this->distance_=rhs.distance_;
         return *this;
     };
 
@@ -94,7 +90,7 @@ public:
     }
 
     // Get fitness
-    inline double fitness()            { if(fitness() == 0) return 1/distance(); return fitness_;};
+    inline double fitness()            { if(fitness_ == 0) return 1000/distance(); return fitness_;};
 
     // Set Fitness
     inline void setFitness(double fit) { fitness_ = fit; };
@@ -178,6 +174,7 @@ public:
             }
     };
     Population(const Population& rhs) : tours_(rhs.tours_) {};
+
     Population() = delete;
     ~Population() noexcept { tours_.clear();} ;
 
@@ -225,8 +222,12 @@ namespace debugger
 //------------------------------------- Namespace Genetic Algorithm Fonctions ----------------------------------------------------/
 namespace GAWORK
 {
+#define PROB_MUTATION 100 // correspond a 1/15 que ca mute
+#define NBREGENOME 50 // nombre de genome
+#define NOMBRE_GENERATION 1000 // nombre de génération
 
-    constexpr static double mutationRate = 0.1;
+#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION))
+    constexpr static double mutationRate = 0.3;
     constexpr bool elitism = true;
     bool checkValidiyTour(const Tour& t)
     {
@@ -235,11 +236,33 @@ namespace GAWORK
             if(std::find(villes.begin(),villes.end(),t.getCity(i)) == villes.end())
                 return false;
         }
-
         return true;
     }
-    // Selection du meilleur tour
-    Tour selection(const Population& pop)
+
+    // selection d'un génome par la méthode de la roulette
+    Tour selectionRoulette(const Population& pop)
+    {
+        long double score = 0,score1=0,score2=0;
+        for(int i=0;i<pop.size();i++)
+        {
+            score+= pop.getTour(i).fitness();
+        }
+        std::uniform_int_distribution<int> dist(1, std::max(static_cast<int>(score),1));
+        std::function<int()> f =std::bind(dist, std::ref(gen));
+        score1 = static_cast<double>(f());
+        int i=0;
+        while(score2 <= score1 && i < pop.size())
+        {
+            score2+= pop.getTour(i++).fitness();
+        }
+        Tour res =pop.getTour(std::min(i,pop.size()-1));
+
+        return res;
+    }
+
+
+    // Selection d'un génome en tirant aléatoirement
+    Tour selectionMeilleureAleatoire(const Population& pop)
     {
       //  debug("Debut de Selection");
         Tour bestTour;
@@ -251,10 +274,10 @@ namespace GAWORK
             Tour tirer = pop.getTour(f());
 
             // bestTour est vide par défaut
-            //if(bestTour.distance() == 0) bestTour = tirer;
+            if(bestTour.distance() == 0) bestTour = tirer;
 
             // Prend le meilleur des deux tours
-           // bestTour = (bestTour < tirer ? bestTour : tirer);
+            bestTour = (bestTour < tirer ? bestTour : tirer);
             bestTour = tirer;
         }
         if(! checkValidiyTour(bestTour)){
@@ -283,13 +306,18 @@ namespace GAWORK
         std::function<int()> f =std::bind(dist, std::ref(gen));
         int st = f();
         int ed = f();
-        st = std::min(st,ed);
-        ed = std::max(st,ed);
+      //  st = std::min(st,ed);
+      //  ed = std::max(st,ed);
         for(int i=0;i<taille;i++)
         {
-           if (st < ed && i > st && i < ed) {
+           if (st < ed && i >= st && i <= ed) {
                  child.setCity(i, a.getCity(i));
            }
+           else if (st > ed) {
+                if (!(i <= st && i >= ed)) {
+                    child.setCity(i, a.getCity(i));
+                }
+            }
         }
         // Pour moi on en a pas besoin a l'intérieur
         std::vector<City> ville = child.cities();
@@ -341,8 +369,8 @@ namespace GAWORK
             }
         }
         // Si la mutation est mauvaise, alors retourne l'ancien chromosome
-       if(newTour < init)
-            newTour = init;
+     //  if(newTour < init)
+       //     newTour = init;
         if(! checkValidiyTour(newTour)){
             std::cout << "ALLLLLERT MUTATION FAILED";
             return tour;
@@ -356,7 +384,7 @@ namespace GAWORK
     **/
     Population evoluer(Population pop)
     {
-        pop.trier();
+       // pop.trier();
         Population newPop(pop.size(),false);
         // Copie du meilleure génome
         if(elitism ==  true)
@@ -364,10 +392,8 @@ namespace GAWORK
         for(int i= (elitism == true ? 1 : 0) ; i < newPop.size() ; i++)
         {
             Tour a,b;
-            do{
-             a = selection(pop);
-             b = selection(pop);
-            }while(a == b);
+             a = selectionRoulette(pop);
+             b = selectionMeilleureAleatoire(pop);
             Tour child = crossover(a,b);
             newPop.setTour(i,child);
         }
@@ -418,15 +444,35 @@ int main()
     for(int i=0 ; i<TAILLE_GENOME ; i++ )
     {
         City X;
-        std::cerr << "Nouvelle ville : pos X = " << X.X() <<" et pos Y = " << X.Y() << std::endl;
-        villes.push_back(X);
+       // std::cerr << "Nouvelle ville : pos X = " << X.X() <<" et pos Y = " << X.Y() << std::endl;
+       // villes.push_back(X);
     }
+    villes.push_back(City(60,200));
+    villes.push_back(City(180,200));
+    villes.push_back(City(80,180));
+    villes.push_back(City(140,180));
+    villes.push_back(City(20,160));
+    villes.push_back(City(100,160));
+    villes.push_back(City(200,160));
+    villes.push_back(City(140,140));
+    villes.push_back(City(40,120));
+    villes.push_back(City(100,120));
+    villes.push_back(City(180,100));
+    villes.push_back(City(60,80));
+    villes.push_back(City(120,80));
+    villes.push_back(City(180,60));
+    villes.push_back(City(20,40));
+    villes.push_back(City(100,40));
+    villes.push_back(City(200,40));
+    villes.push_back(City(20,20));
+    villes.push_back(City(60,20));
+    villes.push_back(City(160,20));
+
+
 
     Population pop(NBREGENOME,true);
     out << "Best Distance  : " << pop.getFittest().distance() << std::endl;
-    for_each(pop.tours_.begin(),pop.tours_.end(),[](Tour p){
-        std::cout << p<<std::endl;
-    });
+
     pop = evoluer(pop);
 
     for (int i = 0; i < NOMBRE_GENERATION; i++)
