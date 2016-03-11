@@ -255,14 +255,14 @@ namespace debugger
 //------------------------------------- Namespace Genetic Algorithm Fonctions ----------------------------------------------------/
 namespace GAWORK
 {
-#define PROB_MUTATION 115 // correspond a 1/15 que ca mute
-#define NBREGENOME 50 // nombre de genome
+#define PROB_MUTATION 100 // correspond a 1/15 que ca mute
+#define NBREGENOME 200 // nombre de genome
 #define NOMBRE_GENERATION 2000 // nombre de génération
 
 #define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION + 1))
-    constexpr static double mutationRate = 0.2;
+    constexpr static double mutationRate = 0.1;
     constexpr bool elitism = true;
-
+    constexpr static double steadystateRate = 0.1;
     bool checkValidiyTour(const Tour& t)
     {
         for(int i=0;i<t.size();i++)
@@ -294,6 +294,13 @@ namespace GAWORK
         return res;
     }
 
+    void steady_state(Population& pop)
+    {
+        std::vector<Tour> buff;
+        buff.resize(pop.tours_.size()/2);
+        std::partial_sort_copy (pop.tours_.begin(), pop.tours_.begin()+pop.tours_.size()/2, buff.begin(), buff.end());
+        std::copy(buff.begin(),buff.end(), pop.tours_.begin() + pop.tours_.size()/2);
+    }
 
     // Selection d'un génome en tirant aléatoirement
     Tour selectionMeilleureAleatoire(const Population& pop)
@@ -418,14 +425,18 @@ namespace GAWORK
     {
        // pop.trier();
         Population newPop(pop.size(),false);
+
+        // Steady - State
+        if(RAND_FLOAT < steadystateRate)
+            steady_state(pop);
         // Copie du meilleure génome
         if(elitism ==  true)
             newPop.setTour(0,pop.getTour(0));
         for(int i= (elitism == true ? 1 : 0) ; i < newPop.size() ; i++)
         {
             Tour a,b;
-             a = selectionRoulette(pop);
-             b = selectionMeilleureAleatoire(pop);
+            a = selectionMeilleureAleatoire(pop);
+            b = selectionMeilleureAleatoire(pop);
             Tour child = crossover(a,b);
             newPop.setTour(i,child);
         }
@@ -476,6 +487,12 @@ int lancer()
 
 }
 
+
+
+
+
+
+
 int main()
 {
     srand(time(NULL));
@@ -516,3 +533,4 @@ int main()
    lancer();
     return 0;
 }
+
