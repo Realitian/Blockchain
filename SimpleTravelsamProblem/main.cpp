@@ -123,7 +123,7 @@ public:
     };
 
 
-    double distance()           // V
+    double distance()           
     {
         if(distance_ == 0)
         {
@@ -228,7 +228,6 @@ public:
             }
             jsonA[buff.c_str()]=res;
         }
-
         out2 << jsonA;
         out2.close();
     }
@@ -255,14 +254,14 @@ namespace debugger
 //------------------------------------- Namespace Genetic Algorithm Fonctions ----------------------------------------------------/
 namespace GAWORK
 {
-#define PROB_MUTATION 100 // correspond a 1/15 que ca mute
-#define NBREGENOME 200 // nombre de genome
-#define NOMBRE_GENERATION 2000 // nombre de génération
+#define PROB_MUTATION 100      // correspond a 1/15 que ca mute
+#define NBREGENOME 200         // nombre de genome
+#define NOMBRE_GENERATION 100 // nombre de génération
 
 #define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION + 1))
-    constexpr static double mutationRate = 0.1;
+    constexpr static double mutationRate = 0.3;
     constexpr bool elitism = true;
-    constexpr static double steadystateRate = 0.1;
+    constexpr static double steadystateRate = 0.05;
     bool checkValidiyTour(const Tour& t)
     {
         for(int i=0;i<t.size();i++)
@@ -281,7 +280,7 @@ namespace GAWORK
         {
             score+= pop.getTour(i).fitness();
         }
-        std::uniform_int_distribution<int> dist(1, std::max(static_cast<int>(score),1));
+        std::uniform_int_distribution<int> dist(0, std::max(static_cast<int>(score),1));
         std::function<int()> f =std::bind(dist, std::ref(gen));
         score1 = static_cast<double>(f());
         int i=0;
@@ -307,7 +306,7 @@ namespace GAWORK
     {
       //  debug("Debut de Selection");
         Tour bestTour;
-        std::uniform_int_distribution<int> dist(1, std::max(pop.size()-1,1));
+        std::uniform_int_distribution<int> dist(0, std::max(pop.size()-1,1));
         std::function<int()> f =std::bind(dist, std::ref(gen));
 
         for(int i=0 ; i<pop.size() ; i++)
@@ -343,7 +342,7 @@ namespace GAWORK
             child.setCity(i,buff);
         }
 
-        std::uniform_int_distribution<int> dist(1, std::max(a.size()-1,1));
+        std::uniform_int_distribution<int> dist(0, std::max(a.size()-1,1));
         std::function<int()> f =std::bind(dist, std::ref(gen));
         int st = f();
         int ed = f();
@@ -435,7 +434,7 @@ namespace GAWORK
         for(int i= (elitism == true ? 1 : 0) ; i < newPop.size() ; i++)
         {
             Tour a,b;
-            a = selectionMeilleureAleatoire(pop);
+            a = selectionRoulette(pop);
             b = selectionMeilleureAleatoire(pop);
             Tour child = crossover(a,b);
             newPop.setTour(i,child);
@@ -474,20 +473,17 @@ int lancer()
 {
     using namespace GAWORK;
     Population pop(NBREGENOME,true);
-  //  out << "Best Distance  : " << pop.getFittest().distance() << std::endl;
+
     pop = evoluer(pop);
     for (int i = 0; i < NOMBRE_GENERATION; i++)
     {
-       // std::cout  << "TOUR NUMERO " << i+1<< std::endl;
         pop = evoluer(pop);
-        std::cout << pop.getFittest().distance()<< std::endl;
+        std::cout << "Generation "<< i+1 << " fittest distance: " <<  pop.getFittest().distance()<< std::endl;
     }
     pop.JsonSave("out.json");
     return pop.getFittest().distance();
 
 }
-
-
 
 
 
@@ -499,8 +495,6 @@ int main()
     for(int i=0 ; i<TAILLE_GENOME ; i++ )
     {
         City X;
-       // std::cerr << "Nouvelle ville : pos X = " << X.X() <<" et pos Y = " << X.Y() << std::endl;
-       // villes.push_back(X);
     }
     villes.push_back(City(60,200));
     villes.push_back(City(180,200));
