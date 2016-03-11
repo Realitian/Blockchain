@@ -8,7 +8,7 @@
 #include <future> // future
 #include <chrono> // time_point,high_resolution...
 #include<unordered_map>
-#include "../jsoncpp/dist/json/json.h"
+#include "json.h"
 
 #define MAX_X 200 // taille max en X de la Map de coordonnées pour le voyageur de commmerce
 #define MAX_Y 200   // ...en Y
