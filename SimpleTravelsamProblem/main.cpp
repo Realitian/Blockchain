@@ -37,7 +37,7 @@ public:
     City() : X_(rand() % MAX_X), Y_(rand() % MAX_Y){};
     City& operator=(const City& rhs) { if(&rhs == this) return *this; X_= rhs.X() ; Y_ = rhs.Y(); return *this;};
     // destructeur
-    virtual ~City(){};
+    virtual ~City() noexcept {};
     bool operator<(City rhs) const  { return (X_ <rhs.X() && Y_ <rhs.Y());};
     // Operateur de comparaison
     bool operator==(const City& other) const { return (X() == other.X() && Y() == other.Y());};
@@ -68,7 +68,7 @@ public:
     Tour(const std::vector<City>& vec): fitness_(0), distance_(0), cities_(vec){};
     Tour(const Tour& rhs) : fitness_(rhs.fitness_) , distance_(rhs.distance_), cities_(rhs.cities_) {};
     // Destructeur
-    ~Tour() { cities_.clear(); };
+    ~Tour() noexcept { cities_.clear(); };
     Tour& operator=(Tour rhs){
         if(&rhs == this)
             return *this;
@@ -164,7 +164,8 @@ private:
 class Population
 {
 public:
-    Population(int taille,bool initialize)
+    Population(int taille,bool initialize) :
+        tours_()
     {
         tours_.resize(taille);
         if(initialize)
@@ -215,7 +216,7 @@ public:
         Json::Value jsonArray1(Json::arrayValue);
         std::sort(tours_.begin(),tours_.end());
         jsonA["fitness of the best"]= getFittest().fitness();
-        for(int j=0;j<tours_.size()/4;j++)
+        for(uint j=0;j<tours_.size()/4;j++)
         {
             std::string buff = std::string("genome"+tost(j));
             std::string res;
@@ -254,13 +255,14 @@ namespace debugger
 //------------------------------------- Namespace Genetic Algorithm Fonctions ----------------------------------------------------/
 namespace GAWORK
 {
-#define PROB_MUTATION 100 // correspond a 1/15 que ca mute
+#define PROB_MUTATION 115 // correspond a 1/15 que ca mute
 #define NBREGENOME 50 // nombre de genome
-#define NOMBRE_GENERATION 100 // nombre de génération
+#define NOMBRE_GENERATION 2000 // nombre de génération
 
-#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION))
-    constexpr static double mutationRate = 0.3;
+#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION + 1))
+    constexpr static double mutationRate = 0.2;
     constexpr bool elitism = true;
+
     bool checkValidiyTour(const Tour& t)
     {
         for(int i=0;i<t.size();i++)
@@ -436,36 +438,7 @@ namespace GAWORK
 
 };
 
-namespace ManagerJSON
-{
-    /*
-    void JsonSave(const std::string& filename)
-    {
-        ofstream out(filename,ofstream::out);
-        Json::Value jsonA(Json::objectValue);
-        Json::Value jsonArray(Json::arrayValue);
-        for(auto x: vec)
-        {
-            jsonArray.append(x);
-        }
-        jsonA["Array"]= jsonArray;
-        out << jsonA;
-    }
-    */
-    /**
-    *    Permet d'afficher des éléments d'un fichier Json
 
-    void JsonLoad(const string& filename)
-    {
-        ifstream in(filename);
-        Json::Value json;
-        in >> json;
-        for(auto x : json["Array"])
-        {
-            std::cout << x.asString;
-        }
-    }
-*/};
 
 namespace timer
 {
@@ -494,9 +467,9 @@ int lancer()
     pop = evoluer(pop);
     for (int i = 0; i < NOMBRE_GENERATION; i++)
     {
-        std::cout  << "TOUR NUMERO " << i+1<< std::endl;
+       // std::cout  << "TOUR NUMERO " << i+1<< std::endl;
         pop = evoluer(pop);
-
+        std::cout << pop.getFittest().distance()<< std::endl;
     }
     pop.JsonSave("out.json");
     return pop.getFittest().distance();
@@ -532,13 +505,14 @@ int main()
     villes.push_back(City(20,20));
     villes.push_back(City(60,20));
     villes.push_back(City(160,20));
-    for(int i=0;i<villes.size();i++)
+    for(uint i=0;i<villes.size();i++)
     {
         city_to_int[std::make_pair(villes.at(i).X(),villes.at(i).Y())]=i;
     }
-    std::future<int> f1 = std::async(std::launch::async,lancer);
+   // std::future<int> f1 = std::async(std::launch::async,lancer);
    // std::future<int> f2 = std::async(std::launch::async,lancer);
    // std::future<int> f3 = std::async(std::launch::async,lancer);
-    std::cout << f1.get(); //<< " " << f2.get() << " " << f3.get();
+   // std::cout << f1.get(); //<< " " << f2.get() << " " << f3.get();
+   lancer();
     return 0;
 }
