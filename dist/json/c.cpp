@@ -4,20 +4,21 @@
 #include <algorithm> // generate, bind, sort,for_each, partial_sort
 #include <vector>   // vector
 #include <fstream> // ofstream
-#include <thread> // thread
-#include <future> // future
-#include <chrono> // time_point,high_resolution...
-#include<unordered_map>
-#include "../jsoncpp/dist/json/json.h"
+
+
 
 #define MAX_X 200 // taille max en X de la Map de coordonnées pour le voyageur de commmerce
 #define MAX_Y 200   // ...en Y
-#define TAILLE_GENOME 20 // nombre de villes
+#define TAILLE_GENOME 10 // nombre de villes
+#define NOMBRE_GENERATION 5000 // nombre de génération
+#define PROB_MUTATION 300 // correspond a 1/15 que ca mute
+#define NBREGENOME 20 // nombre de genome
+#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION))
 
 class City;
 // vecteur de villes
 std::vector<City> villes;
-std::map<std::pair<int,int>,int> city_to_int;
+
 
 // FLUX DE RESULTAT
 #define RES_FILE "res.txt"
@@ -38,7 +39,7 @@ public:
     City& operator=(const City& rhs) { if(&rhs == this) return *this; X_= rhs.X() ; Y_ = rhs.Y(); return *this;};
     // destructeur
     virtual ~City(){};
-    bool operator<(City rhs) const  { return (X_ <rhs.X() && Y_ <rhs.Y());};
+
     // Operateur de comparaison
     bool operator==(const City& other) const { return (X() == other.X() && Y() == other.Y());};
     // getter X
@@ -64,8 +65,8 @@ class Tour
 {
 public:
     // Differents constructeur
-    Tour() : fitness_(0),distance_(0),cities_() {};
-    Tour(const std::vector<City>& vec): fitness_(0), distance_(0), cities_(vec){};
+    Tour() : fitness_(0),cities_(),distance_(0) {};
+    Tour(const std::vector<City>& vec): fitness_(0), cities_(vec), distance_(0){};
     Tour(const Tour& rhs) : fitness_(rhs.fitness_) , distance_(rhs.distance_), cities_(rhs.cities_) {};
     // Destructeur
     ~Tour() { cities_.clear(); };
@@ -73,8 +74,8 @@ public:
         if(&rhs == this)
             return *this;
         this->cities_.swap(rhs.cities_);
-        this->fitness_=rhs.fitness_;
-        this->distance_=rhs.distance_;
+        std::swap(this->fitness_,rhs.fitness_);
+        std::swap(this->distance_,rhs.distance_);
         return *this;
     };
 
@@ -93,7 +94,7 @@ public:
     }
 
     // Get fitness
-    inline double fitness()            { if(fitness_ == 0) return 1000/distance(); return fitness_;};
+    inline double fitness()            { if(fitness() == 0) return 1/distance(); return fitness_;};
 
     // Set Fitness
     inline void setFitness(double fit) { fitness_ = fit; };
@@ -153,8 +154,9 @@ public:
     bool containsCity(const City& city) const { auto res = std::find(cities_.begin(),cities_.end(),city); return (res != cities_.end());}
 
 private:
-    double fitness_;
+
     double distance_;
+    double fitness_;
     std::vector<City> cities_;
 };
 
@@ -176,7 +178,6 @@ public:
             }
     };
     Population(const Population& rhs) : tours_(rhs.tours_) {};
-
     Population() = delete;
     ~Population() noexcept { tours_.clear();} ;
 
@@ -186,7 +187,7 @@ public:
     // Obtenir le nombre de tour
     inline Tour getTour(int pos)    const  { return tours_.at(pos);};
     // Obtenir le nombre de Tour
-    inline void setTour(uint pos,const Tour& tour) { if(pos >= tours_.size()) ajouterTour(pos); tours_.at(pos)=tour;};
+    inline void setTour(int pos,const Tour& tour) { if(pos >= tours_.size()) ajouterTour(pos); tours_.at(pos)=tour;};
     // Ajouter des tours pour eviter l'erreur
     inline void ajouterTour(int pos)
     {
@@ -202,36 +203,6 @@ public:
     // Obtenir le nombre de chromosomes
     inline int size() const { return tours_.size(); };
     std::vector<Tour> tours_;
-
-    /**
-    Affichage dans un fichier Json
-    **/
-    void JsonSave(const std::string& filename)
-    {
-    #define tost(a) std::to_string(a)
-        std::ofstream out2(filename,std::ofstream::out);
-        Json::Value jsonA(Json::objectValue);
-        Json::Value jsonArray(Json::arrayValue);
-        Json::Value jsonArray1(Json::arrayValue);
-        std::sort(tours_.begin(),tours_.end());
-        jsonA["fitness of the best"]= getFittest().fitness();
-        for(int j=0;j<tours_.size()/4;j++)
-        {
-            std::string buff = std::string("genome"+tost(j));
-            std::string res;
-            for(int i=0;i<tours_.at(j).size();i++)
-            {
-                City b = tours_.at(j).getCity(i);
-              //  res+= std::string(" ("+tost(b.X())+" "+tost(b.Y())+") ");
-                res+= std::string(" "+tost(city_to_int[std::make_pair(b.X(),b.Y())]));
-            }
-            jsonA[buff.c_str()]=res;
-        }
-
-        out2 << jsonA;
-        out2.close();
-    }
-
 };
 //------------------------------------- Namespace Debugger ----------------------------------------------------/
 namespace debugger
@@ -254,12 +225,8 @@ namespace debugger
 //------------------------------------- Namespace Genetic Algorithm Fonctions ----------------------------------------------------/
 namespace GAWORK
 {
-#define PROB_MUTATION 100 // correspond a 1/15 que ca mute
-#define NBREGENOME 50 // nombre de genome
-#define NOMBRE_GENERATION 100 // nombre de génération
 
-#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION))
-    constexpr static double mutationRate = 0.3;
+    constexpr static double mutationRate = 0.1;
     constexpr bool elitism = true;
     bool checkValidiyTour(const Tour& t)
     {
@@ -268,33 +235,11 @@ namespace GAWORK
             if(std::find(villes.begin(),villes.end(),t.getCity(i)) == villes.end())
                 return false;
         }
+
         return true;
     }
-
-    // selection d'un génome par la méthode de la roulette
-    Tour selectionRoulette(const Population& pop)
-    {
-        long double score = 0,score1=0,score2=0;
-        for(int i=0;i<pop.size();i++)
-        {
-            score+= pop.getTour(i).fitness();
-        }
-        std::uniform_int_distribution<int> dist(1, std::max(static_cast<int>(score),1));
-        std::function<int()> f =std::bind(dist, std::ref(gen));
-        score1 = static_cast<double>(f());
-        int i=0;
-        while(score2 <= score1 && i < pop.size())
-        {
-            score2+= pop.getTour(i++).fitness();
-        }
-        Tour res =pop.getTour(std::min(i,pop.size()-1));
-
-        return res;
-    }
-
-
-    // Selection d'un génome en tirant aléatoirement
-    Tour selectionMeilleureAleatoire(const Population& pop)
+    // Selection du meilleur tour
+    Tour selection(const Population& pop)
     {
       //  debug("Debut de Selection");
         Tour bestTour;
@@ -306,10 +251,10 @@ namespace GAWORK
             Tour tirer = pop.getTour(f());
 
             // bestTour est vide par défaut
-            if(bestTour.distance() == 0) bestTour = tirer;
+            //if(bestTour.distance() == 0) bestTour = tirer;
 
             // Prend le meilleur des deux tours
-            bestTour = (bestTour < tirer ? bestTour : tirer);
+           // bestTour = (bestTour < tirer ? bestTour : tirer);
             bestTour = tirer;
         }
         if(! checkValidiyTour(bestTour)){
@@ -338,21 +283,18 @@ namespace GAWORK
         std::function<int()> f =std::bind(dist, std::ref(gen));
         int st = f();
         int ed = f();
-      //  st = std::min(st,ed);
-      //  ed = std::max(st,ed);
+        st = std::min(st,ed);
+        ed = std::max(st,ed);
         for(int i=0;i<taille;i++)
         {
-           if (st < ed && i >= st && i <= ed) {
+           if (st < ed && i > st && i < ed) {
                  child.setCity(i, a.getCity(i));
            }
-           else if (st > ed) {
-                if (!(i <= st && i >= ed)) {
-                    child.setCity(i, a.getCity(i));
-                }
-            }
         }
         // Pour moi on en a pas besoin a l'intérieur
         std::vector<City> ville = child.cities();
+        auto last = ville.end();
+
         for(int i=0 ; i < b.size();i++)
         {
             if(std::find(ville.begin(),ville.end(),b.getCity(i)) == ville.end())
@@ -399,8 +341,8 @@ namespace GAWORK
             }
         }
         // Si la mutation est mauvaise, alors retourne l'ancien chromosome
-     //  if(newTour < init)
-       //     newTour = init;
+       if(newTour < init)
+            newTour = init;
         if(! checkValidiyTour(newTour)){
             std::cout << "ALLLLLERT MUTATION FAILED";
             return tour;
@@ -414,7 +356,7 @@ namespace GAWORK
     **/
     Population evoluer(Population pop)
     {
-       // pop.trier();
+        pop.trier();
         Population newPop(pop.size(),false);
         // Copie du meilleure génome
         if(elitism ==  true)
@@ -422,8 +364,10 @@ namespace GAWORK
         for(int i= (elitism == true ? 1 : 0) ; i < newPop.size() ; i++)
         {
             Tour a,b;
-             a = selectionRoulette(pop);
-             b = selectionMeilleureAleatoire(pop);
+            do{
+             a = selection(pop);
+             b = selection(pop);
+            }while(a == b);
             Tour child = crossover(a,b);
             newPop.setTour(i,child);
         }
@@ -467,78 +411,34 @@ namespace ManagerJSON
     }
 */};
 
-namespace timer
+int main()
 {
-#define MAX_TIME 10'000'000
-    typedef  std::chrono::high_resolution_clock::time_point timepoint;
-    timepoint getStartedTime()
-    {
-        return std::chrono::high_resolution_clock::now();
-    }
-    bool is_stop(long long int diff,timepoint start,timepoint fin)
-    {
-       if(std::chrono::duration_cast<std::chrono::nanoseconds>(fin - start).count() > 0.65 * MAX_TIME)
-       {
-            return true;
-       }
-      return false;
-    }
-}
-
-
-int lancer()
-{
+    srand(time(NULL));
     using namespace GAWORK;
+    for(int i=0 ; i<TAILLE_GENOME ; i++ )
+    {
+        City X;
+        std::cerr << "Nouvelle ville : pos X = " << X.X() <<" et pos Y = " << X.Y() << std::endl;
+        villes.push_back(X);
+    }
+
     Population pop(NBREGENOME,true);
-  //  out << "Best Distance  : " << pop.getFittest().distance() << std::endl;
+    out << "Best Distance  : " << pop.getFittest().distance() << std::endl;
+    for_each(pop.tours_.begin(),pop.tours_.end(),[](Tour p){
+        std::cout << p<<std::endl;
+    });
     pop = evoluer(pop);
+
     for (int i = 0; i < NOMBRE_GENERATION; i++)
     {
         std::cout  << "TOUR NUMERO " << i+1<< std::endl;
         pop = evoluer(pop);
-
+    //std::cout  << "Solution Finale " << pop.getFittest() << std::endl;
+     //   for_each(pop.tours_.begin(),pop.tours_.end(),[](Tour p){
+       // std::cout << p<<std::endl;
+  //  });
+        out << "Best Distance  : " << pop.getFittest().distance() << std::endl;
     }
-    pop.JsonSave("out.json");
-    return pop.getFittest().distance();
-
-}
-
-int main()
-{
-    srand(time(NULL));
-    for(int i=0 ; i<TAILLE_GENOME ; i++ )
-    {
-        City X;
-       // std::cerr << "Nouvelle ville : pos X = " << X.X() <<" et pos Y = " << X.Y() << std::endl;
-       // villes.push_back(X);
-    }
-    villes.push_back(City(60,200));
-    villes.push_back(City(180,200));
-    villes.push_back(City(80,180));
-    villes.push_back(City(140,180));
-    villes.push_back(City(20,160));
-    villes.push_back(City(100,160));
-    villes.push_back(City(200,160));
-    villes.push_back(City(140,140));
-    villes.push_back(City(40,120));
-    villes.push_back(City(100,120));
-    villes.push_back(City(180,100));
-    villes.push_back(City(60,80));
-    villes.push_back(City(120,80));
-    villes.push_back(City(180,60));
-    villes.push_back(City(20,40));
-    villes.push_back(City(100,40));
-    villes.push_back(City(200,40));
-    villes.push_back(City(20,20));
-    villes.push_back(City(60,20));
-    villes.push_back(City(160,20));
-    for(int i=0;i<villes.size();i++)
-    {
-        city_to_int[std::make_pair(villes.at(i).X(),villes.at(i).Y())]=i;
-    }
-    std::future<int> f1 = std::async(std::launch::async,lancer);
-   // std::future<int> f2 = std::async(std::launch::async,lancer);
-   // std::future<int> f3 = std::async(std::launch::async,lancer);
-    std::cout << f1.get(); //<< " " << f2.get() << " " << f3.get();
+    std::cout  << "Solution Finale " << pop.getFittest();
     return 0;
 }
