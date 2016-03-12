@@ -1,6 +1,6 @@
 #include "MillerRabin.h"
 #include <cstdlib>
-
+#include <iostream> // for debug
 /**
   Calculer de manière rapide a ^ x mod n
 **/
@@ -40,9 +40,8 @@ bool isprime(BigInteger n,int32_t k)
   BigInteger d = (n-1) / (buff);
 
   for (int32_t i = 0; i < k; ++i ) {
-    BigInteger a = n.getRandBI(2,n-2);			/// </>  Attention , a corriger </>
+    BigInteger a = d.getRandBI(2,n-2);			/// </>  Attention , a corriger </>
     BigInteger x = pow_modulo(a,d,n);
-
     if ( x == 1 || x == n-1 )
       continue;
 

@@ -263,9 +263,9 @@ BigInteger BigInteger::pow(BigInteger exp) const
 {
 	BigInteger base = *this;
 	BigInteger res(1);
-	while(exp > 0)
+	while(exp != 0)
 	{
-		if(!base.even())
+		if(!exp.even())
 			res*= base;
 		exp/=2;
 		base *= base;	
@@ -308,19 +308,22 @@ int  BigInteger::getRandInt(int code,int min,int max)
 **/
 BigInteger BigInteger::getRandBI(BigInteger min,BigInteger max)
 {
-	BigInteger res(0);
+	BigInteger res(2);
 	BigInteger buff(1);
 	uint32_t nbBits(0);
 	BigInteger nbBit(0);
-	while(BigInteger(2).pow(nbBit) <= max){ nbBit++; }
+	while(res.pow(nbBit) <= max) 
+			nbBit++;
 	nbBits = nbBit.toInt();
-	for(size_t i=0;i<nbBits;i++)
+	res = 0;
+	for(int i=0;i<nbBits;i++)
 	{
-		if(getRandInt(0,0,100000) & 1)
+		if(getRandInt(0,0,getRandInt(0,10000,100000000)) & 1)
 			res+= buff;
 		buff*=2;
 	}
-	std::cout << "LA";
+	res = std::max(min,res);
+	res = std::min(max,res);
 	return res;
 }
 
