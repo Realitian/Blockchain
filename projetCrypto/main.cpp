@@ -41,6 +41,7 @@ int fonctionTest()
   std::cout << " 994616153143 is a prime :" << (math_crypto::Is_Prime(y)  ? "oui" : "non")<<std::endl;
   y++;
   std::cout << " 994616153144 is a prime :" << (math_crypto::Is_Prime(y)  ? "oui" : "non")<<std::endl;
+  std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
   std::cout << std::endl;
   std::cout << "------------------- Test Euclide Etendu & Euclide -------------------"<<std::endl;
   x=4918615616;
@@ -53,7 +54,10 @@ int fonctionTest()
   std::cout << " Coefficient de Beziers sont " << a << " " << b << std::endl;
   std::cout << " Algorithme de Euclide Simple : " <<std::endl;
   assert(x*a + y*b == math_crypto::Euclid_GCD(x,y));
+
   std::cout << "* Pgcd : " << math_crypto::Euclid_GCD(x,y)<<std::endl;
+  std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
+
   std::cout << std::endl;
 
 
@@ -64,14 +68,14 @@ int fonctionTest()
   {
     assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
   }
-  std::cout << "Correct "<<std::endl;
+  std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
   NB = 30;
   std::cout << "Generation de nombre entre 0 et " << BigInteger(2).pow(NB) << std::endl; 
   for(int i=0;i<200;i++)
   {
     assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
   }
-  std::cout << "Correct "<<std::endl;
+  std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
   BigInteger mini = BigInteger(2).pow(10);
   BigInteger maxi = BigInteger(2).pow(100);
 
@@ -81,8 +85,7 @@ int fonctionTest()
     assert(a.randBigInteger(mini,maxi) <= maxi);
     assert(a.randBigInteger(mini,maxi) >= mini);
   }
-  std::cout << "Correct "<<std::endl;
-  std::cout << std::endl;
+  std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
 
   std::cout << "------------------- Test RSA -------------------" <<std::endl;
 

@@ -7,8 +7,8 @@
 #include "BigIntegerUtils.h"
 #include "MathCrypto.h"
 
-#define ACCURACY_MRABIN 5
-#define CLE_SIZE_BITS 600
+#define ACCURACY_MRABIN 10
+#define CLE_SIZE_BITS 1024
 
 
 namespace rsa{
