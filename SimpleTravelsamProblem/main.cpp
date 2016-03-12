@@ -8,7 +8,7 @@
 #include <future> // future
 #include <chrono> // time_point,high_resolution...
 #include<unordered_map>
-#include "json.h"
+
 
 #define MAX_X 200 // taille max en X de la Map de coordonnées pour le voyageur de commmerce
 #define MAX_Y 200   // ...en Y
@@ -204,33 +204,7 @@ public:
     inline int size() const { return tours_.size(); };
     std::vector<Tour> tours_;
 
-    /**
-    Affichage dans un fichier Json
-    **/
-    void JsonSave(const std::string& filename)
-    {
-    #define tost(a) std::to_string(a)
-        std::ofstream out2(filename,std::ofstream::out);
-        Json::Value jsonA(Json::objectValue);
-        Json::Value jsonArray(Json::arrayValue);
-        Json::Value jsonArray1(Json::arrayValue);
-        std::sort(tours_.begin(),tours_.end());
-        jsonA["fitness of the best"]= getFittest().fitness();
-        for(uint j=0;j<tours_.size()/4;j++)
-        {
-            std::string buff = std::string("genome"+tost(j));
-            std::string res;
-            for(int i=0;i<tours_.at(j).size();i++)
-            {
-                City b = tours_.at(j).getCity(i);
-              //  res+= std::string(" ("+tost(b.X())+" "+tost(b.Y())+") ");
-                res+= std::string(" "+tost(city_to_int[std::make_pair(b.X(),b.Y())]));
-            }
-            jsonA[buff.c_str()]=res;
-        }
-        out2 << jsonA;
-        out2.close();
-    }
+    
 
 };
 //------------------------------------- Namespace Debugger ----------------------------------------------------/
@@ -480,7 +454,7 @@ int lancer()
         pop = evoluer(pop);
         std::cout << "Generation "<< i+1 << " fittest distance: " <<  pop.getFittest().distance()<< std::endl;
     }
-    pop.JsonSave("out.json");
+
     return pop.getFittest().distance();
 
 }

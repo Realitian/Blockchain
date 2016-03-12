@@ -8,7 +8,7 @@
 #include "MathCrypto.h"
 
 #define ACCURACY_MRABIN 5
-#define CLE_SIZE_BITS 320
+#define CLE_SIZE_BITS 600
 
 
 namespace rsa{

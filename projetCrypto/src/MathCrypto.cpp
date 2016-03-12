@@ -24,15 +24,18 @@ Calculer de manière rapide a ^ x mod n
 BigInteger Modular_Exponentiation(BigInteger a,BigInteger x,const BigInteger& n)
 {
     BigInteger r = 1;
+    if(n == 0)
+      return 0;
+    a = a % n;
     while( x > 0)
     {
 
-        if(!(x % BigInteger(2) == 0))
+        if(x % BigInteger(2) == 1)
         {
-            r = r * a % n;
+            r = (r * a) % n;
         }
         x/=2;
-        a = a*a % n;
+        a = (a*a) % n;
     }
 
     return r;
@@ -50,35 +53,39 @@ bool Is_Prime(BigInteger n,int32_t k)
     // Si le nombre est negatif ou qu'il est pair
     if ( n<=1 || (n % BigInteger(2) == 0) ) return false;
 
-    BigInteger s = 0;
+    BigInteger s = 0,d = n-1;
     // On ecrit n-1 = (d*2)^s
-    for ( BigInteger m = n-1; (m % BigInteger(2) == 0); ++s, m /= 2 );
-    BigInteger buff = s*2;
-    BigInteger d = (n-1) / (buff);
-    
-    for (int32_t i = 0; i < k; ++i )
+    while ( d % 2 == 0 )
     {
+        d = d/2;
+        s++;
+    }
+    // Pour le nombre de test demandé
+    for (int32_t i = 0; i < k; i++ )
+    {
+       int boolean = false;
+       BigInteger s1 = s;
         // on prend d pour obtenir un nombre premier, on aurait pu en prendre un autre
         BigInteger a = d.randBigInteger(2,n-2);     
+        // On calcule son exponentiation modulaire
         BigInteger x = Modular_Exponentiation(a,d,n);
-        if ( x == 1 || x == n-1 )
+        if ( x == 1 || x == n-1 ){
+            boolean = true;
             continue;
-
-        for ( BigInteger r = 1; r <= s-1; ++r )
+        }
+        while(! boolean && s1  > 1)
         {
             x = Modular_Exponentiation(x, 2, n);
             if ( x == 1 ) return false;
-            if ( x == n - 1 ) goto LOOP;
+            if ( x == n-1 ){ boolean = true; continue; }
+            s1--;
         }
-
-        return false;
-LOOP:
-        continue;
+        if(!boolean) 
+          return false;
     }
     // n is *probably* prime
     return true;
 }
-
 
 
 

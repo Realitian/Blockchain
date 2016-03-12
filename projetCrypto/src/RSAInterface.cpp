@@ -26,7 +26,7 @@ namespace rsa{
 	          	W-- ;
       	    }
       	}
-      //	std::cerr << "Nombre d'essai pour trouver un nombre premier " << counter << std::endl;
+      	std::cerr << "Nombre d'essai pour trouver un nombre premier " << counter << std::endl;
 		return W;
 
       }
@@ -35,13 +35,20 @@ namespace rsa{
         void generation(int taille)
         {
          BACK:
+
+         	// Trouver e comme dans OpenSSL 0.9.8k
          	BigInteger E(65537);
          	BigInteger P = Get_Prime(taille/2);
          	while(math_crypto::Euclid_GCD(E,P-1) != 1) P = Get_Prime(taille/2);
          	BigInteger Q = Get_Prime(taille/2);
 			while(math_crypto::Euclid_GCD(E,Q-1) != 1) Q = Get_Prime(taille/2);
         	if(P ==  Q) goto BACK;
-        
+
+
+        	// p et q doivent avoir au moins un bit différent dans leur 100 bits de poids faible
+        	if(taille > 200 && (P % BigInteger(2).pow(100)) == (Q % BigInteger(2).pow(100)))
+        			goto BACK;
+
         	BigInteger phi = (P - 1) * (Q - 1);
         	BigInteger N = P * Q;
         	

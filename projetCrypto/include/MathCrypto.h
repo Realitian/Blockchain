@@ -3,7 +3,7 @@
 #include <stdint.h> 
 #include "BigInteger.h"
 
-static constexpr int DEFAULT_ACCURACY = 5;
+static constexpr int DEFAULT_ACCURACY = 6;
 
 namespace math_crypto{
 

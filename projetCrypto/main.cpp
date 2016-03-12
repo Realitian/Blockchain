@@ -21,6 +21,8 @@ int main()
 int fonctionTest()
 {
 
+
+
   // Puissance
   std::cout << "------------------- Test Puissance -------------------" <<std::endl;
   BigInteger x(4918615616);
@@ -85,8 +87,7 @@ int fonctionTest()
   std::cout << "------------------- Test RSA -------------------" <<std::endl;
 
   std::cout << "Generation de nombre premier de 320 bits "<< std::endl;
-  for(int i=0;i<3;i++)
-    std::cout << rsa::Get_Prime() << std::endl;
+  //  std::cout << rsa::Get_Prime() << std::endl;
   rsa::generation();
   
   std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;

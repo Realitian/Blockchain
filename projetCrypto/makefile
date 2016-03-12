@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -std=c++14 
+CFLAGS = -Wall -std=c++14 -Wdeprecated
 EXEC_NAME = crypto
 INCLUDE_DIR = include
 INCLUDES = -I $(INCLUDE_DIR)/
