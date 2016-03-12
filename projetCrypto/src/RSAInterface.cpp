@@ -26,51 +26,40 @@ namespace rsa{
 	          	W-- ;
       	    }
       	}
-      	std::cerr << "Nombre d'essai pour trouver un nombre premier " << counter << std::endl;
+      //	std::cerr << "Nombre d'essai pour trouver un nombre premier " << counter << std::endl;
 		return W;
 
       }
-}
-/*
-int Big_Prime_Bits, Trial;
 
-void Generating()
+
+void generation()
 {
-	
-	signed_BigInt P = Get_Prime(CLE_SIZE, Trial), Q = Get_Prime(Big_Prime_Bits, Trial);
-	signed_BigInt Phi = (P - 1) * (Q - 1);
-	signed_BigInt N = P * Q;
+ BACK:
+	BigInteger P = Get_Prime(), Q = Get_Prime();
+	if(P ==  Q) goto BACK;
 
-	signed_BigInt D, E, temp;
-	for (E = 7; !(Extended_Euclid_GCD(E, Phi, D, temp) == One); E = E + 2);
-	if (D.sign == -1)
-		D = D + Phi;
-		
+	BigInteger phi = (P - 1) * (Q - 1);
+	BigInteger N = P * Q;
 
-	fout << "P = " << endl;
-	fout << P << endl;
-	fout << endl;
-	fout << "Q = " << endl;
-	fout << Q << endl;
-	fout << endl;
+	BigInteger D, E, temp;
+	for (E = 7; !(math_crypto::Extended_Euclid_GCD(E, phi, D, temp) == 1); E = E + 2);
+	if (D.getSign() == -1)
+		D = D + phi;
 	
-	fout << "N = " << endl;
-	fout << N << endl;
-	fout << endl;
-	fout << "E = " << endl;
-	fout << E << endl;
-	fout << endl;
-	fout << "D = " << endl;
-	fout << D << endl;
+	std::cout << "P = " << std::endl;
+	std::cout << P << std::endl;
+	std::cout << std::endl;
+	std::cout << "Q = " << std::endl;
+	std::cout << Q << std::endl;
+	std::cout << std::endl;
+	std::cout << "N = " << std::endl;
+	std::cout << N << std::endl;
+	std::cout << std::endl;
+	std::cout << "E = " << std::endl;
+	std::cout << E << std::endl;
+	std::cout << std::endl;
+	std::cout << "D = " << std::endl;
+	std::cout << D << std::endl;
 
-	public_out << N;
-	public_out << E;
-	
-	
-	private_out << N;
-	private_out << D;
-	
-	fout.close();
-	public_out.close();
-	private_out.close();
-}*/
+}
+}
