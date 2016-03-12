@@ -2,6 +2,8 @@
 #define BIGINTEGER_H
 
 #include "BigUnsigned.h"
+#include <random>
+#include <functional>
 
 /* A BigInteger object represents a signed integer of size limited only by
  * available memory.  BigUnsigneds support most mathematical operators and can
@@ -114,6 +116,17 @@ public:
 	void divideWithRemainder(const BigInteger &b, BigInteger &q);
 	void negate(const BigInteger &a);
 	
+
+	/* Notre Implementation de la fonction pow (puissance) */
+	BigInteger pow(BigInteger) const;
+
+	/* Implementation de la fonction even pour eviter les répétitions de code */
+	bool even() const;
+
+	int getRandInt(int,int ,int);
+	BigInteger getRandBI(BigInteger ,BigInteger );
+
+
 	/* Bitwise operators are not provided for BigIntegers.  Use
 	 * getMagnitude to get the magnitude and operate on that instead. */
 

@@ -1,4 +1,5 @@
 #include "BigInteger.h"
+#include <iostream>
 
 void BigInteger::operator =(const BigInteger &x) {
 	// Calls like a = a have no effect
@@ -254,6 +255,75 @@ void BigInteger::multiply(const BigInteger &a, const BigInteger &b) {
 	// Multiply the magnitudes.
 	mag.multiply(a.mag, b.mag);
 }
+
+/*
+	Implementation de la fonction puissance
+**/
+BigInteger BigInteger::pow(BigInteger exp) const 
+{
+	BigInteger base = *this;
+	BigInteger res(1);
+	while(exp > 0)
+	{
+		if(!base.even())
+			res*= base;
+		exp/=2;
+		base *= base;	
+	}
+	return res;
+}
+
+bool BigInteger::even() const
+{
+	return (*this % 2 == 0);
+}
+
+
+
+
+/**
+	Retourne un entier aléatoire
+	@code : type de loi pour générer le nombre (0 = loi uniforme)
+**/
+int  BigInteger::getRandInt(int code,int min,int max)
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	switch(code)
+	{
+		case 0:
+			std::uniform_int_distribution<int> dist(min,max);
+			std::function<int()> f =std::bind(dist, std::ref(gen));
+			return f();
+		break;
+	}	
+	return rand();
+}
+
+
+/**	Retourne un grand nombre aléatoire 
+	@min : borne inférieure inclusive de la génération d'aléa
+	@max : borne supérieure inclusive de la génération d'aléa
+	@return : le nombre aléatoire
+**/
+BigInteger BigInteger::getRandBI(BigInteger min,BigInteger max)
+{
+	BigInteger res(0);
+	BigInteger buff(1);
+	uint32_t nbBits(0);
+	BigInteger nbBit(0);
+	while(BigInteger(2).pow(nbBit) <= max){ nbBit++; }
+	nbBits = nbBit.toInt();
+	for(size_t i=0;i<nbBits;i++)
+	{
+		if(getRandInt(0,0,100000) & 1)
+			res+= buff;
+		buff*=2;
+	}
+	std::cout << "LA";
+	return res;
+}
+
 
 /*
  * DIVISION WITH REMAINDER
