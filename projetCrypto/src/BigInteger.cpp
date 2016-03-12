@@ -314,6 +314,8 @@ void BigInteger::multiply(const BigInteger &a, const BigInteger &b)
     mag.multiply(a.mag, b.mag);
 }
 
+
+
 /*
 	Implementation de la fonction puissance
 **/
@@ -330,6 +332,7 @@ BigInteger BigInteger::pow(BigInteger exp) const
     }
     return res;
 }
+
 
 bool BigInteger::even() const
 {
@@ -355,7 +358,27 @@ int  BigInteger::getRandInt(int code,int min,int max)
         return f();
         break;
     }
+    throw "ERROR in code getRandInt";
     return rand();
+}
+
+
+/**
+	Retourne un nombre entier 
+	@nbBits : nombre de bits du nombre
+**/
+BigInteger BigInteger::randBigInteger(int nbBits)
+{
+    BigInteger res(0);
+    BigInteger buff(1);
+
+    for(int i=0; i<nbBits; i++)
+    {
+        if(getRandInt(0,0,INT_MAX) & 1)
+            res+= buff;
+        buff*=2;
+    }
+    return res;
 }
 
 
@@ -364,24 +387,26 @@ int  BigInteger::getRandInt(int code,int min,int max)
 	@max : borne supérieure inclusive de la génération d'aléa
 	@return : le nombre aléatoire
 **/
-BigInteger BigInteger::getRandBI(BigInteger min,BigInteger max)
+BigInteger BigInteger::randBigInteger(BigInteger min,BigInteger max)
 {
+
     BigInteger res(2);
     BigInteger buff(1);
     uint32_t nbBits(0);
     BigInteger nbBit(0);
-    while(res.pow(nbBit) <= max)
+
+    while(res.pow(nbBit+1) <= max)
         nbBit++;
     nbBits = nbBit.toInt();
+POOL :
     res = 0;
-    for(int i=0; i<nbBits; i++)
+    for(uint32_t i=0; i<nbBits; i++)
     {
-        if(getRandInt(0,0,getRandInt(0,10000,100000000)) & 1)
+        if(getRandInt(0,0,INT_MAX) & 1)
             res+= buff;
         buff*=2;
     }
-    res = std::max(min,res);
-    res = std::min(max,res);
+    if(res < min || res >  max) goto POOL;
     return res;
 }
 

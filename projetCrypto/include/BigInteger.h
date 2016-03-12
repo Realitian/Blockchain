@@ -4,6 +4,8 @@
 #include "BigUnsigned.h"
 #include <random>
 #include <functional>
+#include <climits>
+
 
 /* A BigInteger object represents a signed integer of size limited only by
  * available memory.  BigUnsigneds support most mathematical operators and can
@@ -72,6 +74,9 @@ public:
 	int            toInt          () const;
 	unsigned short toUnsignedShort() const;
 	short          toShort        () const;
+
+	int getRandInt(int,int ,int);
+
 protected:
 	// Helper
 	template <class X> X convertToUnsignedPrimitive() const;
@@ -123,9 +128,11 @@ public:
 	/* Implementation de la fonction even pour eviter les répétitions de code */
 	bool even() const;
 
-	int getRandInt(int,int ,int);
-	BigInteger getRandBI(BigInteger ,BigInteger );
+	/* Retourne un BigInteger aléatoire entre deux bornes */
+	BigInteger randBigInteger(BigInteger ,BigInteger );
 
+	/* Retourne un BigInteger aléatoire d'un certain nombre de bits */
+	BigInteger randBigInteger(int);
 
 	/* Bitwise operators are not provided for BigIntegers.  Use
 	 * getMagnitude to get the magnitude and operate on that instead. */

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include <cmath>
 #include "BigInteger.h"
 #include "RSAInterface.h"
 #include "BigIntegerUtils.h"
@@ -53,7 +54,32 @@ int fonctionTest()
   std::cout << "* Pgcd : " << math_crypto::Euclid_GCD(x,y)<<std::endl;
   std::cout << std::endl;
 
-  // Fin 
-  std::cout << "FONCTION CORRECTEMENT IMPLEMENTE" << std::endl;
+
+  std::cout << "------------------- Test nombre Random -------------------" <<std::endl;
+  int NB = 10;
+  std::cout << "Generation de nombre entre 0 et " << BigInteger(2).pow(NB) << std::endl; 
+  for(int i=0;i<200;i++)
+  {
+    assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
+  }
+  std::cout << "Correct "<<std::endl;
+  NB = 30;
+  std::cout << "Generation de nombre entre 0 et " << BigInteger(2).pow(NB) << std::endl; 
+  for(int i=0;i<200;i++)
+  {
+    assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
+  }
+  std::cout << "Correct "<<std::endl;
+  BigInteger mini = BigInteger(2).pow(10);
+  BigInteger maxi = BigInteger(2).pow(100);
+
+  std::cout << "Generation de nombre entre " << mini << " et " << maxi << std::endl; 
+  for(int i=0;i<200;i++)
+  {
+    assert(a.randBigInteger(mini,maxi) <= maxi);
+    assert(a.randBigInteger(mini,maxi) >= mini);
+  }
+
+  std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;
   return 0;
 }
