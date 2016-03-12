@@ -117,5 +117,22 @@ BigInteger Extended_Euclid_GCD(const BigInteger &A, const BigInteger &B, BigInte
   
 }
 
+
+
+ /** Test de Solovay–Strassen  PAS FINI */
+ //bool Is_Prime2(BigInteger n,int32_t k)
+ //{
+ //  if(p == 3 || p == 2) return true;  
+ //  if(n % 2 == 0) return false;
+ //  if(p < 2) return false;
+ //  for(int i=0;i<k;i++)
+ //  {
+ //     BigInteger a = n.randBigInteger(2,n-1);     
+ //     BigInteger x(a/n);
+ //     if(x == 0 || Modular_Exponentiation(a,(n-1)/2,n) != Modular_Exponentiation(x,1,n))
+ //       return false;
+ //     return true;
+ //  }
+ //}
 }
 
