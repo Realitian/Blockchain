@@ -123,7 +123,7 @@ public:
     };
 
 
-    double distance()           
+    double distance()
     {
         if(distance_ == 0)
         {
@@ -204,7 +204,7 @@ public:
     inline int size() const { return tours_.size(); };
     std::vector<Tour> tours_;
 
-    
+
 
 };
 //------------------------------------- Namespace Debugger ----------------------------------------------------/
@@ -267,6 +267,7 @@ namespace GAWORK
         return res;
     }
 
+    // doublement de la méilleure population, et suppression de la mauvaise
     void steady_state(Population& pop)
     {
         std::vector<Tour> buff;
@@ -309,7 +310,7 @@ namespace GAWORK
     {
         int taille = a.size();
         Tour child;
-
+        // initialise le nouveau génome
         for(int i=0;i<taille;i++)
         {
             City buff(-1,-1);
@@ -320,11 +321,12 @@ namespace GAWORK
         std::function<int()> f =std::bind(dist, std::ref(gen));
         int st = f();
         int ed = f();
-      //  st = std::min(st,ed);
-      //  ed = std::max(st,ed);
+        // st et ed sont des indices
+        // si st < ed je prend dans le génome 1 les villes entre [st,ed]
+        // si ed > st je prend dans le génome 1 les villes en dehors de [st,ed]
         for(int i=0;i<taille;i++)
         {
-           if (st < ed && i >= st && i <= ed) {
+           if (st <= ed && i >= st && i <= ed) {
                  child.setCity(i, a.getCity(i));
            }
            else if (st > ed) {
@@ -333,16 +335,21 @@ namespace GAWORK
                 }
             }
         }
-        // Pour moi on en a pas besoin a l'intérieur
+        // J'effectue une copie pour simplifier l'ecriture (pour que ligne 345 soit plus courte a comprendre
         std::vector<City> ville = child.cities();
+        // Je complète le nouveau génome, avec les villes qui sont dans le deuxième génome b
+        // et qui n'étaient pas dans l'intervalle [st,ed] (si st<ed) ou * \ [st,ed] (si st > ed)
         for(int i=0 ; i < b.size();i++)
         {
+            // Si la ville de b n'est pas dans le chromosome final
             if(std::find(ville.begin(),ville.end(),b.getCity(i)) == ville.end())
             {
+                // recherche de la première position vide du nouvau chromosome
                 for(int j=0;j<child.size();j++)
                 {
                     if(child.cities().at(j).X() == -1 && child.cities().at(j).Y() == -1)
                     {
+                        // Je met la ville indice i de b dans le chromosome final
                         child.setCity(j,b.getCity(i));
                         break;
                     }
