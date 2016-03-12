@@ -32,34 +32,39 @@ namespace rsa{
       }
 
 
-void generation()
-{
- BACK:
-	BigInteger P = Get_Prime(), Q = Get_Prime();
-	if(P ==  Q) goto BACK;
-
-	BigInteger phi = (P - 1) * (Q - 1);
-	BigInteger N = P * Q;
-
-	BigInteger D, E, temp;
-	for (E = 7; !(math_crypto::Extended_Euclid_GCD(E, phi, D, temp) == 1); E = E + 2);
-	if (D.getSign() == -1)
-		D = D + phi;
-	
-	std::cout << "P = " << std::endl;
-	std::cout << P << std::endl;
-	std::cout << std::endl;
-	std::cout << "Q = " << std::endl;
-	std::cout << Q << std::endl;
-	std::cout << std::endl;
-	std::cout << "N = " << std::endl;
-	std::cout << N << std::endl;
-	std::cout << std::endl;
-	std::cout << "E = " << std::endl;
-	std::cout << E << std::endl;
-	std::cout << std::endl;
-	std::cout << "D = " << std::endl;
-	std::cout << D << std::endl;
-
-}
-}
+        void generation(int taille)
+        {
+         BACK:
+         	BigInteger E(65537);
+         	BigInteger P = Get_Prime(taille/2);
+         	while(math_crypto::Euclid_GCD(E,P-1) != 1) P = Get_Prime(taille/2);
+         	BigInteger Q = Get_Prime(taille/2);
+			while(math_crypto::Euclid_GCD(E,Q-1) != 1) Q = Get_Prime(taille/2);
+        	if(P ==  Q) goto BACK;
+        
+        	BigInteger phi = (P - 1) * (Q - 1);
+        	BigInteger N = P * Q;
+        	
+        	BigInteger D, temp;
+        	math_crypto::Extended_Euclid_GCD(E, phi, D, temp);
+        	// e doit être impaire > 65536 et < 2^56
+        	if (D.getSign() == -1)
+        		D = D + phi;
+        	
+        	std::cout << "P = " << std::endl;
+        	std::cout << P << std::endl;
+        	std::cout << std::endl;
+        	std::cout << "Q = " << std::endl;
+        	std::cout << Q << std::endl;
+        	std::cout << std::endl;
+        	std::cout << "N = " << std::endl;
+        	std::cout << N << std::endl;
+        	std::cout << std::endl;
+        	std::cout << "E = " << std::endl;
+        	std::cout << E << std::endl;
+        	std::cout << std::endl;
+        	std::cout << "D = " << std::endl;
+        	std::cout << D << std::endl;
+        
+        }
+        }
