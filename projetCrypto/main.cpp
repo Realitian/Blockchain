@@ -79,7 +79,12 @@ int fonctionTest()
     assert(a.randBigInteger(mini,maxi) <= maxi);
     assert(a.randBigInteger(mini,maxi) >= mini);
   }
+  std::cout << "Correct "<<std::endl;
+  std::cout << "Generation de nombre premier de 320 bits "<< std::endl;
+  for(int i=0;i<10;i++)
+    std::cout << rsa::Get_Prime() << std::endl;
 
+  
   std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;
   return 0;
 }

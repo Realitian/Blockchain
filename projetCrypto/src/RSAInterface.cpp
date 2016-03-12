@@ -1,38 +1,37 @@
 #include "RSAInterface.h"
 
-#define CLE_SIZE_BITS 800
-#define ACCURACY_MRABIN 10
-/*
-BigInt Get_Prime(const int taille, const int Trial)
-{
-	int delta =  % (taille / 20) + 1;
-	int bits = taille + delta;
 
-	int noisy = rand() % 100 + 100;
+namespace rsa{
+      BigInteger Get_Prime(const int taille, const int Trial)
+      {
+      //	int delta = math_crypto::Rand()  % (taille / 20) + 1;
+      	int bits = taille;
+      	int counter = 0;
+      	BigInteger W,V;
+      
+      	W = W.randBigInteger(bits);  
+      	while(!math_crypto::Is_Prime(W, Trial))
+      	{
+      		++ counter;
+	      	W = W.randBigInteger(bits);  
+	      	if(counter == 1000)
+      			break;
+      	}
+      	// Pour être sur de pas rester indéfiniment dans la boucle du dessus
+      	if(counter == 1000)
+      	{
+      	    while(!math_crypto::Is_Prime(W, Trial))
+      	    {
+      	    	++ counter;
+	          	W-- ;
+      	    }
+      	}
+      	std::cerr << "Nombre d'essai pour trouver un nombre premier " << counter << std::endl;
+		return W;
 
-	int counter = 0;
-	BigInt W,V;
-	while (1)
-	{
-		++ counter;
-//		R.data = Get_Random(bits, 2);
-		W(bits - noisy, noisy);    // empty >= 1
-		//cout << W.N << endl;
-//		cout << counter << endl;
-//		cout << "* " << total_multiply <<  " / " <<  total_divide << " % " << total_mod << endl;
-//		if (counter == 15) return 0;
-		if (Miller_Rabin_Primality_Test(W, Trial))
-		{
-			cout << "Total Trial = " << counter << endl;
-			signed_BigInt R;
-			R.sign = 1;
-			R.data = W.N;
-			return R;
-		}
-	}
+      }
 }
-
-
+/*
 int Big_Prime_Bits, Trial;
 
 void Generating()

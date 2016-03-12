@@ -1,14 +1,19 @@
 #ifndef RSAINTERFACE_H
 #define RSAINTERFACE_H
 #include <iostream>
-#include "BigInteger.h"
+#define ACCURACY_MRABIN 5
+#define CLE_SIZE_BITS 320
 
-class RSAInterface
-{
-public:
-    RSAInterface(){};
-    virtual ~RSAInterface(){};
-private:
-};
+#include "BigInteger.h"
+#include "MathCrypto.h"
+namespace rsa{
+	
+	/* Obtenir un nombre premier */
+    BigInteger Get_Prime(const int taille = CLE_SIZE_BITS, const int Trial = ACCURACY_MRABIN);
+
+    
+
+}
+
 
 #endif // RSAINTERFACE_H
