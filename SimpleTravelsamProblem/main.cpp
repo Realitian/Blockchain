@@ -7,8 +7,7 @@
 #include <thread> // thread
 #include <future> // future
 #include <chrono> // time_point,high_resolution...
-#include<unordered_map>
-
+//#include "json.h"
 
 #define MAX_X 200 // taille max en X de la Map de coordonnées pour le voyageur de commmerce
 #define MAX_Y 200   // ...en Y
@@ -17,7 +16,6 @@
 class City;
 // vecteur de villes
 std::vector<City> villes;
-std::map<std::pair<int,int>,int> city_to_int;
 
 // FLUX DE RESULTAT
 #define RES_FILE "res.txt"
@@ -32,23 +30,27 @@ std::mt19937 gen(rd());
 //------------------------------------- Classe City ----------------------------------------------------/
 class City
 {
+char NOM = 'A';
 public:
-    City(int X,int Y) : X_(X),Y_(Y){};
-    City() : X_(rand() % MAX_X), Y_(rand() % MAX_Y){};
-    City& operator=(const City& rhs) { if(&rhs == this) return *this; X_= rhs.X() ; Y_ = rhs.Y(); return *this;};
+    City(int X,int Y,char nom) : X_(X),Y_(Y), nom_(nom){};
+  //  City() : X_(rand() % MAX_X), Y_(rand() % MAX_Y) nom_((NOM++) % 90 + 65){};
+    City& operator=(const City& rhs) { if(&rhs == this) return *this; X_= rhs.X() ; Y_ = rhs.Y(); nom_ = rhs.nom() ; return *this;};
     // destructeur
     virtual ~City() noexcept {};
     bool operator<(City rhs) const  { return (X_ <rhs.X() && Y_ <rhs.Y());};
     // Operateur de comparaison
-    bool operator==(const City& other) const { return (X() == other.X() && Y() == other.Y());};
+    bool operator==(const City& other) const { return (X() == other.X() && Y() == other.Y() && nom_ == other.nom_);};
     // getter X
     inline int X() const { return X_;} ;
     // getter Y
     inline int Y() const { return Y_;} ;
+    // obtenir le nom de la ville
+    inline char nom() const { return nom_;} ;
     // flux de sortie
     friend std::ostream& operator<< (std::ostream& os, const City& rhs)
     {
-        os << " (" << rhs.X() << " " << rhs.Y() << ") ";
+       // os << " (" << rhs.X() << " " << rhs.Y() << ") ";
+        os << rhs.nom() << " ";
         return os;
     };
 
@@ -56,6 +58,7 @@ public:
     double distance(City other) {return sqrt(pow(X()-other.X(),2) + pow(Y()-other.Y(),2));};
 private:
     int X_,Y_;
+    char nom_;
 };
 
 
@@ -82,7 +85,7 @@ public:
     bool operator==(Tour other) const { return (cities() == other.cities()     );};
 
     // Comparer deux tour
-    bool operator<(Tour other) { return (this->distance() < other.distance());};
+    bool operator<(Tour other) { return (this->fitness() > other.fitness());};
 
     // Affichage d'un tour
     friend std::ostream& operator<< (std::ostream& os, const Tour& rhs)
@@ -93,7 +96,7 @@ public:
     }
 
     // Get fitness
-    inline double fitness()            { if(fitness_ == 0) return 1000/distance(); return fitness_;};
+    inline double fitness()            { if(fitness_ == 0) return 1/distance(); return fitness_;};
 
     // Set Fitness
     inline void setFitness(double fit) { fitness_ = fit; };
@@ -108,7 +111,7 @@ public:
         cities_.clear();
         for(int i= 0;i<=pos;i++)
         {
-            cities_.push_back(City(-1,-1));
+            cities_.push_back(City(-1,-1,'-'));
         }
     }
 
@@ -204,7 +207,57 @@ public:
     inline int size() const { return tours_.size(); };
     std::vector<Tour> tours_;
 
+    /**
+        Met a jour la fitness de la population
+        fitness(xi)  = (distance(xi) - (sum(distance(xi))/n)) / ( max(distance) - min(distance) )
+    **/
+    inline void setGlobalFitness()
+    {
+        double mini=std::numeric_limits<double>::max(),maxi=0,moy=0;
+        for(int i=0;i<tours_.size();i++)
+        {
+            double fit_i = 1/tours_.at(i).distance();
+            mini = std::min(mini,fit_i);
+            maxi = std::max(maxi,fit_i);
+            moy+= fit_i;
+        }
+        moy/=tours_.size();
+        for(int i=0;i<tours_.size();i++)
+        {
+            tours_.at(i).setFitness(((1/tours_.at(i).distance()) - moy) / (maxi - mini));
+        }
+    }
+     /**
+    Affichage dans un fichier Json
+    **/
+    void JsonSave(const std::string& filename)
+    {
+    #define tost(a) std::to_string(a)
+        std::ofstream out2(filename,std::ofstream::out);
+        Json::Value jsonA(Json::objectValue);
+        Json::Value jsonArray(Json::arrayValue);
+        Json::Value jsonArray1(Json::arrayValue);
+        std::sort(tours_.begin(),tours_.end());
+        jsonA["fitness of the best"]= getFittest().fitness();
+        for(uint j=0;j<tours_.size()/4;j++)
+        {
+            std::string buff = std::string("genome"+tost(j));
+            std::string res;
+            for(int i=0;i<tours_.at(j).size();i++)
+            {
+                City b = tours_.at(j).getCity(i);
+              //  res+= std::string(" ("+tost(b.X())+" "+tost(b.Y())+") ");
+                res+= std::string(" "+tost(city_to_int[std::make_pair(b.X(),b.Y())]));
+            }
+            jsonA[buff.c_str()]=res;
+        }
 
+        out2 << jsonA;
+        out2.close();
+    }
+    double max_score;
+    double min_score;
+    double moyenne_score;
 
 };
 //------------------------------------- Namespace Debugger ----------------------------------------------------/
@@ -232,10 +285,50 @@ namespace GAWORK
 #define NBREGENOME 200         // nombre de genome
 #define NOMBRE_GENERATION 100 // nombre de génération
 
-#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION + 1))
-    constexpr static double mutationRate = 0.3;
+#define RAND_FLOAT static_cast<float>(static_cast <float> (1) / static_cast <float> (rand() % PROB_MUTATION ))
+    double mutationRate = 0.0001;
     constexpr bool elitism = true;
-    constexpr static double steadystateRate = 0.05;
+    double steadystateRate = 0.005;
+
+    double lastDistance;
+    int hasnChange = 0;
+    int compteurIncreaseMutation = 0;
+
+
+    void setLastDistance(double t)
+    {
+        lastDistance = t;
+    }
+
+    void setHas_n_Change(int value)
+    {
+        (value == -1) ? hasnChange++ : hasnChange = 0;
+    }
+
+    void check_no_modif_and_mutate()
+    {
+        if(hasnChange > 30 && compteurIncreaseMutation == 0)
+        {
+            std::cerr << "Debut de la mutation intense" << std::endl;
+            compteurIncreaseMutation = 30;
+        }
+        if(compteurIncreaseMutation > 1)
+        {
+
+            compteurIncreaseMutation--;
+            mutationRate+= 0.3;
+            steadystateRate = 0;
+        }
+        if(compteurIncreaseMutation == 1)
+        {
+            std::cerr << " Fin de la mutation intense" << std::endl;
+            compteurIncreaseMutation--;
+            mutationRate-=0.3;
+            steadystateRate = 0.05;
+        }
+    }
+
+
     bool checkValidiyTour(const Tour& t)
     {
         for(int i=0;i<t.size();i++)
@@ -302,6 +395,7 @@ namespace GAWORK
         return bestTour;
     }
 
+
     /**
     Effectue le crossover entre deux tours
     @a@b : tours qui vont etre mélanges
@@ -313,7 +407,7 @@ namespace GAWORK
         // initialise le nouveau génome
         for(int i=0;i<taille;i++)
         {
-            City buff(-1,-1);
+            City buff(-1,-1,'-');
             child.setCity(i,buff);
         }
 
@@ -403,9 +497,9 @@ namespace GAWORK
     **/
     Population evoluer(Population pop)
     {
-       // pop.trier();
+        pop.setGlobalFitness();
+        pop.trier();
         Population newPop(pop.size(),false);
-
         // Steady - State
         if(RAND_FLOAT < steadystateRate)
             steady_state(pop);
@@ -423,17 +517,36 @@ namespace GAWORK
         for (int i = (elitism == true ? 1 : 0); i < newPop.size(); i++) {
            newPop.setTour(i,mutate(newPop.getTour(i))) ;
         }
+
+
+        if(lastDistance == newPop.getFittest().distance())
+            setHas_n_Change(-1);
+        else
+            setHas_n_Change(0);
+        check_no_modif_and_mutate();
+        setLastDistance(newPop.getFittest().distance());
         return newPop;
     }
 
-
+    void hill_Climbing(Tour tour)
+    {
+        int generation = 0;
+        Tour other;
+        while(generation < 100000)
+        {
+            other = mutate(tour);
+            if(other.fitness() >= tour.fitness())
+                tour = other;
+            std::cerr << "Generation " << generation++ << " : " <<  tour.distance() <<std::endl;
+        }
+    }
 };
 
 
 
 namespace timer
 {
-#define MAX_TIME 10'000'000
+#define MAX_TIME 10000000
     typedef  std::chrono::high_resolution_clock::time_point timepoint;
     timepoint getStartedTime()
     {
@@ -462,8 +575,13 @@ int lancer()
         std::cout << "Generation "<< i+1 << " fittest distance: " <<  pop.getFittest().distance()<< std::endl;
     }
 
+    std::cout << "ORDRE VILLE FINALE" << std::endl;
+    std::vector<City> finale = pop.getFittest().cities();
+    for_each(finale.begin(),finale.end(),[](City x){
+        std::cout << x.nom() << " ";
+    });
+    std::cout << std::endl;
     return pop.getFittest().distance();
-
 }
 
 
@@ -473,39 +591,33 @@ int lancer()
 int main()
 {
     srand(time(NULL));
-    for(int i=0 ; i<TAILLE_GENOME ; i++ )
-    {
-        City X;
-    }
-    villes.push_back(City(60,200));
-    villes.push_back(City(180,200));
-    villes.push_back(City(80,180));
-    villes.push_back(City(140,180));
-    villes.push_back(City(20,160));
-    villes.push_back(City(100,160));
-    villes.push_back(City(200,160));
-    villes.push_back(City(140,140));
-    villes.push_back(City(40,120));
-    villes.push_back(City(100,120));
-    villes.push_back(City(180,100));
-    villes.push_back(City(60,80));
-    villes.push_back(City(120,80));
-    villes.push_back(City(180,60));
-    villes.push_back(City(20,40));
-    villes.push_back(City(100,40));
-    villes.push_back(City(200,40));
-    villes.push_back(City(20,20));
-    villes.push_back(City(60,20));
-    villes.push_back(City(160,20));
-    for(uint i=0;i<villes.size();i++)
-    {
-        city_to_int[std::make_pair(villes.at(i).X(),villes.at(i).Y())]=i;
-    }
+    villes.push_back(City(60,200,'A'));
+    villes.push_back(City(180,200,'B'));
+    villes.push_back(City(80,180,'C'));
+    villes.push_back(City(140,180,'D'));
+    villes.push_back(City(20,160,'E'));
+    villes.push_back(City(100,160,'F'));
+    villes.push_back(City(200,160,'G'));
+    villes.push_back(City(140,140,'H'));
+    villes.push_back(City(40,120,'I'));
+    villes.push_back(City(100,120,'J'));
+    villes.push_back(City(180,100,'K'));
+    villes.push_back(City(60,80,'L'));
+    villes.push_back(City(120,80,'M'));
+    villes.push_back(City(180,60,'N'));
+    villes.push_back(City(20,40,'O'));
+    villes.push_back(City(100,40,'P'));
+    villes.push_back(City(200,40,'Q'));
+    villes.push_back(City(20,20,'R'));
+    villes.push_back(City(60,20,'S'));
+    villes.push_back(City(160,20,'T'));
+
    // std::future<int> f1 = std::async(std::launch::async,lancer);
    // std::future<int> f2 = std::async(std::launch::async,lancer);
    // std::future<int> f3 = std::async(std::launch::async,lancer);
    // std::cout << f1.get(); //<< " " << f2.get() << " " << f3.get();
    lancer();
+
     return 0;
 }
 
