@@ -1,5 +1,6 @@
 #ifndef INC_MILLERRABIN_H
 #define INC_MILLERRABIN_H
+#include <cassert>
 #include <stdint.h> 
 #include "BigInteger.h"
 
@@ -9,11 +10,11 @@ namespace math_crypto{
 
 
 
-	/**
+    /**
 		Retourne un nombre entier aléatoire en se basant sur une loi uniforme
 		@return : le nombre entier
-	*/
-	int Rand();
+    */
+    int Rand();
 
     /**
     	Retourne si le nombre n est premier en utilisant l'algorithme de MillerRabin

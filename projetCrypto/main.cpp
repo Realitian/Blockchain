@@ -88,11 +88,13 @@ int fonctionTest()
   std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
 
   std::cout << "------------------- Test RSA -------------------" <<std::endl;
-
-  std::cout << "Generation de nombre premier de 320 bits "<< std::endl;
-  //  std::cout << rsa::Get_Prime() << std::endl;
-  rsa::generation();
-  
+  auto R = rsa::generation();
+  std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
+  std::cout << "Encryption & Decryptage:" << std::endl;
+  BigInteger msg(BigInteger(1000000145645615)*BigInteger(165486154894135184651654651354984961498));
+  auto cipher = rsa::simple_encryption(msg,std::get<1>(R));
+  auto res = rsa::simple_decryption(cipher,std::get<0>(R));
+  assert(res == msg);
   std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;
   return 0;
 }
