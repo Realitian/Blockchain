@@ -145,7 +145,7 @@ std::shared_ptr<Node<T> >leftRotate(std::shared_ptr<Node<T> > node)
     // Update les hauteurs
     node->setHeight(max(hauteur(node->left()),hauteur(node->right()))+1);
     x->setHeight(max(hauteur(x->left()),hauteur(x->right()))+1);
-    std::cerr << "Rotation a gauche";
+//std::cerr << "Rotation a gauche";
     return x;
 }
 
@@ -163,7 +163,7 @@ std::shared_ptr<Node<T> >rightRotate(std::shared_ptr<Node<T> >node)
 
     node->setHeight(max(hauteur(node->left()),hauteur(node->right()))+1);
     x->setHeight(max(hauteur(x->left()),hauteur(x->right()))+1);
-    std::cerr << "Rotation a droite"<<std::endl;
+   // std::cerr << "Rotation a droite"<<std::endl;
     return x;
 }
 
@@ -188,7 +188,7 @@ std::shared_ptr<Node<T> >  insererNoeudUtil(T key, std::shared_ptr<Node<T> >root
 
     // Difference de taille entre la gauche et la droite
     balance = getBalance(root);
-    std::cerr << balance<< std::endl;
+   // std::cerr << balance<< std::endl;
     // Rotation de l'arbre
     if(balance > 1 && key > root->left()->key())
     {
@@ -269,7 +269,7 @@ int main()
     std::cin >> N;
     for(int i=0; i<N; i++)
     {
-        root = insererNoeud(rand() % 100,root);
+        root = insererNoeud(rand() % 10000000,root);
     }
     // root = insererNoeud(a,root);
     // root = insererNoeud(b,root);
@@ -283,11 +283,11 @@ int main()
 
     // Parcours en profondeur
     std::cout<< std::endl<<"Parcours en profondeur:"<<std::endl;
-    DFS(root);
+  //  DFS(root);
 
     // Parcours en largeur
     std::cout<< std::endl<<"Parcours en largeur:"<<std::endl;
-    BFS(root);
+ //   BFS(root);
 
 
     // Resultats coupe:
