@@ -1,4 +1,4 @@
-#include "MathCrypto.h"
+#include "../include/MathCrypto.h"
 #include <cstdlib>
 #include <iostream> // for debug
 #include <random>

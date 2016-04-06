@@ -1,28 +1,73 @@
-CC = g++
-CFLAGS = -Wall -std=c++14 -Wdeprecated
-EXEC_NAME = crypto
-INCLUDE_DIR = include
-INCLUDES = -I $(INCLUDE_DIR)/
-LIBS = 
-SRC_DIR = src
-SRC = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_DIR = obj
-OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o))) $(OBJ_DIR)/main.o
+# Mention default target.
+all:
 
-all : $(EXEC_NAME)
+# Implicit rule to compile C++ files.  Modify to your taste.
+%.o: %.cc
+	g++ -c -O2 -Wall -Wextra -pedantic $<
 
+# Components of the library.
+library-objects = \
+	BigUnsigned.o \
+	BigInteger.o \
+	BigIntegerAlgorithms.o \
+	BigUnsignedInABase.o \
+	BigIntegerUtils.o \
+
+library-headers = \
+	NumberlikeArray.hh \
+	BigUnsigned.hh \
+	BigInteger.hh \
+	BigIntegerAlgorithms.hh \
+	BigUnsignedInABase.hh \
+	BigIntegerLibrary.hh \
+
+# To ``make the library'', make all its objects using the implicit rule.
+library: $(library-objects)
+
+# Conservatively assume that all the objects depend on all the headers.
+$(library-objects): $(library-headers)
+
+# TESTSUITE (NOTE: Currently expects a 32-bit system)
+# Compiling the testsuite.
+testsuite.o: $(library-headers)
+testsuite: testsuite.o $(library-objects)
+	g++ $^ -o $@
+# Extract the expected output from the testsuite source.
+testsuite.expected: testsuite.cc
+	nl -ba -p -s: $< | sed -nre 's,^ +([0-9]+):.*//([^ ]),Line \1: \2,p' >$@
+# Run the testsuite.
+.PHONY: test
+test: testsuite testsuite.expected
+	./run-testsuite
+testsuite-cleanfiles = \
+	testsuite.o testsuite testsuite.expected \
+	testsuite.out testsuite.err
+
+# The rules below build a program that uses the library.  They are preset to
+# build ``sample'' from ``sample.cc''.  You can change the name(s) of the
+# source file(s) and program file to build your own program, or you can write
+# your own Makefile.
+
+# Components of the program.
+program = sample
+program-objects = sample.o
+
+# Conservatively assume all the program source files depend on all the library
+# headers.  You can change this if it is not the case.
+$(program-objects) : $(library-headers)
+
+# How to link the program.  The implicit rule covers individual objects.
+$(program) : $(program-objects) $(library-objects)
+	g++ $^ -o $@
+
+# Delete all generated files we know about.
 clean :
-	rm $(OBJ_FILES)
+	rm -f $(library-objects) $(testsuite-cleanfiles) $(program-objects) $(program)
 
-mr-proper :
-	make clean
-	rm $(EXEC_NAME)
+# I removed the *.tag dependency tracking system because it had few advantages
+# over manually entering all the dependencies.  If there were a portable,
+# reliable dependency tracking system, I'd use it, but I know of no such;
+# cons and depcomp are almost good enough.
 
-$(EXEC_NAME) : $(OBJ_FILES)
-	$(CC) $(LIBS) -o $(EXEC_NAME) $(OBJ_FILES)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
-
-$(OBJ_DIR)/main.o: main.cpp
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+# Come back and define default target.
+all : library $(program)

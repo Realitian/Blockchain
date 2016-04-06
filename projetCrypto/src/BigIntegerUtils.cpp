@@ -1,6 +1,5 @@
-#include "BigIntegerUtils.h"
-#include "BigUnsignedInABase.h"
-
+#include "../include/BigIntegerUtils.h"
+#include "../include/BigUnsignedInABase.h"
 std::string bigUnsignedToString(const BigUnsigned &x) {
 	return std::string(BigUnsignedInABase(x, 10));
 }

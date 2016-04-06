@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Block">
+    <Position X="4.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAEAQQAAgCgCAgAAAAAAAAABAAAAAAAAgIAAAAAgAE=</HashCode>
+      <FileName>Block.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="header" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BlockChain">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAAABgA=</HashCode>
+      <FileName>BlockChain.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="blocks" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MinerNode">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAUAAAAAAAAAAAAAAABAAAACgYAAQAAAAEAABA=</HashCode>
+      <FileName>MinerNode.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node">
+    <Position X="7" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAACAAAAAAAQAAAAAAEAEQIAg=</HashCode>
+      <FileName>Node.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyPair">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAgABAAAAAAAABgAAAAAACAAAAAAA=</HashCode>
+      <FileName>KeyPair.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Identite">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAgAAAAAAECAIAAAAAAAIgAAQAAAAAAgAAA=</HashCode>
+      <FileName>Identite.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="cle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Message">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAACAgAAAAAAAAQAAAAIAAAAAA=</HashCode>
+      <FileName>Message.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="payload" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Payload">
+    <Position X="2.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAABAAAAAAAAAQACAABAAAQAAAABAAAAAAAAA=</HashCode>
+      <FileName>Payload.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Peer">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAACAAAAgAAAAABAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Peer.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="identite" />
+      <Field Name="noeud" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Serveur">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAQgAAAEAAAAAAAAAACABAAAQAAAgAEEAAhAQ=</HashCode>
+      <FileName>Serveur.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="identites" />
+      <Field Name="transactions" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Transaction">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAQAAAAAACAAAAAgIAAAAEAAAAAAAAACA=</HashCode>
+      <FileName>Transaction.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="message" />
+      <Field Name="identiteSender" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BlockHeader">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAIAAAAAAAAAAAAgAAAAEAAAgAAACAAAAAAAAEAAAA=</HashCode>
+      <FileName>BlockHeader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="std::vector&lt;_Ty, _Alloc&gt;" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IUoEEIEqCLBMUEBAAKMIAgISAgUESAIAxQMwgwAEQgI=</HashCode>
+      <FileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vector</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
