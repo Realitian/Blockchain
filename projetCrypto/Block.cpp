@@ -36,6 +36,12 @@ Block& Block::operator=(Block rhs)
 {
 	if (rhs == *this)
 		return *this;
+	header = rhs.header;
+	previousBlock = rhs.previousBlock;
+	nombreTransaction = rhs.nombreTransaction;
+	tailleBlock = rhs.tailleBlock;
+	transactions.clear();
+	transactions = rhs.transactions;
 	return *this;
 }
 

@@ -11,7 +11,6 @@ KeyPair::KeyPair() :
 {
 	AutoSeededRandomPool rng;
 
-	std::cerr << "dtctrc";
 	InvertibleRSAFunction parameters;
 	parameters.GenerateRandomWithKeySize(rng, 1024);
 	publicKey = RSA::PublicKey(parameters);
