@@ -5,6 +5,7 @@
 #include <boost\date_time\posix_time\posix_time.hpp>
 
 using std::string;
+using paire = std::pair<unsigned long long, unsigned long long>;
 
 class BlockHeader
 {
@@ -13,9 +14,10 @@ public:
 	~BlockHeader();
 	bool operator==(const BlockHeader&) const;
 
-	void setNonce(long int);
+	void setNonce(paire);
 	void setNumero(int);
 	void setHashMerkleRoot(string);
+	void setTime(boost::posix_time::ptime);
 
 	boost::posix_time::ptime getTime() const;
 	string getHashMerkleRoot() const;
@@ -23,7 +25,7 @@ public:
 private:
 	int numeroBloc;
 	boost::posix_time::ptime timestamp;
-	long int nonce;
+	paire nonce;
 	string merkleRootHash;
 };
 

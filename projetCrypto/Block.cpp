@@ -15,18 +15,22 @@
 // 	vector<Transaction> transactions; // Ce n'est pas les transactions, mais les hashs
 
 Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
-	previousBlock(prevBloc), nombreTransaction(_transaction.size()), header(prevBloc->getHeader().getNumeroBloc()),
+	previousBlock(prevBloc), nombreTransaction(_transaction.size()), header(prevBloc->getHeader().getNumeroBloc()+1),
 	tailleBlock(), transactions()
 {
 	
 	// Copie les transactions par leur HASH
 	for (auto t : _transaction)
 	{
-		transactions.emplace_back(SHA25::sha256(t.toString()));
+		transactions.emplace_back(t.getHashTransaction());
 	}
 
 }
+Block::Block(int p) :
+	previousBlock(nullptr), nombreTransaction(0), header(NULL),tailleBlock(0),transactions()
+{
 
+}
 
 Block::~Block()
 {
@@ -67,29 +71,39 @@ void Block::BuildMerkleRoot()
 	int N = transactions.size();
 
 	vector<string> hashTree;
-	hashTree.resize(N);
+	hashTree.resize(2*N-1);
 	for (int i = 0; i < N; i++)
-		hashTree.at(N - i + 1) = transactions.at(i);
+		hashTree.at(2*N-2 - i) = transactions.at(i);
 	for (int i = N - 2; i > -1; i--)
 	{
 		hashTree.at(i) = SHA25::sha256(hashTree.at(2 * i + 1) + hashTree.at(2*i+2) );
+		std::cerr << hashTree.at(i) << std::endl;
 	}
 	header.setHashMerkleRoot(hashTree.at(0));
+	header.setTime(boost::posix_time::second_clock::local_time());
 }
 
 
-long int Block::solveProofofWork()
+paire Block::solveProofofWork()
 {
-	int nonce = 0;
-	string sol(DIFFICULTY_MINING, ' ');
+	unsigned long long nonce = 0,incr = 0;
+	unsigned long long limit = std::numeric_limits<unsigned long long>::max();
+
+	string sol(DIFFICULTY_MINING, '0');
 	while (true) {
-		string hash = SHA25::sha256(string(header.getHashMerkleRoot() + std::to_string(nonce)));
-		if (hash.substr(0, DIFFICULTY_MINING) == sol)
+		string hash = SHA25::sha256(string(header.getHashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
+		// std::cerr << hash << std::endl;
+		if (hash.substr(0,DIFFICULTY_MINING) == sol)
 			break;
 		else
 			++nonce;
+		if (limit - 1 == nonce)
+		{
+			incr++;
+			nonce = 0;
+		}
 	}
-	return nonce;
+	return paire(incr,nonce);
 }
 
 

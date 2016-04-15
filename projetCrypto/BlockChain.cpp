@@ -24,6 +24,8 @@ bool BlockChain::addBlock(const Block& bloc)
 bool BlockChain::checkTransactionExist(const Transaction& trans)
 {
 	if (std::any_of(blocks.rbegin(), blocks.rend(), [&trans](const Block& bloc) {
+		if (bloc.getParent() == __nullptr) // pour le premier bloc
+			return false;
 		return bloc.containsTransactions(trans);
 	}))
 		return true;

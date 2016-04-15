@@ -4,15 +4,14 @@
 
 #include "Transaction.h"
 #include "BlockHeader.h"
-
-#define DIFFICULTY_MINING 4
+#define DIFFICULTY_MINING 2
 using std::vector;
-
 class Block
 {
 	using ptr_Block = std::shared_ptr<Block>;
 
 public:
+	Block(int); // jste pour le premier bloc 
 	Block(ptr_Block,const vector<Transaction>&);
 	~Block();
 	Block& operator=(Block);
@@ -27,7 +26,7 @@ public:
 	bool isValid() const;
 	bool containsTransactions(const Transaction&) const;
 	void BuildMerkleRoot();
-	long int solveProofofWork();
+	paire solveProofofWork();
 
 
 private:

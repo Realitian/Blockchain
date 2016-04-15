@@ -24,10 +24,15 @@ void BlockHeader::setHashMerkleRoot(string hash) {
 }
 
 
+void BlockHeader::setTime(boost::posix_time::ptime time) {
+	timestamp = time;
+}
+
+
 int BlockHeader::getNumeroBloc() const {
 	return numeroBloc;
 }
-void BlockHeader::setNonce(long int nce) {
+void BlockHeader::setNonce(paire nce) {
 	nonce = nce;
 }
 void BlockHeader::setNumero(int nmB) {
