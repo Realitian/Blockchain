@@ -1,19 +1,29 @@
 #pragma once
 #include <stdint.h>
+#include <string>
+
 #include <boost\date_time\posix_time\posix_time.hpp>
+
+using std::string;
 
 class BlockHeader
 {
 public:
-	BlockHeader();
+	BlockHeader(int);
 	~BlockHeader();
-	void setNonce();
-	void setNumero();
-	void getTime();
+	bool operator==(const BlockHeader&) const;
+
+	void setNonce(long int);
+	void setNumero(int);
+	void setHashMerkleRoot(string);
+
+	boost::posix_time::ptime getTime() const;
+	string getHashMerkleRoot() const;
+	int getNumeroBloc() const;
 private:
-	// merkle root hash aussi
-	int16_t numeroBloc;
-	int64_t nonce;
+	int numeroBloc;
 	boost::posix_time::ptime timestamp;
+	long int nonce;
+	string merkleRootHash;
 };
 

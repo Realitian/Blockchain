@@ -1,12 +1,11 @@
 #pragma once
 #include <ctype.h>
 #include <memory>
-#include "Payload.h"
 #include "SHA25.h"
+#include "KeyPair.h"
 using std::string;
 class Message
 {
-	using ptr_Payload = std::shared_ptr<Payload>;
 public:
 	Message(string,string,const KeyPair&);
 	~Message();

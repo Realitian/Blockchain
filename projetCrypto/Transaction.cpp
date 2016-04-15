@@ -23,12 +23,12 @@ string Transaction::toString() const{
 	return os;
 }
 
-std::shared_ptr<Message> Transaction::getMessage() {
+std::shared_ptr<Message> Transaction::getMessage() const{
 	return message;
 }
-boost::posix_time::ptime Transaction::getTime() {
+boost::posix_time::ptime Transaction::getTime() const{
 	return timestamp;
 }
-string Transaction::getHashTransaction() {
+string Transaction::getHashTransaction() const {
 	return hashTransaction;
 }
