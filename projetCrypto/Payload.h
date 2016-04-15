@@ -10,8 +10,8 @@ public:
 
 	void signInformation(const KeyPair&);
 private:
-	std::string nom_de_domaine; // A modifier, ce ne sera sans doute pas des string
-	std::string information;
+	std::string nom_de_domaine;  
+	std::string information;      
 	std::string signature;
 };
 

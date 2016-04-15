@@ -4,22 +4,14 @@
 #include <string>
 #include <cassert>
 #include <ctime>
-#include <cmath>
-#ifdef _WIN32
-#define	CORRECT "Correct"
-#endif
-#ifdef linux
-#define CORRECT "\033[1;32;40mCorrect\033[0m"
-#endif
-
-#include "include\BigInteger.h"
-#include "include\RSAInterface.h"
-#include "include\MathCrypto.h"
-
+#include "KeyPair.h"
+#include "SHA25.h"
+using std::cout; using std::endl;
 int fonctionTest();
 
 int main()
 {
+	/*
 	srand(time(NULL));
 	// Puissance
 	unsigned long g(4918615616), h(4918615616);
@@ -65,14 +57,14 @@ int main()
 	std::cout << "Generation de nombre entre 0 et " << BigInteger(2).pow(NB) << std::endl;
 	for (int i = 0; i < 200; i++)
 	{
-		assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
+	assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
 	}
 	std::cout << CORRECT << std::endl;
 	NB = 30;
 	std::cout << "Generation de nombre entre 0 et " << BigInteger(2).pow(NB) << std::endl;
 	for (int i = 0; i < 200; i++)
 	{
-		assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
+	assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
 	}
 	std::cout << CORRECT << std::endl;
 	BigInteger mini = BigInteger(2).pow(10);
@@ -81,8 +73,8 @@ int main()
 	std::cout << "Generation de nombre entre " << mini << " et " << maxi << std::endl;
 	for (int i = 0; i < 200; i++)
 	{
-		assert(a.randBigInteger(mini, maxi) <= maxi);
-		assert(a.randBigInteger(mini, maxi) >= mini);
+	assert(a.randBigInteger(mini, maxi) <= maxi);
+	assert(a.randBigInteger(mini, maxi) >= mini);
 	}
 	std::cout << CORRECT << std::endl;
 
@@ -93,7 +85,10 @@ int main()
 	BigInteger msg(BigInteger(h)*BigInteger(g));
 	auto cipher = rsa::simple_encryption(msg, std::get<1>(R));
 	auto res = rsa::simple_decryption(cipher, std::get<0>(R));
-	assert(res == msg);
-	std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;
-	return 0;
+	// assert(res == msg);
+	// std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;
+	*/
+	string hell = "ovnrniontrvontrvointrobnontroibntoibnionoiniiononocnos";
+	cout << SHA25::sha256(hell);
+	system("pause");
 }

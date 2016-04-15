@@ -1,19 +1,21 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "KeyPair.h"
+#include "cryptopp\rsa.h"
 class Identite
 {
 public:
 	Identite(std::string,std::string);
-	Identite(std::string ,std::string ,KeyPair);
-	~Identite();
+	Identite(std::string ,std::string ,const KeyPair &cle);
+	Identite() {};
 
 	std::ostream& operator<<(std::ostream& os);
 	std::string getNom() const;
 	std::string getPrenom() const;
-	std::vector<unsigned char> getPublicKey() const;
+	RSA::PublicKey getPublicKey() const;
 private:
-	std::vector<unsigned char> getPrivateKey();
+	RSA::PrivateKey getPrivateKey() const;
 	std::string nom;
 	std::string prenom;
 	KeyPair cle;

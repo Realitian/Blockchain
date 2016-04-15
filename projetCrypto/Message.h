@@ -2,15 +2,17 @@
 #include <ctype.h>
 #include <memory>
 #include "Payload.h"
+using std::string;
 class Message
 {
+	using ptr_Payload = std::shared_ptr<Payload>;
 public:
-	Message();
+	Message(string);
 	~Message();
 private:
-	uint8_t hashNomDomaine[32];
+	string hashNomDomaine;
 	__int32 longueurMessage;
-	/*std::shared_ptr<*/Payload/*>*/ payload;
+	ptr_Payload payload;
 
 };
 

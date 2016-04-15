@@ -20,7 +20,7 @@ public:
 	/* Gestion Réseau */
 	bool sendBlock();
 	bool receiveBlock();
-	bool addTransaction(Transaction);
+	bool addTransaction(const Transaction&);
 	void removevectorTransaction(vector<shared_ptr<Transaction>>);
 	void addvectorTransaction(vector<shared_ptr<Transaction>>);
 

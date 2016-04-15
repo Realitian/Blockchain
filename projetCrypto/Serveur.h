@@ -19,8 +19,8 @@ public:
 	Identite getIdentite(std::string, std::string);
 	std::vector<Transaction> getListTransaction(const Identite&);
 private:
-	boost::asio::io_service&		m_io_service; // (4)
-	tcp::acceptor			m_acceptor; // (5)
+	// boost::asio::io_service&		m_io_service; // (4)
+	// tcp::acceptor			m_acceptor; // (5)
 	std::vector<Identite> identites;
 	std::vector<Transaction> transactions;
 };

@@ -3,7 +3,9 @@
 
 
 Transaction::Transaction()
+	: identiteSender()
 {
+
 }
 
 

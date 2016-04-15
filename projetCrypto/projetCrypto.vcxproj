@@ -73,18 +73,19 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalIncludeDirectories>C:\Boost</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\Boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\lh\C-Stuff\projetCrypto\cryptopp\Debug\cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -118,13 +119,6 @@
     <ClCompile Include="Payload.cpp" />
     <ClCompile Include="Peer.cpp" />
     <ClCompile Include="Serveur.cpp" />
-    <ClCompile Include="src\BigInteger.cpp" />
-    <ClCompile Include="src\BigIntegerAlgorithms.cpp" />
-    <ClCompile Include="src\BigIntegerUtils.cpp" />
-    <ClCompile Include="src\BigUnsigned.cpp" />
-    <ClCompile Include="src\BigUnsignedInABase.cpp" />
-    <ClCompile Include="src\MathCrypto.cpp" />
-    <ClCompile Include="src\RSAInterface.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -132,15 +126,6 @@
     <ClInclude Include="BlockChain.h" />
     <ClInclude Include="BlockHeader.h" />
     <ClInclude Include="Identite.h" />
-    <ClInclude Include="include\BigInteger.h" />
-    <ClInclude Include="include\BigIntegerAlgorithms.h" />
-    <ClInclude Include="include\BigIntegerLibrary.h" />
-    <ClInclude Include="include\BigIntegerUtils.h" />
-    <ClInclude Include="include\BigUnsigned.h" />
-    <ClInclude Include="include\BigUnsignedInABase.h" />
-    <ClInclude Include="include\MathCrypto.h" />
-    <ClInclude Include="include\NumberlikeArray.h" />
-    <ClInclude Include="include\RSAInterface.h" />
     <ClInclude Include="KeyPair.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MinerNode.h" />
@@ -148,6 +133,7 @@
     <ClInclude Include="Payload.h" />
     <ClInclude Include="Peer.h" />
     <ClInclude Include="Serveur.h" />
+    <ClInclude Include="SHA25.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <ItemGroup>
