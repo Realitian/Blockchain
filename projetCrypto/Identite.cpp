@@ -27,10 +27,22 @@ std::string Identite::getNom() const
 std::string Identite::getPrenom() const {
 	return prenom;
 }
-RSA::PublicKey Identite::getPublicKey() const {
+
+RSA::PublicKey& Identite::getPublicKey() const {
 	return cle.getClePublique();
 }
 
-RSA::PrivateKey Identite::getPrivateKey() const {
+KeyPair Identite::getKeyPair() const {
+	return cle;
+
+}
+
+
+RSA::PrivateKey& Identite::getPrivateKey() const {
 	return cle.getPrivateKey();
+}
+
+string Identite::toString() const
+{
+	return getNom() + getPrenom();
 }

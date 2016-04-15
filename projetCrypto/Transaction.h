@@ -4,13 +4,14 @@
 #include <boost\date_time\posix_time\posix_time.hpp>
 #include "Identite.h"
 #include "Message.h"
-#include "SHA25.h"
+
 class Transaction
 {
 public:
-	Transaction(Identite) ;
+	Transaction(const Identite&,const string&,const string&) ;
 	~Transaction();
-	string getHash() const; // a Modifier
+	string toString() const ;
+
 private:
 	Identite identiteSender;
 	std::shared_ptr<Message> message;

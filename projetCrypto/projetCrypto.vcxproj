@@ -134,6 +134,7 @@
     <ClInclude Include="Peer.h" />
     <ClInclude Include="Serveur.h" />
     <ClInclude Include="SHA25.h" />
+    <ClInclude Include="testLibraryCrypto.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <ItemGroup>
