@@ -36,9 +36,6 @@
     <ClCompile Include="Message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Payload.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Serveur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,9 +69,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Payload.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Serveur.h">

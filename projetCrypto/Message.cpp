@@ -53,3 +53,5 @@ string Message::getinformation() {
 string Message::getHashDomainName() {
 	return hashDomainName;
 }
+
+

@@ -11,7 +11,9 @@ public:
 	Transaction(const Identite&,const string&,const string&) ;
 	~Transaction();
 	string toString() const ;
-
+	std::shared_ptr<Message> getMessage();
+	boost::posix_time::ptime getTime();
+	string getHashTransaction();
 private:
 	Identite identiteSender;
 	std::shared_ptr<Message> message;

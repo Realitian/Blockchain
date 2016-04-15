@@ -116,7 +116,6 @@
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MinerNode.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Payload.cpp" />
     <ClCompile Include="Peer.cpp" />
     <ClCompile Include="Serveur.cpp" />
     <ClCompile Include="Transaction.cpp" />
@@ -130,7 +129,6 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="MinerNode.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Payload.h" />
     <ClInclude Include="Peer.h" />
     <ClInclude Include="Serveur.h" />
     <ClInclude Include="SHA25.h" />

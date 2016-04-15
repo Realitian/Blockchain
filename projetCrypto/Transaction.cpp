@@ -19,6 +19,16 @@ Transaction::~Transaction()
 
 string Transaction::toString() const{
 	string os;
-	os += identiteSender.toString()+ message->getHashDomainName() + message->getinformation();
+	os += identiteSender.toString()+ message->getNomDomaine() + message->getinformation();
 	return os;
+}
+
+std::shared_ptr<Message> Transaction::getMessage() {
+	return message;
+}
+boost::posix_time::ptime Transaction::getTime() {
+	return timestamp;
+}
+string Transaction::getHashTransaction() {
+	return hashTransaction;
 }

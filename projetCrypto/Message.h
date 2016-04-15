@@ -16,13 +16,15 @@ public:
 	string getHashDomainName();
 	bool verifier() const;
 private:
-	RSA::PublicKey publicKey;
-	SecByteBlock sign(RSA::PrivateKey&);
-	const string hashDomainName;
-	const __int64 longueurMessage;
 	const std::string nom_de_domaine;
 	const std::string information;
+	const string hashDomainName;
+	RSA::PublicKey publicKey;
+	const __int64 longueurMessage;
 	const SecByteBlock signature;
+
+	SecByteBlock sign(RSA::PrivateKey&);
+
 
 };
 
