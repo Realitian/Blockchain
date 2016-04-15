@@ -36,7 +36,7 @@ string KeyPair::encrypt(string message) {
 		);
 	}
 	catch (std::exception e) {
-		std::cerr << "Erreur encryption";
+		std::cerr << "Erreur while encrypting a string";
 	}
 
 	return cipher;
@@ -53,10 +53,58 @@ string KeyPair::decrypt(string cipher) {
 		);
 	}
 	catch (...) {
-
+		throw "erreur while decrypting ";
 	}
 
 	return		pl_text;
 }
 
 
+
+
+void KeyPair::Save(const string& filename, const CryptoPP::BufferedTransformation& bt)
+{
+	FileSink file(filename.c_str());
+
+	bt.CopyTo(file);
+	file.MessageEnd();
+}
+
+void KeyPair::savePrivateKey(const string& filename, const RSA::PrivateKey& key)
+{
+	CryptoPP::ByteQueue queue;
+	key.Save(queue);
+	Save(filename, queue);
+}
+
+void KeyPair::savePublicKey(const string& filename, const RSA::PublicKey& key) {
+	CryptoPP::ByteQueue queue;
+	key.Save(queue);
+	Save(filename, queue);
+}
+
+
+
+
+
+void KeyPair::Load(const string& filename, CryptoPP::BufferedTransformation& bt)
+{
+	FileSource file(filename.c_str(), true /*pumpAll*/);
+
+	file.TransferTo(bt);
+	bt.MessageEnd();
+}
+
+void KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
+{
+	CryptoPP::ByteQueue queue;
+	Load(filename, queue);
+	key.Load(queue);
+}
+
+void KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
+{
+	CryptoPP::ByteQueue queue;
+	Load(filename, queue);
+	key.Load(queue);
+}

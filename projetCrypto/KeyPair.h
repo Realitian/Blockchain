@@ -63,7 +63,16 @@ public:
 	string sign(string);
 	string check(string);
 	void reGenerate() {};
+	
+	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key);
+	static void savePublicKey(const string& filename, const RSA::PublicKey& key);
+	static void loadPrivateKey(const string& filename, RSA::PrivateKey& key);
+	static void loadPublicKey(const string& filename, RSA::PublicKey& key);
+
 private:
+	static void Save(const string& filename, const CryptoPP::BufferedTransformation& bt);
+	static void Load(const string& filename, CryptoPP::BufferedTransformation& bt);
+
 	RSA::PrivateKey privateKey;
 	RSA::PublicKey publicKey;
 
