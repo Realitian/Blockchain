@@ -110,27 +110,35 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockChain.cpp" />
     <ClCompile Include="BlockHeader.cpp" />
+    <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Identite.cpp" />
     <ClCompile Include="KeyPair.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MinerNode.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Packet.cpp" />
     <ClCompile Include="Peer.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="Serveur.cpp" />
+    <ClCompile Include="Session.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockChain.h" />
     <ClInclude Include="BlockHeader.h" />
+    <ClInclude Include="Connection.h" />
     <ClInclude Include="Identite.h" />
     <ClInclude Include="KeyPair.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MinerNode.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="Peer.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="Serveur.h" />
+    <ClInclude Include="Session.h" />
     <ClInclude Include="SHA25.h" />
     <ClInclude Include="testLibraryCrypto.h" />
     <ClInclude Include="Transaction.h" />
