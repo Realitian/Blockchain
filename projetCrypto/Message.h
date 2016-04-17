@@ -10,6 +10,11 @@ public:
 	Message(string,string,const KeyPair&);
 	~Message();
 
+	template<class Archive>
+	void serialize(Archive& ar, const unsigned int version) {
+		ar & nom_de_domaine & information & hashDomainName; // CLE RSA !!!
+	}
+
 	string getNomDomaine();
 	string getinformation();
 	string getHashDomainName();

@@ -3,7 +3,7 @@
 Session::Session(boost::shared_ptr<Connection> Connection, boost::shared_ptr<Room> room)
 	: m_Connection(Connection),
 	m_room(room),
-	m_message(0)
+	m_message()
 {
 	is_leaving = false;
 	std::cout << "New Session ! " << std::endl;

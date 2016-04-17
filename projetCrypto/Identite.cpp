@@ -16,6 +16,7 @@ Identite::Identite(std::string _nom, std::string _prenom,const  KeyPair& cles) :
 }
 
 
+
 std::ostream& Identite::operator<<(std::ostream& os) {
 	os << prenom << " " << nom << std::endl;
 	return os;
@@ -28,7 +29,7 @@ std::string Identite::getPrenom() const {
 	return prenom;
 }
 
-RSA::PublicKey& Identite::getPublicKey() const {
+RSA::PublicKey Identite::getPublicKey() const {
 	return cle.getClePublique();
 }
 
@@ -38,7 +39,7 @@ KeyPair Identite::getKeyPair() const {
 }
 
 
-RSA::PrivateKey& Identite::getPrivateKey() const {
+RSA::PrivateKey Identite::getPrivateKey() const {
 	return cle.getPrivateKey();
 }
 

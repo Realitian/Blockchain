@@ -122,7 +122,7 @@ public:
 			catch (std::exception& e)
 			{
 				// En cas d'échec
-				boost::system::error_code error(boost::asio::error::invalid_argument);
+				boost::system::error_code error(boost::asio::error::invalid_argument);	// verifier les e
 				boost::get<0>(handler)(error);
 				return;
 			}

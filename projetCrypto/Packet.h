@@ -2,31 +2,33 @@
 #include <vector>
 #include <boost/serialization/vector.hpp>
 #include <string>
-
+#include "Block.h"
+#include "Transaction.h"
 
 class Packet
 {
 public:
-	Packet(int i) 
+
+	// Cree les objets, les initialise de leur manière la plus simple
+	Packet() :
+		block(0), // Cree un bloc vide
+		transaction(Identite("",""),"",""),
+		m_type(0)
 	{
 
 	}
 	void reset()
 	{
-		m_list_string.clear();
 	}
 
 	int m_type; // (1) Type d'événement : NEW_MSG, etc.
 
-				// Generic datas
-	std::vector<std::string>	m_list_string; // (4)
-											   // Transaction t;
-											   // Block b;
-											   // int numeroBloc
+	Block block;
+	Transaction transaction;
 
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version) {
-		ar & m_type & m_list_string;
+		ar & m_type & block & transaction;
 	}
 
 	enum {

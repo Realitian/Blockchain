@@ -1,7 +1,8 @@
 #include "Room.h"
 
 Room::Room(Serveur& server)
-	:m_server(server)
+	:m_server(server),
+	b()
 {
 	std::cout << "New room" << std::endl;
 }
@@ -9,9 +10,8 @@ Room::Room(Serveur& server)
 void Room::join(boost::shared_ptr<Session> participant)
 {
 	m_participants.insert(participant);
-
+	Packet e;
 	// On informe les sessions de la room // (1)
-	Packet e(0);
 	e.m_type = Packet::PERSON_CONNECTED;
 	deliver(e);
 }
@@ -19,7 +19,7 @@ void Room::join(boost::shared_ptr<Session> participant)
 void Room::leave(boost::shared_ptr<Session> participant)
 {
 	// On informe les sessions de la room // (2)
-	Packet e(0);
+	Packet e;
 	e.m_type = Packet::PERSON_LEFT;
 	deliver(e);
 

@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <ctime>
 #include <boost\date_time\posix_time\posix_time.hpp>
+#include <boost/serialization/vector.hpp>
+
 #include "Identite.h"
 #include "Message.h"
 
@@ -14,6 +16,12 @@ public:
 	std::shared_ptr<Message> getMessage() const;
 	boost::posix_time::ptime getTime() const;
 	string getHashTransaction() const;
+
+	template<class Archive>
+	void serialize(Archive& ar, const unsigned int version) {
+		ar & identiteSender & *message & hashTransaction;
+	}
+
 private:
 	Identite identiteSender;
 	std::shared_ptr<Message> message;
