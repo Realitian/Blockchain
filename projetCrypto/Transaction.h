@@ -19,7 +19,7 @@ public:
 
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version) {
-		ar & identiteSender & *message & hashTransaction;
+		ar & identiteSender &   hashTransaction; // shared_ptr !!!!!
 	}
 
 private:
