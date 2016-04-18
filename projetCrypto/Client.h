@@ -5,12 +5,11 @@
 #include <boost\make_shared.hpp>
 #include <vector>
 using boost::asio::ip::tcp;
-int E = 0;
+
 
 
 class Client : public boost::enable_shared_from_this<Client>
 {
-
 public:
 	static boost::shared_ptr<Client> create(boost::asio::io_service& ios, tcp::endpoint& endpoint)
 	{

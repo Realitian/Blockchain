@@ -111,6 +111,7 @@ bool KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
 	CryptoPP::ByteQueue queue;
 	Load(filename, queue);
 	key.Load(queue);
+	return true; // TODO
 }
 
 bool KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
@@ -118,4 +119,5 @@ bool KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
 	CryptoPP::ByteQueue queue;
 	Load(filename, queue);
 	key.Load(queue);
+	return true; // TODO
 }

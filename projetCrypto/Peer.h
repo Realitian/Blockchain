@@ -10,7 +10,10 @@ using boost::asio::ip::tcp;
 class Peer
 {
 public:
-	Peer(ptr_Identite, boost::asio::io_service&, tcp::endpoint&);
+	Peer(boost::asio::io_service&, tcp::endpoint&);
+	Peer() = delete;
+	Peer(const Peer&) = delete;
+	Peer& operator=(const Peer&) = delete;
 	~Peer();
 
 	void createNewIdentity();
@@ -21,7 +24,7 @@ private:
 	ptr_Identite identite;
 	boost::shared_ptr<Client> client;
 
-
+	void clean_screen();
 	void showBanner();
 };
 

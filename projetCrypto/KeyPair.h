@@ -68,7 +68,7 @@ public:
 	
 	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key);
 	static void savePublicKey(const string& filename, const RSA::PublicKey& key);
-	static bool loadPrivateKey(const string& filename, RSA::PrivateKey& key);
+	static bool loadPrivateKey(const string& filename, RSA::PrivateKey& key);		// TODO pensez a verifier si le chargement s'est bien passe , si le fichier existati
 	static bool loadPublicKey(const string& filename, RSA::PublicKey& key);
 
 private:
