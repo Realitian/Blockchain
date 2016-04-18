@@ -15,7 +15,14 @@ Identite::Identite(std::string _nom, std::string _prenom,const  KeyPair& cles) :
 
 }
 
-
+/*
+Identite& Identite::operator=(Identite rhs) 	
+{
+	nom = rhs.nom;
+	prenom = rhs.prenom;
+	cle = rhs.cle;
+}
+*/
 
 std::ostream& Identite::operator<<(std::ostream& os) {
 	os << prenom << " " << nom << std::endl;

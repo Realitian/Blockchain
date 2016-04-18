@@ -7,7 +7,9 @@ using std::string;
 class Message
 {
 public:
-	Message(string,string,const KeyPair&);
+	Message() : nom_de_domaine(), information(), hashDomainName(),publicKey(), longueurMessage(), signature() {};
+
+	Message(string, string, const KeyPair&);
 	~Message();
 
 	template<class Archive>
@@ -20,13 +22,13 @@ public:
 	string getHashDomainName();
 	bool verifier() const;
 private:
-	const std::string nom_de_domaine;
-	const std::string information;
-	const string hashDomainName;
+	std::string nom_de_domaine;
+	std::string information;
+	string hashDomainName;
 	RSA::PublicKey publicKey;
-	const __int64 longueurMessage;
-	const SecByteBlock signature;
-
+	__int64 longueurMessage;
+	SecByteBlock signature;
+	// j'ai supprime les const pour la serialization
 	SecByteBlock sign(RSA::PrivateKey&);
 
 

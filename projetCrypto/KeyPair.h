@@ -43,6 +43,7 @@ using std::exception;
 #define SIZE_KEY 1024
 #endif // !SIZE_KEY
 
+
 class KeyPair
 {
 public:
@@ -57,7 +58,8 @@ public:
 	{
 		return privateKey;
 	}
-
+	void setPrivateKey(const RSA::PrivateKey&);
+	void setPublicKey(const RSA::PublicKey&);
 	string encrypt(string);
 	string decrypt(string);
 	string sign(string);
@@ -66,8 +68,8 @@ public:
 	
 	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key);
 	static void savePublicKey(const string& filename, const RSA::PublicKey& key);
-	static void loadPrivateKey(const string& filename, RSA::PrivateKey& key);
-	static void loadPublicKey(const string& filename, RSA::PublicKey& key);
+	static bool loadPrivateKey(const string& filename, RSA::PrivateKey& key);
+	static bool loadPublicKey(const string& filename, RSA::PublicKey& key);
 
 private:
 	static void Save(const string& filename, const CryptoPP::BufferedTransformation& bt);

@@ -10,6 +10,11 @@ Serveur::Serveur(boost::asio::io_service& io_service, const tcp::endpoint& endpo
 	wait_for_connection(); // (1)
 }
 
+Serveur::~Serveur()
+{
+
+}
+
 // Attente d'un nouveau client
 void Serveur::wait_for_connection()
 {

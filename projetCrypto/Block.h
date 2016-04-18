@@ -12,18 +12,18 @@ class Block
 
 public:
 	Block(int); // jste pour le premier bloc 
-	
-	Block(ptr_Block,const vector<Transaction>&);
+
+	Block(ptr_Block, const vector<Transaction>&);
 	~Block();
 	Block& operator=(Block);
 	bool operator==(const Block&);
 
 	void setLastBlock(ptr_Block);
-	void setSize(int); 
+	void setSize(int);
 
 	ptr_Block getParent() const;
 	const BlockHeader& getHeader() const;
-	
+
 	bool isValid() const;
 	bool containsTransactions(const Transaction&) const;
 	void BuildMerkleRoot();
@@ -31,14 +31,14 @@ public:
 
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version) {
-		ar  & nombreTransaction & header & tailleBlock & transactions; // verifier pour le shared_ptr !!!!!
+		ar & nombreTransaction & header & tailleBlock & transactions; // verifier pour le shared_ptr !!!!!
 	}
 
 private:
 	ptr_Block previousBlock; // mis dans block pour éviter inclusion circulaire
 	int nombreTransaction;
 
-	BlockHeader header; 
+	BlockHeader header;
 	int tailleBlock;
 	vector<string> transactions; // Ce n'est pas les transactions, mais les hashs
 };

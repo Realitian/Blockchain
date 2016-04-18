@@ -3,23 +3,23 @@
 #include <ctime>
 #include <boost\date_time\posix_time\posix_time.hpp>
 #include <boost/serialization/vector.hpp>
-
+#include <boost\serialization\shared_ptr.hpp>
 #include "Identite.h"
 #include "Message.h"
 
 class Transaction
 {
 public:
-	Transaction(const Identite&,const string&,const string&) ;
+	Transaction(const Identite&, const string&, const string&);
 	~Transaction();
-	string toString() const ;
+	string toString() const;
 	std::shared_ptr<Message> getMessage() const;
 	boost::posix_time::ptime getTime() const;
 	string getHashTransaction() const;
 
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version) {
-		ar & identiteSender &   hashTransaction; // shared_ptr !!!!!
+		ar & message & identiteSender &   hashTransaction; // shared_ptr !!!!!
 	}
 
 private:

@@ -6,6 +6,9 @@ KeyPair::KeyPair(const RSA::PublicKey& pbkey, const RSA::PrivateKey& prkey) :
 {
 }
 
+
+
+
 KeyPair::KeyPair() :
 	publicKey(), privateKey()
 {
@@ -23,6 +26,14 @@ KeyPair::KeyPair(const KeyPair& rhs) :
 
 }
 
+
+void KeyPair::setPrivateKey(const RSA::PrivateKey& cle)
+{
+	privateKey = cle;
+}
+void KeyPair::setPublicKey(const RSA::PublicKey& cle) {
+	publicKey = cle;
+}
 
 string KeyPair::encrypt(string message) {
 	AutoSeededRandomPool rng;
@@ -95,14 +106,14 @@ void KeyPair::Load(const string& filename, CryptoPP::BufferedTransformation& bt)
 	bt.MessageEnd();
 }
 
-void KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
+bool KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
 {
 	CryptoPP::ByteQueue queue;
 	Load(filename, queue);
 	key.Load(queue);
 }
 
-void KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
+bool KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
 {
 	CryptoPP::ByteQueue queue;
 	Load(filename, queue);

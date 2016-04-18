@@ -9,6 +9,7 @@ public:
 	/// Nom puis prenom
 	Identite(std::string,std::string);
 	Identite(std::string ,std::string ,const KeyPair &cle);
+	//Identite& operator=(Identite);
 
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version) {
