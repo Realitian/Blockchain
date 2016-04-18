@@ -29,13 +29,11 @@ bool Message::verifier() const
 }
 
 SecByteBlock Message::sign(RSA::PrivateKey& privateKey) {
-	std::cerr << "LA2: " << privateKey.GetModulus() << " " << privateKey.GetPrivateExponent();
 
 	AutoSeededRandomPool rng;
 	CryptoPP::RSASSA_PKCS1v15_SHA_Signer signer(privateKey);
 	size_t length = signer.MaxSignatureLength();
 	SecByteBlock sig(length);
-	std::cerr << "LA3";
 
 	// Sign message
 	string message = nom_de_domaine + information;

@@ -4,8 +4,7 @@
 
 Peer::Peer(boost::asio::io_service& io_service, boost::asio::ip::tcp::endpoint& endpoint)
 {
-	client = Client::create(io_service, endpoint);
-	connexion();
+	
 }
 
 
@@ -13,6 +12,16 @@ Peer::~Peer()
 {
 }
 
+
+void Peer::receivePacket(const Packet& packet)
+{
+	// groooosse classe
+}
+void Peer::addClient(std::shared_ptr<Client> nvuClient)
+{
+	std::cerr << "Ajout du nouveau client";
+	client = nvuClient;
+}
 
 void Peer::showBanner()
 {
@@ -57,7 +66,6 @@ DEMANDE_CLE:
 		if (!achieve)
 			goto DEMANDE_CLE;
 		cle = KeyPair(pbkey, pvkey);
-
 		break;
 	case 'n':
 		print(MessageIHM::information_generation_cle);
@@ -90,7 +98,7 @@ SAUVEGARDE_CLE:
 		print(MessageIHM::infomation_cle_sauvegarde);
 		break;
 	case 'n':
-
+		// ok
 		break;
 	default:
 		goto SAUVEGARDE_CLE;
@@ -121,7 +129,8 @@ DISPLAY_MENU:
 	case '1':
 	{
 		std::shared_ptr<Transaction> ptrT = createTransaction(); // TODO verifier comment eviter que le switch m'emmerde
-		std::cout << (ptrT == nullptr ? "non" : "oui");
+		Packet p; p.m_type = Packet::NEW_TRANSACTION; p.transaction = *ptrT;
+		client->write(boost::system::error_code(), p);
 		break;
 	}
 	case '2':
@@ -140,7 +149,7 @@ DISPLAY_MENU:
 
 std::shared_ptr<Transaction> Peer::createTransaction()
 {
-
+	clean_screen();
 	string choix;
 	string domaineName, informationNameDomain;
 CREATE_TRANSACTION:

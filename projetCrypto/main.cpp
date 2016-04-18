@@ -20,9 +20,12 @@ int main()
 {
 	boost::asio::io_service io_service;
 	tcp::endpoint endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 7171);
-	Peer p(io_service,endpoint);
-	// Serveur sev(io_service, endpoint);
-	
+
+	std::shared_ptr<Peer> p = std::make_shared<Peer>(io_service, endpoint);
+	std::shared_ptr<Client> client = Client::create(io_service, endpoint, p);
+	p->addClient(client);
+	p->connexion();
+
 	io_service.run();
 	system("pause");
 	return 0;
