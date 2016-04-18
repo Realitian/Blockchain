@@ -56,6 +56,8 @@ DEMANDE_CLE:
 		achieve = KeyPair::loadPrivateKey(key, pvkey);
 		if (!achieve)
 			goto DEMANDE_CLE;
+		cle = KeyPair(pbkey, pvkey);
+
 		break;
 	case 'n':
 		print(MessageIHM::information_generation_cle);
@@ -65,9 +67,9 @@ DEMANDE_CLE:
 		goto DEMANDE_CLE;
 		break;
 	}
-	cle = KeyPair(pbkey, pvkey);
 	identite = std::make_shared<Identite>(n, pn, cle);
 	showBanner();
+	displayMenu();
 }
 
 
@@ -109,45 +111,62 @@ void Peer::clean_screen()
 void Peer::displayMenu() {
 DISPLAY_MENU:
 	print(MessageIHM::affichage_menu_principal);
-	int choix;
+	string choix;
 	std::cin >> choix;
-	switch (choix)
+	std::cerr << choix;
+	if (choix.size() != 1)
+		goto DISPLAY_MENU;
+	switch (choix.at(0))
 	{
 	case '1':
-		Transaction t = createTransaction(); // TODO verifier comment eviter que le switch m'emmerde
+	{
+		std::shared_ptr<Transaction> ptrT = createTransaction(); // TODO verifier comment eviter que le switch m'emmerde
+		std::cout << (ptrT == nullptr ? "non" : "oui");
 		break;
+	}
 	case '2':
-			// start mining
+	{
+		// start mining
+		break;
+	}
+	case '3':
+		connexion(); // retourner a la connection
 		break;
 	default:
 		goto DISPLAY_MENU;
 		break;
 	}
 }
-Transaction Peer::createTransaction()
+
+std::shared_ptr<Transaction> Peer::createTransaction()
 {
+
 	string choix;
-	Transaction t;
+	string domaineName, informationNameDomain;
 CREATE_TRANSACTION:
-	print(MessageIHM::formulation_demande_creation_transaction_sous_idenite + identite->getPrenom() = " " + identite->getNom()+MessageIHM::y_or_n);
+	string msg = MessageIHM::formulation_demande_creation_transaction_sous_idenite + identite->getPrenom() + " " + identite->getNom() + MessageIHM::y_or_n;
+	print(msg);
 	std::cin >> choix;
 	if (choix.size() != 1)
 		goto CREATE_TRANSACTION;
 	switch (choix.at(0))
 	{
 	case 'y':
+	{
+		print(MessageIHM::formulation_demande_nom_de_domaine);
+		std::cin >> domaineName;
+		print(MessageIHM::formulation_demande_information);
+		std::cin >> informationNameDomain;
 
-		break;
-	case 'n':
-
+		// TODO verifier si la transaction est correcte
+		std::shared_ptr<Transaction> ptrT = std::make_shared<Transaction>(*identite, domaineName, informationNameDomain);
+		return ptrT;
 		break;
 	}
-	return t;
+	case 'n':
+		displayMenu();
+		return nullptr;
+		break;
+	}
+	return nullptr;
 }
-
-/*
-Identite identiteSender;
-std::shared_ptr<Message> message;
-string hashTransaction;
-boost::posix_time::ptime timestamp;
-*/

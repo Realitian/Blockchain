@@ -21,6 +21,8 @@ public:
 	string getinformation();
 	string getHashDomainName();
 	bool verifier() const;
+	SecByteBlock sign(RSA::PrivateKey&);
+
 private:
 	std::string nom_de_domaine;
 	std::string information;
@@ -29,7 +31,6 @@ private:
 	__int64 longueurMessage;
 	SecByteBlock signature;
 	// j'ai supprime les const pour la serialization
-	SecByteBlock sign(RSA::PrivateKey&);
 
 
 };

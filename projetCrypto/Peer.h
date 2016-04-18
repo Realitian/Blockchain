@@ -20,7 +20,7 @@ public:
 	void sauvegarderCle(const RSA::PrivateKey&,const RSA::PublicKey&);
 	void print(const string&);
 	void displayMenu();
-	Transaction createTransaction();
+	std::shared_ptr<Transaction> createTransaction();
 	
 private:
 	ptr_Identite identite;

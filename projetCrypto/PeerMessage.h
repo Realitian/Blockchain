@@ -22,10 +22,12 @@ namespace MessageIHM {
 	const string formulation_sauvegarde_cle = "voulez vous sauvegardez vos cle [y:n]";
 	const string infomation_cle_sauvegarde = "Vos clés ont ete sauvegarde";
 
-	const string affichage_menu_principal = "- 1. Creer et enregistrer dans la BlockChain un nouveau nom [1]\
-											 - 2. Commencer a miner [2]";
+	const string affichage_menu_principal =
+		"- 1. Creer et enregistrer dans la BlockChain un nouveau nom [1]\n- 2. Commencer a miner [2] \n- 3. Changer d\'identite \n";
 	const string formulation_demande_creation_transaction_sous_idenite = "Voulez vous creer une transaction sous cet identifiant";
 	const string y_or_n = "[y-n]";
+	const string formulation_demande_nom_de_domaine = "Veuillez rentrez le nom de domaine auquel vous souhitez vous connectez";
+	const string formulation_demande_information = "Veuillez rentrez les informations que vous souhaitez ajouter concernant le nom de domaine, le tout SUR UNE LIGNE";
 }
 
 
