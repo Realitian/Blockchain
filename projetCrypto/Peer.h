@@ -16,10 +16,12 @@ public:
 	Peer& operator=(const Peer&) = delete;
 	~Peer();
 
-	void createNewIdentity();
+	void connexion();
 	void sauvegarderCle(const RSA::PrivateKey&,const RSA::PublicKey&);
 	void print(const string&);
-
+	void displayMenu();
+	Transaction createTransaction();
+	
 private:
 	ptr_Identite identite;
 	boost::shared_ptr<Client> client;
