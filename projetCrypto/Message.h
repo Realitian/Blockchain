@@ -4,17 +4,46 @@
 #include "SHA25.h"
 #include "KeyPair.h"
 using std::string;
+
 class Message
 {
 public:
-	Message() : nom_de_domaine(), information(), hashDomainName(),publicKey(), longueurMessage(), signature() {};
+	Message() : nom_de_domaine(), information(), hashDomainName(), publicKey(), longueurMessage(), signature() {};
 
 	Message(string, string, const KeyPair&);
 	~Message();
 
+
 	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
-		ar & nom_de_domaine & information & hashDomainName; // CLE RSA !!!
+	void save(Archive & ar, const unsigned int version) const
+	{
+		ar & nom_de_domaine;
+		ar & information;
+		ar & longueurMessage;
+		string aa = boost::lexical_cast<std::string>(publicKey.GetPublicExponent());
+		string bb = boost::lexical_cast<std::string>(publicKey.GetModulus());
+		ar & aa & bb;
+	}
+
+	template<class Archive>
+	void load(Archive & ar, const unsigned int version)
+	{
+		string a, b;
+		__int64 c;
+		ar & a & b & c;
+		nom_de_domaine = a; information = b; longueurMessage = c;
+		std::string d, e;
+		ar & d & e;
+		publicKey.SetPublicExponent(CryptoPP::Integer( d.c_str()));
+		publicKey.SetModulus(CryptoPP::Integer(e.c_str()));
+	}
+
+	template<class Archive>
+	void serialize(
+		Archive & ar,
+		const unsigned int file_version
+	) {
+		boost::serialization::split_member(ar, *this, file_version);
 	}
 
 	string getNomDomaine();

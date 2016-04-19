@@ -5,7 +5,7 @@ Transaction::Transaction(const Identite& ident,const string& _domaineName,const 
 	 : identiteSender(ident)
 {
 	std::cerr << "LA";
-	 message = std::make_shared<Message>(_information,_domaineName,ident.getKeyPair());
+	 message = boost::make_shared<Message>(_information,_domaineName,ident.getKeyPair());
      hashTransaction = SHA25::sha256(identiteSender.toString() + message->getHashDomainName() + message->getinformation());
 	 timestamp = boost::posix_time::second_clock::local_time();
 
@@ -25,7 +25,7 @@ string Transaction::toString() const{
 	return os;
 }
 
-std::shared_ptr<Message> Transaction::getMessage() const{
+boost::shared_ptr<Message> Transaction::getMessage() const{
 	return message;
 }
 boost::posix_time::ptime Transaction::getTime() const{

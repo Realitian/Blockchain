@@ -50,6 +50,12 @@ void Session::handle_read(const boost::system::error_code &error) // (2)
 				break;
 			}
 			std::cout << "message bien recu : " << m_message.m_type << " " << std::endl;
+			if (m_message.m_type == 3)
+			{
+				Transaction t = m_message.transaction;
+				std::cout << t.getHashTransaction() << " " " " << t.getTime() << std::endl;
+				std::cout << t.getMessage()->getHashDomainName() << t.getMessage()->getinformation() << " " << t.getMessage()->getNomDomaine() << std::endl;
+			}
 
 			// On demande à la room de transmettre le message à tout le monde
 			room->deliver(m_message); // (3)

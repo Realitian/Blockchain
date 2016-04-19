@@ -15,6 +15,7 @@ Peer::~Peer()
 
 void Peer::receivePacket(const Packet& packet)
 {
+	std::cerr << "PACKET RECU  dans PEER" << std::endl;
 	// groooosse classe
 }
 void Peer::addClient(std::shared_ptr<Client> nvuClient)

@@ -91,7 +91,7 @@ private:
 	{
 		if (!error)
 		{
-			// std::cerr << "dans read, sans erreur" << std::endl;
+			std::cerr << "dans read, sans erreur" << std::endl;
 			new_connection->async_read(packet, boost::bind(&Client::handle_read, shared_from_this(),
 				boost::asio::placeholders::error));
 		}
@@ -105,6 +105,7 @@ private:
 
 		if (!e)
 		{
+
 			// signalReception.connect(boost::bind(&Peer::receivePacket, peer, _1));
 			// signalReception(packet);
 			m_peer->receivePacket(packet);

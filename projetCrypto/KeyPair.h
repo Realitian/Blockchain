@@ -50,6 +50,7 @@ public:
 	KeyPair();
 	KeyPair(const RSA::PublicKey&, const RSA::PrivateKey&);
 	KeyPair(const KeyPair&);
+
 	RSA::PublicKey getClePublique() const
 	{
 		return publicKey;
@@ -58,13 +59,44 @@ public:
 	{
 		return privateKey;
 	}
+
+	template<class Archive>
+	void save(Archive & ar, const unsigned int version) const
+	{
+		string aa, bb, cc, dd;
+		aa = boost::lexical_cast<std::string>(privateKey.GetPrivateExponent());
+		bb = boost::lexical_cast<std::string>(privateKey.GetModulus());
+		cc = boost::lexical_cast<std::string>(publicKey.GetPublicExponent());
+		aa = boost::lexical_cast<std::string>(publicKey.GetModulus());
+		ar & aa & bb & cc & dd;
+	}
+
+	template<class Archive>
+	void load(Archive & ar, const unsigned int version)
+	{
+		string aa, bb, cc, dd;
+		ar & aa & bb & cc & dd;
+		privateKey.SetPrivateExponent(CryptoPP::Integer( aa.c_str()));
+		privateKey.SetModulus(CryptoPP::Integer(bb.c_str()));
+		publicKey.SetPublicExponent(CryptoPP::Integer(cc.c_str()));
+		publicKey.SetModulus(CryptoPP::Integer(dd.c_str()));
+	}
+
+	template<class Archive>
+	void serialize(
+		Archive & ar,
+		const unsigned int file_version
+	) {
+		boost::serialization::split_member(ar, *this, file_version);
+	}
+
 	void setPrivateKey(const RSA::PrivateKey&);
 	void setPublicKey(const RSA::PublicKey&);
 	string encrypt(string);
 	string decrypt(string);
 	void reGenerate() {};
-	
-	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key) ;
+
+	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key);
 	static void savePublicKey(const string& filename, const RSA::PublicKey& key);
 	static bool loadPrivateKey(const string& filename, RSA::PrivateKey& key);		// TODO pensez a verifier si le chargement s'est bien passe , si le fichier existati
 	static bool loadPublicKey(const string& filename, RSA::PublicKey& key);
