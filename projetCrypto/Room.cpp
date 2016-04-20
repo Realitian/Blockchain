@@ -28,7 +28,6 @@ void Room::leave(boost::shared_ptr<Session> participant)
 
 void Room::deliver(const Packet& msg)
 {
-	std::cout << "Nouveau message :" << msg.m_type << " " << std::endl;
 	std::for_each(m_participants.begin(), m_participants.end(),
 		boost::bind(&Session::deliver, _1, boost::ref(msg)));
 }

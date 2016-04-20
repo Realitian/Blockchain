@@ -4,7 +4,7 @@
 
 Peer::Peer(boost::asio::io_service& io_service, boost::asio::ip::tcp::endpoint& endpoint)
 {
-	
+
 }
 
 
@@ -16,8 +16,16 @@ Peer::~Peer()
 void Peer::receivePacket(Packet packet)
 {
 	std::cerr << "PACKET RECU  dans PEER" << std::endl;
+	std::cerr << packet.m_type << " " <<
+		packet.transaction.getHashTransaction() << " "
+		<< packet.transaction.getMessage().getinformation()
+		<< " " << packet.transaction.getMessage().getNomDomaine() << "\n" <<
+		packet.transaction.getMessage().getPublicKey().GetModulus() <<
+		packet.transaction.getMessage().getPublicKey().GetPublicExponent() <<
+		std::endl;
 
 }
+
 void Peer::addClient(std::shared_ptr<Client> nvuClient)
 {
 	client = nvuClient;
@@ -43,7 +51,7 @@ void Peer::connexion()
 	std::cin >> n;
 	print(MessageIHM::formulation_demande_prenom);
 	std::cin >> pn;
-
+	n = "franc"; pn = "denis";
 	RSA::PrivateKey pvkey;
 	RSA::PublicKey pbkey;
 	KeyPair cle;
@@ -77,6 +85,7 @@ DEMANDE_CLE:
 		goto DEMANDE_CLE;
 		break;
 	}
+	std::cout << " " << cle.getClePublique().GetPublicExponent() << std::endl;
 	identite = std::make_shared<Identite>(n, pn, cle);
 	showBanner();
 	displayMenu();
@@ -115,7 +124,7 @@ inline void Peer::print(const string& m) {
 
 void Peer::clean_screen()
 {
-	system("cls");
+	//system("cls");
 }
 
 
@@ -174,6 +183,7 @@ CREATE_TRANSACTION:
 		informationNameDomain = "hello world";
 		// TODO verifier si la transaction est correcte
 		std::shared_ptr<Transaction> ptrT = std::make_shared<Transaction>(*identite, domaineName, informationNameDomain);
+		std::cout << "Message :" << ptrT->getMessage().getPublicKey().GetPublicExponent() << std::endl;
 		return ptrT;
 		break;
 	}

@@ -41,16 +41,9 @@ public:
 		ar & transaction;
 		//ar & block;
 	}
+	BOOST_SERIALIZATION_SPLIT_MEMBER()
 
-	template<class Archive>
-	void serialize(
-		Archive & ar,
-		const unsigned int file_version
-	) {
-		boost::serialization::split_member(ar, *this, file_version);
-	}
-
-	enum {
+		enum {
 		NEW_MSG = 0, // Nouveau message
 		PERSON_LEFT = 1, // Information : personne ayant quittée la room
 		PERSON_CONNECTED = 2, // Information : nouvelle personne connectée à la room

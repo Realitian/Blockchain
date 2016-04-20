@@ -49,15 +49,20 @@ void Session::handle_read(const boost::system::error_code &error) // (2)
 			default:
 				break;
 			}
-			std::cout << "message bien recu : " << m_message.m_type << " " << std::endl;
+			std::cout << "---- Reception ----- " << m_message.m_type << " " << std::endl;
 
 			if (m_message.m_type == 3)
 			{
-				Transaction t = m_message.transaction;
-				std::cout << t.getHashTransaction() << " " " " << t.getTime() << std::endl;
-				std::cout << t.getMessage()->getHashDomainName() << t.getMessage()->getinformation() << " " << t.getMessage()->getNomDomaine() << std::endl;
+				std::cerr << "Type packet : " << m_message.m_type << std::endl <<
+					"Hash Transaction " << m_message.transaction.getHashTransaction() << std::endl <<
+					"Information message " << m_message.transaction.getMessage().getinformation() << std::endl <<
+					"Nom de domaine " << m_message.transaction.getMessage().getNomDomaine() << "\n" << std::endl <<
+					"Cle publique modulus : " << m_message.transaction.getMessage().getPublicKey().GetModulus() << std::endl <<
+					"Cle publique exponent : " << m_message.transaction.getMessage().getPublicKey().GetPublicExponent() <<
+					std::endl;
 			}
-			std::cout << std::endl;
+			std::cout << "-------------------- " << std::endl;
+
 			// On demande à la room de transmettre le message à tout le monde
 			room->deliver(m_message); // (3)
 									  // On relance une écoute
