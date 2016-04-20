@@ -13,14 +13,13 @@ Peer::~Peer()
 }
 
 
-void Peer::receivePacket(const Packet& packet)
+void Peer::receivePacket(Packet packet)
 {
 	std::cerr << "PACKET RECU  dans PEER" << std::endl;
-	// groooosse classe
+
 }
 void Peer::addClient(std::shared_ptr<Client> nvuClient)
 {
-	std::cerr << "Ajout du nouveau client";
 	client = nvuClient;
 }
 
@@ -43,7 +42,8 @@ void Peer::connexion()
 	print(MessageIHM::formulation_demande_nom);
 	std::cin >> n;
 	print(MessageIHM::formulation_demande_prenom);
-	std::cin >> n;
+	std::cin >> pn;
+
 	RSA::PrivateKey pvkey;
 	RSA::PublicKey pbkey;
 	KeyPair cle;
@@ -51,6 +51,7 @@ void Peer::connexion()
 DEMANDE_CLE:
 	print(MessageIHM::formulation_demande_possession_cle);
 	std::cin >> key;
+	key = "n";
 	if (key.size() != 1)
 		goto DEMANDE_CLE;
 	switch (key.at(0))
@@ -89,6 +90,7 @@ SAUVEGARDE_CLE:
 	print(MessageIHM::formulation_sauvegarde_cle);
 	string ok;
 	std::cin >> ok;
+	ok = "n";
 	if (ok.size() != 1)
 		goto SAUVEGARDE_CLE;
 	switch (ok.at(0))
@@ -122,7 +124,7 @@ DISPLAY_MENU:
 	print(MessageIHM::affichage_menu_principal);
 	string choix;
 	std::cin >> choix;
-	std::cerr << choix;
+	choix = "1";
 	if (choix.size() != 1)
 		goto DISPLAY_MENU;
 	switch (choix.at(0))
@@ -157,6 +159,7 @@ CREATE_TRANSACTION:
 	string msg = MessageIHM::formulation_demande_creation_transaction_sous_idenite + identite->getPrenom() + " " + identite->getNom() + MessageIHM::y_or_n;
 	print(msg);
 	std::cin >> choix;
+	choix = "y";
 	if (choix.size() != 1)
 		goto CREATE_TRANSACTION;
 	switch (choix.at(0))
@@ -167,7 +170,8 @@ CREATE_TRANSACTION:
 		std::cin >> domaineName;
 		print(MessageIHM::formulation_demande_information);
 		std::cin >> informationNameDomain;
-
+		domaineName = "facebook.com";
+		informationNameDomain = "hello world";
 		// TODO verifier si la transaction est correcte
 		std::shared_ptr<Transaction> ptrT = std::make_shared<Transaction>(*identite, domaineName, informationNameDomain);
 		return ptrT;

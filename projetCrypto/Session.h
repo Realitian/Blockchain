@@ -21,7 +21,7 @@ public:
 		return session;
 	}
 
-	void	deliver(const Packet& msg); // (2)
+	void	deliver(Packet msg); // (2)
 
 private:
 	Session(boost::shared_ptr<Connection> Connection, boost::shared_ptr<Room> room);

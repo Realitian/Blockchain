@@ -26,7 +26,7 @@ public:
 	void sauvegarderCle(const RSA::PrivateKey&, const RSA::PublicKey&);
 	void print(const string&);
 	void displayMenu();
-	void receivePacket(const Packet&) ;
+	void receivePacket(Packet);
 	void addClient(std::shared_ptr<Client>);
 	std::shared_ptr<Transaction> createTransaction();
 
@@ -71,7 +71,6 @@ private:
 	void connect(tcp::endpoint& endpoint)
 	{
 		new_connection = boost::make_shared<Connection>(m_io_service); // (2)
-																	   // std::cerr << "dans connect" << std::endl;
 		tcp::socket& socket = new_connection->socket();
 		socket.async_connect(endpoint, // (3)
 			boost::bind(&Client::handle_connect, this,
@@ -84,14 +83,15 @@ private:
 
 		if (!error)
 		{
-			read(error);
+			//read(error);
 		}
 	}
 	void read(const boost::system::error_code& error)
 	{
 		if (!error)
 		{
-			std::cerr << "dans read, sans erreur" << std::endl;
+			packet = Packet();
+			// std::cerr << "dans read, sans erreur" << std::endl;
 			new_connection->async_read(packet, boost::bind(&Client::handle_read, shared_from_this(),
 				boost::asio::placeholders::error));
 		}
@@ -105,14 +105,15 @@ private:
 
 		if (!e)
 		{
-
 			// signalReception.connect(boost::bind(&Peer::receivePacket, peer, _1));
 			// signalReception(packet);
 			m_peer->receivePacket(packet);
+			read(e);
 		}
 		else
 		{
-			std::cerr << e.message() << std::endl;
+
+			std::cerr << "Erreur dans handle_read " << e.message() << std::endl;
 		}
 	}
 
@@ -128,7 +129,8 @@ private:
 
 		else
 		{
-			std::cerr << e.message();
+
+			std::cerr << "Erreur dans handle_write " << e.message();
 		}
 	}
 

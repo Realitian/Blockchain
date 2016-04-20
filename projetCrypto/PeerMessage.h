@@ -12,15 +12,15 @@ namespace MessageIHM {
 	    						 |_|  |_|_____|_| \_|\___/  |____/|_____\___/ \____|_|\_\____|_| |_/_/   \_\___|_| \_|";
 								 */
 	const string introMessage = "--- BLockchaiN ---";
-	const string formulation_demande_identite = "Veuillez entre un nom puis un prénom ?";
+	const string formulation_demande_identite = "Veuillez entre un nom puis un prenom ?";
 	const string formulation_demande_nom = "Nom :";
 	const string formulation_demande_prenom = "Prenom :";
-	const string formulation_demande_possession_cle = "Avez vous une paire de clé existente : [y:n]";
+	const string formulation_demande_possession_cle = "Avez vous une paire de cle existente : [y:n]";
 	const string formulation_demande_location_cle_publique = "Precisez l'endroit ou se trouve votre cle publique :";
 	const string formulation_demande_location_cle_privee = "Precisez l'endroit ou se trouve votre cle privee :";
-	const string information_generation_cle = "une paire de cle va etre generer";
+	const string information_generation_cle = "une paire de cle va etre genere";
 	const string formulation_sauvegarde_cle = "voulez vous sauvegardez vos cle [y:n]";
-	const string infomation_cle_sauvegarde = "Vos clés ont ete sauvegarde";
+	const string infomation_cle_sauvegarde = "Vos cles ont ete sauvegarde";
 
 	const string affichage_menu_principal =
 		"- 1. Creer et enregistrer dans la BlockChain un nouveau nom [1]\n- 2. Commencer a miner [2] \n- 3. Changer d\'identite \n";

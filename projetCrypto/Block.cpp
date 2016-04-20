@@ -1,24 +1,10 @@
 #include "Block.h"
 
-// bool setLastBlock(ptr_Block);
-// bool isValid() const;
-// bool containsTransactions(const Transaction&) const;
-// void setSize();
-// void BuildMerkleRoot();
-// void solveProofofWork();
-// ptr_Block getParent();
-// private:
-// 	ptr_Block header; // c'est un std::shared_ptr<>
-// 	ptr_Block previousBlock; // mis dans block pour éviter inclusion circulaire
-// 	__int8 nombreTransaction;
-// 	__int8 tailleBlock;
-// 	vector<Transaction> transactions; // Ce n'est pas les transactions, mais les hashs
-
 Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
-	previousBlock(prevBloc), nombreTransaction(_transaction.size()), header(prevBloc->getHeader().getNumeroBloc()+1),
+	previousBlock(prevBloc), nombreTransaction(_transaction.size()), header(prevBloc->getHeader().getNumeroBloc() + 1),
 	tailleBlock(), transactions()
 {
-	
+
 	// Copie les transactions par leur HASH
 	for (auto t : _transaction)
 	{
@@ -26,8 +12,16 @@ Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
 	}
 
 }
+
+Block::Block(std::shared_ptr<Block> prv, int nbtransaction, int taille, vector<string> tr, const BlockHeader _header) :
+	previousBlock(prv), nombreTransaction(nbtransaction), tailleBlock(taille),
+	transactions(tr), header(_header)
+{
+
+}
+
 Block::Block(int p) :
-	previousBlock(nullptr), nombreTransaction(0), header(NULL),tailleBlock(0),transactions()
+	previousBlock(nullptr), nombreTransaction(0), header(0), tailleBlock(0), transactions()
 {
 
 }
@@ -71,12 +65,12 @@ void Block::BuildMerkleRoot()
 	int N = transactions.size();
 
 	vector<string> hashTree;
-	hashTree.resize(2*N-1);
+	hashTree.resize(2 * N - 1);
 	for (int i = 0; i < N; i++)
-		hashTree.at(2*N-2 - i) = transactions.at(i);
+		hashTree.at(2 * N - 2 - i) = transactions.at(i);
 	for (int i = N - 2; i > -1; i--)
 	{
-		hashTree.at(i) = SHA25::sha256(hashTree.at(2 * i + 1) + hashTree.at(2*i+2) );
+		hashTree.at(i) = SHA25::sha256(hashTree.at(2 * i + 1) + hashTree.at(2 * i + 2));
 		std::cerr << hashTree.at(i) << std::endl;
 	}
 	header.setHashMerkleRoot(hashTree.at(0));
@@ -86,14 +80,14 @@ void Block::BuildMerkleRoot()
 
 paire Block::solveProofofWork()
 {
-	unsigned long long nonce = 0,incr = 0;
+	unsigned long long nonce = 0, incr = 0;
 	unsigned long long limit = std::numeric_limits<unsigned long long>::max();
 
 	string sol(DIFFICULTY_MINING, '0');
 	while (true) {
 		string hash = SHA25::sha256(string(header.getHashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
 		// std::cerr << hash << std::endl;
-		if (hash.substr(0,DIFFICULTY_MINING) == sol)
+		if (hash.substr(0, DIFFICULTY_MINING) == sol)
 			break;
 		else
 			++nonce;
@@ -103,7 +97,7 @@ paire Block::solveProofofWork()
 			nonce = 0;
 		}
 	}
-	return paire(incr,nonce);
+	return paire(incr, nonce);
 }
 
 
@@ -127,7 +121,7 @@ std::shared_ptr<Block> Block::getParent() const
 
 
 void Block::setLastBlock(std::shared_ptr<Block> prvBlock) {
-	previousBlock =prvBlock;
+	previousBlock = prvBlock;
 }
 void Block::setSize(int size) {
 	tailleBlock = size;

@@ -8,7 +8,9 @@ using std::string;
 class Message
 {
 public:
-	Message() : nom_de_domaine(), information(), hashDomainName(), publicKey(), longueurMessage(), signature() {};
+	Message() : nom_de_domaine(), information(), hashDomainName(), publicKey(), longueurMessage(), signature() {
+		std::cerr << "Construction d'un nouveau message" << std::endl;
+	};
 
 	Message(string, string, const KeyPair&);
 	~Message();
@@ -17,26 +19,29 @@ public:
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
 	{
-		ar & nom_de_domaine;
-		ar & information;
-		ar & longueurMessage;
+		ar & nom_de_domaine & information & longueurMessage;
 		string aa = boost::lexical_cast<std::string>(publicKey.GetPublicExponent());
 		string bb = boost::lexical_cast<std::string>(publicKey.GetModulus());
 		ar & aa & bb;
+		std::string token = std::string(reinterpret_cast<const char*>(signature.data()), signature.size());
+		//ar & token;
+
 	}
 
 	template<class Archive>
 	void load(Archive & ar, const unsigned int version)
 	{
-		string a, b;
-		__int64 c;
-		ar & a & b & c;
-		nom_de_domaine = a; information = b; longueurMessage = c;
-		std::string d, e;
+		string d, e, f;
+		ar & nom_de_domaine & information & longueurMessage;
 		ar & d & e;
-		publicKey.SetPublicExponent(CryptoPP::Integer( d.c_str()));
+		publicKey.SetPublicExponent(CryptoPP::Integer(d.c_str()));
 		publicKey.SetModulus(CryptoPP::Integer(e.c_str()));
+		//ar & f;
+		//publicKey = RSA::PublicKey();
+		//signature = SecByteBlock(reinterpret_cast<const byte*>(f.data()), f.size());
+		//std::cout << " DEF:"<< d << " "<< e << f;
 	}
+
 
 	template<class Archive>
 	void serialize(
@@ -52,6 +57,10 @@ public:
 	bool verifier() const;
 	SecByteBlock sign(RSA::PrivateKey&);
 
+	RSA::PublicKey getPublicKey() const
+	{
+		return publicKey;
+	}
 private:
 	std::string nom_de_domaine;
 	std::string information;

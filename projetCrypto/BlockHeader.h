@@ -3,13 +3,15 @@
 #include <string>
 #include <boost/serialization/vector.hpp>
 #include <boost\date_time\posix_time\posix_time.hpp>
+#include <boost\date_time\posix_time\time_serialize.hpp>
+#include <boost\serialization\utility.hpp>
 using std::string;
 using paire = std::pair<unsigned long long, unsigned long long>;
 
 class BlockHeader
 {
 public:
-	BlockHeader(int);
+	explicit BlockHeader(int);
 	~BlockHeader();
 	bool operator==(const BlockHeader&) const;
 
@@ -19,8 +21,29 @@ public:
 	void setTime(boost::posix_time::ptime);
 
 	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
-		ar & numeroBloc & nonce.first & nonce.second & merkleRootHash;
+	void save(Archive & ar, const unsigned int version) const
+	{
+		ar & numeroBloc;
+		ar & timestamp;
+		ar & nonce;
+		ar & merkleRootHash;
+	}
+
+	template<class Archive>
+	void load(Archive & ar, const unsigned int version)
+	{
+		ar & numeroBloc;
+		ar & timestamp;
+		ar & nonce;
+		ar & merkleRootHash;
+	}
+
+	template<class Archive>
+	void serialize(
+		Archive & ar,
+		const unsigned int file_version
+	) {
+		boost::serialization::split_member(ar, *this, file_version);
 	}
 
 	boost::posix_time::ptime getTime() const;

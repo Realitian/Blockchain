@@ -8,7 +8,7 @@
 
 Message::Message(string _domainName,string _info,const KeyPair& keypair) :
 	nom_de_domaine(_domainName), information(_info), hashDomainName(SHA25::sha256(nom_de_domaine)), publicKey(keypair.getClePublique()),
-	longueurMessage(nom_de_domaine.size() + information.size() + hashDomainName.size() + signature.size()),
+	longueurMessage(nom_de_domaine.size() + information.size() + hashDomainName.size()),
 	signature(sign(keypair.getPrivateKey()))
 {
 }

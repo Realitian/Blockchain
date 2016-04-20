@@ -14,6 +14,7 @@ public:
 	Block(int); // jste pour le premier bloc 
 
 	Block(ptr_Block, const vector<Transaction>&);
+	Block(ptr_Block, int, int, vector<string>, const BlockHeader);
 	~Block();
 	Block& operator=(Block);
 	bool operator==(const Block&);
@@ -28,10 +29,38 @@ public:
 	bool containsTransactions(const Transaction&) const;
 	void BuildMerkleRoot();
 	paire solveProofofWork();
+	template<class Archive>
+	void save(Archive & ar, const unsigned int version) const
+	{
+		ar & nombreTransaction;
+		ar & header;
+		ar & tailleBlock;
+		ar & transactions;
+		//	ar & previousBlock->getHeader() & previousBlock->nombreTransaction & previousBlock->tailleBlock;
+		//	ar & previousBlock->transactions;
+		std::cerr << "correct save";
+	}
 
 	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
-		ar & nombreTransaction & header & tailleBlock & transactions; // verifier pour le shared_ptr !!!!!
+	void load(Archive & ar, const unsigned int version)
+	{
+		ar & nombreTransaction;
+		// ar & header;
+		ar & tailleBlock;
+
+		ar & transactions;
+		//BlockHeader h(0); int nb; int tb; vector<string> tr;
+		//ar & h & nb & tb & tr;
+		previousBlock = std::make_shared<Block>(nullptr, 0, 0, vector<string>(),BlockHeader(0));
+		std::cerr << "correct load" << std::endl;
+	}
+
+	template<class Archive>
+	void serialize(
+		Archive & ar,
+		const unsigned int file_version
+	) {
+		boost::serialization::split_member(ar, *this, file_version);
 	}
 
 private:

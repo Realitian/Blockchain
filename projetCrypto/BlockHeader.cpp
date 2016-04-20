@@ -3,7 +3,7 @@
 
 
 BlockHeader::BlockHeader(int _numeroBloc) :
-	numeroBloc(_numeroBloc)
+	numeroBloc(_numeroBloc), merkleRootHash(), timestamp(), nonce()
 {
 }
 

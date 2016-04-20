@@ -11,8 +11,8 @@ public:
 
 	// Cree les objets, les initialise de leur manière la plus simple
 	Packet() :
-		block(0), // Cree un bloc vide
-		transaction(Identite("",""),"",""),
+		//block(0), // Cree un bloc vide
+		transaction(Identite("", ""), "", ""),
 		m_type(0)
 	{
 
@@ -23,12 +23,31 @@ public:
 
 	int m_type; // (1) Type d'événement : NEW_MSG, etc.
 
-	Block block;
+				// Block block;
 	Transaction transaction;
 
 	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
-		ar & m_type & block & transaction;
+	void save(Archive & ar, const unsigned int version) const
+	{
+		ar & m_type;
+		ar & transaction;
+		//ar & block;
+	}
+
+	template<class Archive>
+	void load(Archive & ar, const unsigned int version)
+	{
+		ar & m_type;
+		ar & transaction;
+		//ar & block;
+	}
+
+	template<class Archive>
+	void serialize(
+		Archive & ar,
+		const unsigned int file_version
+	) {
+		boost::serialization::split_member(ar, *this, file_version);
 	}
 
 	enum {
