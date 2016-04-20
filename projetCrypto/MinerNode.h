@@ -12,6 +12,7 @@ class MinerNode : Node
 public:
 	MinerNode();
 	~MinerNode();
+
 	/* Gestion BlockChain*/
 	bool isTransactionExist(const Transaction&) const;
 	bool startNewBlock() const;

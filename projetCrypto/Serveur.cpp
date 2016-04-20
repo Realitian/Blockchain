@@ -15,13 +15,13 @@ Serveur::~Serveur()
 
 }
 
-// Attente d'un nouveau client
+// Waiting for a new client
 void Serveur::wait_for_connection()
 {
-	boost::shared_ptr<Connection> new_connection(new Connection(m_io_service)); // (2)
+	boost::shared_ptr<Connection> new_connection(new Connection(m_io_service)); 
 
-																						// Attente d'une nouvelle connection
-	m_acceptor.async_accept(new_connection->socket(), // (3)
+																						// Waiting for a new Connection
+	m_acceptor.async_accept(new_connection->socket(),
 		boost::bind(&Serveur::handle_accept, this,
 			boost::asio::placeholders::error,
 			new_connection)
@@ -29,16 +29,15 @@ void Serveur::wait_for_connection()
 }
 
 
-void Serveur::handle_accept(const boost::system::error_code& error, boost::shared_ptr<Connection> new_connection) // (4)
+void Serveur::handle_accept(const boost::system::error_code& error, boost::shared_ptr<Connection> new_connection) 
 {
 	if (!error)
 	{
-		std::cout << "Connection acceptée" << std::endl;
-		boost::shared_ptr<Session> session = Session::create(new_connection, m_room); // (5)
-		m_room->join(session); // (6)
-		wait_for_connection(); // (7)
+		boost::shared_ptr<Session> session = Session::create(new_connection, m_room); 
+		m_room->join(session); 
+		wait_for_connection(); 
 	}
 	else {
-		std::cerr << "Connection refusee" << std::endl;
+		std::cerr << "Connection refused" << std::endl;
 	}
 }

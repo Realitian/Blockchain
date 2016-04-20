@@ -6,9 +6,19 @@
 class Identite
 {
 public:
-	/// Nom puis prenom
 	Identite(std::string, std::string);
 	Identite(std::string, std::string, const KeyPair &cle);
+
+	~Identite() {};
+
+	std::string		getNom() const;
+	std::string		getPrenom() const;
+	RSA::PublicKey  getPublicKey() const;
+	RSA::PrivateKey getPrivateKey() const;
+	KeyPair			getKeyPair() const;
+
+	string			toString() const;
+	std::ostream& operator<<(std::ostream& os);
 
 
 	template<class Archive>
@@ -36,16 +46,9 @@ public:
 	}
 
 
-	std::ostream& operator<<(std::ostream& os);
-	std::string getNom() const;
-	std::string getPrenom() const;
-	RSA::PublicKey getPublicKey() const;
-	RSA::PrivateKey getPrivateKey() const;
-	KeyPair getKeyPair() const;
-	string toString() const;
 private:
 	std::string nom;
 	std::string prenom;
-	KeyPair cle;
+	KeyPair		cle;
 };
 

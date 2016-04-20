@@ -15,13 +15,15 @@ Peer::~Peer()
 
 void Peer::receivePacket(Packet packet)
 {
-	std::cerr << "PACKET RECU  dans PEER" << std::endl;
-	std::cerr << packet.m_type << " " <<
-		packet.transaction.getHashTransaction() << " "
-		<< packet.transaction.getMessage().getinformation()
-		<< " " << packet.transaction.getMessage().getNomDomaine() << "\n" <<
-		packet.transaction.getMessage().getPublicKey().GetModulus() <<
-		packet.transaction.getMessage().getPublicKey().GetPublicExponent() <<
+	std::cerr <<
+		std::endl << "PACKET RECU  dans PEER" << std::endl;
+	std::cerr << "Type packet : " << packet.m_type << std::endl <<
+		"Hash Transaction " << packet.transaction.getHashTransaction() << std::endl <<
+		"Information message " << packet.transaction.getMessage().getinformation() << std::endl <<
+		"Nom de domaine " << packet.transaction.getMessage().getNomDomaine() << std::endl <<
+		"Cle publique modulus : " << packet.transaction.getMessage().getPublicKey().GetModulus() << std::endl <<
+		"Cle publique exponent : " << packet.transaction.getMessage().getPublicKey().GetPublicExponent() <<
+		std::endl <<
 		std::endl;
 
 }
@@ -85,7 +87,7 @@ DEMANDE_CLE:
 		goto DEMANDE_CLE;
 		break;
 	}
-	std::cout << " " << cle.getClePublique().GetPublicExponent() << std::endl;
+	std::cout << "Cle publique apres generation:  " << cle.getClePublique().GetPublicExponent() << " " << cle.getClePublique().GetModulus() << std::endl;
 	identite = std::make_shared<Identite>(n, pn, cle);
 	showBanner();
 	displayMenu();
@@ -142,7 +144,15 @@ DISPLAY_MENU:
 	{
 		std::shared_ptr<Transaction> ptrT = createTransaction(); // TODO verifier comment eviter que le switch m'emmerde
 		Packet p; p.m_type = Packet::NEW_TRANSACTION; p.transaction = *ptrT;
+		std::cout << std::endl << "Avant envoi1, la transaction est de type : " <<
+			"Hash Transaction " << p.transaction.getHashTransaction() << std::endl <<
+			"Information message " << p.transaction.getMessage().getinformation() << std::endl <<
+			"Nom de domaine " << p.transaction.getMessage().getNomDomaine() << std::endl <<
+			"Cle publique modulus : " << p.transaction.getMessage().getPublicKey().GetModulus() << std::endl <<
+			"Cle publique exponent : " << p.transaction.getMessage().getPublicKey().GetPublicExponent() <<
+			std::endl << std::endl;
 		client->write(boost::system::error_code(), p);
+
 		break;
 	}
 	case '2':
@@ -183,7 +193,14 @@ CREATE_TRANSACTION:
 		informationNameDomain = "hello world";
 		// TODO verifier si la transaction est correcte
 		std::shared_ptr<Transaction> ptrT = std::make_shared<Transaction>(*identite, domaineName, informationNameDomain);
-		std::cout << "Message :" << ptrT->getMessage().getPublicKey().GetPublicExponent() << std::endl;
+		std::cout << std::endl << "Avant envoi1, la transaction est de type : " <<
+			"Hash Transaction " << ptrT->getHashTransaction() << std::endl <<
+			"Information message " << ptrT->getMessage().getinformation() << std::endl <<
+			"Nom de domaine " << ptrT->getMessage().getNomDomaine() << std::endl <<
+			"Cle publique modulus : " << ptrT->getMessage().getPublicKey().GetModulus() << std::endl <<
+			"Cle publique exponent : " << ptrT->getMessage().getPublicKey().GetPublicExponent() <<
+			std::endl <<
+			std::endl;
 		return ptrT;
 		break;
 	}

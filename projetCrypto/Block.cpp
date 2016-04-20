@@ -1,11 +1,21 @@
 #include "Block.h"
 
+
+//************************************
+// Method:    Block
+// FullName:  Block::Block
+// Access:    public 
+// Returns:   
+// Qualifier:
+// Parameter: ptr_Block : a reference to the previous block
+// Parameter: const vector<Transaction> & : A vector of transaction which will be integrated in the block
+//************************************
 Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
 	previousBlock(prevBloc), nombreTransaction(_transaction.size()), header(prevBloc->getHeader().getNumeroBloc() + 1),
 	tailleBlock(), transactions()
 {
 
-	// Copie les transactions par leur HASH
+	// Copy the Hash of the Transactions
 	for (auto t : _transaction)
 	{
 		transactions.emplace_back(t.getHashTransaction());
@@ -20,10 +30,19 @@ Block::Block(std::shared_ptr<Block> prv, int nbtransaction, int taille, vector<s
 
 }
 
+//************************************
+// Method:    Block : A BlockChain Block
+// FullName:  Block::Block
+// Access:    public 
+// Returns:   
+// Qualifier: Simple Constructor only used for Packet class. This constructs a semy valid Block,
+//			  Also used to construct the first Block of the BlockChain
+// Parameter: int
+//************************************
 Block::Block(int p) :
 	previousBlock(nullptr), nombreTransaction(0), header(0), tailleBlock(0), transactions()
 {
-
+	
 }
 
 Block::~Block()
@@ -49,15 +68,30 @@ bool Block::operator==(const Block& rhs)
 		&&   previousBlock == rhs.getParent() && nombreTransaction == rhs.nombreTransaction);
 }
 
+
+//************************************
+// Method:    isValid : Check if the block is valid
+// FullName:  Block::isValid
+// Access:    public 
+// Returns:   bool
+// Qualifier: const
+//************************************
 bool Block::isValid() const
 {
-	return true;
+	return true; // TODO to implement...
 }
 
 
+//************************************
+// Method:    BuildMerkleRoot
+// FullName:  Block::BuildMerkleRoot
+// Access:    public 
+// Returns:   void
+// Qualifier:
+//************************************
 void Block::BuildMerkleRoot()
 {
-	// Avoir un nombre pair de transactions
+	// To get a even number of transactions
 	if (transactions.size() & 1) {
 		transactions.push_back(transactions.at(transactions.size() - 1)); nombreTransaction++;
 	}
@@ -78,6 +112,14 @@ void Block::BuildMerkleRoot()
 }
 
 
+
+//************************************
+// Method:    solveProofofWork
+// FullName:  Block::solveProofofWork
+// Access:    public 
+// Returns:   paire
+// Qualifier:
+//************************************
 paire Block::solveProofofWork()
 {
 	unsigned long long nonce = 0, incr = 0;
@@ -86,12 +128,11 @@ paire Block::solveProofofWork()
 	string sol(DIFFICULTY_MINING, '0');
 	while (true) {
 		string hash = SHA25::sha256(string(header.getHashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
-		// std::cerr << hash << std::endl;
 		if (hash.substr(0, DIFFICULTY_MINING) == sol)
 			break;
 		else
 			++nonce;
-		if (limit - 1 == nonce)
+		if (limit - 1 == nonce) // Increment the incr when nonce reach unsigned long long int max value
 		{
 			incr++;
 			nonce = 0;
@@ -103,6 +144,7 @@ paire Block::solveProofofWork()
 
 bool Block::containsTransactions(const Transaction& tr) const
 {
+	// There is an actually improvement possible with the Merkle Root but it isn't implemented yet
 	return (std::find(transactions.begin(), transactions.end(), tr.getHashTransaction()) != transactions.end());
 }
 
@@ -114,15 +156,39 @@ const BlockHeader& Block::getHeader() const
 }
 
 
+//************************************
+// Method:    getParent : Return a std::shared_ptr from the parent
+// FullName:  Block::getParent
+// Access:    public 
+// Returns:   Block::ptr_Block
+// Qualifier: const : 
+//************************************
 std::shared_ptr<Block> Block::getParent() const
 {
 	return previousBlock;
 }
 
 
+//************************************
+// Method:    setLastBlock : Set the last Block reference of this Block
+// FullName:  Block::setLastBlock
+// Access:    public 
+// Returns:   void 
+// Qualifier:
+// Parameter: ptr_Block : the pointer to the previous Block
+//************************************
 void Block::setLastBlock(std::shared_ptr<Block> prvBlock) {
 	previousBlock = prvBlock;
 }
+
+//************************************
+// Method:    setSize : Set the size of the BlockChain
+// FullName:  Block::setSize
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Parameter: int : the size for this Block
+//************************************
 void Block::setSize(int size) {
 	tailleBlock = size;
 }

@@ -11,19 +11,17 @@ void Room::join(boost::shared_ptr<Session> participant)
 {
 	m_participants.insert(participant);
 	Packet e;
-	// On informe les sessions de la room // (1)
 	e.m_type = Packet::PERSON_CONNECTED;
 	deliver(e);
 }
 
 void Room::leave(boost::shared_ptr<Session> participant)
 {
-	// On informe les sessions de la room // (2)
 	Packet e;
 	e.m_type = Packet::PERSON_LEFT;
 	deliver(e);
 
-	m_participants.erase(participant);// puis on le détruit
+	m_participants.erase(participant);
 }
 
 void Room::deliver(const Packet& msg)

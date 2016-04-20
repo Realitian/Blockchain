@@ -25,11 +25,10 @@ public:
 	bool    addIdentite(const Identite&);
 private:
 	std::set<boost::shared_ptr<Session>>	m_participants; // (4)
-	Serveur&				m_server;
-
-	std::vector<Identite> identites;
-	std::vector<Transaction> transactions;
-	BlockChain b;
+	Serveur&								m_server;
+	std::vector<Identite>					identites;
+	std::vector<Transaction>				transactions;
+	BlockChain								b;
 };
 
 typedef std::shared_ptr<Room>	Room_ptr;

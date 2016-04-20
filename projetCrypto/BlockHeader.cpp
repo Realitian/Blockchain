@@ -3,8 +3,10 @@
 
 
 BlockHeader::BlockHeader(int _numeroBloc) :
-	numeroBloc(_numeroBloc), merkleRootHash(), timestamp(), nonce()
+	numeroBloc(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
 {
+	std::cout << "Constructeur blockHeader";
+	merkleRootHash = "defaut";
 }
 
 
@@ -43,5 +45,5 @@ boost::posix_time::ptime BlockHeader::getTime() const {
 	return timestamp;
 }
 string BlockHeader::getHashMerkleRoot() const {
-	return merkleRootHash;
+	return (merkleRootHash == "" ? "" : merkleRootHash);
 }

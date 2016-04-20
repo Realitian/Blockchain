@@ -33,3 +33,8 @@ boost::posix_time::ptime Transaction::getTime() const {
 string Transaction::getHashTransaction() const {
 	return hashTransaction;
 }
+
+Identite Transaction::getIdentite() const
+{
+	return identiteSender;
+}

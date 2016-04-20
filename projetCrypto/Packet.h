@@ -9,29 +9,29 @@ class Packet
 {
 public:
 
-	// Cree les objets, les initialise de leur manière la plus simple
+	// Create simple object, not fully correct, but it is ok as they will be override if necessary
 	Packet() :
-		//block(0), // Cree un bloc vide
+		m_type(0),
 		transaction(Identite("", ""), "", ""),
-		m_type(0)
+		block(0) 
 	{
 
 	}
 	void reset()
 	{
+
 	}
 
-	int m_type; // (1) Type d'événement : NEW_MSG, etc.
-
-				// Block block;
+	int			m_type; 
 	Transaction transaction;
+	Block		block;
 
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
 	{
 		ar & m_type;
 		ar & transaction;
-		//ar & block;
+		ar & block;
 	}
 
 	template<class Archive>
@@ -39,17 +39,17 @@ public:
 	{
 		ar & m_type;
 		ar & transaction;
-		//ar & block;
+		ar & block;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 
 		enum {
 		NEW_MSG = 0, // Nouveau message
-		PERSON_LEFT = 1, // Information : personne ayant quittée la room
-		PERSON_CONNECTED = 2, // Information : nouvelle personne connectée à la room
-		NEW_TRANSACTION = 3, // Envoi d'un nouvelle transaction
-		NEW_BLOCK = 4,  // Envoi d'un nouveau bloc
-		ASK_BLOCK_CHAIN, // Demander à récuperer la blockchain
-		EXIST_TRANSACTION // Demander si la transaction existe
+		PERSON_LEFT = 1, // Information : Person has left the room
+		PERSON_CONNECTED = 2, // Information : New person connected to the room
+		NEW_TRANSACTION = 3, // Send a transaction
+		NEW_BLOCK = 4,  // Send a new block
+		ASK_BLOCK_CHAIN, // Ask to get the BlockChain
+		EXIST_TRANSACTION // Ask for a transaction
 	};
 };

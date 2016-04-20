@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+
 #include <boost\asio.hpp>
 #include <boost\enable_shared_from_this.hpp>
 
@@ -17,21 +18,23 @@ class Peer
 {
 public:
 	Peer(boost::asio::io_service&, tcp::endpoint&);
+
 	Peer() = delete;
 	Peer(const Peer&) = delete;
 	Peer& operator=(const Peer&) = delete;
+
 	~Peer();
 
-	void connexion();
-	void sauvegarderCle(const RSA::PrivateKey&, const RSA::PublicKey&);
-	void print(const string&);
-	void displayMenu();
-	void receivePacket(Packet);
-	void addClient(std::shared_ptr<Client>);
 	std::shared_ptr<Transaction> createTransaction();
+	void						 connexion();
+	void						 sauvegarderCle(const RSA::PrivateKey&, const RSA::PublicKey&);
+	void						 print(const string&);
+	void						 displayMenu();
+	void						 receivePacket(Packet);
+	void						 addClient(std::shared_ptr<Client>);
 
 private:
-	ptr_Identite identite;
+	ptr_Identite		    identite;
 	std::shared_ptr<Client> client;
 
 	void clean_screen();
@@ -52,7 +55,6 @@ public:
 	{
 		if (!error)
 		{
-			//	std::cerr << "dans write, sans erreur" << std::endl;
 			new_connection->async_write(packet,
 				boost::bind(&Client::handle_write, shared_from_this(),
 					boost::asio::placeholders::error)
@@ -63,9 +65,7 @@ private:
 	Client(boost::asio::io_service& io_service, tcp::endpoint& endpoint, std::shared_ptr<Peer> peer)
 		:m_io_service(io_service), packet(), peerConnecte(peer)
 	{
-		// On tente de se connecter au serveur // (1)
 		connect(endpoint);
-
 	}
 
 	void connect(tcp::endpoint& endpoint)
@@ -91,7 +91,6 @@ private:
 		if (!error)
 		{
 			packet = Packet();
-			// std::cerr << "dans read, sans erreur" << std::endl;
 			new_connection->async_read(packet, boost::bind(&Client::handle_read, shared_from_this(),
 				boost::asio::placeholders::error));
 		}
@@ -105,40 +104,32 @@ private:
 
 		if (!e)
 		{
-			// signalReception.connect(boost::bind(&Peer::receivePacket, peer, _1));
-			// signalReception(packet);
 			m_peer->receivePacket(packet);
 			read(e);
 		}
 		else
 		{
-
-			std::cerr << "Erreur dans handle_read " << e.message() << std::endl;
+			std::cerr << "Error in handle_read " << e.message() << std::endl;
 		}
 	}
 
 	void handle_write(const boost::system::error_code& e)
 	{
-		// std::cerr << "dans handle write" << std::endl;
-
 		if (!e)
 		{
-			// std::cout << "Message envoye" << std::endl;
 			read(e);
 		}
 
 		else
 		{
 
-			std::cerr << "Erreur dans handle_write " << e.message();
+			std::cerr << "Error in handle_write " << e.message() << std::endl;
 		}
 	}
 
 
 	boost::shared_ptr<Connection> new_connection;
-	Packet packet;
-	boost::asio::io_service&	m_io_service;
-	boost::signals2::signal<void(const Packet&)> signalReception;
-
-	std::weak_ptr<Peer> peerConnecte;
+	Packet						  packet;
+	boost::asio::io_service&	  m_io_service;
+	std::weak_ptr<Peer>			  peerConnecte;
 };

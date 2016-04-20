@@ -1,11 +1,16 @@
 #include "Message.h"
 
-// string hashNomDomaine;
-// __int32 longueurMessage;
-// std::string nom_de_domaine;
-// std::string information;
-// std::string signature;
 
+//************************************
+// Method:    Message
+// FullName:  Message::Message
+// Access:    public 
+// Returns:   
+// Qualifier: : nom_de_domaine(_domainName), information(_info), hashDomainName(SHA25::sha256(nom_de_domaine)), publicKey(keypair.getClePublique()), longueurMessage(nom_de_domaine.size() + information.size() + hashDomainName.size()), signature(sign(keypair.getPrivateKey()))
+// Parameter: string _domainName
+// Parameter: string _info
+// Parameter: const KeyPair & keypair
+//************************************
 Message::Message(string _domainName, string _info, const KeyPair& keypair) :
 	nom_de_domaine(_domainName), information(_info), hashDomainName(SHA25::sha256(nom_de_domaine)), publicKey(keypair.getClePublique()),
 	longueurMessage(nom_de_domaine.size() + information.size() + hashDomainName.size()),
@@ -16,6 +21,21 @@ Message::Message(string _domainName, string _info, const KeyPair& keypair) :
 
 Message::~Message()
 {
+}
+
+
+string Message::getNomDomaine() const {
+	return nom_de_domaine;
+}
+string Message::getinformation() const {
+	return information;
+}
+string Message::getHashDomainName() const {
+	return hashDomainName;
+}
+RSA::PublicKey Message::getPublicKey() const
+{
+	return publicKey;
 }
 
 bool Message::verifier() const
@@ -43,16 +63,3 @@ SecByteBlock Message::sign(RSA::PrivateKey& privateKey) {
 	sig = SecByteBlock(sig.data(), sig.size());
 	return sig;
 }
-
-
-string Message::getNomDomaine() const {
-	return nom_de_domaine;
-}
-string Message::getinformation() const {
-	return information;
-}
-string Message::getHashDomainName() const {
-	return hashDomainName;
-}
-
-

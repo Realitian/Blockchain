@@ -11,24 +11,30 @@ class Block
 	using ptr_Block = std::shared_ptr<Block>;
 
 public:
-	Block(int); // jste pour le premier bloc 
 
+
+	explicit Block(int);
 	Block(ptr_Block, const vector<Transaction>&);
 	Block(ptr_Block, int, int, vector<string>, const BlockHeader);
+	Block() = delete;
+
+
 	~Block();
+
 	Block& operator=(Block);
 	bool operator==(const Block&);
 
-	void setLastBlock(ptr_Block);
-	void setSize(int);
-
-	ptr_Block getParent() const;
+	ptr_Block		   getParent() const;
 	const BlockHeader& getHeader() const;
 
-	bool isValid() const;
-	bool containsTransactions(const Transaction&) const;
-	void BuildMerkleRoot();
-	paire solveProofofWork();
+	void	setLastBlock(ptr_Block);
+	void	setSize(int);
+	bool	isValid() const;
+	bool	containsTransactions(const Transaction&) const;
+	void	BuildMerkleRoot();
+	paire	solveProofofWork();
+
+	
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
 	{
@@ -36,39 +42,30 @@ public:
 		ar & header;
 		ar & tailleBlock;
 		ar & transactions;
-		//	ar & previousBlock->getHeader() & previousBlock->nombreTransaction & previousBlock->tailleBlock;
-		//	ar & previousBlock->transactions;
-		std::cerr << "correct save";
+		//ar & previousBlock->getHeader().getHashMerkleRoot();  // TODO send the hash of the previous block
 	}
 
 	template<class Archive>
 	void load(Archive & ar, const unsigned int version)
 	{
 		ar & nombreTransaction;
-		// ar & header;
+		ar & header;
 		ar & tailleBlock;
-
 		ar & transactions;
-		//BlockHeader h(0); int nb; int tb; vector<string> tr;
-		//ar & h & nb & tb & tr;
-		previousBlock = std::make_shared<Block>(nullptr, 0, 0, vector<string>(),BlockHeader(0));
-		std::cerr << "correct load" << std::endl;
+		string hashPreviousMerkleTreeBlock;
+		//ar & hashPreviousMerkleTreeBlock;
+		//previousBlock = std::make_shared<Block>(0); // create a partial previous Block
+		// previousBlock->header.setHashMerkleRoot(hashPreviousMerkleTreeBlock);
 	}
 
-	template<class Archive>
-	void serialize(
-		Archive & ar,
-		const unsigned int file_version
-	) {
-		boost::serialization::split_member(ar, *this, file_version);
-	}
+	BOOST_SERIALIZATION_SPLIT_MEMBER()
+
 
 private:
-	ptr_Block previousBlock; // mis dans block pour éviter inclusion circulaire
+	ptr_Block previousBlock;
 	int nombreTransaction;
-
 	BlockHeader header;
 	int tailleBlock;
-	vector<string> transactions; // Ce n'est pas les transactions, mais les hashs
+	vector<string> transactions;
 };
 

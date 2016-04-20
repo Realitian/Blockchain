@@ -21,7 +21,7 @@ public:
 		return session;
 	}
 
-	void	deliver(Packet msg); // (2)
+	void	deliver(const Packet& msg); 
 
 private:
 	Session(boost::shared_ptr<Connection> Connection, boost::shared_ptr<Room> room);
@@ -31,9 +31,8 @@ private:
 	void	handle_read(const boost::system::error_code& error);
 
 	boost::shared_ptr<Connection> m_Connection;
-	boost::weak_ptr<Room> m_room; // (3)
+	boost::weak_ptr<Room> m_room; 
 	Packet			m_message;
-
 	bool				is_leaving;
 };
 

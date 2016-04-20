@@ -80,7 +80,7 @@ void Session::handle_read(const boost::system::error_code &error) // (2)
 	}
 }
 
-void Session::deliver(Packet msg) // (6)
+void Session::deliver(const Packet& msg) // (6)
 {
 
 	m_Connection->async_write(msg,

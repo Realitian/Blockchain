@@ -51,14 +51,23 @@ public:
 	KeyPair(const RSA::PublicKey&, const RSA::PrivateKey&);
 	KeyPair(const KeyPair&);
 
-	RSA::PublicKey getClePublique() const
-	{
-		return publicKey;
-	}
-	RSA::PrivateKey getPrivateKey() const
-	{
-		return privateKey;
-	}
+	~KeyPair() {};
+
+	RSA::PublicKey  getClePublique() const;
+	RSA::PrivateKey getPrivateKey() const;
+	void setPrivateKey(const RSA::PrivateKey&);
+	void setPublicKey(const RSA::PublicKey&);
+	string encrypt(string);
+	string decrypt(string);
+	void reGenerate() {};
+
+	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key);
+	static void savePublicKey(const string& filename, const RSA::PublicKey& key);
+	static bool loadPrivateKey(const string& filename, RSA::PrivateKey& key);		
+	static bool loadPublicKey(const string& filename, RSA::PublicKey& key);
+
+
+
 
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
@@ -90,16 +99,6 @@ public:
 		boost::serialization::split_member(ar, *this, file_version);
 	}
 
-	void setPrivateKey(const RSA::PrivateKey&);
-	void setPublicKey(const RSA::PublicKey&);
-	string encrypt(string);
-	string decrypt(string);
-	void reGenerate() {};
-
-	static void savePrivateKey(const string& filename, const RSA::PrivateKey& key);
-	static void savePublicKey(const string& filename, const RSA::PublicKey& key);
-	static bool loadPrivateKey(const string& filename, RSA::PrivateKey& key);		// TODO pensez a verifier si le chargement s'est bien passe , si le fichier existati
-	static bool loadPublicKey(const string& filename, RSA::PublicKey& key);
 
 private:
 	static void Save(const string& filename, const CryptoPP::BufferedTransformation& bt);

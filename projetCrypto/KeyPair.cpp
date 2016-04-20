@@ -35,6 +35,15 @@ void KeyPair::setPublicKey(const RSA::PublicKey& cle) {
 	publicKey = cle;
 }
 
+RSA::PublicKey KeyPair::getClePublique() const
+{
+	return publicKey;
+}
+RSA::PrivateKey KeyPair::getPrivateKey() const
+{
+	return privateKey;
+}
+
 string KeyPair::encrypt(string message) {
 	AutoSeededRandomPool rng;
 	string cipher;
