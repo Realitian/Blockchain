@@ -87,6 +87,9 @@ void testBlock()
 
 	Block block3(5);
 	block3.set_Hash_Merkle_Root(SHA25::sha256("Hello world"));
+
+
+
 	cout << blockchain.push_back(block3) << endl;
 	cout << "---------------------------- Test sur the blocs ----------------------------" << endl;
 	cout << "Solving the problem" << endl;
@@ -95,11 +98,8 @@ void testBlock()
 	cout << "Hash found : " << SHA25::sha256(string(block1.get_Header().get_HashMerkleRoot() + std::to_string(nonce.first) + std::to_string(nonce.second))) << endl;
 	cout << "The two nonce are" << nonce.first << " " << nonce.second << endl;
 	cout << endl;
-	cout << "Test block copy" << endl;
-	Block b3 = block2;
-	cout << b3.get_Header().get_HashMerkleRoot() << " " << b3.get_Header().get_NumeroBloc() << b3.get_Header().get_Time() << endl;
-	cout << block2.get_Header().get_HashMerkleRoot() << " " << block2.get_Header().get_NumeroBloc() << block2.get_Header().get_Time() << endl;
-
+	cout << blockchain.push_back(block1);
+	
 	cout << endl << endl;
 	blockchain.clear();
 }

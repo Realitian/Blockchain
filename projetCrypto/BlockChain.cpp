@@ -35,6 +35,7 @@ int BlockChain::push_back(const Block& bloc)
 	// If the block is not valid
 	if (!bloc.isValid())
 		return BlockChain::ERROR_BLOCK_INVALID;
+
 	if (blocks.size() == 0)
 	{
 		try {
@@ -143,9 +144,12 @@ bool BlockChain::checkTransactionExist(const Transaction& trans)
 #endif
 void BlockChain::clear()
 {
+	std::cout << "LA1";
 	// Deleting ancient orphans that are no more useful
 	while (orphans.size() > MAX_SIZE_ORPHANS)
 	{
+		std::cout << "LA2";
+
 		auto it = orphans.begin();
 		push_back(std::get<2>(*it)); // Try a last time...
 		orphans.erase(it);
@@ -154,6 +158,7 @@ void BlockChain::clear()
 	// If the blockChain is too small, no need to continue
 	if (std::get<2>(*blocks.rbegin()).get_Header().get_NumeroBloc() < DEPTH_DELETION)
 		return;
+	std::cout << "LA3";
 
 	
 	auto  block_ite = blocks.rbegin();

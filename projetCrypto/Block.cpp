@@ -94,9 +94,14 @@ bool Block::operator==(const Block& rhs)
 //************************************
 bool Block::isValid() const
 {
+
 	if (nombreTransaction != transactions.size()) // TODO Be a little more strict =)
 		return false;
-	
+	if (header.get_NumeroBloc() == 0)
+		return true;
+	if (SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second)))
+		.substr(0, DIFFICULTY_MINING) != std::string(DIFFICULTY_MINING, '0'))
+		return false;
 	return true;
 }
 
@@ -159,6 +164,8 @@ paire Block::solveProofofWork()
 			nonce = 0;
 		}
 	}
+	header.setNonce(paire(incr, nonce));
+
 	return paire(incr, nonce);
 }
 

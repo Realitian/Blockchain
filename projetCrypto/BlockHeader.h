@@ -25,7 +25,7 @@ public:
 	boost::posix_time::ptime get_Time() const;
 	string					 get_HashMerkleRoot() const;
 	int						 get_NumeroBloc() const;
-
+	paire					 get_Nonce()	const;
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
 	{

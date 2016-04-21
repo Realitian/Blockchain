@@ -40,6 +40,10 @@ void BlockHeader::setTime(boost::posix_time::ptime time) {
 	timestamp = time;
 }
 
+paire BlockHeader::get_Nonce() const
+{
+	return nonce;
+}
 
 int BlockHeader::get_NumeroBloc() const {
 	return numeroBloc;
