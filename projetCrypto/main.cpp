@@ -28,7 +28,23 @@ int main()
 	p->connexion();
 	*/
 	
-	Serveur  t(io_service, endpoint);
+	//Serveur  t(io_service, endpoint);
+	Identite id("Franc", "Jerome");
+	string nomDeDomaine = "facebook.com";
+	string information = "retrouvez moi sur ounoenvoirnior.fr";
+	Transaction t(id, nomDeDomaine, information);
+
+	Packet p;
+	p.m_type = Packet::NEW_TRANSACTION;
+	p.transaction = t;
+	std::cout << p;
+	p = Packet();
+	p.m_type = Packet::PERSON_CONNECTED;
+	std::cout << p;
+
+	p = Packet();
+	p.m_type = Packet::PERSON_LEFT;
+	std::cout << p;
 
 	io_service.run();
 	system("pause");

@@ -129,6 +129,11 @@ void Peer::clean_screen()
 	//system("cls");
 }
 
+void Peer::startMining()
+{
+
+}
+
 
 void Peer::displayMenu() {
 DISPLAY_MENU:

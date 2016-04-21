@@ -32,6 +32,7 @@ public:
 	void						 displayMenu();
 	void						 receivePacket(Packet);
 	void						 addClient(std::shared_ptr<Client>);
+	void						 startMining();
 
 private:
 	ptr_Identite		    identite;

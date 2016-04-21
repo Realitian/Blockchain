@@ -5,8 +5,6 @@
 BlockHeader::BlockHeader(int _numeroBloc) :
 	numeroBloc(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
 {
-	std::cout << "Constructeur blockHeader";
-	merkleRootHash = "defaut";
 }
 
 

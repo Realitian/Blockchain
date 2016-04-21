@@ -51,16 +51,8 @@ void Session::handle_read(const boost::system::error_code &error) // (2)
 			}
 			std::cout << "---- Reception ----- " << m_message.m_type << " " << std::endl;
 
-			if (m_message.m_type == 3)
-			{
-				std::cerr << "Type packet : " << m_message.m_type << std::endl <<
-					"Hash Transaction " << m_message.transaction.getHashTransaction() << std::endl <<
-					"Information message " << m_message.transaction.getMessage().getinformation() << std::endl <<
-					"Nom de domaine " << m_message.transaction.getMessage().getNomDomaine() << "\n" << std::endl <<
-					"Cle publique modulus : " << m_message.transaction.getMessage().getPublicKey().GetModulus() << std::endl <<
-					"Cle publique exponent : " << m_message.transaction.getMessage().getPublicKey().GetPublicExponent() <<
-					std::endl;
-			}
+			std::cout << m_message << std::endl;
+			
 			std::cout << "-------------------- " << std::endl;
 
 			// On demande à la room de transmettre le message à tout le monde
