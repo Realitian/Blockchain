@@ -4,18 +4,18 @@
 #include <boost/serialization/vector.hpp>
 #include "Transaction.h"
 #include "BlockHeader.h"
+
 #define DIFFICULTY_MINING 2
 using std::vector;
 class Block
 {
 	using ptr_Block = std::shared_ptr<Block>;
-
 public:
 
 
 	explicit Block(int);
 	Block(ptr_Block, const vector<Transaction>&);
-	Block(ptr_Block, int, int, vector<string>, const BlockHeader);
+	Block(string, int, vector<string>, const BlockHeader);
 	Block() = delete;
 
 
@@ -28,8 +28,6 @@ public:
 	string			   get_PreviousBlockHash() const;
 	string			   get_BlockHash() const;
 
-	void	setLastBlock(ptr_Block);
-	void	setSize(int);
 	bool	isValid() const;
 	bool	containsTransactions(const Transaction&) const;
 	void	BuildMerkleRoot();
@@ -69,7 +67,6 @@ private:
 
 	BlockHeader header;
 	
-	int tailleBlock;
 	vector<string> transactions;
 };
 

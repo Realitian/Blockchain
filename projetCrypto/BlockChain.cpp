@@ -165,7 +165,7 @@ void BlockChain::clear()
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
 			{
 				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
-				block_ite++
+				block_ite++;
 			}
 			// else delete it
 			else
@@ -176,16 +176,3 @@ void BlockChain::clear()
 	}
 }
 
-/*
-for (std::set<Cuple>::iterator orph_it = orphans.begin(); orph_it != orphans.end(); orph_it++)
-{
-if (std::get<2>(*orph_it).get_PreviousBlockHash() == bloc.get_BlockHash())
-{
-if (this->addBlock(*std::get<2>(*orph_it) == BlockChain::INSERT_NEW_BLOCK)
-{
-blocks.insert()
-numbers.erase(it++);
-}
-}
-}
- */

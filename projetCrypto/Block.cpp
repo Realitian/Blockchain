@@ -1,8 +1,10 @@
 #include "Block.h"
-
+#ifndef FIRST_BLOCK_HASH
+#define FIRST_BLOCK_HASH "e037f671bf37164c071d526e8960fd9122383d5d73ef3b60f1bc9f330a15c1e1"
+#endif
 
 //************************************
-// Method:    Block
+// Method:    Block : construct a fully correct Block with a reference to a previous one
 // FullName:  Block::Block
 // Access:    public 
 // Returns:   
@@ -12,7 +14,7 @@
 //************************************
 Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
 	previousBlockHash(prevBloc->previousBlockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().get_NumeroBloc() + 1),
-	tailleBlock(), transactions(), blockHash()
+	 transactions(), blockHash()
 {
 
 	// Copy the Hash of the Transactions
@@ -20,14 +22,26 @@ Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
 	{
 		transactions.emplace_back(t.getHashTransaction());
 	}
+	BuildMerkleRoot();
 
 }
 
-Block::Block(std::shared_ptr<Block> prv, int nbtransaction, int taille, vector<string> tr, const BlockHeader _header) :
-	previousBlockHash(prv->get_PreviousBlockHash()), nombreTransaction(nbtransaction), tailleBlock(taille),
+//************************************
+// Method:    Block : Construct a Block without no reference to the previous one
+// FullName:  Block::Block
+// Access:    public 
+// Returns:   
+// Qualifier: : previousBlockHash(previousBlockHash), nombreTransaction(nbtransaction), tailleBlock(taille), transactions(tr), header(_header),blockHash()
+// Parameter: string previousBlockHash
+// Parameter: int nbtransaction
+// Parameter: vector<string> tr
+// Parameter: const BlockHeader _header
+//************************************
+Block::Block(string previousBlockHash, int nbtransaction,  vector<string> tr, const BlockHeader _header) :
+	previousBlockHash(previousBlockHash), nombreTransaction(nbtransaction),
 	transactions(tr), header(_header),blockHash()
 {
-
+	BuildMerkleRoot();
 }
 
 //************************************
@@ -35,12 +49,13 @@ Block::Block(std::shared_ptr<Block> prv, int nbtransaction, int taille, vector<s
 // FullName:  Block::Block
 // Access:    public 
 // Returns:   
-// Qualifier: Simple Constructor only used for Packet class. This constructs a semy valid Block,
+// Qualifier: Simple Constructor only used for Packet class. This constructs a semi valid Block,
 //			  Also used to construct the first Block of the BlockChain
 // Parameter: int
 //************************************
 Block::Block(int p) :
-	previousBlockHash(),blockHash(), nombreTransaction(0), header(0), tailleBlock(0), transactions()
+
+	previousBlockHash(),blockHash(FIRST_BLOCK_HASH), nombreTransaction(0), header(0), transactions()
 {
 	
 }
@@ -57,7 +72,6 @@ Block& Block::operator=(Block rhs)
 	previousBlockHash = rhs.previousBlockHash;
 	blockHash = rhs.blockHash;
 	nombreTransaction = rhs.nombreTransaction;
-	tailleBlock = rhs.tailleBlock;
 	transactions.clear();
 	transactions = rhs.transactions;
 	return *this;
@@ -71,7 +85,8 @@ bool Block::operator==(const Block& rhs)
 
 
 //************************************
-// Method:    isValid : Check if the block is valid
+// Method:    isValid : Check if the block is valid, all the transaction added to a Block should always be verified ! because at the end
+//						the block keep only a hash of the transaction
 // FullName:  Block::isValid
 // Access:    public 
 // Returns:   bool
@@ -170,18 +185,5 @@ string Block::get_BlockHash() const
 }
 
 
-
-
-//************************************
-// Method:    setSize : Set the size of the BlockChain
-// FullName:  Block::setSize
-// Access:    public 
-// Returns:   void
-// Qualifier:
-// Parameter: int : the size for this Block
-//************************************
-void Block::setSize(int size) {
-	tailleBlock = size;
-}
 
 

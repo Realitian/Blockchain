@@ -11,6 +11,7 @@ class BlockHeader
 {
 public:
 	explicit BlockHeader(int);
+
 	BlockHeader() = delete;
 	~BlockHeader();
 

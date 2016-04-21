@@ -15,15 +15,14 @@ class Transaction
 {
 public:
 	Transaction(const Identite&, const string&, const string&);
-	
+
 	~Transaction();
 
-	Message getMessage() const;
 	boost::posix_time::ptime getTime() const;
-	string getHashTransaction() const;
-	Identite getIdentite() const;
-
-	string toString() const;
+	Identite				 getIdentite() const;
+	Message					 getMessage() const;
+	string					 getHashTransaction() const;
+	string					 toString() const;
 
 
 	template<class Archive>

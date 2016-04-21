@@ -2,6 +2,18 @@
 
 
 
+//************************************
+// Method:    BlockHeader : Basic implementation of a BlockHeader 
+//							called when a Block is created
+//							The blockHeader is then further fulfill with 
+//							its correct value when the Merkle root tree has been build
+//							.. and the block has been mined
+// FullName:  BlockHeader::BlockHeader
+// Access:    public 
+// Returns:   
+// Qualifier: : numeroBloc(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
+// Parameter: int _numeroBloc
+//************************************
 BlockHeader::BlockHeader(int _numeroBloc) :
 	numeroBloc(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
 {
@@ -43,5 +55,5 @@ boost::posix_time::ptime BlockHeader::get_Time() const {
 	return timestamp;
 }
 string BlockHeader::get_HashMerkleRoot() const {
-	return (merkleRootHash == "" ? "" : merkleRootHash);
+	return merkleRootHash;
 }
