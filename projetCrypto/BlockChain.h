@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <tuple>
 #include "Block.h"
-
 class BlockChain
 {
 	using Cuple = std::tuple<int, string, Block>; // the number of the Block, the hash of the block and the Block itself
@@ -11,12 +10,13 @@ class BlockChain
 public:
 	BlockChain();
 	~BlockChain();
-	int addBlock(const Block&);
+	int  addBlock(const Block&);
 	bool checkTransactionExist(const Transaction&);
+	void clear();
 private:
 	std::set<Cuple, std::function<bool(Cuple,Cuple)> > blocks; // La blockChain
 	std::set<Cuple, std::function<bool(Cuple,Cuple)> > orphans; // Block that don't have previous Block in the chain
-	std::set<Cuple>::iterator leadingChain;
+	std::set<Cuple>::iterator leadingBlock;
 
 
 	enum {

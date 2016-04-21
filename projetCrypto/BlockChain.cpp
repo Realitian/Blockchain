@@ -11,7 +11,7 @@ orphans([](const Cuple& x, const Cuple& y)
 {
 	return std::get<2>(x).get_Header().get_Time() < std::get<2>(y).get_Header().get_Time();
 }),
-leadingChain(blocks.begin())
+leadingBlock(blocks.begin())
 {
 
 }
@@ -32,8 +32,11 @@ BlockChain::~BlockChain()
 //************************************
 int BlockChain::addBlock(const Block& bloc)
 {
+	// If the block is not valid
 	if (!bloc.isValid())
 		return BlockChain::ERROR_BLOCK_INVALID;
+
+	// If the block is not fully compose !
 	if (bloc.get_BlockHash() == "")
 	{
 		try {
@@ -45,23 +48,40 @@ int BlockChain::addBlock(const Block& bloc)
 		};
 		return	BlockChain::PREVIOUS_BLOCK_UNKNOWN;
 	}
-	auto beg = blocks.rbegin();
-	for (; beg != blocks.rend(); beg++)
+	
+	// Pointer to the last element
+	auto block_ite = blocks.rbegin();
+	// avoid to be constructed multiple times
+	auto end = blocks.rend();
+	for (; block_ite != end; block_ite++)
 	{
-		if (std::get<1>(*beg) == bloc.get_PreviousBlockHash())
+		// If I find the parent
+		if (std::get<1>(*block_ite) == bloc.get_PreviousBlockHash())
 		{
 			try {
+				// inserting into the BlockChain
 				blocks.insert(Cuple(bloc.get_Header().get_NumeroBloc(), bloc.get_BlockHash(), bloc));
+
+				// modify the leadingBlock if necessary
+				if (bloc.get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc()) {
+					leadingBlock = blocks.end(); // TODO check if the last insert is effectively the best
+					if (bloc.get_BlockHash() != std::get<2>(*blocks.end()).get_BlockHash())
+						throw "error in the set sort";
+				}
 				return BlockChain::INSERT_NEW_BLOCK;
 			}
 			catch (const std::exception& e)
 			{
 				std::cerr << "An incorrect block has failed to be insert into the Block chain : " << e.what();
+				return BlockChain::UNKNOWN_ERROR_WHILE_ADDIND;
 			};
 		}
 	}
-	if (beg == blocks.rend())
+
+	// If a parent has not been found
+	if (block_ite == blocks.rend())
 	{
+		// add it the orphans set !
 		try {
 			orphans.insert(Cuple(bloc.get_Header().get_NumeroBloc(), bloc.get_BlockHash(), bloc));
 		}
@@ -73,6 +93,8 @@ int BlockChain::addBlock(const Block& bloc)
 	}
 	return BlockChain::UNKNOWN_ERROR_WHILE_ADDIND;
 }
+
+
 
 
 
@@ -99,3 +121,71 @@ bool BlockChain::checkTransactionExist(const Transaction& trans)
 		return false;
 }
 
+#ifndef MAX_SIZE_ORPHANS
+#define MAX_SIZE_ORPHANS 50
+#endif
+#ifndef DEPTH_DELETION
+#define DEPTH_DELETION 10
+#endif
+void BlockChain::clear()
+{
+	// Deleting ancient orphans that are no more useful
+	while (orphans.size() > MAX_SIZE_ORPHANS)
+	{
+		auto it = orphans.begin();
+		addBlock(std::get<2>(*it)); // Try a last time...
+		orphans.erase(it);
+	}
+
+	// If the blockChain is too small, no need to continue
+	if (std::get<2>(*blocks.rbegin()).get_Header().get_NumeroBloc() < DEPTH_DELETION)
+		return;
+
+	
+	auto  block_ite = blocks.rbegin();
+	auto end = blocks.rend();
+
+	// The Hash of the previous Block
+	string previous_Block_Hash = std::get<2>(*leadingBlock).get_PreviousBlockHash();
+	while (block_ite != end)
+	{
+		// If it is to early to delete the bloc
+		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - DEPTH_DELETION) {
+			// If the block is in the main chain, update the local variable previous_Block_Hash
+			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
+			{
+				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
+			}
+			block_ite++;
+		}
+		// If the block are really far, and there should only be the main BlockChain with confirmed Block
+		else
+		{
+			// If it is in the main chain
+			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
+			{
+				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
+				block_ite++
+			}
+			// else delete it
+			else
+			{
+				blocks.erase(*block_ite++);
+			}
+		}
+	}
+}
+
+/*
+for (std::set<Cuple>::iterator orph_it = orphans.begin(); orph_it != orphans.end(); orph_it++)
+{
+if (std::get<2>(*orph_it).get_PreviousBlockHash() == bloc.get_BlockHash())
+{
+if (this->addBlock(*std::get<2>(*orph_it) == BlockChain::INSERT_NEW_BLOCK)
+{
+blocks.insert()
+numbers.erase(it++);
+}
+}
+}
+ */

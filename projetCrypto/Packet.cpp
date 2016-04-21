@@ -2,7 +2,7 @@
 
 
 
-std::ostream& operator<<(std::ostream& os, const Packet& p);
+std::ostream& operator<<(std::ostream& os, const Packet& p)
 {
 	os << std::endl;
 	os << "***************************************************************************" << std::endl;

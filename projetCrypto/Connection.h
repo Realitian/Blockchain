@@ -119,7 +119,7 @@ public:
 				boost::archive::text_iarchive archive(archive_stream);
 				archive >> t;
 			}
-			catch (std::exception& e)
+			catch (...)
 			{
 				// En cas d'échec
 				boost::system::error_code error(boost::asio::error::invalid_argument);	// verifier les e

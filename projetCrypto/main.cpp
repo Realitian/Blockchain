@@ -9,7 +9,6 @@
 #include <boost/asio.hpp>
 
 #include "Serveur.h"
-#define _WIN32_WINNT 0x0601
 using std::cout; using std::endl;
 
 
