@@ -14,7 +14,7 @@ BlockHeader::~BlockHeader()
 
 bool BlockHeader::operator==(const BlockHeader& rhs) const
 {
-	return (merkleRootHash == rhs.merkleRootHash && numeroBloc == rhs.getNumeroBloc() && timestamp == rhs.getTime() );
+	return (merkleRootHash == rhs.merkleRootHash && numeroBloc == rhs.get_NumeroBloc() && timestamp == rhs.get_Time() );
 }
 
 
@@ -29,7 +29,7 @@ void BlockHeader::setTime(boost::posix_time::ptime time) {
 }
 
 
-int BlockHeader::getNumeroBloc() const {
+int BlockHeader::get_NumeroBloc() const {
 	return numeroBloc;
 }
 void BlockHeader::setNonce(paire nce) {
@@ -39,9 +39,9 @@ void BlockHeader::setNumero(int nmB) {
 	numeroBloc = nmB;
 }
 
-boost::posix_time::ptime BlockHeader::getTime() const {
+boost::posix_time::ptime BlockHeader::get_Time() const {
 	return timestamp;
 }
-string BlockHeader::getHashMerkleRoot() const {
+string BlockHeader::get_HashMerkleRoot() const {
 	return (merkleRootHash == "" ? "" : merkleRootHash);
 }

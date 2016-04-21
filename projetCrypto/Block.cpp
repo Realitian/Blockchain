@@ -11,7 +11,7 @@
 // Parameter: const vector<Transaction> & : A vector of transaction which will be integrated in the block
 //************************************
 Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
-	previousBlockHash(prevBloc->previousBlockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().getNumeroBloc() + 1),
+	previousBlockHash(prevBloc->previousBlockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().get_NumeroBloc() + 1),
 	tailleBlock(), transactions(), blockHash()
 {
 
@@ -79,7 +79,9 @@ bool Block::operator==(const Block& rhs)
 //************************************
 bool Block::isValid() const
 {
-	return true; // TODO to implement...
+	if (nombreTransaction != transactions.size())
+		return false;
+	return true;
 }
 
 
@@ -110,7 +112,7 @@ void Block::BuildMerkleRoot()
 	}
 	header.setHashMerkleRoot(hashTree.at(0));
 	header.setTime(boost::posix_time::second_clock::local_time());
-	blockHash = SHA25::sha256(SHA25::sha256(header.getHashMerkleRoot()));
+	blockHash = SHA25::sha256(SHA25::sha256(header.get_HashMerkleRoot()));
 }
 
 
@@ -129,7 +131,7 @@ paire Block::solveProofofWork()
 
 	string sol(DIFFICULTY_MINING, '0');
 	while (true) {
-		string hash = SHA25::sha256(string(header.getHashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
+		string hash = SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
 		if (hash.substr(0, DIFFICULTY_MINING) == sol)
 			break;
 		else

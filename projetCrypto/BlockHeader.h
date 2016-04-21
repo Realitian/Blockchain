@@ -21,9 +21,9 @@ public:
 	void setHashMerkleRoot(string);
 	void setTime(boost::posix_time::ptime);
 
-	boost::posix_time::ptime getTime() const;
-	string					 getHashMerkleRoot() const;
-	int						 getNumeroBloc() const;
+	boost::posix_time::ptime get_Time() const;
+	string					 get_HashMerkleRoot() const;
+	int						 get_NumeroBloc() const;
 
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
