@@ -11,8 +11,8 @@
 // Parameter: const vector<Transaction> & : A vector of transaction which will be integrated in the block
 //************************************
 Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
-	previousBlock(prevBloc), nombreTransaction(_transaction.size()), header(prevBloc->getHeader().getNumeroBloc() + 1),
-	tailleBlock(), transactions()
+	previousBlockHash(prevBloc->previousBlockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().getNumeroBloc() + 1),
+	tailleBlock(), transactions(), blockHash()
 {
 
 	// Copy the Hash of the Transactions
@@ -24,8 +24,8 @@ Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
 }
 
 Block::Block(std::shared_ptr<Block> prv, int nbtransaction, int taille, vector<string> tr, const BlockHeader _header) :
-	previousBlock(prv), nombreTransaction(nbtransaction), tailleBlock(taille),
-	transactions(tr), header(_header)
+	previousBlockHash(prv->get_PreviousBlockHash()), nombreTransaction(nbtransaction), tailleBlock(taille),
+	transactions(tr), header(_header),blockHash()
 {
 
 }
@@ -40,7 +40,7 @@ Block::Block(std::shared_ptr<Block> prv, int nbtransaction, int taille, vector<s
 // Parameter: int
 //************************************
 Block::Block(int p) :
-	previousBlock(nullptr), nombreTransaction(0), header(0), tailleBlock(0), transactions()
+	previousBlockHash(),blockHash(), nombreTransaction(0), header(0), tailleBlock(0), transactions()
 {
 	
 }
@@ -54,7 +54,8 @@ Block& Block::operator=(Block rhs)
 	if (rhs == *this)
 		return *this;
 	header = rhs.header;
-	previousBlock = rhs.previousBlock;
+	previousBlockHash = rhs.previousBlockHash;
+	blockHash = rhs.blockHash;
 	nombreTransaction = rhs.nombreTransaction;
 	tailleBlock = rhs.tailleBlock;
 	transactions.clear();
@@ -64,8 +65,8 @@ Block& Block::operator=(Block rhs)
 
 bool Block::operator==(const Block& rhs)
 {
-	return (header == rhs.getHeader() && transactions == rhs.transactions
-		&&   previousBlock == rhs.getParent() && nombreTransaction == rhs.nombreTransaction);
+	return (header == rhs.get_Header() && transactions == rhs.transactions
+		&&   previousBlockHash == rhs.get_PreviousBlockHash() && nombreTransaction == rhs.nombreTransaction);
 }
 
 
@@ -104,11 +105,12 @@ void Block::BuildMerkleRoot()
 		hashTree.at(2 * N - 2 - i) = transactions.at(i);
 	for (int i = N - 2; i > -1; i--)
 	{
-		hashTree.at(i) = SHA25::sha256(hashTree.at(2 * i + 1) + hashTree.at(2 * i + 2));
+		hashTree.at(i) = SHA25::sha256(SHA25::sha256(hashTree.at(2 * i + 1) + hashTree.at(2 * i + 2)));
 		std::cerr << hashTree.at(i) << std::endl;
 	}
 	header.setHashMerkleRoot(hashTree.at(0));
 	header.setTime(boost::posix_time::second_clock::local_time());
+	blockHash = SHA25::sha256(SHA25::sha256(header.getHashMerkleRoot()));
 }
 
 
@@ -150,36 +152,23 @@ bool Block::containsTransactions(const Transaction& tr) const
 
 
 
-const BlockHeader& Block::getHeader() const
+const BlockHeader& Block::get_Header() const
 {
 	return header;
 }
 
 
-//************************************
-// Method:    getParent : Return a std::shared_ptr from the parent
-// FullName:  Block::getParent
-// Access:    public 
-// Returns:   Block::ptr_Block
-// Qualifier: const : 
-//************************************
-std::shared_ptr<Block> Block::getParent() const
+string Block::get_PreviousBlockHash() const
 {
-	return previousBlock;
+	return previousBlockHash;
+}
+string Block::get_BlockHash() const
+{
+	return blockHash;
 }
 
 
-//************************************
-// Method:    setLastBlock : Set the last Block reference of this Block
-// FullName:  Block::setLastBlock
-// Access:    public 
-// Returns:   void 
-// Qualifier:
-// Parameter: ptr_Block : the pointer to the previous Block
-//************************************
-void Block::setLastBlock(std::shared_ptr<Block> prvBlock) {
-	previousBlock = prvBlock;
-}
+
 
 //************************************
 // Method:    setSize : Set the size of the BlockChain

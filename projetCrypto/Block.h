@@ -24,8 +24,9 @@ public:
 	Block& operator=(Block);
 	bool operator==(const Block&);
 
-	ptr_Block		   getParent() const;
-	const BlockHeader& getHeader() const;
+	const BlockHeader& get_Header() const;
+	string			   get_PreviousBlockHash() const;
+	string			   get_BlockHash() const;
 
 	void	setLastBlock(ptr_Block);
 	void	setSize(int);
@@ -42,7 +43,8 @@ public:
 		ar & header;
 		ar & tailleBlock;
 		ar & transactions;
-		//ar & previousBlock->getHeader().getHashMerkleRoot();  // TODO send the hash of the previous block
+		ar & previousBlockHash;
+		ar & blockHash;
 	}
 
 	template<class Archive>
@@ -52,19 +54,21 @@ public:
 		ar & header;
 		ar & tailleBlock;
 		ar & transactions;
-		string hashPreviousMerkleTreeBlock;
-		//ar & hashPreviousMerkleTreeBlock;
-		//previousBlock = std::make_shared<Block>(0); // create a partial previous Block
-		// previousBlock->header.setHashMerkleRoot(hashPreviousMerkleTreeBlock);
+		ar & previousBlockHash;
+		ar & blockHash;
 	}
 
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 
 
 private:
-	ptr_Block previousBlock;
+	string previousBlockHash; // SHA256(SHA256(previousblock.header.merkleroothash))
+	string blockHash;		  // Hash of the Block
+
 	int nombreTransaction;
+
 	BlockHeader header;
+	
 	int tailleBlock;
 	vector<string> transactions;
 };
