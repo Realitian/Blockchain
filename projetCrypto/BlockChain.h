@@ -10,16 +10,17 @@ class BlockChain
 public:
 	BlockChain();
 	~BlockChain();
-	int  addBlock(const Block&);
+	int  push_back(const Block&);
 	bool checkTransactionExist(const Transaction&);
 	void clear();
 private:
-	std::set<Cuple, std::function<bool(Cuple,Cuple)> > blocks; // La blockChain
-	std::set<Cuple, std::function<bool(Cuple,Cuple)> > orphans; // Block that don't have previous Block in the chain
-	std::set<Cuple>::iterator leadingBlock;
+	std::set<Cuple, std::function<bool(Cuple, Cuple)> > blocks; // La blockChain
+	std::set<Cuple, std::function<bool(Cuple, Cuple)> > orphans; // Block that don't have previous Block in the chain
+	std::set<Cuple>::reverse_iterator leadingBlock;
 
 
 	enum {
+		FIRS_BLOCK_ADDED = 0,
 		ERROR_BLOCK_INVALID = 1,
 		PREVIOUS_BLOCK_UNKNOWN = 2,
 		INSERT_NEW_BLOCK = 3,

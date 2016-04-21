@@ -11,7 +11,7 @@ orphans([](const Cuple& x, const Cuple& y)
 {
 	return std::get<2>(x).get_Header().get_Time() < std::get<2>(y).get_Header().get_Time();
 }),
-leadingBlock(blocks.begin())
+leadingBlock(blocks.rbegin())
 {
 
 }
@@ -30,11 +30,23 @@ BlockChain::~BlockChain()
 // Qualifier:
 // Parameter: const Block & bloc
 //************************************
-int BlockChain::addBlock(const Block& bloc)
+int BlockChain::push_back(const Block& bloc)
 {
 	// If the block is not valid
 	if (!bloc.isValid())
 		return BlockChain::ERROR_BLOCK_INVALID;
+	if (blocks.size() == 0)
+	{
+		try {
+			blocks.insert(Cuple(bloc.get_Header().get_NumeroBloc(), bloc.get_BlockHash(), bloc));
+			leadingBlock = blocks.rbegin();
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "An incorrect block has failed to be insert into the BlockChain chain : " << e.what();
+		};
+		return	BlockChain::FIRS_BLOCK_ADDED;
+	}
 
 	// If the block is not fully compose !
 	if (bloc.get_BlockHash() == "")
@@ -64,9 +76,11 @@ int BlockChain::addBlock(const Block& bloc)
 
 				// modify the leadingBlock if necessary
 				if (bloc.get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc()) {
-					leadingBlock = blocks.end(); // TODO check if the last insert is effectively the best
-					if (bloc.get_BlockHash() != std::get<2>(*blocks.end()).get_BlockHash())
-						throw "error in the set sort";
+					leadingBlock = blocks.rbegin(); // TODO check if the last insert is effectively the best
+					if (bloc.get_BlockHash() != std::get<2>(*blocks.rbegin()).get_BlockHash())
+					{
+						std::cerr << " Big Mistake in BlockChain";
+					}
 				}
 				return BlockChain::INSERT_NEW_BLOCK;
 			}
@@ -133,7 +147,7 @@ void BlockChain::clear()
 	while (orphans.size() > MAX_SIZE_ORPHANS)
 	{
 		auto it = orphans.begin();
-		addBlock(std::get<2>(*it)); // Try a last time...
+		push_back(std::get<2>(*it)); // Try a last time...
 		orphans.erase(it);
 	}
 

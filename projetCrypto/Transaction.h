@@ -23,7 +23,7 @@ public:
 	Message					 getMessage() const;
 	string					 getHashTransaction() const;
 	string					 toString() const;
-
+	bool					 isCorrect() const;
 
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const

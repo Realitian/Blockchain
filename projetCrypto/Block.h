@@ -14,10 +14,14 @@ public:
 
 
 	explicit Block(int);
-	Block(ptr_Block, const vector<Transaction>&);
+	Block(const ptr_Block, const vector<Transaction>&);
 	Block(string, int, vector<string>, const BlockHeader);
 	Block() = delete;
 
+	void set_Hash_Merkle_Root(string h)
+	{
+		previousBlockHash = h;
+	}
 
 	~Block();
 
@@ -39,7 +43,6 @@ public:
 	{
 		ar & nombreTransaction;
 		ar & header;
-		ar & tailleBlock;
 		ar & transactions;
 		ar & previousBlockHash;
 		ar & blockHash;
@@ -50,7 +53,6 @@ public:
 	{
 		ar & nombreTransaction;
 		ar & header;
-		ar & tailleBlock;
 		ar & transactions;
 		ar & previousBlockHash;
 		ar & blockHash;

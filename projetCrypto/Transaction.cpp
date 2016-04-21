@@ -17,6 +17,23 @@ Transaction::~Transaction()
 }
 
 
+bool Transaction::isCorrect() const
+{
+	if (identiteSender.getNom().size() <= 1 && identiteSender.getPrenom().size() <= 1)
+		return false;
+	
+	if ((message.getHashDomainName() != SHA25::sha256(message.getNomDomaine())) ||
+		message.getinformation().size() <= 1 ||
+		message.getPublicKey().GetPublicExponent() == identiteSender.getPublicKey().GetPublicExponent() ||
+		hashTransaction != SHA25::sha256(identiteSender.toString() + message.getHashDomainName() + message.getinformation())
+		// TODO Something about the time
+	)
+		return false;
+	 
+	return true;
+}
+
+
 string Transaction::toString() const {
 	string os;
 	os += identiteSender.toString() + message.getNomDomaine() + message.getinformation();

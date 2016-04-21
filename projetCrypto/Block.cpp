@@ -12,8 +12,8 @@
 // Parameter: ptr_Block : a reference to the previous block
 // Parameter: const vector<Transaction> & : A vector of transaction which will be integrated in the block
 //************************************
-Block::Block(ptr_Block prevBloc, const vector<Transaction>& _transaction) :
-	previousBlockHash(prevBloc->previousBlockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().get_NumeroBloc() + 1),
+Block::Block(const ptr_Block prevBloc, const vector<Transaction>& _transaction) :
+	previousBlockHash(prevBloc->blockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().get_NumeroBloc() + 1),
 	 transactions(), blockHash()
 {
 
@@ -94,8 +94,9 @@ bool Block::operator==(const Block& rhs)
 //************************************
 bool Block::isValid() const
 {
-	if (nombreTransaction != transactions.size())
+	if (nombreTransaction != transactions.size()) // TODO Be a little more strict =)
 		return false;
+	
 	return true;
 }
 
@@ -127,6 +128,7 @@ void Block::BuildMerkleRoot()
 	}
 	header.setHashMerkleRoot(hashTree.at(0));
 	header.setTime(boost::posix_time::second_clock::local_time());
+
 	blockHash = SHA25::sha256(SHA25::sha256(header.get_HashMerkleRoot()));
 }
 
