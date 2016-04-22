@@ -5,11 +5,11 @@ using Cuple = std::tuple<int, string, Block>;
 BlockChain::BlockChain() :
 	blocks([](const Cuple& x, const Cuple& y)
 {
-	if ((std::get<0>(x) < std::get<0>(y)))
+	if ((std::get<0>(x) > std::get<0>(y)))
 		return true;
 	if (std::get<0>(x) == std::get<0>(y))
 	{
-		return (std::get<1>(x) < std::get<1>(y));
+		return (std::get<1>(x) > std::get<1>(y));
 	}
 	return false;
 }),
@@ -17,7 +17,7 @@ orphans([](const Cuple& x, const Cuple& y)
 {
 	return (std::get<0>(x) < std::get<0>(y) && std::get<2>(x).get_Header().get_Time() < std::get<2>(y).get_Header().get_Time());
 }),
-leadingBlock(blocks.rbegin())
+leadingBlock(blocks.begin())
 {
 
 }
@@ -46,7 +46,7 @@ int BlockChain::push_back(const Block& bloc)
 	{
 		try {
 			blocks.insert(Cuple(bloc.get_Header().get_NumeroBloc(), bloc.get_BlockHash(), bloc));
-			leadingBlock = blocks.rbegin();
+			leadingBlock = blocks.begin();
 		}
 		catch (const std::exception& e)
 		{
@@ -69,10 +69,8 @@ int BlockChain::push_back(const Block& bloc)
 	}
 
 	// Pointer to the last element
-	auto block_ite = blocks.rbegin();
-	// avoid to be constructed multiple times
-	auto end = blocks.rend();
-	for (; block_ite != end; block_ite++)
+	auto block_ite = blocks.begin();
+	for (; block_ite != blocks.end(); block_ite++)
 	{
 		// If I find the parent
 		if (std::get<1>(*block_ite) == bloc.get_PreviousBlockHash())
@@ -84,7 +82,7 @@ int BlockChain::push_back(const Block& bloc)
 
 				// modify the leadingBlock if necessary
 				if ( bloc.get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() ) {
-					for (std::set<Cuple>::reverse_iterator x = blocks.rbegin(); x != blocks.rend(); x++)
+					for (std::set<Cuple>::iterator x = blocks.begin(); x != blocks.end(); x++)
 					{
 						if (std::get<2>(*x) == std::get<2>(newBloc))
 						{
@@ -110,7 +108,7 @@ int BlockChain::push_back(const Block& bloc)
 	}
 
 	// If a parent has not been found
-	if (block_ite == blocks.rend())
+	if (!(block_ite != blocks.end()))
 	{
 		// add it the orphans set !
 		try {
@@ -192,17 +190,16 @@ void BlockChain::clear()
 	}
 
 	// If the blockChain is too small, no need to continue
-	if (std::get<2>(*blocks.rbegin()).get_Header().get_NumeroBloc() < DEPTH_DELETION)
+	if (std::get<2>(*blocks.begin()).get_Header().get_NumeroBloc() < DEPTH_DELETION)
 		return;
 
 
-	auto  block_ite = blocks.rbegin();
-	auto end = blocks.rend();
+	auto  block_ite = leadingBlock;
 
 	// The Hash of the previous Block
 	string previous_Block_Hash = std::get<2>(*leadingBlock).get_PreviousBlockHash();
 	std::cout << "Last hash : " << previous_Block_Hash << std::endl;
-	while (block_ite != end)
+	while (block_ite != blocks.end())
 	{
 		// If it is to early to delete the bloc
 		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - DEPTH_DELETION) {
@@ -232,8 +229,7 @@ void BlockChain::clear()
 			else
 			{
 				std::cerr << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
-				blocks.erase(*block_ite);
-				block_ite++;
+				block_ite = blocks.erase(block_ite);
 			}
 		}
 	}

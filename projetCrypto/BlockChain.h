@@ -18,7 +18,7 @@ public:
 private:
 	std::set<Cuple, std::function<bool(Cuple, Cuple)> > blocks; // La blockChain
 	std::set<Cuple, std::function<bool(Cuple, Cuple)> > orphans; // Block that don't have previous Block in the chain
-	std::set<Cuple>::reverse_iterator leadingBlock;
+	std::set<Cuple>::iterator leadingBlock;
 
 
 	enum {
