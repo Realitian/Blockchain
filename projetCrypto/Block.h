@@ -26,7 +26,7 @@ public:
 	~Block();
 
 	Block& operator=(Block);
-	bool operator==(const Block&);
+	bool operator==(const Block&) const;
 
 	const BlockHeader& get_Header() const;
 	string			   get_PreviousBlockHash() const;

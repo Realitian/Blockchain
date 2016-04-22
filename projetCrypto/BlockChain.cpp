@@ -5,11 +5,17 @@ using Cuple = std::tuple<int, string, Block>;
 BlockChain::BlockChain() :
 	blocks([](const Cuple& x, const Cuple& y)
 {
-	return std::get<0>(x) < std::get<0>(y);
+	if ((std::get<0>(x) < std::get<0>(y)))
+		return true;
+	if (std::get<0>(x) == std::get<0>(y))
+	{
+		return (std::get<1>(x) < std::get<1>(y));
+	}
+	return false;
 }),
 orphans([](const Cuple& x, const Cuple& y)
 {
-	return std::get<2>(x).get_Header().get_Time() < std::get<2>(y).get_Header().get_Time();
+	return (std::get<0>(x) < std::get<0>(y) && std::get<2>(x).get_Header().get_Time() < std::get<2>(y).get_Header().get_Time());
 }),
 leadingBlock(blocks.rbegin())
 {
@@ -72,16 +78,19 @@ int BlockChain::push_back(const Block& bloc)
 		if (std::get<1>(*block_ite) == bloc.get_PreviousBlockHash())
 		{
 			try {
+				Cuple newBloc = Cuple(bloc.get_Header().get_NumeroBloc(), bloc.get_BlockHash(), bloc);
 				// inserting into the BlockChain
-				blocks.insert(Cuple(bloc.get_Header().get_NumeroBloc(), bloc.get_BlockHash(), bloc));
+				blocks.insert(newBloc);
 
 				// modify the leadingBlock if necessary
-				if (bloc.get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc()) {
-					leadingBlock = blocks.rbegin(); // TODO check if the last insert is effectively the best
-
-					if (bloc.get_BlockHash() != std::get<2>(*blocks.rbegin()).get_BlockHash())
+				if ( bloc.get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() ) {
+					for (std::set<Cuple>::reverse_iterator x = blocks.rbegin(); x != blocks.rend(); x++)
 					{
-						std::cerr << " Big Mistake in BlockChain";
+						if (std::get<2>(*x) == std::get<2>(newBloc))
+						{
+							leadingBlock = x;
+							break;
+						}
 					}
 				}
 				/*
@@ -119,7 +128,21 @@ int BlockChain::push_back(const Block& bloc)
 
 
 
-
+//************************************
+// Method:    print
+// FullName:  BlockChain::print
+// Access:    public 
+// Returns:   void
+// Qualifier: const
+//************************************
+void BlockChain::print() const
+{
+	for (const auto& exp : blocks)
+	{
+		std::cout << std::get<0>(exp) << " " << std::get<1>(exp) << std::endl
+			<< std::endl;
+	}
+}
 
 
 //************************************
@@ -142,6 +165,7 @@ bool BlockChain::find(const Transaction& trans) const
 	else
 		return false;
 }
+
 
 #ifndef MAX_SIZE_ORPHANS
 #define MAX_SIZE_ORPHANS 50
@@ -177,6 +201,7 @@ void BlockChain::clear()
 
 	// The Hash of the previous Block
 	string previous_Block_Hash = std::get<2>(*leadingBlock).get_PreviousBlockHash();
+	std::cout << "Last hash : " << previous_Block_Hash << std::endl;
 	while (block_ite != end)
 	{
 		// If it is to early to delete the bloc
@@ -191,6 +216,7 @@ void BlockChain::clear()
 			}
 			block_ite++;
 		}
+
 		// If the block are really far, and there should only be the main BlockChain with confirmed Block
 		else
 		{
@@ -206,7 +232,8 @@ void BlockChain::clear()
 			else
 			{
 				std::cerr << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
-				blocks.erase(*block_ite++);
+				blocks.erase(*block_ite);
+				block_ite++;
 			}
 		}
 	}

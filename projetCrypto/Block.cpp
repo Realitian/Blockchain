@@ -77,7 +77,7 @@ Block& Block::operator=(Block rhs)
 	return *this;
 }
 
-bool Block::operator==(const Block& rhs)
+bool Block::operator==(const Block& rhs) const
 {
 	return (header == rhs.get_Header() && transactions == rhs.transactions
 		&&   previousBlockHash == rhs.get_PreviousBlockHash() && nombreTransaction == rhs.nombreTransaction);

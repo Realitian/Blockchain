@@ -95,7 +95,7 @@ void testBlock()
 
 
 	cout << blockchain.push_back(block3) << endl;
-	cout << "---------------------------- Test sur the blocs ----------------------------" << endl;
+	cout << "---------------------------- Test on the blocs ----------------------------" << endl;
 	cout << "Solving the problem" << endl;
 	std::pair<unsigned long long, unsigned long long> nonce = block1.solveProofofWork();
 
@@ -105,10 +105,11 @@ void testBlock()
 	cout << blockchain.push_back(block1);
 	block2.solveProofofWork();
 	cout << blockchain.push_back(block2);
-
+	cout << " Size : " << blockchain.size() << endl;
 	std::shared_ptr<Block> ptrX = std::make_shared<Block>(block2);
+
 	Block blocx(ptrX, transactions2);
-	for (int i(0); i < 20; i++)
+	for (int i(0);i < 20; i++)
 	{
 		std::vector<Transaction> transactionX;
 		for (int j(0); j < 6; j++)
@@ -116,23 +117,23 @@ void testBlock()
 			transactionX.push_back(all_Transaction.at(rand() % all_Transaction.size()));
 		}
 		int random = rand();
-		// Trying to add block tht should be delete afterwards
-		if (random & 1)
-		{
-			blocx = Block(ptr1, transactionX);
-			blocx.solveProofofWork();
-			;
-			std::cout << "Adding " << i << " : " << blockchain.push_back(blocx) << " " << std::endl;
-
-		}
+		// Trying to add block that should be delete afterwards
+		 if (random & 1)
+		 {
+		 	blocx = Block(ptr1, transactionX);
+		 	blocx.solveProofofWork();
+		 	std::cout << "Adding " << i << "* : " << blockchain.push_back(blocx) << " " << std::endl;
+		 
+		 }
 
 		blocx = Block(ptrX, transactionX);
 		blocx.solveProofofWork();
 		ptrX = std::make_shared<Block>(blocx);
+		std::cout << "Size of the BlockChain : " << blockchain.size() << std::endl;
 		std::cout << "Adding " << i << " : " << blockchain.push_back(blocx) << " " << std::endl;
-
 	}
 
+	blockchain.print();
 
 	cout << endl << endl;
 	blockchain.clear();
