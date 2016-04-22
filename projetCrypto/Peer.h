@@ -10,6 +10,7 @@
 #include "Transaction.h"
 #include "Packet.h"
 #include "Connection.h"
+#include "Base_Donnee.h"
 class Client;
 using ptr_Identite = std::shared_ptr<Identite>;
 using boost::asio::ip::tcp;
@@ -30,14 +31,23 @@ public:
 	void						 sauvegarderCle(const RSA::PrivateKey&, const RSA::PublicKey&);
 	void						 print(const string&);
 	void						 displayMenu();
-	void						 receivePacket(Packet);
+	void						 receivePacket(const Packet&);
 	void						 addClient(std::shared_ptr<Client>);
 	void						 startMining();
+	int8_t						 receiveTransaction(const Packet&);
+	int8_t						 receiveBlock(const Packet&);
 
+	enum 
+	{
+		WRONG_PACKET_RECEIVE = 0,
+		WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN = 2,
+		UNKNOWN_ERROR = 1,
+		CORRECT_BLOCK_RECEIVED = 4
+	};
 private:
 	ptr_Identite		    identite;
 	std::shared_ptr<Client> client;
-
+	Base_Donnee				base_de_donnee;
 	void clean_screen();
 	void showBanner();
 };

@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Base_Donnee.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockChain.cpp" />
     <ClCompile Include="BlockHeader.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base_Donnee.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockChain.h" />
     <ClInclude Include="BlockHeader.h" />

@@ -42,7 +42,7 @@ int main()
 
 
 
-void testBlock()
+void test_integration_BlockCHain()
 {
 	Identite id("Franc", "Jerome");
 	Identite id1("CAVA", "ETtoi");
@@ -105,11 +105,10 @@ void testBlock()
 	cout << blockchain.push_back(block1);
 	block2.solveProofofWork();
 	cout << blockchain.push_back(block2);
-	cout << " Size : " << blockchain.size() << endl;
 	std::shared_ptr<Block> ptrX = std::make_shared<Block>(block2);
 
 	Block blocx(ptrX, transactions2);
-	for (int i(0);i < 100; i++)
+	for (int i(0);i < 200; i++)
 	{
 		std::vector<Transaction> transactionX;
 
@@ -117,14 +116,16 @@ void testBlock()
 		// Trying to add block that should be delete afterwards
 		if (random & 1)
 		{
-			transactionX.clear();
-			for (int j(0); j < 6; j++)
-			{
-				transactionX.push_back(all_Transaction.at(rand() % all_Transaction.size()));
+			for (int k(0); k < (rand() % 9); k++) {
+				transactionX.clear();
+				for (int j(0); j < 6; j++)
+				{
+					transactionX.push_back(all_Transaction.at(rand() % all_Transaction.size()));
+				}
+				blocx = Block(ptrX, transactionX);
+				blocx.solveProofofWork();
+				blockchain.push_back(blocx);
 			}
-			blocx = Block(ptrX, transactionX);
-			blocx.solveProofofWork();
-			std::cout << "Adding " << i << "** : " << " " << blockchain.push_back(blocx) << std::endl;
 		}
 
 		for (int j(0); j < 6; j++)
@@ -135,13 +136,12 @@ void testBlock()
 		blocx = Block(ptrX, transactionX);
 		blocx.solveProofofWork();
 		ptrX = std::make_shared<Block>(blocx);
-		std::cout << "Adding " << i << ": " <<  " " << blockchain.push_back(blocx) << std::endl;
+		blockchain.push_back(blocx);
 
-		std::cout << "Size of the BlockChain : " << blockchain.size() << std::endl;
-		if (i > 97)
-			cout << blocx.get_BlockHash();
+	//	std::cout << "Size of the BlockChain : " << blockchain.size() << std::endl;
 	}
-	// blockchain.print();
+
+	blockchain.print();
 
 	cout << endl << endl;
 	blockchain.clear();

@@ -28,9 +28,10 @@ public:
 	Block& operator=(Block);
 	bool operator==(const Block&) const;
 
-	const BlockHeader& get_Header() const;
-	string			   get_PreviousBlockHash() const;
-	string			   get_BlockHash() const;
+	const vector<string> get_Transactions_List() const;
+	const BlockHeader&   get_Header() const;
+	string			     get_PreviousBlockHash() const;
+	string			     get_BlockHash() const;
 
 	bool	isValid() const;
 	bool	containsTransactions(const Transaction&) const;

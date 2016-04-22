@@ -69,6 +69,9 @@
     <ClCompile Include="KeyPair.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Base_Donnee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Identite.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PeerMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base_Donnee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

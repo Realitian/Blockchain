@@ -155,7 +155,7 @@ bool BlockChain::find(const Transaction& trans) const
 {
 	if (std::any_of(blocks.rbegin(), blocks.rend(), [&trans](const Cuple& bloc) {
 
-		if (std::get<2>(bloc).get_PreviousBlockHash() == "FIRSTHASH") // TODO for the first Block
+		if (std::get<2>(bloc).get_PreviousBlockHash() == Block::) // TODO for the first Block
 			return false;
 		return std::get<2>(bloc).containsTransactions(trans);
 	}))
@@ -198,13 +198,13 @@ void BlockChain::clear()
 
 	// The Hash of the previous Block
 	string previous_Block_Hash = std::get<2>(*leadingBlock).get_PreviousBlockHash();
-	std::cout << "Last hash : " << previous_Block_Hash << std::endl;
+	std::cerr << "Last hash : " << previous_Block_Hash << std::endl;
 	while (block_ite != blocks.end())
 	{
 		// If it is to early to delete the bloc
 		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - DEPTH_DELETION) {
 		
-			std::cerr << "To early to delete " << std::get<0>(*block_ite) << std::endl;
+			// std::cerr << "To early to delete " << std::get<0>(*block_ite) << std::endl;
 			
 			// If the block is in the main chain, update the local variable previous_Block_Hash
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
@@ -220,7 +220,7 @@ void BlockChain::clear()
 			// If it is in the main chain
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
 			{
-				std::cerr << "No deletion : " << std::get<0>(*block_ite) << std::endl;
+			//	std::cerr << "No deletion : " << std::get<0>(*block_ite) << std::endl;
 
 				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
 				block_ite++;
@@ -228,7 +228,7 @@ void BlockChain::clear()
 			// else delete it
 			else
 			{
-				std::cerr << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
+			//	std::cerr << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
 				block_ite = blocks.erase(block_ite);
 			}
 		}

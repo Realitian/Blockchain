@@ -102,6 +102,7 @@ bool Block::isValid() const
 	if (SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second)))
 		.substr(0, DIFFICULTY_MINING) != std::string(DIFFICULTY_MINING, '0'))
 		return false;
+
 	return true;
 }
 
@@ -129,8 +130,8 @@ void Block::BuildMerkleRoot()
 	for (int i = N - 2; i > -1; i--)
 	{
 		hashTree.at(i) = SHA25::sha256(SHA25::sha256(hashTree.at(2 * i + 1) + hashTree.at(2 * i + 2)));
-		// std::cerr << hashTree.at(i) << std::endl;
 	}
+
 	header.setHashMerkleRoot(hashTree.at(0));
 	header.setTime(boost::posix_time::second_clock::local_time());
 
@@ -193,6 +194,9 @@ string Block::get_BlockHash() const
 	return blockHash;
 }
 
-
+const vector<string> Block::get_Transactions_List() const
+{
+	return transactions;
+}
 
 

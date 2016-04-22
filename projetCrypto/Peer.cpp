@@ -2,7 +2,8 @@
 
 
 
-Peer::Peer(boost::asio::io_service& io_service, boost::asio::ip::tcp::endpoint& endpoint)
+Peer::Peer(boost::asio::io_service& io_service, boost::asio::ip::tcp::endpoint& endpoint) :
+	base_de_donnee()
 {
 
 }
@@ -13,19 +14,66 @@ Peer::~Peer()
 }
 
 
-void Peer::receivePacket(Packet packet)
+void Peer::receivePacket(const Packet& packet)
 {
-	std::cerr <<
-		std::endl << "PACKET RECU  dans PEER" << std::endl;
-	std::cerr << "Type packet : " << packet.m_type << std::endl <<
-		"Hash Transaction " << packet.transaction.getHashTransaction() << std::endl <<
-		"Information message " << packet.transaction.getMessage().getinformation() << std::endl <<
-		"Nom de domaine " << packet.transaction.getMessage().getNomDomaine() << std::endl <<
-		"Cle publique modulus : " << packet.transaction.getMessage().getPublicKey().GetModulus() << std::endl <<
-		"Cle publique exponent : " << packet.transaction.getMessage().getPublicKey().GetPublicExponent() <<
-		std::endl <<
-		std::endl;
+	std::cerr << packet;
+	switch (packet.m_type)
+	{
+		// New transaction received
+	case 3:
+		receiveTransaction(packet);
+		break;
+		// New block received
+	case 4:
+		receiveBlock(packet);
+		break;
+	default:
+		// Wrong packet format. Error !! 
+		break;
+	}
+}
 
+
+
+int8_t Peer::receiveBlock(const Packet& packet)
+{
+	// Check for the validity of the block, not the transaction inside !
+	if (!packet.block.isValid())
+		return false;
+	// TODO , I consider as false, all the block that contains at least one transaction I can't find in my data base,
+	// perhaps it is not the best option..., but as the block is build in 10 minutes, I consider normal that the peer should have "heard"
+	// about this transaction before the block is received
+
+	try {
+		for (auto tr : packet.block.get_Transactions_List())
+		{
+			if (base_de_donnee.get_status(tr) == Base_Donnee::NOT_FOUND)
+			{
+				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
+			}
+		}
+	}
+	catch (std::exception e)
+	{
+		return Peer::UNKNOWN_ERROR;
+	};
+	return Peer::CORRECT_BLOCK_RECEIVED;
+}
+
+
+
+
+int8_t Peer::receiveTransaction(const Packet& packet)
+{
+	if (!packet.transaction.isCorrect())
+		return Peer::WRONG_PACKET_RECEIVE;
+	try {
+		base_de_donnee.push_back(packet.transaction);
+	}
+	catch (...)
+	{
+		return Peer::UNKNOWN_ERROR;
+	};
 }
 
 void Peer::addClient(std::shared_ptr<Client> nvuClient)
@@ -120,6 +168,7 @@ SAUVEGARDE_CLE:
 	}
 }
 
+
 inline void Peer::print(const string& m) {
 	std::cout << m << std::endl;
 }
@@ -166,7 +215,7 @@ DISPLAY_MENU:
 		break;
 	}
 	case '3':
-		connexion(); // retourner a la connection
+		connexion(); // return to the first menu
 		break;
 	default:
 		goto DISPLAY_MENU;
