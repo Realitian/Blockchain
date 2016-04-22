@@ -62,11 +62,11 @@ void testBlock()
 	BlockChain blockchain;
 	blockchain.addBlock(genesis);
 	blockchain.addBlock(block1);
-	cout << (blockchain.checkTransactionExist(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
+	cout << (blockchain.find(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
 
-	cout << (blockchain.checkTransactionExist(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
+	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 	blockchain.addBlock(block2);
-	cout << (blockchain.checkTransactionExist(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
+	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 
 	cout << (block2.getParent()->containsTransactions(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 

@@ -18,17 +18,18 @@ void testBlock();
 
 int main()
 {
+	srand(time(NULL));
 	/*
 	boost::asio::io_service io_service;
 	tcp::endpoint endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 7171);
 
-	
+
 	std::shared_ptr<Peer> p = std::make_shared<Peer>(io_service, endpoint);
 	std::shared_ptr<Client> client = Client::create(io_service, endpoint, p);
 	p->addClient(client);
 	p->connexion();
-	
-	
+
+
 	//Serveur  t(io_service, endpoint);
 
 	io_service.run();
@@ -66,7 +67,9 @@ void testBlock()
 
 	vector<Transaction> transactions1{ t1,t,t2,t22,t3,t4 };
 	vector<Transaction> transactions2{ t6,t8,t82,t7,t9,t10 };
-
+	vector<Transaction> all_Transaction;
+	all_Transaction.insert(all_Transaction.end(), transactions1.begin(), transactions1.end());
+	all_Transaction.insert(all_Transaction.end(), transactions2.begin(), transactions2.end());
 	Block genesis(0);
 	std::shared_ptr<Block> ptr0 = std::make_shared<Block>(genesis);
 
@@ -79,11 +82,12 @@ void testBlock()
 	std::cout << blockchain.push_back(genesis) << std::endl;
 
 	std::cout << blockchain.push_back(block1) << std::endl;
-	cout << (blockchain.checkTransactionExist(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
+	cout << (blockchain.find(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
 
-	cout << (blockchain.checkTransactionExist(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
+	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 	std::cout << blockchain.push_back(block2) << std::endl;
-	cout << (blockchain.checkTransactionExist(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
+
+	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 
 	Block block3(5);
 	block3.set_Hash_Merkle_Root(SHA25::sha256("Hello world"));
@@ -99,7 +103,37 @@ void testBlock()
 	cout << "The two nonce are" << nonce.first << " " << nonce.second << endl;
 	cout << endl;
 	cout << blockchain.push_back(block1);
-	
+	block2.solveProofofWork();
+	cout << blockchain.push_back(block2);
+
+	std::shared_ptr<Block> ptrX = std::make_shared<Block>(block2);
+	Block blocx(ptrX, transactions2);
+	for (int i(0); i < 20; i++)
+	{
+		std::vector<Transaction> transactionX;
+		for (int j(0); j < 6; j++)
+		{
+			transactionX.push_back(all_Transaction.at(rand() % all_Transaction.size()));
+		}
+		int random = rand();
+		// Trying to add block tht should be delete afterwards
+		if (random & 1)
+		{
+			blocx = Block(ptr1, transactionX);
+			blocx.solveProofofWork();
+			;
+			std::cout << "Adding " << i << " : " << blockchain.push_back(blocx) << " " << std::endl;
+
+		}
+
+		blocx = Block(ptrX, transactionX);
+		blocx.solveProofofWork();
+		ptrX = std::make_shared<Block>(blocx);
+		std::cout << "Adding " << i << " : " << blockchain.push_back(blocx) << " " << std::endl;
+
+	}
+
+
 	cout << endl << endl;
 	blockchain.clear();
 }

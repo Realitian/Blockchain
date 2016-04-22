@@ -11,8 +11,10 @@ public:
 	BlockChain();
 	~BlockChain();
 	int  push_back(const Block&);
-	bool checkTransactionExist(const Transaction&);
+	bool find(const Transaction&) const;
+	size_t size() const;
 	void clear();
+
 private:
 	std::set<Cuple, std::function<bool(Cuple, Cuple)> > blocks; // La blockChain
 	std::set<Cuple, std::function<bool(Cuple, Cuple)> > orphans; // Block that don't have previous Block in the chain

@@ -61,7 +61,7 @@ int BlockChain::push_back(const Block& bloc)
 		};
 		return	BlockChain::PREVIOUS_BLOCK_UNKNOWN;
 	}
-	
+
 	// Pointer to the last element
 	auto block_ite = blocks.rbegin();
 	// avoid to be constructed multiple times
@@ -78,11 +78,18 @@ int BlockChain::push_back(const Block& bloc)
 				// modify the leadingBlock if necessary
 				if (bloc.get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc()) {
 					leadingBlock = blocks.rbegin(); // TODO check if the last insert is effectively the best
+
 					if (bloc.get_BlockHash() != std::get<2>(*blocks.rbegin()).get_BlockHash())
 					{
 						std::cerr << " Big Mistake in BlockChain";
 					}
 				}
+				/*
+				for (auto &tr : bloc.getTransaction())
+				{
+					if
+				}
+				*/
 				return BlockChain::INSERT_NEW_BLOCK;
 			}
 			catch (const std::exception& e)
@@ -116,14 +123,14 @@ int BlockChain::push_back(const Block& bloc)
 
 
 //************************************
-// Method:    checkTransactionExist
-// FullName:  BlockChain::checkTransactionExist
+// Method:    find
+// FullName:  BlockChain::find
 // Access:    public 
 // Returns:   bool
 // Qualifier:
 // Parameter: const Transaction & trans
 //************************************
-bool BlockChain::checkTransactionExist(const Transaction& trans)
+bool BlockChain::find(const Transaction& trans) const
 {
 	if (std::any_of(blocks.rbegin(), blocks.rend(), [&trans](const Cuple& bloc) {
 
@@ -142,13 +149,18 @@ bool BlockChain::checkTransactionExist(const Transaction& trans)
 #ifndef DEPTH_DELETION
 #define DEPTH_DELETION 10
 #endif
+//************************************
+// Method:    clear
+// FullName:  BlockChain::clear
+// Access:    public 
+// Returns:   void
+// Qualifier:
+//************************************
 void BlockChain::clear()
 {
-	std::cout << "LA1";
 	// Deleting ancient orphans that are no more useful
 	while (orphans.size() > MAX_SIZE_ORPHANS)
 	{
-		std::cout << "LA2";
 
 		auto it = orphans.begin();
 		push_back(std::get<2>(*it)); // Try a last time...
@@ -158,9 +170,8 @@ void BlockChain::clear()
 	// If the blockChain is too small, no need to continue
 	if (std::get<2>(*blocks.rbegin()).get_Header().get_NumeroBloc() < DEPTH_DELETION)
 		return;
-	std::cout << "LA3";
 
-	
+
 	auto  block_ite = blocks.rbegin();
 	auto end = blocks.rend();
 
@@ -170,6 +181,9 @@ void BlockChain::clear()
 	{
 		// If it is to early to delete the bloc
 		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - DEPTH_DELETION) {
+		
+			std::cerr << "To early to delete " << std::get<0>(*block_ite) << std::endl;
+			
 			// If the block is in the main chain, update the local variable previous_Block_Hash
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
 			{
@@ -183,15 +197,22 @@ void BlockChain::clear()
 			// If it is in the main chain
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
 			{
+				std::cerr << "No deletion : " << std::get<0>(*block_ite) << std::endl;
+
 				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
 				block_ite++;
 			}
 			// else delete it
 			else
 			{
+				std::cerr << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
 				blocks.erase(*block_ite++);
 			}
 		}
 	}
 }
 
+size_t BlockChain::size() const
+{
+	return blocks.size() + orphans.size();
+}
