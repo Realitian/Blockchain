@@ -16,7 +16,7 @@ public:
 	/* Gestion BlockChain*/
 	bool isTransactionExist(const Transaction&) const;
 	bool startNewBlock() const;
-	vector<Transaction> getListTransaction(int8_t);
+	vector<Transaction> getListTransaction(int);
 
 	/* Gestion Réseau */
 	bool sendBlock();

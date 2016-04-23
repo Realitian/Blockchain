@@ -17,7 +17,7 @@ public:
 	void clear();
 	void print() const;
 
-	const Cuple& get_LeadingBlock() const;
+	const Cuple  get_LeadingBlock() const;
 	Cuple		 get_PreviousBlock(const Cuple& cuple) const;
 
 	enum {

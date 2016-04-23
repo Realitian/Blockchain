@@ -72,7 +72,7 @@ int BlockChain::push_back(const Block& bloc)
 	auto block_ite = blocks.begin();
 	for (; block_ite != blocks.end(); block_ite++)
 	{
-		// If I find the parent
+		// If we find the parent
 		if (std::get<1>(*block_ite) == bloc.get_PreviousBlockHash())
 		{
 			try {
@@ -244,7 +244,7 @@ size_t BlockChain::size() const
 // Returns:   const Cuple& : because this Object should not been modified, neither copy
 // Qualifier: const
 //************************************
-const Cuple& BlockChain::get_LeadingBlock() const
+const Cuple BlockChain::get_LeadingBlock() const
 {
 	return *leadingBlock;
 }

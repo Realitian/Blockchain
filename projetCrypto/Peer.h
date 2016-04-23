@@ -19,6 +19,8 @@ using boost::asio::ip::tcp;
 
 class Peer
 {
+	using Cuple = std::tuple<int, string, Block>;
+
 public:
 	Peer(boost::asio::io_service&, tcp::endpoint&);
 
@@ -36,17 +38,19 @@ public:
 	void						 receivePacket(const Packet&);
 	void						 addClient(std::shared_ptr<Client>);
 	void						 startMining();
-	int8_t						 receiveTransaction(const Packet&);
-	int8_t						 receiveBlock(const Packet&);
-	void						 updateTransactionList(const Block&);
+	int						 receiveTransaction(const Packet&);
+	int						 receiveBlock(const Packet&);
+	void						 updateTransactionList(Cuple, const Block&);
 
 	enum 
 	{
 		WRONG_PACKET_RECEIVE = 0,
 		WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN = 2,
+		WRONG_PACKET_WITH_TRANSACTION_ALREADY_VALIDATED = 3,
 		UNKNOWN_ERROR = 1,
 		CORRECT_BLOCK_RECEIVED = 4,
-		CORRECT_TRANSACTION_ADDED = 5
+		CORRECT_TRANSACTION_ADDED = 5,
+		WRONG_BLOCK_RECEIVED = 6
 	};
 private:
 	ptr_Identite		    identite;

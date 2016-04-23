@@ -18,14 +18,22 @@ public:
 
 	~Transaction();
 
-	bool operator==(const Transaction& tr)
+	bool operator==(const Transaction& tr) 
 	{
 		if (tr.timestamp == timestamp &&
 			tr.identiteSender.getNom() == identiteSender.getNom() &&
 			tr.hashTransaction == hashTransaction &&
-			tr.message.getHashDomainName() == message.getHashDomainName() )
+			tr.message.getHashDomainName() == message.getHashDomainName() && 
+			tr.message.getinformation() == message.getinformation() && 
+			tr.message.getNomDomaine() == message.getNomDomaine())
 			return true;
 		return false;
+	}
+	bool operator<(const Transaction& tr) const
+	{
+		if (hashTransaction < tr.getHashTransaction())
+			return true;
+		else return false;
 	}
 
 	boost::posix_time::ptime getTime() const;

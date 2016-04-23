@@ -1,5 +1,5 @@
 #include "Base_Donnee.h"
-using int_trans = std::pair<int8_t, Transaction>;
+using int_trans = std::pair<int, Transaction>;
 
 
 
@@ -28,7 +28,7 @@ bool Base_Donnee::push_back(const Transaction& tr)
 	};
 	return true;
 }
-int8_t Base_Donnee::get_status(const string& transaction_hash) const
+int Base_Donnee::get_status(const string& transaction_hash) const
 {
 	if (data_.find(transaction_hash) != data_.end())
 		return data_.at(transaction_hash).first;
@@ -46,7 +46,7 @@ int_trans Base_Donnee::get(string transaction_hash) const
 	else return data_.at(transaction_hash);
 }
 
-void Base_Donnee::update(const Block& block, int8_t code)
+void Base_Donnee::update(const Block& block, int code)
 {
 	for (const auto tr : block.get_Transactions_List())
 	{
@@ -62,7 +62,7 @@ void Base_Donnee::update(const Block& block, int8_t code)
 }
 
 
-void Base_Donnee::update(const string& tr, int8_t code)
+void Base_Donnee::update(const string& tr, int code)
 {
 	try
 	{

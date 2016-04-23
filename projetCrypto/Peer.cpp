@@ -37,12 +37,12 @@ void Peer::receivePacket(const Packet& packet)
 
 
 
-int8_t Peer::receiveBlock(const Packet& packet)
+int Peer::receiveBlock(const Packet& packet)
 {
 	if (blockchain.size() == 0)
 	{
 		blockchain.push_back(packet.block);
-		return true;
+		return Peer::CORRECT_BLOCK_RECEIVED;
 	}
 	// Check for the validity of the block, not the transaction inside !
 	if (!packet.block.isValid())
@@ -52,24 +52,41 @@ int8_t Peer::receiveBlock(const Packet& packet)
 	// about this transaction before the block is received
 
 	try {
-		for (auto tr : packet.block.get_Transactions_List())
+		for (const auto& tr : packet.block.get_Transactions_List())
 		{
 			if (base_de_donnee.get_status(tr) == Base_Donnee::NOT_FOUND)
 			{
+				// std::cout << "This block has transaction unknown" << endl;
 				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
+			}
+			if (base_de_donnee.get_status(tr) == Base_Donnee::VALIDATED)
+			{
+				// std::cout << "This block has transaction already taken" << endl;
+				return Peer::WRONG_PACKET_WITH_TRANSACTION_ALREADY_VALIDATED;
 			}
 		}
 		if (packet.block.get_Header().get_NumeroBloc() > std::get<0>(blockchain.get_LeadingBlock()))
 		{
 			// If I was mining, just stop it !
-			blockchain.push_back(packet.block);
-
-			// + update the database
-			updateTransactionList(packet.block);
+			auto previousLeading = blockchain.get_LeadingBlock();
+			int push_code = blockchain.push_back(packet.block);
+			if (push_code == BlockChain::INSERT_NEW_BLOCK) {
+				updateTransactionList(previousLeading,packet.block);
+			}
+			else if (push_code == BlockChain::PREVIOUS_BLOCK_UNKNOWN) {
+				return Peer::CORRECT_BLOCK_RECEIVED;
+			}
+			else
+				return Peer::WRONG_BLOCK_RECEIVED;
 		}
 		else
 		{
-			blockchain.push_back(packet.block);
+			int push_code = blockchain.push_back(packet.block);
+			if (push_code == BlockChain::INSERT_NEW_BLOCK || push_code == BlockChain::PREVIOUS_BLOCK_UNKNOWN) {
+				return Peer::CORRECT_BLOCK_RECEIVED;
+			}
+			else
+				return Peer::WRONG_PACKET_RECEIVE;
 		}
 	}
 	catch (std::exception e)
@@ -80,23 +97,30 @@ int8_t Peer::receiveBlock(const Packet& packet)
 }
 
 
-void Peer::updateTransactionList(const Block& block)
+void Peer::updateTransactionList(Cuple leading, const Block& block)
 {
 	using Cuple = std::tuple<int, string, Block>;
 
-	Cuple leading = blockchain.get_LeadingBlock();
 	Cuple newbloc = Cuple(block.get_Header().get_NumeroBloc(), block.get_BlockHash(), block);
+	int num = std::get<0>(leading);
+	while (num < std::get<0>(newbloc))
+	{
+
+		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
+		newbloc = blockchain.get_PreviousBlock(newbloc);
+	}
 	do
 	{
+
 		base_de_donnee.update(std::get<2>(leading), Base_Donnee::NOT_VALIDATED);
 		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
 
-		leading = blockchain.get_PreviousBlock(leading);
 		newbloc = blockchain.get_PreviousBlock(newbloc);
+		leading = blockchain.get_PreviousBlock(leading);
 	} while (leading != newbloc);
 }
 
-int8_t Peer::receiveTransaction(const Packet& packet)
+int Peer::receiveTransaction(const Packet& packet)
 {
 	if (!packet.transaction.isCorrect())
 		return Peer::WRONG_PACKET_RECEIVE;
