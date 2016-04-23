@@ -42,7 +42,7 @@ int8_t Peer::receiveBlock(const Packet& packet)
 	// Check for the validity of the block, not the transaction inside !
 	if (!packet.block.isValid())
 		return false;
-	// TODO , I consider as false, all the block that contains at least one transaction I can't find in my data base,
+	// TODO or perhaps no, I consider as false, all the block that contains at least one transaction I can't find in my data base,
 	// perhaps it is not the best option..., but as the block is build in 10 minutes, I consider normal that the peer should have "heard"
 	// about this transaction before the block is received
 
@@ -54,16 +54,14 @@ int8_t Peer::receiveBlock(const Packet& packet)
 				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
 			}
 		}
-		if (packet.block.get_Header().get_NumeroBloc() <= std::get<0>(blockchain.get_LeadingBlock()))
-		{
-			blockchain.push_back(packet.block);
-		}
-		else
+		if (packet.block.get_Header().get_NumeroBloc() > std::get<0>(blockchain.get_LeadingBlock()))
 		{
 			// If I was mining, just stop it !
+
 			// + update the database
 			updateTransactionList(packet.block);
 		}
+		blockchain.push_back(packet.block);
 	}
 	catch (std::exception e)
 	{
