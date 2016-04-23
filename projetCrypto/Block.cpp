@@ -100,7 +100,15 @@ bool Block::isValid() const
 	if (SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second)))
 		.substr(0, Constante::DIFFICULTY_MINING) != std::string(Constante::DIFFICULTY_MINING, '0'))
 		return false;
-
+	std::vector<string> tr_buf = transactions;
+	std::sort(tr_buf.begin(), tr_buf.end());
+	//for (int i(0); i < tr_buf.size() - 1)
+	//{
+	//	if (tr_buf.at(i) == tr_buf.at(i + 1))
+	//		return false;
+	//}
+	if (std::unique(tr_buf.begin(), tr_buf.end()) != tr_buf.end())
+		return false;
 	return true;
 }
 

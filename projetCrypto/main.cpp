@@ -157,6 +157,9 @@ void test_integration_BlockCHain()
 	all_Transaction.insert(all_Transaction.end(), transactions1.begin(), transactions1.end());
 	all_Transaction.insert(all_Transaction.end(), transactions2.begin(), transactions2.end());
 
+
+	
+
 	cout << "Generating random transaction : " << endl;
 	for (int i(0); i < 5000; i++)
 	{
@@ -335,6 +338,9 @@ void test_integration_BlockCHain()
 	std::cout << "Size of the BlockChain :" << blockchain.size() << endl;
 	// blockchain.clear();
 	int nbfinal0(0);
+
+
+	// Checking if there is not double transaction !!!
 	while (leadingBlock != blockchain.get_PreviousBlock(leadingBlock))
 	{
 		for (auto& u : std::get<2>(leadingBlock).get_Transactions_List())
@@ -342,11 +348,10 @@ void test_integration_BlockCHain()
 			//	std::cout << (base_de_donnee.get_status(u) == 2 ? "V" : "NV") << endl;
 			if (validated_Transaction.count(base_de_donnee.get(u).second) != 0)
 			{
-
 				std::cerr << "ERRIIR" << std::get<0>(leadingBlock) << " " << validated_Transaction.at(base_de_donnee.get(u).second) << endl;
 			}
 			nbfinal0++;
-			//validated_Transaction.insert(std::pair<Transaction,int>(base_de_donnee.get(u).second,std::get<0>(leadingBlock)));
+			validated_Transaction.insert(std::pair<Transaction,int>(base_de_donnee.get(u).second,std::get<0>(leadingBlock)));
 		}
 		leadingBlock = blockchain.get_PreviousBlock(leadingBlock);
 	}

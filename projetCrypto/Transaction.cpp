@@ -28,7 +28,6 @@ bool Transaction::isCorrect() const
 		// TODO Something about the time
 	)
 		return false;
-	 
 	return true;
 }
 
