@@ -53,7 +53,7 @@ Block::Block(string previousBlockHash, int nbtransaction,  vector<string> tr, co
 //************************************
 Block::Block(int p) :
 
-	previousBlockHash(),blockHash(FIRST_BLOCK_HASH), nombreTransaction(0), header(0), transactions()
+	previousBlockHash(),blockHash(Constante::FIRST_BLOCK_HASH), nombreTransaction(0), header(0), transactions()
 {
 	
 }
@@ -98,7 +98,7 @@ bool Block::isValid() const
 	if (header.get_NumeroBloc() == 0)
 		return true;
 	if (SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second)))
-		.substr(0, DIFFICULTY_MINING) != std::string(DIFFICULTY_MINING, '0'))
+		.substr(0, Constante::DIFFICULTY_MINING) != std::string(Constante::DIFFICULTY_MINING, '0'))
 		return false;
 
 	return true;
@@ -150,10 +150,10 @@ paire Block::solveProofofWork()
 	unsigned long long nonce = 0, incr = 0;
 	unsigned long long limit = std::numeric_limits<unsigned long long>::max();
 
-	string sol(DIFFICULTY_MINING, '0');
+	string sol(Constante::DIFFICULTY_MINING, '0');
 	while (true) {
 		string hash = SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
-		if (hash.substr(0, DIFFICULTY_MINING) == sol)
+		if (hash.substr(0, Constante::DIFFICULTY_MINING) == sol)
 			break;
 		else
 			++nonce;

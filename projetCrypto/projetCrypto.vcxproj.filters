@@ -134,6 +134,9 @@
     <ClInclude Include="Base_Donnee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Constante.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="IHM.cpp~" />

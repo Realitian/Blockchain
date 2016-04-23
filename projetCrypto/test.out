@@ -11,191 +11,155 @@ Added 2
 Taken as parent : 2
 This block updates the Blockchain
 Added 3
+Taken as parent : 2
+Added 3
 Taken as parent : 3
 This block updates the Blockchain
 Added 4
+Taken as parent : 4
+This block updates the Blockchain
+Added 5
+This block has transaction already taken
 This block has transaction already taken
 Added 3
 Added 4
-This block updates the Blockchain
 Added 5
-Taken as parent : 3
-Added 4
 Taken as parent : 5
 This block updates the Blockchain
 Added 6
 Taken as parent : 6
-This block updates the Blockchain
-Added 7
 This block has transaction already taken
+Taken as parent : 3
+Added 4
 Added 6
-Taken as parent : 7
 This block updates the Blockchain
-Added 8
-Taken as parent : 8
-This block updates the Blockchain
-Added 9
-Taken as parent : 9
-This block updates the Blockchain
-Added 10
-This block has transaction already taken
-Taken as parent : 8
-Added 9
-Taken as parent : 10
-This block updates the Blockchain
-Added 11
-Taken as parent : 10
-Added 11
-Taken as parent : 8
-Added 9
 Added 7
-Added 8
-Added 9
-Taken as parent : 11
 This block updates the Blockchain
-Added 12
-This block has transaction already taken
+Added 8
+Taken as parent : 8
+This block updates the Blockchain
+Added 9
+Taken as parent : 6
+Added 7
+Taken as parent : 7
+Added 8
+Taken as parent : 9
+This block updates the Blockchain
+Added 10
+Taken as parent : 10
+This block updates the Blockchain
+Added 11
+Taken as parent : 10
+Added 11
+Added 9
 Taken as parent : 9
 Added 10
-Taken as parent : 10
-Added 11
-Taken as parent : 12
-This block updates the Blockchain
-Added 13
-Taken as parent : 11
-Added 12
-Taken as parent : 10
-Added 11
-Taken as parent : 12
-Added 13
 Added 10
-Taken as parent : 13
+Taken as parent : 10
+Added 11
+Taken as parent : 11
 This block updates the Blockchain
-Added 14
+Added 12
+This block has transaction already taken
+Taken as parent : 10
+Added 11
+Taken as parent : 10
+Added 11
+Taken as parent : 10
+Added 11
+Taken as parent : 10
+Added 11
 Taken as parent : 11
 Added 12
-Taken as parent : 14
-This block updates the Blockchain
-Added 15
 This block has transaction already taken
 Added 11
-Taken as parent : 10
-Added 11
-Taken as parent : 10
-Added 11
-Taken as parent : 13
-Added 14
-Taken as parent : 14
-Added 15
 Added 12
-Taken as parent : 10
-Added 11
-Taken as parent : 12
-This block has transaction already taken
-Taken as parent : 13
-Added 14
+This block updates the Blockchain
 Added 13
+This block updates the Blockchain
 Added 14
+Taken as parent : 12
+Added 13
 Taken as parent : 11
 Added 12
 Taken as parent : 14
-Added 15
-Taken as parent : 15
 This block updates the Blockchain
-Added 16
-This block has transaction already taken
 Added 15
+This block has transaction already taken
+Taken as parent : 11
+Added 12
+Taken as parent : 11
+Added 12
+Taken as parent : 12
+Added 13
+Added 15
+This block updates the Blockchain
 Added 16
 This block updates the Blockchain
 Added 17
 This block updates the Blockchain
 Added 18
-Taken as parent : 14
-Added 15
-Taken as parent : 15
-Added 16
-Taken as parent : 16
-Added 17
+Taken as parent : 12
+Added 13
+Taken as parent : 12
+This block has transaction already taken
+Taken as parent : 13
+Added 14
 This block updates the Blockchain
 Added 19
-Taken as parent : 15
-Added 16
 This block has transaction already taken
-Taken as parent : 15
-Added 16
 This block updates the Blockchain
 Added 20
 This block updates the Blockchain
 Added 21
 This block updates the Blockchain
 Added 22
-Taken as parent : 13
-Added 14
+Taken as parent : 17
+Added 18
+Taken as parent : 15
+Added 16
+Taken as parent : 16
+This block has transaction already taken
+This block has transaction already taken
 This block updates the Blockchain
 Added 23
+This block has transaction already taken
+This block updates the Blockchain
+Added 24
+Taken as parent : 20
+Added 21
+Taken as parent : 22
+Added 23
+Taken as parent : 22
+Added 23
+This block updates the Blockchain
+Added 25
+This block updates the Blockchain
+Added 26
+Taken as parent : 23
+Added 24
 Taken as parent : 18
 Added 19
 This block updates the Blockchain
-Added 24
-This block updates the Blockchain
-Added 25
-Taken as parent : 16
-Added 17
-Taken as parent : 15
-Added 16
-Taken as parent : 21
-This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 15
-Added 16
-Taken as parent : 16
-Added 17
-Taken as parent : 17
-Added 18
-Taken as parent : 25
-This block updates the Blockchain
-Added 26
-This block has transaction already taken
-Taken as parent : 16
-This block has transaction already taken
-This block has transaction already taken
-Added 26
-This block updates the Blockchain
 Added 27
-Taken as parent : 15
-Added 16
-Taken as parent : 16
-Added 17
 This block updates the Blockchain
 Added 28
-Taken as parent : 20
-This block has transaction already taken
-Taken as parent : 20
-This block has transaction already taken
-Taken as parent : 16
-Added 17
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 20
-Added 21
-Taken as parent : 16
-Added 17
 This block updates the Blockchain
 Added 29
-This block updates the Blockchain
-Added 30
+Taken as parent : 23
 This block has transaction already taken
 Taken as parent : 21
 Added 22
-Taken as parent : 23
+This block updates the Blockchain
+Added 30
 This block has transaction already taken
-This block has transaction already taken
+Taken as parent : 30
 This block updates the Blockchain
 Added 31
 This block has transaction already taken
-Taken as parent : 17
-Added 18
+Added 31
+Taken as parent : 16
+Added 17
 This block updates the Blockchain
 Added 32
 This block updates the Blockchain
@@ -204,1007 +168,1077 @@ This block updates the Blockchain
 Added 34
 This block updates the Blockchain
 Added 35
-This block has transaction already taken
 This block updates the Blockchain
 Added 36
-Taken as parent : 28
-Added 29
-Taken as parent : 17
-Added 18
+Taken as parent : 31
+Added 32
+Taken as parent : 24
+This block has transaction already taken
+Taken as parent : 23
+This block has transaction already taken
+Taken as parent : 34
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 36
+This block has transaction already taken
+Taken as parent : 32
+This block has transaction already taken
+Taken as parent : 26
+Added 27
+Taken as parent : 25
+Added 26
 This block updates the Blockchain
 Added 37
 This block updates the Blockchain
 Added 38
-Taken as parent : 21
-Added 22
-Taken as parent : 16
-Added 17
 This block updates the Blockchain
 Added 39
+Taken as parent : 30
+Added 31
 This block updates the Blockchain
+Added 40
+Taken as parent : 32
+Added 33
+Taken as parent : 39
 Added 40
 This block updates the Blockchain
 Added 41
+This block has transaction already taken
 This block updates the Blockchain
 Added 42
+Taken as parent : 42
 This block updates the Blockchain
 Added 43
-Taken as parent : 30
 This block has transaction already taken
-Taken as parent : 38
-Added 39
-Taken as parent : 22
+Added 43
+Taken as parent : 31
+Added 32
+Taken as parent : 32
+Added 33
+Taken as parent : 32
+Added 33
 This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 27
-Added 28
-Taken as parent : 18
-Added 19
-Taken as parent : 29
-Added 30
-Taken as parent : 18
-Added 19
-Taken as parent : 28
-Added 29
-Taken as parent : 29
-Added 30
 This block updates the Blockchain
 Added 44
-Taken as parent : 21
-Added 22
-Taken as parent : 17
-Added 18
-Taken as parent : 17
-Added 18
+Taken as parent : 43
+This block has transaction already taken
+Taken as parent : 40
+Added 41
 This block updates the Blockchain
 Added 45
 This block updates the Blockchain
 Added 46
+Taken as parent : 41
+Added 42
+This block has transaction already taken
 This block updates the Blockchain
 Added 47
-Taken as parent : 34
+Taken as parent : 33
+Added 34
 This block has transaction already taken
-Taken as parent : 29
+Taken as parent : 42
+Added 43
+Taken as parent : 38
 This block has transaction already taken
-Taken as parent : 29
-Added 30
+This block has transaction already taken
 This block updates the Blockchain
 Added 48
-Taken as parent : 18
+Taken as parent : 34
 This block has transaction already taken
 Taken as parent : 48
 This block updates the Blockchain
 Added 49
-Taken as parent : 42
+Taken as parent : 32
+Added 33
+Taken as parent : 34
 This block has transaction already taken
 This block has transaction already taken
 Added 49
-Taken as parent : 41
-Added 42
-Taken as parent : 44
-Added 45
-Taken as parent : 45
-Added 46
-Taken as parent : 40
-Added 41
-Taken as parent : 46
-Added 47
+Taken as parent : 31
 This block has transaction already taken
-Taken as parent : 47
-This block has transaction already taken
-Taken as parent : 30
-Added 31
+Taken as parent : 49
 This block updates the Blockchain
+Added 50
+Taken as parent : 36
+This block has transaction already taken
+This block has transaction already taken
 Added 50
 This block updates the Blockchain
 Added 51
-Taken as parent : 46
-Added 47
-Taken as parent : 39
-Added 40
-Taken as parent : 39
-Added 40
+Taken as parent : 41
+Added 42
+Taken as parent : 42
+This block has transaction already taken
+Taken as parent : 38
 This block has transaction already taken
 This block has transaction already taken
-Taken as parent : 40
-Added 41
 This block updates the Blockchain
 Added 52
-This block has transaction already taken
-Taken as parent : 30
-Added 31
-Taken as parent : 18
-Added 19
-Taken as parent : 49
-Added 50
 This block updates the Blockchain
 Added 53
-Taken as parent : 22
-Added 23
-Taken as parent : 39
+Taken as parent : 33
+Added 34
+Taken as parent : 33
+This block has transaction already taken
+Taken as parent : 33
 This block has transaction already taken
 This block has transaction already taken
 This block updates the Blockchain
 Added 54
-Taken as parent : 18
-Added 19
-This block has transaction already taken
-Taken as parent : 23
-Added 24
-This block has transaction already taken
-Taken as parent : 30
-This block has transaction already taken
-This block has transaction already taken
+Taken as parent : 43
+Added 44
+Taken as parent : 42
+Added 43
+Taken as parent : 33
+Added 34
 This block updates the Blockchain
 Added 55
-Taken as parent : 30
-Added 31
 This block updates the Blockchain
 Added 56
-Taken as parent : 19
-Added 20
-Taken as parent : 44
-This block has transaction already taken
-Taken as parent : 47
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 53
-This block has transaction already taken
-Taken as parent : 30
-Added 31
 This block updates the Blockchain
 Added 57
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 46
-This block has transaction already taken
-Taken as parent : 41
-This block has transaction already taken
-Taken as parent : 41
-Added 42
-Taken as parent : 31
-Added 32
-This block has transaction already taken
-Taken as parent : 50
-This block has transaction already taken
-Taken as parent : 47
-Added 48
-Taken as parent : 19
-This block has transaction already taken
-This block has transaction already taken
+Taken as parent : 53
+Added 54
+Taken as parent : 43
+Added 44
+Taken as parent : 55
+Added 56
 This block updates the Blockchain
 Added 58
 This block updates the Blockchain
 Added 59
-Taken as parent : 19
-Added 20
-This block updates the Blockchain
-Added 60
-Taken as parent : 23
-This block has transaction already taken
-Taken as parent : 53
-Added 54
-This block has transaction already taken
-This block updates the Blockchain
-Added 61
+Taken as parent : 49
 This block has transaction already taken
 This block has transaction already taken
-Taken as parent : 31
-Added 32
-Taken as parent : 60
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 22
-Added 23
-This block has transaction already taken
-This block updates the Blockchain
-Added 62
-This block updates the Blockchain
-Added 63
-Taken as parent : 23
-Added 24
-Taken as parent : 52
-Added 53
-Taken as parent : 41
-This block has transaction already taken
-Taken as parent : 58
-This block has transaction already taken
-Taken as parent : 30
-This block has transaction already taken
+Taken as parent : 43
+Added 44
+Taken as parent : 42
+Added 43
 Taken as parent : 50
 Added 51
+Taken as parent : 42
+This block has transaction already taken
+This block has transaction already taken
+This block updates the Blockchain
+Added 60
+This block updates the Blockchain
+Added 61
+This block updates the Blockchain
+Added 62
+Taken as parent : 44
+Added 45
+This block updates the Blockchain
+Added 63
+This block has transaction already taken
+This block has transaction already taken
 This block updates the Blockchain
 Added 64
+This block has transaction already taken
 This block updates the Blockchain
 Added 65
-Taken as parent : 60
 This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 66
-This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 67
-This block has transaction already taken
+Taken as parent : 43
+Added 44
 Taken as parent : 48
 Added 49
-Taken as parent : 40
+This block updates the Blockchain
+Added 66
+Taken as parent : 52
+Added 53
+Taken as parent : 43
+Added 44
+Taken as parent : 34
+Added 35
 This block has transaction already taken
-Taken as parent : 32
+This block has transaction already taken
+Taken as parent : 49
+This block has transaction already taken
+Taken as parent : 35
+Added 36
+Taken as parent : 44
 This block has transaction already taken
 This block has transaction already taken
+Taken as parent : 63
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 61
+Added 62
+Taken as parent : 34
+This block has transaction already taken
+Taken as parent : 49
+Added 50
+Taken as parent : 66
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 49
+Added 50
+Taken as parent : 49
+Added 50
+Taken as parent : 52
+Added 53
+This block updates the Blockchain
+Added 67
 This block updates the Blockchain
 Added 68
 This block updates the Blockchain
 Added 69
-Taken as parent : 58
-This block has transaction already taken
-Taken as parent : 23
-Added 24
-Taken as parent : 20
-Added 21
-Taken as parent : 65
-Added 66
+Taken as parent : 60
+Added 61
 This block updates the Blockchain
 Added 70
+Taken as parent : 66
+This block has transaction already taken
+Taken as parent : 58
+This block has transaction already taken
+Taken as parent : 55
+Added 56
 Taken as parent : 53
 Added 54
-Taken as parent : 20
-Added 21
-This block has transaction already taken
-Taken as parent : 64
-Added 65
-Taken as parent : 69
-This block has transaction already taken
-This block has transaction already taken
+Taken as parent : 70
 This block updates the Blockchain
 Added 71
+This block has transaction already taken
+Added 71
+This block has transaction already taken
 This block updates the Blockchain
 Added 72
-Taken as parent : 55
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 68
-This block has transaction already taken
-Taken as parent : 24
-This block has transaction already taken
-Taken as parent : 20
-This block has transaction already taken
+Taken as parent : 72
 This block has transaction already taken
 This block has transaction already taken
 Taken as parent : 70
+Added 71
+Taken as parent : 55
+Added 56
+Taken as parent : 64
+Added 65
+Taken as parent : 44
 This block has transaction already taken
-Taken as parent : 62
 This block has transaction already taken
-Taken as parent : 54
 This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 49
+Added 50
+Taken as parent : 34
+Added 35
+Taken as parent : 71
 This block has transaction already taken
 This block has transaction already taken
 This block updates the Blockchain
 Added 73
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 71
+This block has transaction already taken
+This block has transaction already taken
 This block updates the Blockchain
 Added 74
+Taken as parent : 35
+Added 36
+Taken as parent : 59
+Added 60
 This block updates the Blockchain
 Added 75
 This block has transaction already taken
 This block has transaction already taken
+Taken as parent : 75
 This block updates the Blockchain
 Added 76
-This block updates the Blockchain
-Added 77
-Taken as parent : 54
+Taken as parent : 44
 This block has transaction already taken
-Taken as parent : 40
+Taken as parent : 63
 This block has transaction already taken
-Taken as parent : 51
+Taken as parent : 65
 This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 74
-This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 78
-Taken as parent : 49
-Added 50
-Taken as parent : 72
-This block has transaction already taken
-Taken as parent : 50
-Added 51
-Taken as parent : 50
-Added 51
-This block has transaction already taken
-This block updates the Blockchain
-Added 79
-Taken as parent : 70
-Added 71
-Taken as parent : 59
-This block has transaction already taken
-Taken as parent : 51
-Added 52
 This block has transaction already taken
 Taken as parent : 62
-Added 63
-Taken as parent : 51
-Added 52
-Taken as parent : 23
 This block has transaction already taken
-Taken as parent : 66
+Taken as parent : 62
 This block has transaction already taken
-Taken as parent : 31
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 80
 This block has transaction already taken
 Taken as parent : 56
 Added 57
-Taken as parent : 51
-This block has transaction already taken
-Taken as parent : 32
-This block has transaction already taken
-Taken as parent : 54
+Taken as parent : 60
 This block has transaction already taken
 This block has transaction already taken
+Taken as parent : 60
+This block has transaction already taken
+Taken as parent : 56
 This block has transaction already taken
 This block has transaction already taken
-Taken as parent : 63
-Added 64
-Taken as parent : 23
+Taken as parent : 71
 This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+Added 76
+This block has transaction already taken
+Taken as parent : 56
+This block has transaction already taken
+Taken as parent : 66
+Added 67
 This block has transaction already taken
 This block updates the Blockchain
-Added 81
+Added 77
+Taken as parent : 71
+Added 72
+Taken as parent : 35
+This block has transaction already taken
+Taken as parent : 65
+Added 66
 Taken as parent : 57
+Added 58
+Taken as parent : 53
+Added 54
+This block has transaction already taken
+This block updates the Blockchain
+Added 78
+Taken as parent : 69
+Added 70
+Taken as parent : 76
+This block has transaction already taken
 This block has transaction already taken
 Taken as parent : 74
 This block has transaction already taken
+Taken as parent : 67
+Added 68
+Taken as parent : 57
+Added 58
+Taken as parent : 35
+Added 36
 This block has transaction already taken
 This block has transaction already taken
 This block has transaction already taken
 This block has transaction already taken
-Taken as parent : 23
+Taken as parent : 35
+This block has transaction already taken
+Taken as parent : 60
+This block has transaction already taken
+Taken as parent : 53
+Added 54
+Taken as parent : 65
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+This block updates the Blockchain
+Added 79
+Taken as parent : 75
+Added 76
+Taken as parent : 45
+This block has transaction already taken
+Taken as parent : 76
+Added 77
+Taken as parent : 64
+Added 65
+This block updates the Blockchain
+Added 80
+Taken as parent : 70
+Added 71
+Taken as parent : 75
+This block has transaction already taken
+Taken as parent : 36
+Added 37
+Taken as parent : 53
+This block has transaction already taken
+Taken as parent : 67
+Added 68
+This block updates the Blockchain
+Added 81
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 75
+This block has transaction already taken
+This block has transaction already taken
+This block updates the Blockchain
+Added 82
+This block has transaction already taken
+This block updates the Blockchain
+Added 83
+This block has transaction already taken
+Taken as parent : 79
+This block has transaction already taken
+Taken as parent : 70
+This block has transaction already taken
+Taken as parent : 71
+Added 72
+This block updates the Blockchain
+Added 84
+This block updates the Blockchain
+Added 85
+This block has transaction already taken
+Taken as parent : 70
+This block has transaction already taken
+Taken as parent : 50
+This block has transaction already taken
+Taken as parent : 72
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 74
+Added 75
+Taken as parent : 72
+Added 73
 This block has transaction already taken
 Taken as parent : 65
 This block has transaction already taken
 This block has transaction already taken
 This block has transaction already taken
-Taken as parent : 63
+Taken as parent : 56
+Added 57
+This block updates the Blockchain
+Added 86
+Taken as parent : 84
 This block has transaction already taken
-Taken as parent : 52
+Taken as parent : 68
 This block has transaction already taken
 This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 50
+Added 51
+Taken as parent : 57
+This block has transaction already taken
+Taken as parent : 60
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 50
+Added 51
+This block has transaction already taken
+This block updates the Blockchain
+Added 87
+This block updates the Blockchain
+Added 88
+This block has transaction already taken
+Taken as parent : 61
+This block has transaction already taken
+Taken as parent : 54
+Added 55
+This block updates the Blockchain
+Added 89
 Taken as parent : 69
+Added 70
+Taken as parent : 71
+Added 72
 This block has transaction already taken
-Taken as parent : 63
+This block has transaction already taken
+Taken as parent : 35
+Added 36
+Taken as parent : 56
+Added 57
+Taken as parent : 60
+This block has transaction already taken
+Taken as parent : 83
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 57
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 74
+This block has transaction already taken
+Taken as parent : 85
+This block has transaction already taken
+Taken as parent : 84
+Added 85
+Taken as parent : 67
 This block has transaction already taken
 This block has transaction already taken
 This block has transaction already taken
+Taken as parent : 71
 This block has transaction already taken
-Taken as parent : 51
-Added 52
-This block updates the Blockchain
-Added 82
-This block updates the Blockchain
-Added 83
-This block has transaction already taken
-This block updates the Blockchain
-Added 84
 Taken as parent : 75
 This block has transaction already taken
-Taken as parent : 32
+Taken as parent : 50
+Added 51
+Taken as parent : 51
+This block has transaction already taken
+Taken as parent : 86
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 58
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 72
+This block has transaction already taken
+Taken as parent : 76
+This block has transaction already taken
+Taken as parent : 72
+Added 73
+This block updates the Blockchain
+Added 90
+This block has transaction already taken
+Taken as parent : 72
+This block has transaction already taken
+Taken as parent : 56
+Added 57
+Taken as parent : 86
+Added 87
+Taken as parent : 50
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 89
+Added 90
+Taken as parent : 35
+This block has transaction already taken
+Taken as parent : 81
+This block has transaction already taken
+Taken as parent : 76
 This block has transaction already taken
 This block has transaction already taken
 Taken as parent : 71
 Added 72
-Taken as parent : 63
-Added 64
-Taken as parent : 53
 This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
+Taken as parent : 84
 Added 85
-Taken as parent : 70
+Taken as parent : 37
 This block has transaction already taken
-Taken as parent : 69
-Added 70
-This block updates the Blockchain
-Added 86
-Taken as parent : 72
+Taken as parent : 55
 This block has transaction already taken
 Taken as parent : 57
 This block has transaction already taken
-Taken as parent : 62
-Added 63
-This block updates the Blockchain
-Added 87
-Taken as parent : 63
-This block has transaction already taken
-Taken as parent : 63
-This block has transaction already taken
-Taken as parent : 83
-Added 84
-Taken as parent : 71
-This block has transaction already taken
-Taken as parent : 78
-This block has transaction already taken
-Taken as parent : 20
+Taken as parent : 36
 This block has transaction already taken
 This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 88
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
+Taken as parent : 88
 Added 89
-This block updates the Blockchain
-Added 90
+Taken as parent : 57
+Added 58
+Taken as parent : 84
+Added 85
+Taken as parent : 57
+This block has transaction already taken
+Taken as parent : 72
+Added 73
+This block has transaction already taken
+This block has transaction already taken
 This block updates the Blockchain
 Added 91
-Taken as parent : 76
-Added 77
-This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 92
-This block has transaction already taken
-Taken as parent : 80
-This block has transaction already taken
-Taken as parent : 52
-This block has transaction already taken
 This block has transaction already taken
 This block has transaction already taken
 Taken as parent : 85
 This block has transaction already taken
-Taken as parent : 67
-Added 68
-Taken as parent : 70
-This block has transaction already taken
-Taken as parent : 88
-This block has transaction already taken
-Taken as parent : 77
-Added 78
-This block has transaction already taken
-Taken as parent : 91
-This block has transaction already taken
-Taken as parent : 32
-This block has transaction already taken
+Taken as parent : 76
+Added 77
 Taken as parent : 57
-This block has transaction already taken
-Taken as parent : 63
-Added 64
-This block has transaction already taken
-Taken as parent : 64
-This block has transaction already taken
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 93
-Taken as parent : 65
-This block has transaction already taken
-Taken as parent : 69
-Added 70
-Taken as parent : 54
-Added 55
-Taken as parent : 52
-This block has transaction already taken
-This block has transaction already taken
-Taken as parent : 51
-Added 52
-Taken as parent : 52
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 94
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 95
-Taken as parent : 57
-This block has transaction already taken
-Taken as parent : 68
-Added 69
-Taken as parent : 77
-Added 78
-This block updates the Blockchain
-Added 96
-Taken as parent : 69
-Added 70
-Taken as parent : 83
-This block has transaction already taken
-Taken as parent : 21
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 97
-Taken as parent : 72
-Added 73
-Taken as parent : 72
-This block has transaction already taken
-This block has transaction already taken
-This block updates the Blockchain
-Added 98
-Taken as parent : 88
-Added 89
-This block updates the Blockchain
-Added 99
-Taken as parent : 90
-This block has transaction already taken
 This block has transaction already taken
 Taken as parent : 89
 This block has transaction already taken
-Taken as parent : 80
-Added 81
+This block has transaction already taken
+Taken as parent : 74
+This block has transaction already taken
+Taken as parent : 76
+Added 77
+Taken as parent : 84
+This block has transaction already taken
+Taken as parent : 85
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 73
+This block has transaction already taken
+Taken as parent : 65
+Added 66
 This block updates the Blockchain
-Added 100
+Added 92
+Taken as parent : 87
+Added 88
+Taken as parent : 57
+Added 58
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 65
+This block has transaction already taken
+Taken as parent : 85
+This block has transaction already taken
+Taken as parent : 78
+This block has transaction already taken
+Taken as parent : 73
+This block has transaction already taken
+This block has transaction already taken
+This block has transaction already taken
+Taken as parent : 57
+This block has transaction already taken
+Taken as parent : 89
+This block has transaction already taken
+Taken as parent : 87
+Added 88
+Taken as parent : 58
+Added 59
+This block updates the Blockchain
+Added 93
+This block updates the Blockchain
+Added 94
+This block has transaction already taken
+Taken as parent : 73
 This block has transaction already taken
 Taken as parent : 68
+Added 69
+Taken as parent : 54
+This block has transaction already taken
+Taken as parent : 76
 This block has transaction already taken
 This block has transaction already taken
-100 852E8CE1EE1356EEE01BA78F1EB26D34A08B1FA694BD6B055228AF79A54316CF
+94 8A322F2DBF63B180E9EB8F0CE04F568F483108A8CA261AE0A58E8E15DC75323B
 
-99 45CEAF1C06C26C3E74FB831D7A21B61BDF8A3EF6555F76D92B9155CE3B7BF50E
+93 C0E537B09F144FEEC125C4FECDD6B35CE3ED329B783B7EEF8D0B8EC5CE159182
 
-98 7A0894B28E38B9A89B6EBC867DE441842B1D2B4125C654EDDCD0D4318CCF0A8B
+92 B05F96C844955FC10952BD90ADA088B922F717BFAE849E016FC5AD9687678E2B
 
-97 60E3A029D0D1989810172AE1381D57232F22883B158723F6B20EFF1018EB41EE
+91 09AACC569E628D8A77777F4719058D451A47AB58F9C705D3E2CB5277F9F9766B
 
-96 2780B9B3F62B6DCFF86E6DF70EF76FEAFE855C6E646B8A2652251D1134F0BC8D
+90 ED7F143F5112579CDC59340894ED0286DF7DBD6C9EC77FF3DCF76A7D7ECC9BFD
 
-95 147803AC64505188AC4A6C5071A53CBB0A6207710A161CC50DFA90EF9EC15F1C
+90 E38715EB1275421D697D280D45E3D9BB2BBBBBAD026F66882CE05948147CCF4D
 
-94 F0FE63BAD787C0102F226FE4F6A5E3B68D3C180C635A12C8B0BB52E9E06ADA57
+89 A1852BE5C805F43010BDDA6FE59B443005E7D84A06963CB3624283869835DD6F
 
-93 6065C86AFD922F56490DBEFF227B7B1A3F5E420426138F16BDF82C723AFCC0F0
+89 39600F580E4262C540EC4BEAEC8D7B3816AF47F83D113BE179CF5D097F468DAD
 
-92 93F4DE4180CA605DEC172A5A44A8B3525B85C29277CF2104A290DC024A16D75C
+88 A3D12643CDA25AE2EC403CDE1D27C323F4CFB42ABE864149E118EE9106A7F5F8
 
-91 808DD5C7F3ED68FC1EA3975DE15EA95A41E422ACC17D02DB646479C8084A4862
+88 82851E36274DDBAA1F7E34F187A58113095FC2D288A0FFDFAF2D713F4EB24B59
 
-90 6E100035F4EBEED6FDB0C8CB0E40ECD04821058059C02661A1F2A1379BE2ABA9
+88 606FA4849EA780BF053593F93C137356538BAAC304A4A305D1E67BD7C97D706D
 
-89 EFD174F86C4BBF55A6C82EB768864E3CDBD4081B3005C7FBB97E5BC9A63C4B32
+87 AD21D77F74FA55AF98C01BF627BD309EE2A2BCDF2419185F4E4023D53D67E6CE
 
-89 7229098319C0FFE78BAA090127859980BC86B76A3439FBB1C1FD56E7F6A6A554
+87 9788EAA554F66B49D114FBFF35492DFDF0253BC51C014FC9FA42366EC967AB49
 
-88 9780E1F984161BC51BDE244FA9AF9973289E1C8CA04FFD115CF424AD37C15D3D
+86 4D2969FA37CC4BB3E7965885FD800CD8F34CBD185C4B75B796ABA61C7FAD1B0A
 
-87 2C8C9E6CAD7646345E64BCD158BEF7ED1DFA84717A1CF7E8173900D42C9B19DD
+85 FB83A271C365611BE1FF7FC50FDA1FF55C50DD42170C3A9BBAD2FFBBA60D1C7B
 
-86 5832CE02B67F8F3FAAD6B130C6C035FC1C817C29B2318474124EABCFF693414D
+85 8C85B83B7420CB27A676A5DECB9B9E795DCC2B5F046B269161313941ED516E0C
 
-85 CF105EC991C3883FAA8B2AFA40AFF8A52C83C0147E370BED041D392D59ACE4F5
+85 754F67AA8A3BF28090AC1C5DBC84AD291A29C6E0B61F5C353EF5978D3B80193B
 
-84 A5783DECE3628FD809EAEF87F5A1D0E776FF300BE39C1B957B8C7CB418B6EE52
+85 2E02B43B6615F7E0DBE79DBA01DCC1E696999D7C7187B0A1934998AE8EF0936C
 
-84 2730EFD97DF319E667EBFA6896EA5386F4E360734657F88EAD7577E08A0D089F
+84 005CBCA5E4023C119B2907A126199AB5C1E5CE5478C3AA0DC50611DDBF88AC02
 
-83 41370704DF7CBC9FF38C4E29879902284F3E4CC16E883F51FADD8EF78D273112
+83 04ABCD010868297F5BF0BD769C058B85A73DE4EA955E4A8409E4E7384636E88E
 
-82 97F320538641CD0729A3A7AAFE3771D97B35E0EF763BBE75F309DA685FF1B30F
+82 42C2B220E415EF489CEB8DAAFAF3B66BAE8DF37A67EA9E43955AA08893E864DB
 
-81 CA99E70394C5045B10B0BC26EB0AEAA2D42A71319401F90A9E1C262F7C3F7CA0
+81 07086E7EB1CCAA1FE137A91A0A013D3B49711F71E7D3D2B04BC40EEC64B59514
 
-81 8D8E1B0E5EA16241A77457E438DF348F23CE41C2A34381B5CA1578546DF23B53
+80 6CF338CD80256A1C46E90050C603A2A503E780B7723B8C96C55E19E3D29EC826
 
-80 9575F7C31EFF0F8D1CF8EE695DE6693236A8B2F50329240987C6D0B5A441104D
+79 121DCCCB900ED6924F84CF712AF327BBF978ADF4BBD992052B695E4FFD7E9B4A
 
-79 74275EE8C2B23DB999F400C73C734737ABA056A263B2BDDD1D25A04B361F3CBE
+78 19822FB469D1DB31F39333DE5D48965EDF5016C71342E409C2E569339DD91F94
 
-78 FCEC193B59A8022D33AECD0639A10BE5AB09802C5A65A857113E64BC2A6F9979
+77 B27F7E6C41C1CFB2D09251BB6872FD45F1CAE5E08AA4B16CA7015DA7E0EC46AF
 
-78 7446630CFEE779C8444C1B36BA23183B1D42942CF2367D54E6D4A337BCF35E2D
+77 400AB20DC6C2F1D30D6D34A89267DB13E32764FD7A42ACEAC3E81E0AC912621A
 
-78 39D4164C4E6E3DECBF78C5CA85B6FF244F057E26E9FFD376ED2422FEF3DE5AE1
+77 3D04EE25018D0DC9E6B2052D125509D0F362728032142BA7C4BD9744574B2193
 
-77 A94CF657CB8800792ED0FF17A3561247274AC5AAB562EBB99BED0D5E0F5943D0
+77 1ABDF74225A654D6C7F0FEE03A3A9BE6DC716354C97BF207EE031D5926242F23
 
-77 02F7FF49389AE0493A7DD7F437BB39BDBD398EB60D751E96F7476724113A7863
+76 A90189E81CE41CA50FAAF296508D3EC33C59591A787910645557AF123BFCDADE
 
-76 F5AB1F6790B6F6CCFEF2E0B7B2DFE5923281D8ECFFC652B98113F0FAAC946209
+76 2F01C50BAC28A62EA20996FA27E96A1E613704F6D4BC01BC603477EB087FD08F
 
-75 FE1571C2F21E49A1A858A24135585C36D7A56D116D5334F47F09779590AC1947
+76 2ABB681C74096AFFA7FAA035EC1BE10E756CCB34E445F45A752D9F203CA75A46
 
-74 0D421194513A242862348951B5AEA11EDA659E2BF482DDBFA48517FEC06E70B8
+75 C782D5D8E17C196D1DF3DC06C35C5858A7C4B769782C60AAE9A26653692BB608
 
-73 F69782F41D643C981615B2B462C1440AF0F69A92E07036235527C8E8FA5E8AF4
+75 0900E751BE9E2D18D870EEE27A0BA45B693E37F5373A53B876B6910D7EF20345
 
-73 72BB153E1E271A1061A701B8F1C8FBBC1D89C174B23BDA1F98855C8B92B3F06D
+74 4E9612CF670DA83CADD5250E0A76627EC7DA39B13339A96507F49F249049CDA1
 
-72 F2296DB3BCCDAE139D0728565FA80C66543B46659143425471338591C574D4BC
+73 B076C9EDF85F513EC90771051BCA9B9EB6EBDE56B1AF0936FC2728C33DD4BA6C
 
-72 8F07C5A602E9C12D2812DC3AA61CBECFD0BDC1C28A5F6FDDC581954941A40A9E
+73 A1900E785071A3BB4A5089F30A4C801406E66B2A8101E931301FB9E3147C88F7
 
-71 DC19C7A5B7AE34BEC388C9811C227ACC423BD972A8ED630A89BD6E197663B541
+73 70F931BB6D66543EB53BCBDA83F1C5CB332DE72BD09DAD9E030671AA57C5AE9C
 
-71 B2D21EAAC5442F31C88F07CB9C6359ABB1AE0465F5D669A97776BF59EEA856AE
+73 2D8C96B0BEF837641B25F9CE6C8EDC16847CDD841472C05A068208984F4BCF7F
 
-70 77C5986FFC76E3214CC667B13D3832998285CF60562F0CA2DDCFDC2650A1F65B
+72 FAC15AE975E8E533B6EF5EF0A1A600DA2C75428D7EEA51F13E8441F768852C50
 
-70 41AE47F3AB67BA44BAFD15F2310CA02FFDCF8C2FF7C53418925F02061928E679
+72 D42753E469962F4978C99E0944A4A4FFDFF59E323E045BF79D7B89A30D861D05
 
-70 3D13853A9292BECA61C82D53A1239C8A4C42F13CC35B281123E3C7E5E19B8C7B
+72 C22B72F2BF28D08113F27F8B71886891589E17E0BF793B5553787CA08E071878
 
-70 07D7C63706FA239FD110C113935D34DEAC419672ADB3AD9509F2DD9A50F83CD0
+72 5F5FEB5934E2CDE84AF2945D3064D0794DEA0C97B48E4FECCDB154A495B1926B
 
-69 C9118FF181E9C2F85535F0464940E47B2AB53385CB8B59B080299DFF8BCAC259
+72 24D950852033FD50350AE6B8BB1D7A0242877A5833234A2B53809EECBFD39141
 
-69 833DE4B36046627460DB864C3ABBF4E9C7B125B446C43616D97D94A0CDC93189
+71 A02D6E08854F78BC0525CB0DD7EB80D36780CF13E158FC763B50F70115559234
 
-68 E8261DA406CD463056656238929DBDBA9F04515422C7723964C826C9AE881487
+71 88CA02D2B02BE0E1BAC5270BB609B48D55389EDCAC6775C9D34158F2F0EE6BAA
 
-68 9400C5A14BDBF50ED68DB6ACA6A443EBCD3D962D6C310D920309CE77A93FC261
+71 809893F776555FC153829F56749449F5CF2313ED88B9DBBB1BF2C790FE4C5701
 
-67 CFEF3D165C1FB8FF65D8C93248D35187BD0FEBA516C3AC259426036CA5643C4A
+71 02A011660585CD849065D1D07C8E4CFB8B10CC6DDE30D81E74FDD6E3752AE33C
 
-66 88FAF5F4A0B53B14633F39501184C2588C3094927F32A6D80B1EC9A3FA977929
+70 7FFC5382979BB060546903598FBF6A5B3793376E1BE4D6B50B7B133A3117018F
 
-66 786F8CF2AC292FE55F2CE6299A802E30F63B0BF194D3553B00F5A16236C2E60E
+70 638D19B8F1D3D12D8FCBB2ECC9AF42442529D5C6F4D8E283EAFB7C63B7DCC969
 
-65 BA26CFC8EDB7C0DBCA6D3AC517E27994C79FA6D10FD190EE4C98AC224CB7F0D2
+70 393077B8E6C442C3C68A5939675E926CAE897F53B0FBA1A03960EA2B66EAC221
 
-65 AB3C1FC710B7E8554BFE27E35A925D6C9B0C3B6A8CD6FF8CA9D753500EF2F520
+69 ACF904E0EC19E709848F89FB5B28F323B03657B2FF08AD232D327022AE6397B4
 
-64 CF8F47801E1056531BFF6EAFB9427786BA9E46E4DBC4FF28BE1D57D342064A3D
+69 9EB580DED5271EB3528E6708E74E52A8D32A18984D42761C4288937F960B22BA
 
-64 9F89E91B818078A88A689A8255A900D189456F21F661983EF6A5FA7D03BB3502
+68 D107498A34B6C01F7E9FECD95179A7CCB2B55234E5D3486F8F252549BC46B602
 
-64 933AA3A510545C738C4C3302F0DF9954EE7210A46364A4AF32C3A102334CF89D
+68 7BA02AEC14A5B53B980E31CBC742025771E165C859787CB09376D86DCFF823A7
 
-64 2A2C1B33E29F6E194D3BA4EA877E9CCEC81490A8457E6F4DC12F2F5B4F96CEF8
+68 4B73C2AAD611E64AB7339AEFC0E4C3F4237CD0097CD58A06FB58943A5801671A
 
-63 A6BD422237FEDA0497A4740EC3F4CABADB72163F065DED852452A1754AF23868
+67 BEC6A4FA57D397B37F5F5E8BD7C814811CC76DECE60CF13AD5E1447FDAC55227
 
-63 675C31381F32A58E7706A9E6F517BB646CB4F572C9FAD95DAFE11A2644DAD023
+67 AF7FAA5B4D5DFA5361EC6A6107D1927DEF8CA07BBD3E8CF97859B00D1B8C2D99
 
-63 0E042794C392738125CEEBEB0E5B90482269A7399E4D7B2F62C070805F306D40
+66 DE3CAB783BD9FC46505579BDE80AFD87BD0B00795E9DC90FD887D46D3BC01F0A
 
-62 FDF6F11420036464B60A538C0342C1135CDF31E8EE63A961C71DFC45F1E3D49A
+66 A3280D44BC2119E83C33B7D649377F87BBD8A629691807C8E16B89D1D1FB8C85
 
-61 4168CA0557CC7A6BC34799272ACFC87FCE1314BEDCB5363DB7A07384BBAF1961
+66 2BC2EEC2575292C97AEA047521ECCDE0D736D6BC5395F13A4D02C67C8828269C
 
-60 AA05F2F17E10C0496B5EC72908A0F3FE6748D9EBB276C6AC468361513E6C2E06
+65 EDDB61267E5B35C85746ECA323BB51D549FFB5BA31CB673B9CF361D1977E54A0
 
-59 FFCD674F72EBFDF30140D35671963F033A79CD5C50EEC45AE83B1833F5B9F386
+65 3E49D7A820E8DE36EA33EB3B3ED62C6576C1B77188484203B679277D043F3AA5
 
-58 97D478C65F8F114028AEDE91BDB074412B6BBB34BF5811067559E92FABBAB859
+65 1216D8047B5810A742D3F61B0DC9CB9ECA7918A0F016EBE49D0B4EF0F3306446
 
-57 FEBE6CD50169E4B5EACC69BF8794DADB6BBD16A31947C860DF1CB8E662E0AD22
+64 E9CEDC1C3A594EBA002E860DBF76B7AF34C119BE9C9CBBD5FA3A2864909C8365
 
-57 E41FA2443F57BA677F6B778A2DB9B23B0308436A8C529D7B8664D8B51DD17207
+63 7EB15ED0E40B3262FC84B095A8A9595E896CABE911798F93B02173D9559E106A
 
-56 AC299512E655129DE85FCED256104DBA97BFDD07712DC01EE6CA17F0A565AAA3
+62 FB532D81B5165D66491F7F0853BDF3AA9F6E9880A5E575AC326FC84074D1BEBB
 
-55 50A6E544825F02CF198157EDA3E1F4FD335D0C4540D8A34158B37126B38FDE6C
+62 06712648739CD9AA855B04B68BF1660D090BFBB45C2B459B3C83204E2160842A
 
-55 275E99C4F3B8025973819979E161EC68D426A1B639D71EC4CB79C8F620B786DD
+61 C6846EA3DB1CE8782C8BD12B69ADE0A662C9D6C7E2F35B23DCF4C6EDE164AFEA
 
-54 CFFDCD0EF0240FEFBAAF49994C6E4AF31D51C3EE573342A724C65AA20EE16A5E
+61 71B4A368EE2CE3D8DED101A8BF7DF2514BADDEAE46BE4D90C48E18DB8E2892C9
 
-54 C23DF637D1E570FE15C24EB9FA3B76EBE79ED8CCFCC43A8E6C6D0832239480E5
+60 F998C0D12059C4C87B91B14F6B213BD0112746D29D3A426A7944114C553D9245
 
-54 10404ACB87E170A9F98A6DB92253DB3920090CA3895A1B93E725F404D1C9B249
+60 78780C7B0AA22E7B9D403F10064844B8EFAD0A7C10A303003AF543338BD0245F
 
-53 48F6DB195DC2B071568EB06A6AE71D2B7DE4A8B38B7116253F8A6A283B9C921B
+59 4A15EA7F6983B561EE5BD6A5A52793011C9B4FACC810978D371157BC974F8390
 
-53 311BD3FE48BCA946514D8E6680E7F396D79792A5944BA8C948C290A7A8D827E5
+59 00247CE94B448873001F9F7C4526ADC442A60C93F5AD17819B1CEAD08189D729
 
-52 E2FFD84D4628A4E83532086F74B8782EFA128E446D7A6FE8996F0B09479DB434
+58 BD5FE1F79F894255B2F100F3BC936481AFD2D1B8C45BE8441545BC13161B1106
 
-52 C12157DE106DE6812E72A31B288E8E8EF2A1C4E79A7EDDA2C097EA6D50F32945
+58 9E819798D1B67633A8FCB8E7B362F115A1597EC8E95412707D1FB1490238FBBE
 
-52 B52C470C10D7A97FA81A6C5C425558751A64C7FB02F6178ABCC684E3BCAACBC1
+58 536B973508B3A991B3C8FFBC442CCCFC3E7BE1E826807137F4205EB0BC574D6A
 
-52 A2DF1F85BE53A21B3B38E10712F25B36CDD94DCD53A5EA4848116DC2A957ED69
+58 1C682DD659015655722DECE62DF1A19BC0C5E807306F43637DE818093F9D0851
 
-52 3D6435768A3E4561EF7DB08B2679B37C055D18413C0B984A2CEE2D0552E184FE
+58 0CE1204F143F5CD0A1E36D284D42B703B2746C40A4AD3AD027FDA47953E7AF83
 
-51 C5932558A0911A6201C98AB456BE61A9C652EC4F091A219EF10AE937244E4F69
+57 8ED5F5153438F35C78710526E97213D33E329A59BD336F60DFC1966DC20F6595
 
-51 866BDF9C93D7E8DF879E6CC00358E2F69543F24B15D756253D8337D77620FD84
+57 1DEB955AF265970E3B6A2BEA07881145A07B4D7B03A7AB5D7630372FCA7A46AD
 
-51 658563DDC830F7A10591F861D5FF1391F2B6D7225A4DC97C079F651D72DFC733
+57 1C087BCE2FBD607F277B976B3277C460EBDFD17F0E3F486BED67FE6AF599B6CA
 
-51 64E01343AAE6CBCC9AA90AF83428B61FB3924D7D75B17F0F63C83FF77622CBF8
+57 1758D41D1D894E2A8B4A1E51E5C2B84FFF2DA4082AAC1B01B983ABA54CE5A885
 
-50 73748569BE6A262F4B2EDA867B8D24644A00443E15100D3B1DCDBCFEB3FA9CA6
+57 0B1E18A0815C172EC6920662CCDB6D884AFA158A480394249FE69E70F8CCEC81
 
-50 3EE81636B1D11C224CAAFF1A905D4D4FC6F7684A15D7FA7B9E260B3CAC6607B4
+56 F99ED6068BB050780B439483280469FD1D98B6305F4677DCFBFB37FB249DDC62
 
-50 1BA93E049E512E34FA54DC6E2E78DD37290BEDF82C306ACA5269997DF230F2ED
+56 E353CCB41F50623455447E2A039310DDDFE34D0497C86A7651FF9C67AE84F730
 
-49 EFA5ABB5C8AF126FE1BAA9DF74691E33034A9097BD3EEB7B35715048B7166339
+56 19421CE7A218D7D9B0E12A5D52320E37D9927AEF689548B047408442DD1D8A5D
 
-49 B5363F5123CD4B61A67B2C24FA9BC9BBF979A1DEC1C583BEE18C3C8D11DC56B4
+56 056F3D8990D3EFC6454DCF837F505089930F3D26853798A35EAFD7A8DA4C7373
 
-49 5BE056116BA3FDDD44C457BFEC2E68D6E8178C0C949D54D8087DABC81D1649F5
+55 8F01F28C909418154BAE2F50EB7E64C2DD30F75AAB3B376BE9517E45B3C6945E
 
-48 A1E4DADDFDD84887068BB4C3E678F58053D99FA352C98883BEA99203D3E8F35C
+55 72C635DEDDEBBED0FD73CCB38AC34A35011D1A0D9DCE4FEFA0772BEBE0E46DC3
 
-48 45BCF2335EA7BF91F9E1A74BBE788D143E45583F92F2EB5EFAEE2FE97D9E31EC
+54 F98183635D78A9F2995283CE319285F62D110698370A33EEADA59A2239C7CF18
 
-47 CAE9D1694812209A9024A24CA7FE1A1855713358E6A914CCEEAAAAA1F89CA9D4
+54 C951BA5BA099A8C46BD957812FB75164E654EE0493E4F629CCDDE5DEBF15EE3A
 
-47 B58FCA70BB06E6CF714C022A3FD52707901095F2E58D532CC1121310968B4E26
+54 A696473B1940B5E93745487CE0F0AA92AB54E872C0E13F686624E15E6BC482EA
 
-47 608EAECD8BCA1B65E90467613471145486BB6B6A01855DFE5E7B83C9349FE6CE
+54 8166FCE9E2EF1049F56D198B8B7F1D44249D709E3616D837C8CFBFC5C4739864
 
-46 7302E59A42A07E7E340FEAACFFF319BF9FED411F7166F4A6145CE73BE9113DBC
+54 06B282D483839D96167F39B7D75230E8A0FF809994BF19910AD678B40FA8B8AA
 
-46 3610583B11B7032D3816C2A6C8570D111DD9820D4E2AC00E738678826F6BF980
+53 F754B71A1C3790A258721EFF8D47DEDEB666A385299684ADA104E385E0D19F7B
 
-45 A8310E2564E56FC28B49F88674A100CC733D0C8FBE3EC0F8DAEE7B7DF4E7353C
+53 AC522508D15679CFE66B7BF8FA440361F3B4AB7E49A01B9F1DF18C55EC862A11
 
-45 077497278256248027557C4637AC643E7F3BF6544C0ED924EB4E1C361098BACF
+53 5EABBE0964ADB6B978A21230C8B51BE84AF0024A6E47651E8265AF05A2FC1002
 
-44 3ACF432F640F9DF3F569AC716F9F7458C9BC8ED76E464F01E5FAF7612D2E18A9
+52 CFA5A1CB86E060C480C89D22D49B00F70BEBFDD0E44921375757C319DAF34C6A
 
-43 86AEEF004FAA35693840BDCF94FA1DDB383F5B54E1E77227B480E61D1E631D34
+51 C76ABB01236D57777B46431F7C0E7A41D9949A8FBF9B07E505597949CF0276ED
 
-42 CEA1C01E619FE54C17C08C956C6729D1CEF0E9B023C027F0C8F3EC8602F90C0C
+51 B6D029F0E6CFD07EF16F41A63FFA22A88F00002740CEC226AA8984EA081E8095
 
-42 AC9DD3F4C871B80165DC424A3E602DE6E84D8F74CB6C5DD13CDD2297D58CEF74
+51 A35113725A9268C5957EC789DAAAA7A0B93686548211FA021896B4F8F421A764
 
-42 49EDDCB918529408DB04CC742F84ECDD87521E40455721AA8A7C1C799FFB6C82
+51 21550696EC6153C02BCFAB13C77CA005F1F92E80A8D1CEB3432B880A936C451D
 
-41 698F0BCCA27C56D7B1838F0DB16C0CDE3029EC77A5A326A9EB818448AD27E7C1
+51 11E9AF24161E1DF2E244748943B480BBC0F2103A5373A9A073CA35DB18AD07E3
 
-41 4BCAB882D8E693F7D6D3D77AEA71CD79191670BDABC9703F96CA3062A5A15D5D
+50 93AB41BBD4CD92E06834921C64A4683E40E509A75649D5EA62EB8E7820BD2DAB
 
-41 20DEFC6F875F3D4EBDB1A6DB50883181A7E790F89B4372AF46AA9DC0BA507705
+50 91323B4C9EA8731F52824477C16C5E50134303353EE804DB470B6BA1C8C34B6F
 
-40 D808BAADDE887CC6F02E9863528C06CB42C201EC780165BB109C4246DB414013
+50 63F2ECDB075E114A4F17D7210AC5BAAE9F536E7C44BFA0FC80294549BC4ACB32
 
-40 1A6251C287D94AA92AB8C5C8C7EBC2D720E784590CA6771DDA94E4F1D23B16DD
+50 0F4AFCD0CE0AB56AA10802CFF5ED422AE05855E37EA6E5EF4B094F60DAC9C1E7
 
-40 0255905E98DBDE9E9064509D0DE90E0FD83753BBDC815AE825985399705AB7AF
+50 06F8C7FC7BFE7F7DC7E9082E6CC6D0F3CC33C3B9508A4AD8E9A9F64B71019639
 
-39 E1312A6D92F9C2E97858EF1C65441C3825E1AAB069F349FD25957701BA3DDAF9
+50 06F0D06A909495D2EF0CE906582F11391490FC10C2F04FF185A7F4617EF70578
 
-39 645F29F0BDDD91AB82B764CBE1C5AA6E619A69D0853F00E9E0FDAB929B172E66
+49 9F7321D9DBA73CE34C1E77964F41021E61FF67D8738892490893DEFC609403CC
 
-38 448090009408622D37FBC386E7C1F6F02B8B96EDF166C242AECE9D1304DBE3FB
+49 3318A7CCA096D274FC63CFD0D59BC4AF8189301F3CE825C9875A9B61752DF94C
 
-37 B023C0A9E5FE0EBD72E3EECBC805E6058700B9298327254E94EE97C21B538F97
+49 1D73F06C2E0B2A40D124325AB90CB35457F2F1533D6577110DE7B1B5B67E1B40
 
-36 7BA5BD446C5857964F143631A1C4AAC35ED55751EB599116F38C02019F5FDCDD
+48 18E5ED9234E838914544B2B1646B5AB5533B730578EEB4172D5DB9F0816EE29C
 
-35 DD724623C256D08149D080A0683DC4EF4B614118EA03CDDDF757B2345DD9459F
+47 5DC0587B0FBC0968C73A8F96FBA9A1E845ADE712011183CF18B5F6FCBEE4000D
 
-34 D40161AF563FC504D916A59AB782E562DEFABB8F6AC75505D26CCC87D61AAD5C
+46 F040222DAFAD1A99E496662A1868E600686DE43EB522B7F9F5B4DC8F061216A0
 
-33 D463560EA3444E2F79FAE8BE0D8F2DA90A4692D150FE07D42187926A2221C573
+45 97E29C1DB2AD2D1E92931C417C3BF9C91329BEAEACB2D60FFE9308A5F4B81B65
 
-32 DA98310C51323EDE4734E484CBF3BA1FE8C35C66FAD24CFC5D3D73D401BC4FC6
+45 4C6BF630056A9C8D87B664533B353C6BFBA225F0A61780A114C05604E8F6FB8D
 
-32 C983C2029C1AE32949F8C81B44CA32CA61DA493FD2E075373E4992F30D550494
+44 E79EAE28ECAB62B20CB8F33193F0C4D8D241A57DF83972D6C049C77C92ABC06A
 
-32 A0D27FF9F6B5709B30109AADD945E2BEE152953659AD4A301F349FF1FC80221C
+44 D52CE8F2B6CC5F2403041A257C8D43B96E5FE20BE95843CD6C2D674C52CED1A0
 
-31 DE555B710BD4AC2DEC2C9DC0FBB9951A278A88D80254078226473A0811146C73
+44 C408C8B41CD317F0FF0AB503AB8DF179FB6E4EBC8F8B3E7AA538102FBFF497E5
 
-31 C158D748302D8DFC271F33ACEDC92F501C5F468628543FA9FE46B1107695B4D6
+44 7401515DE5B5CFDAF8E7CDE23A513D088DB9FC02C0AE82B2F6BCE41C1DD2B131
 
-31 70FA4E9102048D84CAF80E9780B48AC99EAF7BBEC703C4175DF05B69A3AF8BCA
+44 4F6D905416579ADDFCEAF4E098FB17A5D2E421387B230A53303D1FB8A9FAF594
 
-31 2A5435A70EF23A44255E9A043462F407FE08D121AD080899F6EF67A74EB26420
+44 08C39C9EC1B077BFA0AED89633CEA199BA502B94A5A5FFCA9EC7D8250030AFD0
 
-31 0F300D0112E04124B4154AF90772392D0A7CCEDB93D2D8C43BC9CF37C3568673
+43 E1C008DC64353E61D6B0B7DE787EC16B185923855A6B31CB2B419AD46D9EE61B
 
-30 4E1E54884530813D6DC72A8717E086A87022E53D21856A9C2A9938BF3C09ECE7
+43 948BA4A7DCA0A79C0ACAF27B93F0B9E67A2C8D2C3F691CB989E26C6628707270
 
-30 30021EC282F73634FC7AFD7F26D5F0D53A7AC9E0D570BC44ABCF27561BFED06D
+43 8E819F396B47169A7F24C8EB1AAB4229981B04FC482C7D375EB0026CF9EFE077
 
-30 2A1E59A73F6D3488B4C00A0F419CB8BC96D04C4DB0A61CF2B3C77DD59D7E745D
+43 21F6AC635D92E69A07FD6730084646C864622E88ACBB1E0CE8C90926BD166E04
 
-30 0A77EA3076771BD6F60FD8232E3E9A134B56078038FF2EFF9996837A2075ADC3
+43 0F2A248017E3409664265123C7DBCEC1CA99CE4090F57891FDEAF6C7DD794E29
 
-29 F56FA4C6384D6906EBE6C611E987519DAB595D59C14BD5CAB4FEC8AE4D050674
+42 B286B9672EA10EED0851402E3046B255226DAE955A27931B93302FB61B91C3D1
 
-29 8ACC61097BD732323C9C7F57E55B10D9F661F23421A8A947C93BAEFA073C1B18
+42 4919BD117CFA77E88FF8DCCAA9C3A75E6C8F16FEF8FBE591DF6256B36B1A3DBE
 
-29 238BFE1BCAD860C8D2A35C807B78031EC5C107E3FC9A79C20981C87705A77D5C
+42 4357F6184B9C2A77291CDB582EC566BD9D690C43DCB392DC4A15C5B9466EB978
 
-28 CF8DAE4050C080F56D0EB923F2890018AD50F5AC8101861BDA9B572F03862C19
+41 E811A36CE65A8AA901DC2D82DA9375FD7462F9F019D19DB2F0B9947BCA6124DF
 
-28 145793244AF70106C79B2E45D7C93AE319ABBF62858462C19C10E4B6D0B45351
+41 DA875A362D3C734B24B39504B792CFB417076A9F500ED2632363B956CB80DA05
 
-27 AAD6DF0F623B1A184D107099B40C9774B9CC7D6A83864654F0C5551BC14498CA
+40 85E36B33F8CAFBF471F61AE44D1539CCFF86D9A848A21463B30ADE5FD6EC9AA8
 
-26 8A7AA501E452163FF15D043DAA8C3192577ADC5CEE678EF05981E740CD89D6F5
+40 0AD369351BCDB885ED3D90B0378C8969A056BFF7BEA77532B8A1BEA1EE9CBF52
 
-26 5155B435F361C12C54890D8C7B524E276744D2290D3EEA78CD8DBAC1DC4EBF38
+39 AED18C00066E7A0FE94C2F373B57BEAD7E596E5A61EE3565E85B6545CE3B4B4A
 
-25 10D0BBD0BBDCD9A15A613234D3081B96C1BB3ED503A72C3BB9CFBFD18B390790
+38 AF5428C42391B4A7FE858069C77788DAA5B360F39B189DD6D348EE98DF25F2AE
 
-24 EF69699460E550F8F48F987B3B68D5A398520BF347BCF2A616F9BD6DAA3D5051
+37 9F583CC1A8B6D940EC8E0EE08627B5CA27D257EEA16EB30E2C59AC56EB23E19E
 
-24 BF9281A39A113447009C0E2E8514F24B4FAEAF655110BC54E8C133F1B20957B5
+37 7A7436C8A7C4BBA0BB67476A1676C57A1B4028211EBB59A1899A57B5D6456263
 
-24 2C8B1F40442DBE40B6EECD95DBD9B1CEEF78F41152103C6138624D51407B7AFD
+36 FF25CB54823D16DA25A440769676F779A54ACBBABBF549FD437DD8A284039E40
 
-24 09BB47BC36FAA087E0317BB2EE57428A4AD38D97F3A341BBEC246E2829F4F7BF
+36 BA0C007740BBF7F727C51F73E856457E87CFECFDDF2A3CFE520F68F10F668524
 
-23 F98903AE0A2E4A4928369A900679241DD3ECADCA8DE32E875B3B97E790529B73
+36 97D0C8B60F891ED2F5D05EAD493739C4C589A194E4F9038F981F063B03CAF0D3
 
-23 AA16B6B5E1BD9109831700F539663E3EC10FA47AA1A8BFC2DEAC2F16413D10F4
+36 3E93E7D55A4730FD9C2145BEA970AC5048D409016B78898632A3AB8DEB38CC55
 
-23 43336EBB325ECA7CD45FFB69BDEFB5D4EC52F6357634ADC908ACDFE63D61FDD4
+36 0619C7E703E1D0C51CB5FA8E08C2A714E5149BC4F70571F19C02B206C872DF71
 
-22 EDE8D713D1A6147D479648A83F25ECCD742CCF34E3EBD7EED1FDD100BDD843BD
+35 F13EE156161DE7CEC591E7DEEC79B3419BF5A43CB6196E7803A440CFBFC593BD
 
-22 D4D9E2FEE7473A4EC22EC2A13EB4B1B57DC12D1DBB7BEAED71F7F7002C3E71F7
+35 BF902E779C5136C66D04A4C69CDDBAAEB412598270A557333B5F403AD1D51989
 
-22 A479074A59A1048D280DC8BB6EB62FFB7A356BB058FB5EA6188CC2728F929E6D
+35 6429E2599B0E7B7E40A5A0F75B2FA48C983C2ECD0127D31877B10FA9963EE723
 
-22 1CE60291F9453C205C34AA9DA4C1369AE64988467E364118C5C9547EAAB35109
+34 DEC60349EB141CCFB14C75C635510EEA9A06EB1C0D21FB922EF3DD7205ABE3D7
 
-21 C32700DD4BE7B4FACD027D9F2A01DC7DF2505BAAB0FDFE569A0C553E3421EDBD
+34 AA06F76B59FC39F1E77928D1A3B96AE6F66A87471B89C0A06DCA23F4D0DAFF05
 
-21 AF6F2544E1FEB5D7393EF18615FE8F3D6A19B7A601EE2DB656D4240DF174FE09
+34 8D24B5811F6303EBA4EE448E5535CFA64F325D10F96B35482ADB2FAECD065315
 
-21 7E79C551B428B8706E5037CDC6CB893CC9F283325AEDCD014BA12DA326F906BE
+34 258A7C9137F3D19A68745ACD378EE3C4C69C9D0873BDCC5C8F42D4889650305B
 
-21 166943E617FBCFD9CFDD41E46E501DF0F4D42329D3C5C7607EDDFC17F3222815
+33 E1AE547BE0661ADC84F942C21BFFAF5078D617D0E2EE546EA7830E50668BD6CE
 
-20 A2490E09535419FCFF55B44D5A5B95BAA98CDA69B1B04D0DC6863E491E87F580
+33 C86D055FE5FFC7552C0D8B9F70116B5384583E6C2BDA18B1787B04A8EA012756
 
-20 86AADBEFCB5F33609D7088AF4FEFD2BE1AC7D59CF4F054224462EC8C7968E7EB
+33 798D5386BF6062BBEEB341DADF16FB9783098D4B796B2B37D3E1B636E952F638
 
-20 668E54F28734553BCA7D9CAF890A1E26BDB26D7ECB0371695BFD666E425B07AE
+33 562D3E0BB4B1CD12C402468FE9539055A0A4020209A3BB323E876D92AE41362B
 
-19 8D7FA164922759199766394062EDE4236F607194C84E3423A72C3134BD2BF7CF
+33 2817CA5E86AC86F1928807A00617957415C134A1424C45888CAE54FB620E49CA
 
-19 7D30F80B2098D3CFBF9C5200423E4A5B6D3899C532AF54DD5A8E157FDDEFA317
+32 CD1F12C0AB142A874AF7FD564E9CD34E873CDE12CB00371F67E2AC0CC6AEE325
 
-19 3C90A9182661577D1468DE0E96A7323F818914CE503F43C408B99C696F1F7D4D
+32 9F255531605A789F993B77184B6F8DE9FD4439DDB3ABE7238C8EA2B9832B7A9A
 
-19 23B1037ADA3D3CCB335A7AAEFE04803210EB0287846ADDC96D782B86EE1B94FB
+32 75D9EC263595505F61B94E450EC16653EF6677FA6E944B2C7A96516486F325DA
 
-19 0BCB8088DFF30EFB5EA8B3CDF7F1098A3E485CB833BDE193A6B376924602DFEF
+31 BB124D53DB38FC001B64627D4D2AA90B3693B13AA7B6DB2CD7C3140B9EF3A8FD
 
-19 02C1592DB710B42744327365910159DA9A26720D24F7EB8772368C11B07ACE08
+31 636733F63761ACA85E3A6952A97DDDC999CCB90E1A7454DC2E0DB850A71C09A0
 
-18 D220A0A65E9C615B98858FAB6FA7B3E8AE9C832B2D0A888C830F6B9047531F2E
+31 562F8B5808F192BE88A5AF1635A33B76F7192C9612BB908810B4650C395E38A6
 
-18 CD5D0DB6CE293F2CF60BED9E5BE37C20E231F7D4C5608DC7873BFF123E922B64
+30 8D02AED6F7EEF1C8BE4600445C1DD1B13EC8C51E94A2A07EA1417D3BA5E03F0C
 
-18 B2CF0BC15EB43CCDCB683324F8B10B120735B9C85AEF45344BC91B0FB49D9846
+29 4361ACA41FA77D8401C20461D13FDC6E6D22538573E7C796524B6D0225BC6547
 
-18 939E23DEC2EDBAFDA06E1E85BD59B6A377874265EED8925106D71B3C3BE92F82
+28 80C1AC6A0F1BEDB87F98230937042F04D6D8D20E94E83C206F8DC06BDF9F6D4B
 
-18 39432B0092DC970D893138D9B37D277301F5D1312D6AD57A9FACA41B519671E2
+27 7247B83817B225966E01B51A5C9E0A48A6ACAFF77830CD8504C707F3476C34DE
 
-18 2417BF446C08C23800EC78D56ABD57BB42F9D8EF5BDF260423AB711C34216F07
+27 6CBBA189756D0D001D712847477BD76B3D8CA40C8C7CDAFBE95689BAA200A491
 
-17 EDDD8FAEE5F14218F6945EC6278DF964E96C20042A09F6D918C2D6F936453AC1
+26 5C431FF02CBF06ED9296DBA516BD74650F6CC76517132782AD593E638FD06320
 
-17 A9CC2C2756D26B7B45FD0AA1ED1721B87994DC18931DC0582B05EA76E2B585B5
+26 10CC1A93B4D15208806985622A1BFA27B4ED5A30BB182A95DA38D5E8DB7D82B1
 
-17 A16AC0EB8A9B3A6BEF550DB1B536ACC4C621230AF160E2C9A92BF333D4769E4D
+25 AF48DA3D9B4A83711E41463CE388C7EE3DB872ABBC93F4DAC75BB667D5A3FE1D
 
-17 7C370CE954D3E85398906DE6214E56379C4E277249D58ACB29529B4A8EE4EA75
+24 FDC12D714AA001405FE1B735FB7E08469D330E87BFECA69E641A53875BF33649
 
-17 6EADF7B5332B3E93E7034E3BC4CB2C47C1791E46834F5A4170EB707E715E9FBB
+24 DBC6C5AB53AF4484FA3B9131E8DDC57AD22C17F4DD09045F8655CF997C93B697
 
-17 509E310B36C91EF675617310F894CC73FBD13C6012C19C4CBA14473DC626FBE0
+23 CFC9DD3147177A12430099C57C690BE115126EF20728402FC0755D117C050A22
 
-17 3282EDDF89F110348F7367BC4433521ED3DE93CBC4CC5A7A57106F3B3901426D
+23 713ECF2011ABE2EF913EA5218AA6978F9D70A6326E59B6B5E3A050026A7C96C0
 
-17 2B4379AC467F8295DFB1506584021C61096DD6831D688351B476811D857545A5
+23 24FB5D1044B013456DC9F92F93C5DA8B33FDFBBD8734EFFDEF960BF10C0F7202
 
-16 EC966F22E75548E1AE2C99DC67DE5B2A6F612375CD803D87A07C4AC525A557E7
+22 9662469577B7573DBC81BDF2FEE619AB46C838D5452BC997882CE74392FC62AF
 
-16 D8461FD453709D9BB6D92A7731C62BB60B8C6228C0495258614AF8A81695A8C4
+22 4F339E331784E2126D36FC0C67122DEE95D256923B01796A7862A14F2BA6A7AB
 
-16 BA48CC17CB1A7EF090244BC86457974F42FB242F9FA27FCE9A8AB20B1A62E4DB
+21 DD79224D0488BD40AD7D3CBB556D19A025BC912000428BAF64B8AC63504564E4
 
-16 B712C5B19604C6B6C7B4151669BC4D8F736A15EE706ECA8DB9AE5277A6C42405
+21 350863D83ABEC88B7FF9AD73BE4C45407CA127A3AFEC4082A97A954B67BB4922
 
-16 8C756B2791E67DD7A2F234EA0ACAFDAE7693F17B0CFE624660281096BCD4DDB2
+20 6E8ACE58C07A3436FAC8F70366245ABE50A01BF59E82BF90864478C48A60D500
 
-16 7B6476E4219F73A7EB2665FEFD4ECBA55E63BFF8FE265A3A082C7BE98FD31572
+19 932A5FCCCB6033DE3261A54F764A013795172F3A71F3F3912506034AD31FB751
 
-16 249132E2873BF874F21A45DFA8AC51F54CFB46D34C60602F51808C7EFA10D853
+19 637D446FA01556120F253F9099B4E5139C9074FA92853B722E6C44452D48C385
 
-16 11E388A0D662130FF0926B8E90E5C838741649B94ED999EA275A346B83F85CB5
+18 EEC10A2DEF45615E4675DA2BC249CD21A90256F06749596A4057B78121F0B00E
 
-15 963B13B6C397FBF96A2A008C68DE1011756CADC2AE993D6166A2BBDE337B227C
+18 5FF14E52F997FC1C81C4877197A0D60683CF4079B1086C745AA08F3A5EC1D7ED
 
-15 8BAC0EDD60DC17D3BA374508E747F38FA8B24DCD0D10C5C4621CDAAA9C0A1880
+17 81C73164A3FF5334FAD05F7825A07A88D5A13E431B1FF3C99EAB5B64381F8A6C
 
-15 7F39007BFDAD8BB915754FCFC812D04A8CDEBFB6940CFE4B0FB418A3AF25CC03
+17 12631348000A1B0872B1A1AA52A159FA8C1AD11248BD5AEFDB0816E5296C67FF
 
-15 5F941ACADC2D5E89C8ED87FA04FA6AD0E1575357F78E08199FF419C1E9752B0B
+16 0D7DB9FBEA493D2B4C7FC754763D76513C4CF3043AF6E098D6C40F00867F53F2
 
-15 20BDDD4BAF8326D94CEE861F3739E97B1D6F26C47503BD0550A7AADDFA517C79
+16 0AF10C160BF3D4866559A22ABFF49E9766741715C1DCCB333698FE905A7A7D1A
 
-14 F4F51F45B9261DE4152E88BA07EBBCF5AE0B765E06CB223747BFA3747B49B858
+15 EB70FE69F06EB34CD4B8FE72B2A3BD72A7CA4062AC74C8A0230177FDCA34964F
 
-14 C0B4F27F7A7CA4945C9100B1B0A93351DD48E38BA8D76450F0EB68AA26173E0B
+15 E532E5FF6DFE9679C20BC2B30C1B897F33A63E6A6B2648761C659D83B2617165
 
-14 7519583305FF4F5DAD3E46661EEE8FCD7E26C532A81CE123BFFC139F40A257F6
+14 9112E96DA8D47A1AB89DF8E0FF2DB9AEBDD815B4349E140AC33B9918A3376575
 
-14 2448A74961135B9C8C266D9C9C4ACC153B0DAC6E4735D194C86D6D4B6A080471
+14 7A2E2FEB82D1A52AD95D2A3E8003E2015CA3E725CA2E6FC4A6663F8F02606C98
 
-14 143DA14057AA9A708E1A53BFF5F276E7493C54FFCEE14FDF0BF1B207CCE49B40
+13 F97B9DBE104B344E7E332C74A4D077AAAAB693807B359683529A26BEBAD8C98C
 
-13 C7170588308FFB3F5F72D8E98F54AAE0C07374E30FB12AEB89ABBD38D7770CE9
+13 EE17AFDA27ABDECEE5D44EC67B29DA3A9854A75F09991D458C772C53B1AB6140
 
-13 C51226937029E946EE19D77566159F8C68169788B26489DB5D912348CEED77BA
+13 A73E3D4340A9E66148981D4742CEBE71ED497D1F63301CC3B09A859E8EB7AF41
 
-13 6EE6D7182BE278939B7E2C9D60D14D8705484AF305DA53686CEBBD68AFB4D11C
+13 69C883910AECC455F43707525EA5EE5FF57D191C1811BC1987A491AFDE0A00D8
 
-12 9A52306BB628021C603B24110AE3D111F36C18AB23B3C9897F9779ED365DA6EB
+12 CF9C56FA2EB6971E7AF1F2837FF69CCD355973EAF30C65A5A40A13464A5626ED
 
-12 8A347322DD722EBF6B08FCC86DB1DF0EA146ACDA17C5E698930A2DEDE18CCFC6
+12 A658DC9327C7A59C88B00759A2A7E4F5C3700B640AC0704BA7636825CAC5A1BA
 
-12 57105731C47AC669AFE7C9DD27E0270C5BBD8F60EED596C35611A5A4A59C7B49
+12 971875CB53A7F4AAB21187DFBA761BDB510B03D8CF82EFA6DF1F2052710BFC0C
 
-12 09F1211036C2C97E218FCC7C3445BF44861118C4DEF720B1AEDCF374A0A8F451
+12 81C79FECECA17920EF5F4CDA6D3124959D34B6D18F570392EEFF4F2F265BB0E6
 
-12 022F4C7928353F9BA33D719FA61454EFE0AE25DE98A907A03A3425B5E90F348A
+12 7C85F8B5AA3D77372BFE196382A8FC5E37133A37E436A0511142912C58A88CBD
 
-11 C73B665FB43CB7383D04E0B22912ADB46017361D3B805FF3A788A458D03762FD
+12 7B2EE836A9B9D1F9A5B9CD7EB84F3B8CEF5B9D3417BCFE73793860D50CD2AC81
 
-11 C600D1C7D39FB3CE9C315EFC6A7358CDEBACE06C77241EE128A8D161622CDC11
+11 E4C3FB2C4D8DE4E752776F436FB0B17E0A86596E13EB889BFACB19B2BA0850AC
 
-11 5640A225790CC8B7AF870F7475DED498E489307487CEF940AE87F8863CF1207B
+11 E45557035D504A695BF9321EB3327B79C2540FD7A61C086EFA350B11281FD071
 
-11 5460960F8891F8B1A7806E4A289BC5DFE7BDE3AF0CF82DFEE91C81B87A5B7114
+11 7E8C69368B69944CB0F23B9C8E5C7D8C19E8C3D5353B872364CD5DB162B846E7
 
-11 4A089B53703602873844C8A8B4BBEAAA1894F08ECB683278864A20B1264F7356
+11 736B28D5518CF0163527F0ED985038D4DA7D5AC27DB8006FD07370DEEA4692B9
 
-11 3B2D1F903D5A90FA3D27985C2A0E85EF45D972F564FAF5CDB0C7AA008A7CAFE8
+11 7185AFC8F38147403959A4789C471204346E8C7F26A9BD8F4416C57C019CB55F
 
-11 32B2A8627089E887195C3FF260763721937AA5FF860F03D53EC44FF4B072CF4B
+11 2537D76D4FE4F518A99AE536ECB6D7AFD7ACEFA52322736575FB3BBF80D0AF6F
 
-11 107F6E55B80B308595DDE8B7B8E5141E160093CFD14564A985DA2BFC9DDD1776
+11 1D80E2EFAE07F579EAD07A2BF41D7632E830A68ACAE1DF9DF6D1DA32661E3F2C
 
-10 F420F6EC5AE28C911A7563D91FFAF641DF71F30025F8BC152C5E4E6303E00456
+11 118D8180A3E1C73BB9C52E90F7F419D77BFF25ADF0F7A8C1D3F41B5F85ADED63
 
-10 6D82ABC4A74AFB855177C87EBB078C187C8F33D241572699863924C3F3991F3F
+10 A5CC95CE561684A58FF6AAC81308E298E6B9D5BA7268E3258D915D4291F4BEC3
 
-10 126BA9D12C0A3D70BCD29FAF716B9025687D16C1E297494BDE0911A679E45A2A
+10 51BC9CA6F7A407EE41C5256B0808B99797E5AC87C39F9BB4887EF6EB9A74C624
 
-9 B8CFE6E4A94A9FBBC43D6735D24D4F52579308C77DA8A0AAC8F3305C17BC84A4
+10 16AFB3CA9C9DE5C0DF42B64428C123CB74FE5C6E425338343BC34F9C58D2E9C3
 
-9 7482B535A9CF61C0A5BC0657C91B44038EAA18F250A2C9A809B4095C76AE802F
+9 5A36AAA5D5AA4A7D2A6916D2F82BE2D5B75819600F371E09A4D4A0ED8810987A
 
-9 6CE531C1F502517F0B732871B62ED0588C0167DBACDA31CC3C404A9B29AD94A9
+9 414D5B20570C3D573DEF3796EEBA33FF1261D3AA92EEB11A3C427A8D392DA29F
 
-9 5B5FCF69529667D46CF978CC223677D8CD926087BE0AFC5B0EC4425339B207A0
+8 7011D1AA9129FA29B564AAE161AA41F76A2180308BD3E87861DCA65BBCCC21C2
 
-8 F2908914CE2331B81A65FFB005ED768F9A74EAE1DE2DDF7C474FC84746499003
+8 62244B5E3AA2723A937E7B6D6A58DFD0193AC757FEBE9DBBC0B247FC32DB580A
 
-8 94560DB0723B33489F88F0A322726B213EF80A4C5EC3F623053E3AB7C7D09650
+7 EA4D1BA9DCF6CBF8341A12CA605F7142123954660698106451113DEFE91882EF
 
-7 1A7090F072D6EC20FABA0B30D300FAD74D1B50D31C6C2B301DA2EA88CF1DF409
+7 D3674AB969AB208A8EC97E2BB45BE49AAA597C94C4B241242830D0DEB259E8DE
 
-7 025A7ED3B9F913E75A28E183505DB5889316CF17F288215154948F2C1096EBE0
+6 F993A49D059E2B88CC5E414774E2016E4714CCD4AB60950BCD55327E3DFA0894
 
-6 A4B0DCE2DE9436C66F51F37799D79000DE1CF11B6BBDF71BF8E3319F9C0B7B9D
+6 C99577785A9046E2F3F4B512ECA451D272C096952FCEBA369E3F2FA26C7BEB90
 
-6 8812317BFE61D9254814E587F0478C4814E5469B487B67942CA24E008A4BED4E
+5 89649E30EA1477F453458DC55AC2096D6D85CDCA79220E996B4C911B7E26C478
 
-5 C2E569E61D6B4CC8054355CCCCC10BC4B6AE62ED38C75777A90D162AE82EDDB6
+5 0CC4BC806C9792AE5B014194B7799F3BDD522EF1187CC29213C72DC665EDB742
 
-4 FE483F4267855DA1E96D9C31D55443D74C783673C576DD9AD97BFA391939017D
+4 E717966A5FA2846D478AB32ED22605647E10041C23C55E30E35B586A0974C473
 
-4 AC7CF2916B3FF7C4D7C42D8DE6618FA30CB7D8560DE46631FF31BA29D77A9439
+4 B51708A72EED4769F397F730345FC9D02C711DE1DD1F9A7E0D0D64A8BCF5E27A
 
-4 4EF0472F03A5921DA11427B19ABAD23AE2ECD1874A37365E6856F5E43C46AB20
+4 3E246B84825E321BE731BAEB62D9D73EAC67BDBC6DBEDE28F4932927A98507F9
 
-3 AA4E3DD37D6BC4E135D75BD5E0B05458B3D0B631C3DFE6D550F2A44DA8F9E106
+3 C66069F7C58CDDF0EF3A36CFD22B4B4EAD836322FA313E2DAF69D49BE79526AA
 
-3 88B5CA1569F43BDFE39F532C6CAA492F71CA035CF3E05D00B8F69BB6B38A37C3
+3 53B68AFDA22F8DB2FB6BABE2FB1D55A5F5FC5EB4163E272DC6DB199F6D9D6C60
+
+3 4D255115D193720B8519B514548BB2D2323F942B6CD5D8D659B57155470F61AD
 
 2 FB42A4F2E78EA2F6BFFC960E8FD44FD4EAC3FB6F90100724A3D17D375CF27AC3
 
@@ -1216,206 +1250,207 @@ This block has transaction already taken
 
 
 
-Size of the BlockChain :232
+Size of the BlockChain :233
 
 
-To early to delete 100
-To early to delete 99
-To early to delete 98
-To early to delete 97
-To early to delete 96
-To early to delete 95
 To early to delete 94
 To early to delete 93
 To early to delete 92
 To early to delete 91
-No deletion : 90
-No deletion : 89
-No too early but deletion : 89
-No deletion : 88
-No deletion : 87
-No deletion : 86
-No deletion : 85
-No too early but deletion : 84
-No deletion : 84
-No deletion : 83
-No deletion : 82
-No deletion : 81
-No too early but deletion : 81
-No deletion : 80
-No deletion : 79
-No deletion : 78
-No too early but deletion : 78
-No too early but deletion : 78
-No too early but deletion : 77
-No deletion : 77
-No deletion : 76
-No deletion : 75
+To early to delete 90
+To early to delete 90
+To early to delete 89
+To early to delete 89
+To early to delete 88
+To early to delete 88
+To early to delete 88
+To early to delete 87
+To early to delete 87
+To early to delete 86
+To early to delete 85
+To early to delete 85
+To early to delete 85
+To early to delete 85
+To early to delete 84
+To early to delete 83
+To early to delete 82
+To early to delete 81
+To early to delete 80
+To early to delete 79
+To early to delete 78
+To early to delete 77
+To early to delete 77
+To early to delete 77
+To early to delete 77
+To early to delete 76
+To early to delete 76
+To early to delete 76
+To early to delete 75
+To early to delete 75
 No deletion : 74
+No too early but deletion : 73
 No deletion : 73
+No too early but deletion : 73
 No too early but deletion : 73
 No too early but deletion : 72
 No deletion : 72
-No deletion : 71
+No too early but deletion : 72
+No too early but deletion : 72
+No too early but deletion : 72
 No too early but deletion : 71
-No too early but deletion : 70
-No too early but deletion : 70
+No too early but deletion : 71
+No too early but deletion : 71
+No deletion : 71
 No too early but deletion : 70
 No deletion : 70
-No deletion : 69
+No too early but deletion : 70
 No too early but deletion : 69
+No deletion : 69
+No too early but deletion : 68
 No too early but deletion : 68
 No deletion : 68
 No deletion : 67
-No too early but deletion : 66
+No too early but deletion : 67
 No deletion : 66
+No too early but deletion : 66
+No too early but deletion : 66
 No deletion : 65
 No too early but deletion : 65
+No too early but deletion : 65
 No deletion : 64
-No too early but deletion : 64
-No too early but deletion : 64
-No too early but deletion : 64
 No deletion : 63
-No too early but deletion : 63
-No too early but deletion : 63
+No too early but deletion : 62
 No deletion : 62
+No too early but deletion : 61
 No deletion : 61
 No deletion : 60
+No too early but deletion : 60
+No too early but deletion : 59
 No deletion : 59
+No too early but deletion : 58
+No too early but deletion : 58
+No too early but deletion : 58
 No deletion : 58
+No too early but deletion : 58
+No too early but deletion : 57
+No too early but deletion : 57
 No too early but deletion : 57
 No deletion : 57
+No too early but deletion : 57
 No deletion : 56
+No too early but deletion : 56
+No too early but deletion : 56
+No too early but deletion : 56
 No too early but deletion : 55
 No deletion : 55
+No too early but deletion : 54
+No too early but deletion : 54
+No too early but deletion : 54
+No too early but deletion : 54
 No deletion : 54
-No too early but deletion : 54
-No too early but deletion : 54
+No too early but deletion : 53
 No too early but deletion : 53
 No deletion : 53
-No too early but deletion : 52
-No too early but deletion : 52
 No deletion : 52
-No too early but deletion : 52
-No too early but deletion : 52
-No too early but deletion : 51
-No too early but deletion : 51
 No too early but deletion : 51
 No deletion : 51
-No too early but deletion : 50
+No too early but deletion : 51
+No too early but deletion : 51
+No too early but deletion : 51
 No deletion : 50
 No too early but deletion : 50
+No too early but deletion : 50
+No too early but deletion : 50
+No too early but deletion : 50
+No too early but deletion : 50
+No too early but deletion : 49
 No deletion : 49
 No too early but deletion : 49
-No too early but deletion : 49
-No too early but deletion : 48
 No deletion : 48
 No deletion : 47
-No too early but deletion : 47
-No too early but deletion : 47
 No deletion : 46
-No too early but deletion : 46
 No deletion : 45
 No too early but deletion : 45
+No too early but deletion : 44
+No too early but deletion : 44
+No too early but deletion : 44
+No too early but deletion : 44
+No too early but deletion : 44
 No deletion : 44
+No too early but deletion : 43
+No too early but deletion : 43
+No too early but deletion : 43
 No deletion : 43
+No too early but deletion : 43
 No deletion : 42
 No too early but deletion : 42
 No too early but deletion : 42
 No too early but deletion : 41
-No too early but deletion : 41
 No deletion : 41
 No too early but deletion : 40
 No deletion : 40
-No too early but deletion : 40
-No too early but deletion : 39
 No deletion : 39
 No deletion : 38
+No too early but deletion : 37
 No deletion : 37
+No too early but deletion : 36
 No deletion : 36
+No too early but deletion : 36
+No too early but deletion : 36
+No too early but deletion : 36
+No too early but deletion : 35
+No too early but deletion : 35
 No deletion : 35
+No too early but deletion : 34
+No too early but deletion : 34
+No too early but deletion : 34
 No deletion : 34
 No deletion : 33
+No too early but deletion : 33
+No too early but deletion : 33
+No too early but deletion : 33
+No too early but deletion : 33
 No too early but deletion : 32
 No too early but deletion : 32
 No deletion : 32
 No too early but deletion : 31
-No too early but deletion : 31
 No deletion : 31
 No too early but deletion : 31
-No too early but deletion : 31
-No too early but deletion : 30
 No deletion : 30
-No too early but deletion : 30
-No too early but deletion : 30
 No deletion : 29
-No too early but deletion : 29
-No too early but deletion : 29
 No deletion : 28
-No too early but deletion : 28
+No too early but deletion : 27
 No deletion : 27
-No deletion : 26
 No too early but deletion : 26
+No deletion : 26
 No deletion : 25
-No too early but deletion : 24
 No deletion : 24
 No too early but deletion : 24
-No too early but deletion : 24
-No too early but deletion : 23
 No deletion : 23
+No too early but deletion : 23
 No too early but deletion : 23
 No deletion : 22
 No too early but deletion : 22
-No too early but deletion : 22
-No too early but deletion : 22
-No too early but deletion : 21
 No deletion : 21
 No too early but deletion : 21
-No too early but deletion : 21
-No too early but deletion : 20
-No too early but deletion : 20
 No deletion : 20
 No too early but deletion : 19
-No too early but deletion : 19
-No too early but deletion : 19
 No deletion : 19
-No too early but deletion : 19
-No too early but deletion : 19
-No too early but deletion : 18
-No too early but deletion : 18
-No too early but deletion : 18
-No too early but deletion : 18
-No too early but deletion : 18
 No deletion : 18
+No too early but deletion : 18
 No too early but deletion : 17
 No deletion : 17
-No too early but deletion : 17
-No too early but deletion : 17
-No too early but deletion : 17
-No too early but deletion : 17
-No too early but deletion : 17
-No too early but deletion : 17
-No too early but deletion : 16
-No too early but deletion : 16
 No too early but deletion : 16
 No deletion : 16
-No too early but deletion : 16
-No too early but deletion : 16
-No too early but deletion : 16
-No too early but deletion : 16
+No too early but deletion : 15
 No deletion : 15
-No too early but deletion : 15
-No too early but deletion : 15
-No too early but deletion : 15
-No too early but deletion : 15
-No too early but deletion : 14
 No too early but deletion : 14
 No deletion : 14
-No too early but deletion : 14
-No too early but deletion : 14
+No too early but deletion : 13
 No deletion : 13
 No too early but deletion : 13
 No too early but deletion : 13
+No too early but deletion : 12
 No too early but deletion : 12
 No too early but deletion : 12
 No too early but deletion : 12
@@ -1424,28 +1459,28 @@ No deletion : 12
 No too early but deletion : 11
 No too early but deletion : 11
 No too early but deletion : 11
+No too early but deletion : 11
 No deletion : 11
 No too early but deletion : 11
 No too early but deletion : 11
 No too early but deletion : 11
-No too early but deletion : 11
-No too early but deletion : 10
-No too early but deletion : 10
 No deletion : 10
-No too early but deletion : 9
+No too early but deletion : 10
+No too early but deletion : 10
 No deletion : 9
 No too early but deletion : 9
-No too early but deletion : 9
-No too early but deletion : 8
 No deletion : 8
-No too early but deletion : 7
+No too early but deletion : 8
 No deletion : 7
-No too early but deletion : 6
+No too early but deletion : 7
 No deletion : 6
+No too early but deletion : 6
+No too early but deletion : 5
 No deletion : 5
+No too early but deletion : 4
+No too early but deletion : 4
 No deletion : 4
-No too early but deletion : 4
-No too early but deletion : 4
+No too early but deletion : 3
 No too early but deletion : 3
 No deletion : 3
 No deletion : 2
@@ -1453,201 +1488,217 @@ No deletion : 1
 No deletion : 0
 
 
-100 852E8CE1EE1356EEE01BA78F1EB26D34A08B1FA694BD6B055228AF79A54316CF
+94 8A322F2DBF63B180E9EB8F0CE04F568F483108A8CA261AE0A58E8E15DC75323B
 
-99 45CEAF1C06C26C3E74FB831D7A21B61BDF8A3EF6555F76D92B9155CE3B7BF50E
+93 C0E537B09F144FEEC125C4FECDD6B35CE3ED329B783B7EEF8D0B8EC5CE159182
 
-98 7A0894B28E38B9A89B6EBC867DE441842B1D2B4125C654EDDCD0D4318CCF0A8B
+92 B05F96C844955FC10952BD90ADA088B922F717BFAE849E016FC5AD9687678E2B
 
-97 60E3A029D0D1989810172AE1381D57232F22883B158723F6B20EFF1018EB41EE
+91 09AACC569E628D8A77777F4719058D451A47AB58F9C705D3E2CB5277F9F9766B
 
-96 2780B9B3F62B6DCFF86E6DF70EF76FEAFE855C6E646B8A2652251D1134F0BC8D
+90 ED7F143F5112579CDC59340894ED0286DF7DBD6C9EC77FF3DCF76A7D7ECC9BFD
 
-95 147803AC64505188AC4A6C5071A53CBB0A6207710A161CC50DFA90EF9EC15F1C
+90 E38715EB1275421D697D280D45E3D9BB2BBBBBAD026F66882CE05948147CCF4D
 
-94 F0FE63BAD787C0102F226FE4F6A5E3B68D3C180C635A12C8B0BB52E9E06ADA57
+89 A1852BE5C805F43010BDDA6FE59B443005E7D84A06963CB3624283869835DD6F
 
-93 6065C86AFD922F56490DBEFF227B7B1A3F5E420426138F16BDF82C723AFCC0F0
+89 39600F580E4262C540EC4BEAEC8D7B3816AF47F83D113BE179CF5D097F468DAD
 
-92 93F4DE4180CA605DEC172A5A44A8B3525B85C29277CF2104A290DC024A16D75C
+88 A3D12643CDA25AE2EC403CDE1D27C323F4CFB42ABE864149E118EE9106A7F5F8
 
-91 808DD5C7F3ED68FC1EA3975DE15EA95A41E422ACC17D02DB646479C8084A4862
+88 82851E36274DDBAA1F7E34F187A58113095FC2D288A0FFDFAF2D713F4EB24B59
 
-90 6E100035F4EBEED6FDB0C8CB0E40ECD04821058059C02661A1F2A1379BE2ABA9
+88 606FA4849EA780BF053593F93C137356538BAAC304A4A305D1E67BD7C97D706D
 
-89 EFD174F86C4BBF55A6C82EB768864E3CDBD4081B3005C7FBB97E5BC9A63C4B32
+87 AD21D77F74FA55AF98C01BF627BD309EE2A2BCDF2419185F4E4023D53D67E6CE
 
-88 9780E1F984161BC51BDE244FA9AF9973289E1C8CA04FFD115CF424AD37C15D3D
+87 9788EAA554F66B49D114FBFF35492DFDF0253BC51C014FC9FA42366EC967AB49
 
-87 2C8C9E6CAD7646345E64BCD158BEF7ED1DFA84717A1CF7E8173900D42C9B19DD
+86 4D2969FA37CC4BB3E7965885FD800CD8F34CBD185C4B75B796ABA61C7FAD1B0A
 
-86 5832CE02B67F8F3FAAD6B130C6C035FC1C817C29B2318474124EABCFF693414D
+85 FB83A271C365611BE1FF7FC50FDA1FF55C50DD42170C3A9BBAD2FFBBA60D1C7B
 
-85 CF105EC991C3883FAA8B2AFA40AFF8A52C83C0147E370BED041D392D59ACE4F5
+85 8C85B83B7420CB27A676A5DECB9B9E795DCC2B5F046B269161313941ED516E0C
 
-84 2730EFD97DF319E667EBFA6896EA5386F4E360734657F88EAD7577E08A0D089F
+85 754F67AA8A3BF28090AC1C5DBC84AD291A29C6E0B61F5C353EF5978D3B80193B
 
-83 41370704DF7CBC9FF38C4E29879902284F3E4CC16E883F51FADD8EF78D273112
+85 2E02B43B6615F7E0DBE79DBA01DCC1E696999D7C7187B0A1934998AE8EF0936C
 
-82 97F320538641CD0729A3A7AAFE3771D97B35E0EF763BBE75F309DA685FF1B30F
+84 005CBCA5E4023C119B2907A126199AB5C1E5CE5478C3AA0DC50611DDBF88AC02
 
-81 CA99E70394C5045B10B0BC26EB0AEAA2D42A71319401F90A9E1C262F7C3F7CA0
+83 04ABCD010868297F5BF0BD769C058B85A73DE4EA955E4A8409E4E7384636E88E
 
-80 9575F7C31EFF0F8D1CF8EE695DE6693236A8B2F50329240987C6D0B5A441104D
+82 42C2B220E415EF489CEB8DAAFAF3B66BAE8DF37A67EA9E43955AA08893E864DB
 
-79 74275EE8C2B23DB999F400C73C734737ABA056A263B2BDDD1D25A04B361F3CBE
+81 07086E7EB1CCAA1FE137A91A0A013D3B49711F71E7D3D2B04BC40EEC64B59514
 
-78 FCEC193B59A8022D33AECD0639A10BE5AB09802C5A65A857113E64BC2A6F9979
+80 6CF338CD80256A1C46E90050C603A2A503E780B7723B8C96C55E19E3D29EC826
 
-77 02F7FF49389AE0493A7DD7F437BB39BDBD398EB60D751E96F7476724113A7863
+79 121DCCCB900ED6924F84CF712AF327BBF978ADF4BBD992052B695E4FFD7E9B4A
 
-76 F5AB1F6790B6F6CCFEF2E0B7B2DFE5923281D8ECFFC652B98113F0FAAC946209
+78 19822FB469D1DB31F39333DE5D48965EDF5016C71342E409C2E569339DD91F94
 
-75 FE1571C2F21E49A1A858A24135585C36D7A56D116D5334F47F09779590AC1947
+77 B27F7E6C41C1CFB2D09251BB6872FD45F1CAE5E08AA4B16CA7015DA7E0EC46AF
 
-74 0D421194513A242862348951B5AEA11EDA659E2BF482DDBFA48517FEC06E70B8
+77 400AB20DC6C2F1D30D6D34A89267DB13E32764FD7A42ACEAC3E81E0AC912621A
 
-73 F69782F41D643C981615B2B462C1440AF0F69A92E07036235527C8E8FA5E8AF4
+77 3D04EE25018D0DC9E6B2052D125509D0F362728032142BA7C4BD9744574B2193
 
-72 8F07C5A602E9C12D2812DC3AA61CBECFD0BDC1C28A5F6FDDC581954941A40A9E
+77 1ABDF74225A654D6C7F0FEE03A3A9BE6DC716354C97BF207EE031D5926242F23
 
-71 DC19C7A5B7AE34BEC388C9811C227ACC423BD972A8ED630A89BD6E197663B541
+76 A90189E81CE41CA50FAAF296508D3EC33C59591A787910645557AF123BFCDADE
 
-70 07D7C63706FA239FD110C113935D34DEAC419672ADB3AD9509F2DD9A50F83CD0
+76 2F01C50BAC28A62EA20996FA27E96A1E613704F6D4BC01BC603477EB087FD08F
 
-69 C9118FF181E9C2F85535F0464940E47B2AB53385CB8B59B080299DFF8BCAC259
+76 2ABB681C74096AFFA7FAA035EC1BE10E756CCB34E445F45A752D9F203CA75A46
 
-68 9400C5A14BDBF50ED68DB6ACA6A443EBCD3D962D6C310D920309CE77A93FC261
+75 C782D5D8E17C196D1DF3DC06C35C5858A7C4B769782C60AAE9A26653692BB608
 
-67 CFEF3D165C1FB8FF65D8C93248D35187BD0FEBA516C3AC259426036CA5643C4A
+75 0900E751BE9E2D18D870EEE27A0BA45B693E37F5373A53B876B6910D7EF20345
 
-66 786F8CF2AC292FE55F2CE6299A802E30F63B0BF194D3553B00F5A16236C2E60E
+74 4E9612CF670DA83CADD5250E0A76627EC7DA39B13339A96507F49F249049CDA1
 
-65 BA26CFC8EDB7C0DBCA6D3AC517E27994C79FA6D10FD190EE4C98AC224CB7F0D2
+73 A1900E785071A3BB4A5089F30A4C801406E66B2A8101E931301FB9E3147C88F7
 
-64 CF8F47801E1056531BFF6EAFB9427786BA9E46E4DBC4FF28BE1D57D342064A3D
+72 D42753E469962F4978C99E0944A4A4FFDFF59E323E045BF79D7B89A30D861D05
 
-63 A6BD422237FEDA0497A4740EC3F4CABADB72163F065DED852452A1754AF23868
+71 02A011660585CD849065D1D07C8E4CFB8B10CC6DDE30D81E74FDD6E3752AE33C
 
-62 FDF6F11420036464B60A538C0342C1135CDF31E8EE63A961C71DFC45F1E3D49A
+70 638D19B8F1D3D12D8FCBB2ECC9AF42442529D5C6F4D8E283EAFB7C63B7DCC969
 
-61 4168CA0557CC7A6BC34799272ACFC87FCE1314BEDCB5363DB7A07384BBAF1961
+69 9EB580DED5271EB3528E6708E74E52A8D32A18984D42761C4288937F960B22BA
 
-60 AA05F2F17E10C0496B5EC72908A0F3FE6748D9EBB276C6AC468361513E6C2E06
+68 4B73C2AAD611E64AB7339AEFC0E4C3F4237CD0097CD58A06FB58943A5801671A
 
-59 FFCD674F72EBFDF30140D35671963F033A79CD5C50EEC45AE83B1833F5B9F386
+67 BEC6A4FA57D397B37F5F5E8BD7C814811CC76DECE60CF13AD5E1447FDAC55227
 
-58 97D478C65F8F114028AEDE91BDB074412B6BBB34BF5811067559E92FABBAB859
+66 DE3CAB783BD9FC46505579BDE80AFD87BD0B00795E9DC90FD887D46D3BC01F0A
 
-57 E41FA2443F57BA677F6B778A2DB9B23B0308436A8C529D7B8664D8B51DD17207
+65 EDDB61267E5B35C85746ECA323BB51D549FFB5BA31CB673B9CF361D1977E54A0
 
-56 AC299512E655129DE85FCED256104DBA97BFDD07712DC01EE6CA17F0A565AAA3
+64 E9CEDC1C3A594EBA002E860DBF76B7AF34C119BE9C9CBBD5FA3A2864909C8365
 
-55 275E99C4F3B8025973819979E161EC68D426A1B639D71EC4CB79C8F620B786DD
+63 7EB15ED0E40B3262FC84B095A8A9595E896CABE911798F93B02173D9559E106A
 
-54 CFFDCD0EF0240FEFBAAF49994C6E4AF31D51C3EE573342A724C65AA20EE16A5E
+62 06712648739CD9AA855B04B68BF1660D090BFBB45C2B459B3C83204E2160842A
 
-53 311BD3FE48BCA946514D8E6680E7F396D79792A5944BA8C948C290A7A8D827E5
+61 71B4A368EE2CE3D8DED101A8BF7DF2514BADDEAE46BE4D90C48E18DB8E2892C9
 
-52 B52C470C10D7A97FA81A6C5C425558751A64C7FB02F6178ABCC684E3BCAACBC1
+60 F998C0D12059C4C87B91B14F6B213BD0112746D29D3A426A7944114C553D9245
 
-51 64E01343AAE6CBCC9AA90AF83428B61FB3924D7D75B17F0F63C83FF77622CBF8
+59 00247CE94B448873001F9F7C4526ADC442A60C93F5AD17819B1CEAD08189D729
 
-50 3EE81636B1D11C224CAAFF1A905D4D4FC6F7684A15D7FA7B9E260B3CAC6607B4
+58 1C682DD659015655722DECE62DF1A19BC0C5E807306F43637DE818093F9D0851
 
-49 EFA5ABB5C8AF126FE1BAA9DF74691E33034A9097BD3EEB7B35715048B7166339
+57 1758D41D1D894E2A8B4A1E51E5C2B84FFF2DA4082AAC1B01B983ABA54CE5A885
 
-48 45BCF2335EA7BF91F9E1A74BBE788D143E45583F92F2EB5EFAEE2FE97D9E31EC
+56 F99ED6068BB050780B439483280469FD1D98B6305F4677DCFBFB37FB249DDC62
 
-47 CAE9D1694812209A9024A24CA7FE1A1855713358E6A914CCEEAAAAA1F89CA9D4
+55 72C635DEDDEBBED0FD73CCB38AC34A35011D1A0D9DCE4FEFA0772BEBE0E46DC3
 
-46 7302E59A42A07E7E340FEAACFFF319BF9FED411F7166F4A6145CE73BE9113DBC
+54 06B282D483839D96167F39B7D75230E8A0FF809994BF19910AD678B40FA8B8AA
 
-45 A8310E2564E56FC28B49F88674A100CC733D0C8FBE3EC0F8DAEE7B7DF4E7353C
+53 5EABBE0964ADB6B978A21230C8B51BE84AF0024A6E47651E8265AF05A2FC1002
 
-44 3ACF432F640F9DF3F569AC716F9F7458C9BC8ED76E464F01E5FAF7612D2E18A9
+52 CFA5A1CB86E060C480C89D22D49B00F70BEBFDD0E44921375757C319DAF34C6A
 
-43 86AEEF004FAA35693840BDCF94FA1DDB383F5B54E1E77227B480E61D1E631D34
+51 B6D029F0E6CFD07EF16F41A63FFA22A88F00002740CEC226AA8984EA081E8095
 
-42 CEA1C01E619FE54C17C08C956C6729D1CEF0E9B023C027F0C8F3EC8602F90C0C
+50 93AB41BBD4CD92E06834921C64A4683E40E509A75649D5EA62EB8E7820BD2DAB
 
-41 20DEFC6F875F3D4EBDB1A6DB50883181A7E790F89B4372AF46AA9DC0BA507705
+49 3318A7CCA096D274FC63CFD0D59BC4AF8189301F3CE825C9875A9B61752DF94C
 
-40 1A6251C287D94AA92AB8C5C8C7EBC2D720E784590CA6771DDA94E4F1D23B16DD
+48 18E5ED9234E838914544B2B1646B5AB5533B730578EEB4172D5DB9F0816EE29C
 
-39 645F29F0BDDD91AB82B764CBE1C5AA6E619A69D0853F00E9E0FDAB929B172E66
+47 5DC0587B0FBC0968C73A8F96FBA9A1E845ADE712011183CF18B5F6FCBEE4000D
 
-38 448090009408622D37FBC386E7C1F6F02B8B96EDF166C242AECE9D1304DBE3FB
+46 F040222DAFAD1A99E496662A1868E600686DE43EB522B7F9F5B4DC8F061216A0
 
-37 B023C0A9E5FE0EBD72E3EECBC805E6058700B9298327254E94EE97C21B538F97
+45 97E29C1DB2AD2D1E92931C417C3BF9C91329BEAEACB2D60FFE9308A5F4B81B65
 
-36 7BA5BD446C5857964F143631A1C4AAC35ED55751EB599116F38C02019F5FDCDD
+44 08C39C9EC1B077BFA0AED89633CEA199BA502B94A5A5FFCA9EC7D8250030AFD0
 
-35 DD724623C256D08149D080A0683DC4EF4B614118EA03CDDDF757B2345DD9459F
+43 21F6AC635D92E69A07FD6730084646C864622E88ACBB1E0CE8C90926BD166E04
 
-34 D40161AF563FC504D916A59AB782E562DEFABB8F6AC75505D26CCC87D61AAD5C
+42 B286B9672EA10EED0851402E3046B255226DAE955A27931B93302FB61B91C3D1
 
-33 D463560EA3444E2F79FAE8BE0D8F2DA90A4692D150FE07D42187926A2221C573
+41 DA875A362D3C734B24B39504B792CFB417076A9F500ED2632363B956CB80DA05
 
-32 A0D27FF9F6B5709B30109AADD945E2BEE152953659AD4A301F349FF1FC80221C
+40 0AD369351BCDB885ED3D90B0378C8969A056BFF7BEA77532B8A1BEA1EE9CBF52
 
-31 70FA4E9102048D84CAF80E9780B48AC99EAF7BBEC703C4175DF05B69A3AF8BCA
+39 AED18C00066E7A0FE94C2F373B57BEAD7E596E5A61EE3565E85B6545CE3B4B4A
 
-30 30021EC282F73634FC7AFD7F26D5F0D53A7AC9E0D570BC44ABCF27561BFED06D
+38 AF5428C42391B4A7FE858069C77788DAA5B360F39B189DD6D348EE98DF25F2AE
 
-29 F56FA4C6384D6906EBE6C611E987519DAB595D59C14BD5CAB4FEC8AE4D050674
+37 7A7436C8A7C4BBA0BB67476A1676C57A1B4028211EBB59A1899A57B5D6456263
 
-28 CF8DAE4050C080F56D0EB923F2890018AD50F5AC8101861BDA9B572F03862C19
+36 BA0C007740BBF7F727C51F73E856457E87CFECFDDF2A3CFE520F68F10F668524
 
-27 AAD6DF0F623B1A184D107099B40C9774B9CC7D6A83864654F0C5551BC14498CA
+35 6429E2599B0E7B7E40A5A0F75B2FA48C983C2ECD0127D31877B10FA9963EE723
 
-26 8A7AA501E452163FF15D043DAA8C3192577ADC5CEE678EF05981E740CD89D6F5
+34 258A7C9137F3D19A68745ACD378EE3C4C69C9D0873BDCC5C8F42D4889650305B
 
-25 10D0BBD0BBDCD9A15A613234D3081B96C1BB3ED503A72C3BB9CFBFD18B390790
+33 E1AE547BE0661ADC84F942C21BFFAF5078D617D0E2EE546EA7830E50668BD6CE
 
-24 BF9281A39A113447009C0E2E8514F24B4FAEAF655110BC54E8C133F1B20957B5
+32 75D9EC263595505F61B94E450EC16653EF6677FA6E944B2C7A96516486F325DA
 
-23 AA16B6B5E1BD9109831700F539663E3EC10FA47AA1A8BFC2DEAC2F16413D10F4
+31 636733F63761ACA85E3A6952A97DDDC999CCB90E1A7454DC2E0DB850A71C09A0
 
-22 EDE8D713D1A6147D479648A83F25ECCD742CCF34E3EBD7EED1FDD100BDD843BD
+30 8D02AED6F7EEF1C8BE4600445C1DD1B13EC8C51E94A2A07EA1417D3BA5E03F0C
 
-21 AF6F2544E1FEB5D7393EF18615FE8F3D6A19B7A601EE2DB656D4240DF174FE09
+29 4361ACA41FA77D8401C20461D13FDC6E6D22538573E7C796524B6D0225BC6547
 
-20 668E54F28734553BCA7D9CAF890A1E26BDB26D7ECB0371695BFD666E425B07AE
+28 80C1AC6A0F1BEDB87F98230937042F04D6D8D20E94E83C206F8DC06BDF9F6D4B
 
-19 23B1037ADA3D3CCB335A7AAEFE04803210EB0287846ADDC96D782B86EE1B94FB
+27 6CBBA189756D0D001D712847477BD76B3D8CA40C8C7CDAFBE95689BAA200A491
 
-18 2417BF446C08C23800EC78D56ABD57BB42F9D8EF5BDF260423AB711C34216F07
+26 10CC1A93B4D15208806985622A1BFA27B4ED5A30BB182A95DA38D5E8DB7D82B1
 
-17 A9CC2C2756D26B7B45FD0AA1ED1721B87994DC18931DC0582B05EA76E2B585B5
+25 AF48DA3D9B4A83711E41463CE388C7EE3DB872ABBC93F4DAC75BB667D5A3FE1D
 
-16 B712C5B19604C6B6C7B4151669BC4D8F736A15EE706ECA8DB9AE5277A6C42405
+24 FDC12D714AA001405FE1B735FB7E08469D330E87BFECA69E641A53875BF33649
 
-15 963B13B6C397FBF96A2A008C68DE1011756CADC2AE993D6166A2BBDE337B227C
+23 CFC9DD3147177A12430099C57C690BE115126EF20728402FC0755D117C050A22
 
-14 7519583305FF4F5DAD3E46661EEE8FCD7E26C532A81CE123BFFC139F40A257F6
+22 9662469577B7573DBC81BDF2FEE619AB46C838D5452BC997882CE74392FC62AF
 
-13 C7170588308FFB3F5F72D8E98F54AAE0C07374E30FB12AEB89ABBD38D7770CE9
+21 DD79224D0488BD40AD7D3CBB556D19A025BC912000428BAF64B8AC63504564E4
 
-12 022F4C7928353F9BA33D719FA61454EFE0AE25DE98A907A03A3425B5E90F348A
+20 6E8ACE58C07A3436FAC8F70366245ABE50A01BF59E82BF90864478C48A60D500
 
-11 5460960F8891F8B1A7806E4A289BC5DFE7BDE3AF0CF82DFEE91C81B87A5B7114
+19 637D446FA01556120F253F9099B4E5139C9074FA92853B722E6C44452D48C385
 
-10 126BA9D12C0A3D70BCD29FAF716B9025687D16C1E297494BDE0911A679E45A2A
+18 EEC10A2DEF45615E4675DA2BC249CD21A90256F06749596A4057B78121F0B00E
 
-9 7482B535A9CF61C0A5BC0657C91B44038EAA18F250A2C9A809B4095C76AE802F
+17 12631348000A1B0872B1A1AA52A159FA8C1AD11248BD5AEFDB0816E5296C67FF
 
-8 94560DB0723B33489F88F0A322726B213EF80A4C5EC3F623053E3AB7C7D09650
+16 0AF10C160BF3D4866559A22ABFF49E9766741715C1DCCB333698FE905A7A7D1A
 
-7 025A7ED3B9F913E75A28E183505DB5889316CF17F288215154948F2C1096EBE0
+15 E532E5FF6DFE9679C20BC2B30C1B897F33A63E6A6B2648761C659D83B2617165
 
-6 8812317BFE61D9254814E587F0478C4814E5469B487B67942CA24E008A4BED4E
+14 7A2E2FEB82D1A52AD95D2A3E8003E2015CA3E725CA2E6FC4A6663F8F02606C98
 
-5 C2E569E61D6B4CC8054355CCCCC10BC4B6AE62ED38C75777A90D162AE82EDDB6
+13 EE17AFDA27ABDECEE5D44EC67B29DA3A9854A75F09991D458C772C53B1AB6140
 
-4 FE483F4267855DA1E96D9C31D55443D74C783673C576DD9AD97BFA391939017D
+12 7B2EE836A9B9D1F9A5B9CD7EB84F3B8CEF5B9D3417BCFE73793860D50CD2AC81
 
-3 88B5CA1569F43BDFE39F532C6CAA492F71CA035CF3E05D00B8F69BB6B38A37C3
+11 7185AFC8F38147403959A4789C471204346E8C7F26A9BD8F4416C57C019CB55F
+
+10 A5CC95CE561684A58FF6AAC81308E298E6B9D5BA7268E3258D915D4291F4BEC3
+
+9 5A36AAA5D5AA4A7D2A6916D2F82BE2D5B75819600F371E09A4D4A0ED8810987A
+
+8 7011D1AA9129FA29B564AAE161AA41F76A2180308BD3E87861DCA65BBCCC21C2
+
+7 EA4D1BA9DCF6CBF8341A12CA605F7142123954660698106451113DEFE91882EF
+
+6 F993A49D059E2B88CC5E414774E2016E4714CCD4AB60950BCD55327E3DFA0894
+
+5 0CC4BC806C9792AE5B014194B7799F3BDD522EF1187CC29213C72DC665EDB742
+
+4 3E246B84825E321BE731BAEB62D9D73EAC67BDBC6DBEDE28F4932927A98507F9
+
+3 4D255115D193720B8519B514548BB2D2323F942B6CD5D8D659B57155470F61AD
 
 2 FB42A4F2E78EA2F6BFFC960E8FD44FD4EAC3FB6F90100724A3D17D375CF27AC3
 

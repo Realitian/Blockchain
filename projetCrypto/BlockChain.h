@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <tuple>
 #include "Block.h"
-
+#include "Constante.h"
 class BlockChain
 {
 	using Cuple = std::tuple<int, string, Block>; // the number of the Block, the hash of the block and the Block itself

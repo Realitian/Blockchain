@@ -146,6 +146,7 @@
     <ClInclude Include="BlockHeader.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Connection.h" />
+    <ClInclude Include="Constante.h" />
     <ClInclude Include="Identite.h" />
     <ClInclude Include="KeyPair.h" />
     <ClInclude Include="Message.h" />

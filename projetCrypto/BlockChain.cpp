@@ -149,7 +149,7 @@ bool BlockChain::find(const Transaction& trans) const
 {
 	if (std::any_of(blocks.rbegin(), blocks.rend(), [&trans](const Cuple& bloc) {
 
-		if (std::get<2>(bloc).get_BlockHash() == FIRST_BLOCK_HASH) // TODO for the first Block
+		if (std::get<2>(bloc).get_BlockHash() == Constante::FIRST_BLOCK_HASH) // TODO for the first Block
 			return false;
 		return std::get<2>(bloc).containsTransactions(trans);
 	}))
@@ -159,12 +159,7 @@ bool BlockChain::find(const Transaction& trans) const
 }
 
 
-#ifndef MAX_SIZE_ORPHANS
-#define MAX_SIZE_ORPHANS 50
-#endif
-#ifndef DEPTH_DELETION
-#define DEPTH_DELETION 10
-#endif
+
 //************************************
 // Method:    clear
 // FullName:  BlockChain::clear
@@ -175,7 +170,7 @@ bool BlockChain::find(const Transaction& trans) const
 void BlockChain::clear()
 {
 	// Deleting ancient orphans that are no more useful
-	while (orphans.size() > MAX_SIZE_ORPHANS)
+	while (orphans.size() > Constante::MAX_SIZE_ORPHANS)
 	{
 
 		auto it = orphans.begin();
@@ -184,7 +179,7 @@ void BlockChain::clear()
 	}
 
 	// If the blockChain is too small, no need to continue
-	if (std::get<2>(*blocks.begin()).get_Header().get_NumeroBloc() < DEPTH_DELETION)
+	if (std::get<2>(*blocks.begin()).get_Header().get_NumeroBloc() < Constante::DEPTH_DELETION)
 		return;
 
 
@@ -196,7 +191,7 @@ void BlockChain::clear()
 	while (block_ite != blocks.end())
 	{
 		// If it is to early to delete the bloc
-		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - DEPTH_DELETION) {
+		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - Constante::DEPTH_DELETION) {
 		
 			 std::cout << "To early to delete " << std::get<0>(*block_ite) << std::endl;
 			
@@ -274,6 +269,5 @@ Cuple BlockChain::get_PreviousBlock(const Cuple& cuple) const
 	{		
 		iter++;
 	}
-	std::cout << (iter == blocks.end() ? "ERROOOR  " : "" );
 	return *iter;
 }
