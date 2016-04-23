@@ -28,6 +28,7 @@ namespace MessageIHM {
 	const string y_or_n = "[y-n]";
 	const string formulation_demande_nom_de_domaine = "Veuillez rentrez le nom de domaine auquel vous souhitez vous connectez";
 	const string formulation_demande_information = "Veuillez rentrez les informations que vous souhaitez ajouter concernant le nom de domaine, le tout SUR UNE LIGNE";
+	const string error_while_creating_transaction = "Sorry but the transaction has failed to be created !";
 }
 
 

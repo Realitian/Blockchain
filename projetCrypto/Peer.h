@@ -11,6 +11,8 @@
 #include "Packet.h"
 #include "Connection.h"
 #include "Base_Donnee.h"
+#include "BlockChain.h"
+
 class Client;
 using ptr_Identite = std::shared_ptr<Identite>;
 using boost::asio::ip::tcp;
@@ -36,18 +38,21 @@ public:
 	void						 startMining();
 	int8_t						 receiveTransaction(const Packet&);
 	int8_t						 receiveBlock(const Packet&);
+	void						 updateTransactionList(const Block&);
 
 	enum 
 	{
 		WRONG_PACKET_RECEIVE = 0,
 		WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN = 2,
 		UNKNOWN_ERROR = 1,
-		CORRECT_BLOCK_RECEIVED = 4
+		CORRECT_BLOCK_RECEIVED = 4,
+		CORRECT_TRANSACTION_ADDED = 5
 	};
 private:
 	ptr_Identite		    identite;
 	std::shared_ptr<Client> client;
 	Base_Donnee				base_de_donnee;
+	BlockChain				blockchain;
 	void clean_screen();
 	void showBanner();
 };

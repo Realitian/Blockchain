@@ -14,7 +14,7 @@ Session::~Session()
 	std::cout << "Session détruite" << std::endl;
 }
 
-void Session::wait_for_data() // (1)
+void Session::wait_for_data() 
 {
 	std::cout << "en attente de donnée " << std::endl;
 	// On lance l'écoute d'événements

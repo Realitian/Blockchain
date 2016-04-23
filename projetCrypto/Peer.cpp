@@ -3,7 +3,7 @@
 
 
 Peer::Peer(boost::asio::io_service& io_service, boost::asio::ip::tcp::endpoint& endpoint) :
-	base_de_donnee()
+	base_de_donnee(), blockchain()
 {
 
 }
@@ -23,10 +23,12 @@ void Peer::receivePacket(const Packet& packet)
 	case 3:
 		receiveTransaction(packet);
 		break;
+
 		// New block received
 	case 4:
 		receiveBlock(packet);
 		break;
+
 	default:
 		// Wrong packet format. Error !! 
 		break;
@@ -52,6 +54,16 @@ int8_t Peer::receiveBlock(const Packet& packet)
 				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
 			}
 		}
+		if (packet.block.get_Header().get_NumeroBloc() <= std::get<0>(blockchain.get_LeadingBlock()))
+		{
+			blockchain.push_back(packet.block);
+		}
+		else
+		{
+			// If I was mining, just stop it !
+			// + update the database
+			updateTransactionList(packet.block);
+		}
 	}
 	catch (std::exception e)
 	{
@@ -61,7 +73,21 @@ int8_t Peer::receiveBlock(const Packet& packet)
 }
 
 
+void Peer::updateTransactionList(const Block& block)
+{
+	using Cuple = std::tuple<int, string, Block>;
 
+	Cuple leading = blockchain.get_LeadingBlock();
+	Cuple newbloc = Cuple(block.get_Header().get_NumeroBloc(), block.get_BlockHash(), block);
+	do
+	{
+		base_de_donnee.update(std::get<2>(leading), Base_Donnee::NOT_VALIDATED);
+		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
+
+		leading = blockchain.get_PreviousBlock(leading);
+		newbloc = blockchain.get_PreviousBlock(newbloc);
+	} while (leading != newbloc);
+}
 
 int8_t Peer::receiveTransaction(const Packet& packet)
 {
@@ -74,6 +100,7 @@ int8_t Peer::receiveTransaction(const Packet& packet)
 	{
 		return Peer::UNKNOWN_ERROR;
 	};
+	return Peer::CORRECT_TRANSACTION_ADDED;
 }
 
 void Peer::addClient(std::shared_ptr<Client> nvuClient)
@@ -86,7 +113,7 @@ void Peer::showBanner()
 	clean_screen();
 	print(MessageIHM::introMessage);
 	if (!(identite == nullptr))
-		print("Vous etes connecte en tant que " + identite->getNom() + " " + identite->getPrenom());
+		print("You are connected as : " + identite->getPrenom() + " " + identite->getNom());
 }
 
 
@@ -135,7 +162,7 @@ DEMANDE_CLE:
 		goto DEMANDE_CLE;
 		break;
 	}
-	std::cout << "Cle publique apres generation:  " << cle.getClePublique().GetPublicExponent() << " " << cle.getClePublique().GetModulus() << std::endl;
+	// std::cout << "Cle publique apres generation:  " << cle.getClePublique().GetPublicExponent() << " " << cle.getClePublique().GetModulus() << std::endl;
 	identite = std::make_shared<Identite>(n, pn, cle);
 	showBanner();
 	displayMenu();
@@ -197,14 +224,12 @@ DISPLAY_MENU:
 	case '1':
 	{
 		std::shared_ptr<Transaction> ptrT = createTransaction(); // TODO verifier comment eviter que le switch m'emmerde
+		if (ptrT == nullptr) {
+			print(MessageIHM::error_while_creating_transaction);
+			break;
+		}
 		Packet p; p.m_type = Packet::NEW_TRANSACTION; p.transaction = *ptrT;
-		std::cout << std::endl << "Avant envoi1, la transaction est de type : " <<
-			"Hash Transaction " << p.transaction.getHashTransaction() << std::endl <<
-			"Information message " << p.transaction.getMessage().getinformation() << std::endl <<
-			"Nom de domaine " << p.transaction.getMessage().getNomDomaine() << std::endl <<
-			"Cle publique modulus : " << p.transaction.getMessage().getPublicKey().GetModulus() << std::endl <<
-			"Cle publique exponent : " << p.transaction.getMessage().getPublicKey().GetPublicExponent() <<
-			std::endl << std::endl;
+		std::cerr << p;
 		client->write(boost::system::error_code(), p);
 
 		break;
@@ -245,16 +270,10 @@ CREATE_TRANSACTION:
 		std::cin >> informationNameDomain;
 		domaineName = "facebook.com";
 		informationNameDomain = "hello world";
-		// TODO verifier si la transaction est correcte
+
 		std::shared_ptr<Transaction> ptrT = std::make_shared<Transaction>(*identite, domaineName, informationNameDomain);
-		std::cout << std::endl << "Avant envoi1, la transaction est de type : " <<
-			"Hash Transaction " << ptrT->getHashTransaction() << std::endl <<
-			"Information message " << ptrT->getMessage().getinformation() << std::endl <<
-			"Nom de domaine " << ptrT->getMessage().getNomDomaine() << std::endl <<
-			"Cle publique modulus : " << ptrT->getMessage().getPublicKey().GetModulus() << std::endl <<
-			"Cle publique exponent : " << ptrT->getMessage().getPublicKey().GetPublicExponent() <<
-			std::endl <<
-			std::endl;
+		if (!ptrT->isCorrect())
+			return false;
 		return ptrT;
 		break;
 	}

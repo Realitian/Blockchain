@@ -91,12 +91,6 @@ int BlockChain::push_back(const Block& bloc)
 						}
 					}
 				}
-				/*
-				for (auto &tr : bloc.getTransaction())
-				{
-					if
-				}
-				*/
 				return BlockChain::INSERT_NEW_BLOCK;
 			}
 			catch (const std::exception& e)
@@ -155,7 +149,7 @@ bool BlockChain::find(const Transaction& trans) const
 {
 	if (std::any_of(blocks.rbegin(), blocks.rend(), [&trans](const Cuple& bloc) {
 
-		if (std::get<2>(bloc).get_PreviousBlockHash() == Block::) // TODO for the first Block
+		if (std::get<2>(bloc).get_BlockHash() == FIRST_BLOCK_HASH) // TODO for the first Block
 			return false;
 		return std::get<2>(bloc).containsTransactions(trans);
 	}))
@@ -235,7 +229,48 @@ void BlockChain::clear()
 	}
 }
 
+//************************************
+// Method:    size : return the size of the BlockChain (the number of blocks into the blockChain
+// FullName:  BlockChain::size
+// Access:    public 
+// Returns:   size_t : 
+// Qualifier: const
+//************************************
 size_t BlockChain::size() const
 {
 	return blocks.size() + orphans.size();
+}
+
+
+//************************************
+// Method:    get_LeadingBlock : return a const reference to the "Block" (actually the tuple) at the head of the main chain
+// FullName:  BlockChain::get_LeadingBlock
+// Access:    public 
+// Returns:   const Cuple& : because this Object should not been modified, neither copy
+// Qualifier: const
+//************************************
+const Cuple& BlockChain::get_LeadingBlock() const
+{
+	return *leadingBlock;
+}
+
+
+//************************************
+// Method:    get_PreviousBlock : Given a Block b, it gives back the previous Block in the BlockChain referenced in the header of b as previousHash
+// FullName:  BlockChain::get_PreviousBlock
+// Access:    public 
+// Returns:   Cuple
+// Qualifier: const
+// Parameter: const Cuple & cuple
+//************************************
+Cuple BlockChain::get_PreviousBlock(const Cuple& cuple) const
+{
+	// Get the previous hash
+	string PreviousHash = std::get<2>(cuple).get_PreviousBlockHash();
+	auto iter = blocks.find(cuple);
+	while (iter != blocks.end() || std::get<1>(*iter) != PreviousHash)
+	{
+		iter++;
+	}
+	return *iter;
 }

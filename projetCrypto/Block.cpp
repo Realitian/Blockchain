@@ -1,7 +1,5 @@
 #include "Block.h"
-#ifndef FIRST_BLOCK_HASH
-#define FIRST_BLOCK_HASH "e037f671bf37164c071d526e8960fd9122383d5d73ef3b60f1bc9f330a15c1e1"
-#endif
+
 
 //************************************
 // Method:    Block : construct a fully correct Block with a reference to a previous one
@@ -177,6 +175,11 @@ bool Block::containsTransactions(const Transaction& tr) const
 	return (std::find(transactions.begin(), transactions.end(), tr.getHashTransaction()) != transactions.end());
 }
 
+
+void Block::set_Hash_Merkle_Root(string h)
+{
+	previousBlockHash = h;
+}
 
 
 const BlockHeader& Block::get_Header() const

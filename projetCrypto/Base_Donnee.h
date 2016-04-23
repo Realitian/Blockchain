@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include "Transaction.h"
-
+#include "Block.h"
 
 class Base_Donnee
 {
@@ -12,7 +12,8 @@ public:
 
 	int_trans get(string)		 const;
 	int8_t    get_status(string) const;
-
+	void	  update(const Block&, int8_t);
+	void	  update(const string&, int8_t);
 
 	bool      push_back(const Transaction&);
 

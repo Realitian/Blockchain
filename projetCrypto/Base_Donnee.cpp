@@ -25,8 +25,8 @@ bool Base_Donnee::push_back(const Transaction& tr)
 		// TODO maybe more !!
 		return false;
 	};
-	
-return	true;
+
+	return	true;
 
 }
 int8_t Base_Donnee::get_status(string transaction_hash) const
@@ -36,7 +36,7 @@ int8_t Base_Donnee::get_status(string transaction_hash) const
 	else return data_.at(transaction_hash).first;
 }
 
-int_trans Base_Donnee::get(string transaction_hash) const 
+int_trans Base_Donnee::get(string transaction_hash) const
 {
 	if (get_status(transaction_hash) == Base_Donnee::NOT_FOUND)
 	{
@@ -45,3 +45,30 @@ int_trans Base_Donnee::get(string transaction_hash) const
 	else return data_.at(transaction_hash);
 }
 
+void Base_Donnee::update(const Block& block, int8_t code)
+{
+	for (const auto tr : block.get_Transactions_List())
+	{
+		if (get_status(tr) != Base_Donnee::NOT_FOUND)
+		{
+			update(tr, code);
+		}
+		else
+		{
+			std::cerr << "This is really strange";
+		}
+	}
+}
+
+
+void Base_Donnee::update(const string& tr, int8_t code)
+{
+	try
+	{
+		data_.at(tr) = int_trans(code, data_.at(tr).second);
+	}
+	catch (const std::exception&)
+	{
+		std::cerr << "Error while updating the database !" << std::endl;
+	}
+}

@@ -4,7 +4,9 @@
 #include <boost/serialization/vector.hpp>
 #include "Transaction.h"
 #include "BlockHeader.h"
-
+#ifndef FIRST_BLOCK_HASH
+#define FIRST_BLOCK_HASH "e037f671bf37164c071d526e8960fd9122383d5d73ef3b60f1bc9f330a15c1e1"
+#endif
 #define DIFFICULTY_MINING 2
 using std::vector;
 class Block
@@ -18,10 +20,7 @@ public:
 	Block(string, int, vector<string>, const BlockHeader);
 	Block() = delete;
 
-	void set_Hash_Merkle_Root(string h)
-	{
-		previousBlockHash = h;
-	}
+	void set_Hash_Merkle_Root(string);
 
 	~Block();
 

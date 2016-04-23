@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <tuple>
 #include "Block.h"
+
 class BlockChain
 {
 	using Cuple = std::tuple<int, string, Block>; // the number of the Block, the hash of the block and the Block itself
@@ -15,6 +16,10 @@ public:
 	size_t size() const;
 	void clear();
 	void print() const;
+
+	const Cuple& get_LeadingBlock() const;
+	Cuple		 get_PreviousBlock(const Cuple& cuple) const;
+
 private:
 	std::set<Cuple, std::function<bool(Cuple, Cuple)> > blocks; // La blockChain
 	std::set<Cuple, std::function<bool(Cuple, Cuple)> > orphans; // Block that don't have previous Block in the chain
