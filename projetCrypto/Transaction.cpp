@@ -7,7 +7,6 @@ Transaction::Transaction(const Identite& ident, const string& _domaineName, cons
 	message = Message(_domaineName, _information, ident.getKeyPair());
 	hashTransaction = SHA25::sha256(identiteSender.toString() + message.getHashDomainName() + message.getinformation());
 	timestamp = boost::posix_time::second_clock::local_time();
-
 }
 
 

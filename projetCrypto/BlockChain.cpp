@@ -198,7 +198,7 @@ void BlockChain::clear()
 		// If it is to early to delete the bloc
 		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - DEPTH_DELETION) {
 		
-			// std::cerr << "To early to delete " << std::get<0>(*block_ite) << std::endl;
+			 std::cout << "To early to delete " << std::get<0>(*block_ite) << std::endl;
 			
 			// If the block is in the main chain, update the local variable previous_Block_Hash
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
@@ -214,7 +214,7 @@ void BlockChain::clear()
 			// If it is in the main chain
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
 			{
-			//	std::cerr << "No deletion : " << std::get<0>(*block_ite) << std::endl;
+				std::cout << "No deletion : " << std::get<0>(*block_ite) << std::endl;
 
 				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
 				block_ite++;
@@ -222,7 +222,7 @@ void BlockChain::clear()
 			// else delete it
 			else
 			{
-			//	std::cerr << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
+				std::cout << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
 				block_ite = blocks.erase(block_ite);
 			}
 		}
@@ -267,10 +267,13 @@ Cuple BlockChain::get_PreviousBlock(const Cuple& cuple) const
 {
 	// Get the previous hash
 	string PreviousHash = std::get<2>(cuple).get_PreviousBlockHash();
-	auto iter = blocks.find(cuple);
-	while (iter != blocks.end() || std::get<1>(*iter) != PreviousHash)
-	{
+	if (PreviousHash == "")
+		return cuple;
+	std::set<Cuple>::iterator iter = blocks.find(cuple);
+	while (iter != blocks.end() && std::get<1>(*iter) != PreviousHash)
+	{		
 		iter++;
 	}
+	std::cout << (iter == blocks.end() ? "ERROOOR  " : "" );
 	return *iter;
 }

@@ -13,7 +13,7 @@ public:
 	Packet() :
 		m_type(0),
 		transaction(Identite("", ""), "", ""),
-		block(0) 
+		block(0), numeroBloc()
 	{
 
 	}
@@ -23,21 +23,17 @@ public:
 	int			m_type; 
 	Transaction transaction;
 	Block		block;
-
+	int			numeroBloc;
 	template<class Archive>
 	void save(Archive & ar, const unsigned int version) const
 	{
-		ar & m_type;
-		ar & transaction;
-		ar & block;
+		ar & m_type & transaction & block & numeroBloc;
 	}
 
 	template<class Archive>
 	void load(Archive & ar, const unsigned int version)
 	{
-		ar & m_type;
-		ar & transaction;
-		ar & block;
+		ar & m_type & transaction & block & numeroBloc;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 

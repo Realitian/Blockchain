@@ -93,7 +93,7 @@ bool Block::operator==(const Block& rhs) const
 bool Block::isValid() const
 {
 
-	if (nombreTransaction != transactions.size()) // TODO Be a little more strict =)
+	if (nombreTransaction != transactions.size()) 
 		return false;
 	if (header.get_NumeroBloc() == 0)
 		return true;

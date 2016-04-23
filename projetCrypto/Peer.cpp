@@ -221,7 +221,7 @@ DISPLAY_MENU:
 	{
 	case '1':
 	{
-		std::shared_ptr<Transaction> ptrT = createTransaction(); // TODO verifier comment eviter que le switch m'emmerde
+		std::shared_ptr<Transaction> ptrT = createTransaction(); 
 		if (ptrT == nullptr) {
 			print(MessageIHM::error_while_creating_transaction);
 			break;

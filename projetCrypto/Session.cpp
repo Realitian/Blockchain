@@ -11,12 +11,12 @@ Session::Session(boost::shared_ptr<Connection> Connection, boost::shared_ptr<Roo
 
 Session::~Session()
 {
-	std::cout << "Session détruite" << std::endl;
+	std::cout << "Deleted session" << std::endl;
 }
 
 void Session::wait_for_data() 
 {
-	std::cout << "en attente de donnée " << std::endl;
+	std::cout << "Waiting for data " << std::endl;
 	// On lance l'écoute d'événements
 	m_Connection->async_read(m_message,
 		boost::bind(&Session::handle_read, shared_from_this(),
@@ -32,33 +32,11 @@ void Session::handle_read(const boost::system::error_code &error) // (2)
 	{
 		if (!error)
 		{
-			switch (m_message.m_type)
-			{
-			case Packet::PERSON_CONNECTED:
-				break;
-			case Packet::PERSON_LEFT:
-				break;
-			case Packet::EXIST_TRANSACTION:
-				break;
-			case Packet::ASK_BLOCK_CHAIN:
-				break;
-			case Packet::NEW_BLOCK:
-					break;
-			case Packet::NEW_TRANSACTION:
-				break;
-			default:
-				break;
-			}
+			room->deliver(m_message);
 			std::cout << "---- Reception ----- " << m_message.m_type << " " << std::endl;
-
 			std::cout << m_message << std::endl;
-			
 			std::cout << "-------------------- " << std::endl;
-
-			// On demande à la room de transmettre le message à tout le monde
-			room->deliver(m_message); // (3)
-									  // On relance une écoute
-			wait_for_data(); // (4)
+			wait_for_data(); 
 		}
 
 		else
@@ -72,7 +50,7 @@ void Session::handle_read(const boost::system::error_code &error) // (2)
 	}
 }
 
-void Session::deliver(const Packet& msg) // (6)
+void Session::deliver(const Packet &msg) // (6)
 {
 
 	m_Connection->async_write(msg,

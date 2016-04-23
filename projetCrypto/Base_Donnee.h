@@ -11,10 +11,10 @@ public:
 	~Base_Donnee();
 
 	int_trans get(string)		 const;
-	int8_t    get_status(string) const;
+	int8_t    get_status(const string&) const;
 	void	  update(const Block&, int8_t);
 	void	  update(const string&, int8_t);
-
+	void	  print() const;
 	bool      push_back(const Transaction&);
 
 
