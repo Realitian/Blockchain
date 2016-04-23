@@ -20,12 +20,6 @@ public:
 	const Cuple& get_LeadingBlock() const;
 	Cuple		 get_PreviousBlock(const Cuple& cuple) const;
 
-private:
-	std::set<Cuple, std::function<bool(Cuple, Cuple)> > blocks; // La blockChain
-	std::set<Cuple, std::function<bool(Cuple, Cuple)> > orphans; // Block that don't have previous Block in the chain
-	std::set<Cuple>::iterator leadingBlock;
-
-
 	enum {
 		FIRS_BLOCK_ADDED = 0,
 		ERROR_BLOCK_INVALID = 1,
@@ -33,5 +27,12 @@ private:
 		INSERT_NEW_BLOCK = 3,
 		UNKNOWN_ERROR_WHILE_ADDIND = 4
 	};
+private:
+	std::set<Cuple, std::function<bool(Cuple, Cuple)> > blocks; // La blockChain
+	std::set<Cuple, std::function<bool(Cuple, Cuple)> > orphans; // Block that don't have previous Block in the chain
+	std::set<Cuple>::iterator leadingBlock;
+
+
+	
 };
 
