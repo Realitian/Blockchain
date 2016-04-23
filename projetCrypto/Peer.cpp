@@ -39,6 +39,11 @@ void Peer::receivePacket(const Packet& packet)
 
 int8_t Peer::receiveBlock(const Packet& packet)
 {
+	if (blockchain.size() == 0)
+	{
+		blockchain.push_back(packet.block);
+		return true;
+	}
 	// Check for the validity of the block, not the transaction inside !
 	if (!packet.block.isValid())
 		return false;
@@ -57,11 +62,15 @@ int8_t Peer::receiveBlock(const Packet& packet)
 		if (packet.block.get_Header().get_NumeroBloc() > std::get<0>(blockchain.get_LeadingBlock()))
 		{
 			// If I was mining, just stop it !
+			blockchain.push_back(packet.block);
 
 			// + update the database
 			updateTransactionList(packet.block);
 		}
-		blockchain.push_back(packet.block);
+		else
+		{
+			blockchain.push_back(packet.block);
+		}
 	}
 	catch (std::exception e)
 	{

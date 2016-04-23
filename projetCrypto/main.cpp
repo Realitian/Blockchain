@@ -32,20 +32,25 @@ std::string random_string(size_t length)
 	return str;
 }
 
-void updateTransactionList(Base_Donnee& base_de_donnee, BlockChain& blockchain, const Block& block)
+void updateTransactionList(std::tuple<int,string,Block> leading,Base_Donnee& base_de_donnee, BlockChain& blockchain, const Block& block)
 {
 	using Cuple = std::tuple<int, string, Block>;
 
-	Cuple leading = blockchain.get_LeadingBlock();
 	Cuple newbloc = Cuple(block.get_Header().get_NumeroBloc(), block.get_BlockHash(), block);
+	int num = std::get<0>(leading);
+	while (num < std::get<0>(newbloc))
+	{
+		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
+		newbloc = blockchain.get_PreviousBlock(newbloc);
+	}
 	do
 	{
 
 		base_de_donnee.update(std::get<2>(leading), Base_Donnee::NOT_VALIDATED);
 		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
 
-		leading = blockchain.get_PreviousBlock(leading);
 		newbloc = blockchain.get_PreviousBlock(newbloc);
+		leading = blockchain.get_PreviousBlock(leading);
 	} while (leading != newbloc);
 }
 
@@ -76,10 +81,9 @@ int8_t receiveBlock(Base_Donnee& base_de_donnee,const Block& block,BlockChain& b
 		{
 			// If I was mining, just stop it !
 			std::cout << "This Block updates the BlockChain" << endl;
-			blockchain.push_back(block);
-
-			// + update the database
-			updateTransactionList(base_de_donnee,blockchain,block);
+			auto previousLeading = blockchain.get_LeadingBlock();
+			if(blockchain.push_back(block) == 3)
+				updateTransactionList(previousLeading,base_de_donnee,blockchain,block);
 		}
 		else
 		{
@@ -254,16 +258,41 @@ void test_integration_BlockCHain()
 	blockchain.print();
 
 	cout << endl << endl;
-	blockchain.clear();
+	// blockchain.clear();
 
 	cout << endl << endl;
 
 	base_de_donnee.print();
+
+	vector<Transaction> validated_Transaction;
+	using Cuple = std::tuple<int, string, Block>;
+	Cuple leadingBlock = blockchain.get_LeadingBlock();
+
+	std::cout << "Taille de la BlockChain :" << blockchain.size() << endl;
+
+	while (leadingBlock != blockchain.get_PreviousBlock(leadingBlock))
+	{
+		for (const auto& u : std::get<2>(leadingBlock).get_Transactions_List())
+		{
+			std::cout << (base_de_donnee.get_status(u) == 2 ? "V" : "NV") << endl;
+			validated_Transaction.push_back(base_de_donnee.get(u).second);
+		}
+		leadingBlock = blockchain.get_PreviousBlock(leadingBlock);
+	}
+
+	for (const auto& u : all_Transaction)
+	{
+		if (base_de_donnee.get_status(u.getHashTransaction()) == 2 && (std::find(validated_Transaction.begin(), validated_Transaction.end(), u) == validated_Transaction.end()))
+			cout << "Transaction validated but not in the main chain" << u.getHashTransaction() << endl;
+		if(base_de_donnee.get_status(u.getHashTransaction()) == 1 && (std::find(validated_Transaction.begin(), validated_Transaction.end(), u) != validated_Transaction.end()))
+			cout << "Transaction not valid but in the main chain" << u.getHashTransaction() << endl;
+
+	}
 }
 
 int main()
 {
-	std::freopen("test.out", "w", stdout);
+	// std::freopen("test.out", "w", stdout);
 	srand(time(NULL));
 
 	test_integration_BlockCHain();

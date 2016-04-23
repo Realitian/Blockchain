@@ -18,6 +18,16 @@ public:
 
 	~Transaction();
 
+	bool operator==(const Transaction& tr)
+	{
+		if (tr.timestamp == timestamp &&
+			tr.identiteSender.getNom() == identiteSender.getNom() &&
+			tr.hashTransaction == hashTransaction &&
+			tr.message.getHashDomainName() == message.getHashDomainName() )
+			return true;
+		return false;
+	}
+
 	boost::posix_time::ptime getTime() const;
 	Identite				 getIdentite() const;
 	Message					 getMessage() const;
