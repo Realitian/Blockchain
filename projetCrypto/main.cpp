@@ -187,7 +187,7 @@ void test_integration_BlockCHain()
 
 	std::cout << "Get an element in the database " << endl;
 	string random = SHA25::sha256("HelloYou");
-	std::cout << "Element not in the database "  << (base_de_donnee.get(random).second.first == 4 ? "4" : "Error" ) << std::endl;
+	std::cout << "Element not in the database :"  << (base_de_donnee.get(random).second.first == 4 ? "4" : "Error" ) << std::endl;
 	std::cout << "The two hashes following should be equal" << endl;
 	std::cout << "Hash of an element in the database " << 
 		base_de_donnee.get(all_Transaction.at(5).getHashTransaction()).first << std::endl;
