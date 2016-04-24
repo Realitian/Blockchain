@@ -11,13 +11,15 @@
 //!
 class DataBase
 {
-	using int_trans = std::pair<int, Transaction>;
+	using data_cuple = std::pair<string, std::pair<int,Message> >;
 public:
 	DataBase();
 	~DataBase();
 
-	int_trans get(string)		 const;
-	int    get_status(const string&) const;
+	data_cuple get(string)		 const;
+	int get_statusTransaction(const string&) const;
+	int get_statusMessage(const string&,const string&) const;
+
 	void	  update(const Block&, int);
 	void	  update(const string&, int);
 	void	  print() const;
@@ -25,12 +27,13 @@ public:
 
 
 	enum {
-		NOT_FOUND = 0,
-		NOT_VALIDATED = 1,
-		VALIDATED = 2
+		NOT_FOUND_TRANSACTION = 0,
+		NOT_VALIDATED_TRANSACTION = 1,
+		VALIDATED_TRANSACTION = 2
 	};
 
 private:
-	std::map<string, int_trans> data_;
+	std::map<string, string> hashTransaction_to_hashMessage;
+	std::multimap<string, data_cuple> hashMessage_to_Message;
 };
 

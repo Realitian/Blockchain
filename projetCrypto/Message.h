@@ -20,6 +20,39 @@ public:
 
 	};
 
+	// Just for the main
+	bool operator<(const Message& rhs) const
+	{
+		if (information < rhs.information)
+		{
+			return true;
+		}
+		else if (information == rhs.information)
+		{
+			return (nom_de_domaine < rhs.nom_de_domaine);
+		}
+		else return false;
+	}
+
+	bool operator==(const Message& rhs) const
+	{
+		return (rhs.information == this->information && rhs.nom_de_domaine == this->nom_de_domaine
+			&& signature == rhs.signature);
+	}
+	// For the MultiMap
+	Message& operator=(const Message& rhs)
+	{
+		if (*this == rhs)
+			return *this;
+		information = rhs.information;
+		nom_de_domaine = rhs.nom_de_domaine;
+		signature = rhs.signature;
+		hashDomainName = rhs.hashDomainName;
+		publicKey = rhs.publicKey;
+		longueurMessage = rhs.longueurMessage;
+		return *this;
+	}
+
 	Message(string, string, const KeyPair&);
 	~Message();
 

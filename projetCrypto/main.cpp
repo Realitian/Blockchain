@@ -45,14 +45,14 @@ void updateTransactionList(std::tuple<int, string, Block> leading, DataBase& bas
 	while (num < std::get<0>(newbloc))
 	{
 
-		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED);
+		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED_TRANSACTION);
 		newbloc = blockchain.get_PreviousBlock(newbloc);
 	}
 	do
 	{
 
-		base_de_donnee.update(std::get<2>(leading), DataBase::NOT_VALIDATED);
-		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED);
+		base_de_donnee.update(std::get<2>(leading), DataBase::NOT_VALIDATED_TRANSACTION);
+		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED_TRANSACTION);
 
 		newbloc = blockchain.get_PreviousBlock(newbloc);
 		leading = blockchain.get_PreviousBlock(leading);
@@ -76,12 +76,12 @@ int receiveBlock(DataBase& base_de_donnee, const Block& block, BlockChain& block
 	try {
 		for (const auto& tr : block.get_Transactions_List())
 		{
-			if (base_de_donnee.get_status(tr) == DataBase::NOT_FOUND)
+			if (base_de_donnee.get_statusTransaction(tr) == DataBase::NOT_FOUND_TRANSACTION)
 			{
 				// std::cout << "This block has transaction unknown" << endl;
 				return 0;
 			}
-			if (base_de_donnee.get_status(tr) == DataBase::VALIDATED)
+			if (base_de_donnee.get_statusTransaction(tr) == DataBase::VALIDATED_TRANSACTION)
 			{
 				// std::cout << "This block has transaction already taken" << endl;
 				return 0;
@@ -187,10 +187,10 @@ void test_integration_BlockCHain()
 
 	std::cout << "Get an element in the database " << endl;
 	string random = SHA25::sha256("HelloYou");
-	std::cout << "Element not in the database "  << (base_de_donnee.get(random).first == 4 ? "4" : "Error" ) << std::endl;
+	std::cout << "Element not in the database "  << (base_de_donnee.get(random).second.first == 4 ? "4" : "Error" ) << std::endl;
 	std::cout << "The two hashes following should be equal" << endl;
 	std::cout << "Hash of an element in the database " << 
-		base_de_donnee.get(all_Transaction.at(5).getHashTransaction()).second.getHashTransaction() << std::endl;
+		base_de_donnee.get(all_Transaction.at(5).getHashTransaction()).first << std::endl;
 	std::cout << all_Transaction.at(5).getHashTransaction();
 
 
@@ -326,7 +326,6 @@ void test_integration_BlockCHain()
 	blockchain.print();
 
 	cout << endl << endl;
-	// blockchain.clear();
 
 	cout << endl << endl;
 
@@ -334,7 +333,7 @@ void test_integration_BlockCHain()
 
 	using Cuple = std::tuple<int, string, Block>;
 	Cuple leadingBlock = blockchain.get_LeadingBlock();
-	std::map<Transaction, int> validated_Transaction;
+	std::map<Message, int> validated_Transaction;
 	std::cout << "Size of the BlockChain :" << blockchain.size() << endl;
 	// blockchain.clear();
 	int nbfinal0(0);
@@ -345,42 +344,47 @@ void test_integration_BlockCHain()
 	{
 		for (auto& u : std::get<2>(leadingBlock).get_Transactions_List())
 		{
-			//	std::cout << (base_de_donnee.get_status(u) == 2 ? "V" : "NV") << endl;
-			if (validated_Transaction.count(base_de_donnee.get(u).second) != 0)
+			std::cout << (base_de_donnee.get_statusTransaction(u) == 2 ? "V" : "NV") << endl;
+			if (validated_Transaction.count(base_de_donnee.get(u).second.second) != 0)
 			{
-				std::cerr << "ERRIIR" << std::get<0>(leadingBlock) << " " << validated_Transaction.at(base_de_donnee.get(u).second) << endl;
+				std::cerr << "ERRIIR" << std::get<0>(leadingBlock) << " " << validated_Transaction.at(base_de_donnee.get(u).second.second) << endl;
 			}
 			nbfinal0++;
-			validated_Transaction.insert(std::pair<Transaction,int>(base_de_donnee.get(u).second,std::get<0>(leadingBlock)));
+			validated_Transaction.insert(std::pair<Message,int>(base_de_donnee.get(u).second.second,std::get<0>(leadingBlock)));
 		}
 		leadingBlock = blockchain.get_PreviousBlock(leadingBlock);
 	}
 	int nbfinal2(0);
-	// for (const auto& u : all_Transaction)
-	// {
-	// 	if (base_de_donnee.get_status(u.getHashTransaction()) == 2 && (std::find(validated_Transaction.begin(), validated_Transaction.end(), u) == validated_Transaction.end()))
-	// 		cout << "Transaction validated but not in the main chain " << u.getHashTransaction() << endl;
-	// 	if (base_de_donnee.get_status(u.getHashTransaction()) == 1 && (std::find(validated_Transaction.begin(), validated_Transaction.end(), u) != validated_Transaction.end()))
-	// 		cout << "Transaction not valid but in the main chain " << u.getHashTransaction() << endl;
-	// 	if (base_de_donnee.get_status(u.getHashTransaction()) == 2)
-	// 		nbfinal2++;
-	// 
-	// }
+	for (auto& u : all_Transaction)
+	{
+		Message uu = u.getMessage();
+		if (base_de_donnee.get_statusTransaction(u.getHashTransaction()) == 1 && validated_Transaction.count(uu) != 0)
+			cout << "Transaction not valid but in the main chain " << u.getHashTransaction() << endl;
+
+		if (base_de_donnee.get_statusTransaction(u.getHashTransaction()) == 2 && validated_Transaction.count(uu) == 0)
+			cout << "Transaction validated but not in the main chain " << u.getHashTransaction() << endl;
+		if (base_de_donnee.get_statusTransaction(u.getHashTransaction()) == 2)
+			nbfinal2++;
+	
+	}
 	cout << nbfinal2 << " " << nbfinal0;
 	cout << endl << endl;
 
 	cout << endl << endl;
 
+	// Check for transactions doubloons
+	// std::sort(all_Transaction.begin(), all_Transaction.end(), [](const auto& a, const auto& b) {
+	// 	return a.getHashTransaction() < b.getHashTransaction();
+	// });
+	// for (int i(0); i < all_Transaction.size() - 1; i++)
+	// {
+	// 	if (all_Transaction.at(i) == all_Transaction.at(i + 1))
+	// 		std::cerr << "Same transaction";
+	// }
 
-	std::sort(all_Transaction.begin(), all_Transaction.end(), [](const auto& a, const auto& b) {
-		return a.getHashTransaction() < b.getHashTransaction();
-	});
-	for (int i(0); i < all_Transaction.size() - 1; i++)
-	{
-		if (all_Transaction.at(i) == all_Transaction.at(i + 1))
-			std::cerr << "Same transaction";
-	}
 
+
+	blockchain.clear();
 	blockchain.print();
 	std::cerr << "END";
 }
@@ -388,7 +392,7 @@ void test_integration_BlockCHain()
 int main()
 {
 	std::freopen("test.out", "w", stdout);
-	srand(time(NULL));
+	srand(time_t(NULL));
 
 	test_integration_BlockCHain();
 	system("pause");

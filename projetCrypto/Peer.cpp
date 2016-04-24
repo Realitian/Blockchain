@@ -66,12 +66,12 @@ int Peer::receiveBlock(const Packet& packet)
 	try {
 		for (const auto& tr : packet.block.get_Transactions_List())
 		{
-			if (base_de_donnee.get_status(tr) == DataBase::NOT_FOUND)
+			if (base_de_donnee.get_statusTransaction(tr) == DataBase::NOT_FOUND_TRANSACTION)
 			{
 				// std::cout << "This block has transaction unknown" << endl;
 				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
 			}
-			if (base_de_donnee.get_status(tr) == DataBase::VALIDATED)
+			if (base_de_donnee.get_statusTransaction(tr) == DataBase::VALIDATED_TRANSACTION)
 			{
 				// std::cout << "This block has transaction already taken" << endl;
 				return Peer::WRONG_PACKET_WITH_TRANSACTION_ALREADY_VALIDATED;
@@ -125,14 +125,14 @@ void Peer::updateTransactionList(Cuple leading, const Block& block)
 	while (num < std::get<0>(newbloc))
 	{
 
-		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED);
+		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED_TRANSACTION);
 		newbloc = blockchain.get_PreviousBlock(newbloc);
 	}
 	do
 	{
 
-		base_de_donnee.update(std::get<2>(leading), DataBase::NOT_VALIDATED);
-		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED);
+		base_de_donnee.update(std::get<2>(leading), DataBase::NOT_VALIDATED_TRANSACTION);
+		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED_TRANSACTION);
 
 		newbloc = blockchain.get_PreviousBlock(newbloc);
 		leading = blockchain.get_PreviousBlock(leading);
