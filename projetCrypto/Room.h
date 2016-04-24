@@ -12,7 +12,13 @@
 class Session;
 class Serveur;
 
-
+//!
+//! \class Room
+//!
+//! \brief Room for the Session in the Server side
+//!
+//! \author Louis Henri Franc
+//!
 class Room
 {
 public:

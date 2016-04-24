@@ -12,8 +12,8 @@
 #include "Message.h"
 //!
 //! \class Transaction
-//!
-//! \brief 
+//! \brief A Transaction is created under the name of an Identite and contains some informations added into a Message. The message will be composed of a domain name and some further informations. 
+//! \brief This informations will be added into a Database and verified by a BlockChain
 //!
 //! \author Louis Henri Franc
 //!

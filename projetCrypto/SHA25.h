@@ -3,6 +3,13 @@
 #include "cryptopp\sha.h"
 #include "cryptopp\hex.h"
 using std::string;
+//!
+//! \class SHA25
+//!
+//! \brief Implement SHA256 functions
+//!
+//! \author Louis Henri Franc
+//!
 class SHA25
 {
 public:

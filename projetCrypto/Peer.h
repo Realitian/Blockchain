@@ -16,7 +16,13 @@
 class Client;
 using ptr_Identite = std::shared_ptr<Identite>;
 using boost::asio::ip::tcp;
-
+//!
+//! \class Peer
+//!
+//! \brief The IHM for the Client. Connecting a Database and a BlockChain
+//!
+//! \author Louis Henri Franc
+//!
 class Peer
 {
 	using Cuple = std::tuple<int, string, Block>;

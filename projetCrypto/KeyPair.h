@@ -42,7 +42,14 @@ using std::exception;
 #ifndef SIZE_KEY
 #define SIZE_KEY 1024
 #endif // !SIZE_KEY
-
+//!
+//! \class KeyPair
+//!
+//! \brief A Handle of a RSA::PrivateKey and a RSA::PublicKey
+//! \brief Implements static functions to save and load PrivateKey from file
+//!
+//! \author Louis Henri Franc
+//!
 
 class KeyPair
 {

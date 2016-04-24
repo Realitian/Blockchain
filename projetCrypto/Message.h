@@ -6,7 +6,13 @@
 #include "SHA25.h"
 #include "KeyPair.h"
 using std::string;
-
+//!
+//! \class Message
+//!
+//! \brief A Message is a Wrapper containing a domain Name, informations related to it, and further informations
+//!
+//! \author Louis Henri Franc
+//!
 class Message
 {
 public:

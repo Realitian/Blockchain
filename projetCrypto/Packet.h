@@ -4,7 +4,13 @@
 #include <string>
 #include "Block.h"
 #include "Transaction.h"
-
+//!
+//! \class Packet
+//!
+//! \brief Wrapper send on the network between the Clients and the Server (v1)
+//!
+//! \author Louis Henri Franc
+//!
 class Packet
 {
 public:

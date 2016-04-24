@@ -9,6 +9,13 @@
 #include <boost\archive\text_iarchive.hpp>
 #include <boost\serialization\list.hpp>
 
+//!
+//! \class Connection
+//!
+//! \brief Abstraction of a TCP connection that implements method to send and receive object into a socket
+//!
+//! \author Louis Henri Franc
+//!
 class Connection
 {
 public:

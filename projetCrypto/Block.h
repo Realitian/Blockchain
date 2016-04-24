@@ -6,6 +6,13 @@
 #include "BlockHeader.h"
 #include "Constante.h"
 
+//!
+//! \class Block
+//!
+//! \brief A Block of the BlockChain. Contains a list of Transactions. 
+//!
+//! \author Louis Henri Franc
+//!
 using std::vector;
 class Block
 {

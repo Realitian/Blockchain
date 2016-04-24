@@ -7,6 +7,13 @@
 using std::string;
 using paire = std::pair<unsigned long long, unsigned long long>;
 
+//!
+//! \class BlockHeader
+//!
+//! \brief The Header of a Block. Contains all the informations that will identify uniquely a Block
+//!
+//! \author Louis Henri Franc
+//!
 class BlockHeader
 {
 public:

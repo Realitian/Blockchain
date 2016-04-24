@@ -3,6 +3,14 @@
 #include <vector>
 #include "KeyPair.h"
 #include "cryptopp\rsa.h"
+
+//!
+//! \class Identite
+//!
+//! \brief Represent a Human
+//!
+//! \author Louis Henri Franc
+//!
 class Identite
 {
 public:

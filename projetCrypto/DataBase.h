@@ -2,7 +2,13 @@
 #include <map>
 #include "Transaction.h"
 #include "Block.h"
-
+//!
+//! \class DataBase
+//!
+//! \brief The DataBase keeps all the Transaction and their current status of validation by the BlockChain.
+//! \brief Implement a File System that will save the DataBase into File if necessary
+//! \author Louis Henri Franc
+//!
 class DataBase
 {
 	using int_trans = std::pair<int, Transaction>;
