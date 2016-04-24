@@ -1,6 +1,13 @@
 #include "Serveur.h"
 #include "Session.h"
 
+//!
+//! \brief A server that handle relations between all the Client
+//!
+//! \param : io_service 
+//! \param : endpoint 
+//! \return :
+//!
 Serveur::Serveur(boost::asio::io_service& io_service, const tcp::endpoint& endpoint)
 	:m_io_service(io_service),
 	m_acceptor(io_service, endpoint),
@@ -15,7 +22,11 @@ Serveur::~Serveur()
 
 }
 
-// Waiting for a new client
+//!
+//! \brief A acceptation function that wait for new connection. Called handle_connect when a new Peer connected to the Server
+//!
+//! \return :void
+//!
 void Serveur::wait_for_connection()
 {
 	boost::shared_ptr<Connection> new_connection(new Connection(m_io_service)); 
@@ -29,6 +40,13 @@ void Serveur::wait_for_connection()
 }
 
 
+//!
+//! \brief Handle the new Connection created
+//!
+//! \param : error 
+//! \param : new_connection 
+//! \return :void
+//!
 void Serveur::handle_accept(const boost::system::error_code& error, boost::shared_ptr<Connection> new_connection) 
 {
 	if (!error)

@@ -1,15 +1,13 @@
 #include "Block.h"
 
 
-//************************************
-// Method:    Block : construct a fully correct Block with a reference to a previous one
-// FullName:  Block::Block
-// Access:    public 
-// Returns:   
-// Qualifier:
-// Parameter: ptr_Block : a reference to the previous block
-// Parameter: const vector<Transaction> & : A vector of transaction which will be integrated in the block
-//************************************
+//!
+//! \brief Construct a fully correct Block with a reference to a previous one. Main Constructor
+//! Construct a new Block, Build the header of the Block and also the Merkle Tree
+//! \param : prevBloc A pointer to the previous Block
+//! \param : _transaction A vector of transaction
+//! \return :
+//!
 Block::Block(const ptr_Block prevBloc, const vector<Transaction>& _transaction) :
 	previousBlockHash(prevBloc->blockHash), nombreTransaction(_transaction.size()), header(prevBloc->get_Header().get_NumeroBloc() + 1),
 	 transactions(), blockHash()
@@ -24,17 +22,16 @@ Block::Block(const ptr_Block prevBloc, const vector<Transaction>& _transaction) 
 
 }
 
-//************************************
-// Method:    Block : Construct a Block without no reference to the previous one
-// FullName:  Block::Block
-// Access:    public 
-// Returns:   
-// Qualifier: : previousBlockHash(previousBlockHash), nombreTransaction(nbtransaction), tailleBlock(taille), transactions(tr), header(_header),blockHash()
-// Parameter: string previousBlockHash
-// Parameter: int nbtransaction
-// Parameter: vector<string> tr
-// Parameter: const BlockHeader _header
-//************************************
+
+//!
+//! \brief Construct a Block without no reference to the previous one. Should be used with precautions
+//!
+//! \param : previousBlockHash the previous Block Hash
+//! \param : nbtransaction the number of transactions in the new block
+//! \param : tr The transactions
+//! \param : _header A Header 
+//! \return :
+//!
 Block::Block(string previousBlockHash, int nbtransaction,  vector<string> tr, const BlockHeader _header) :
 	previousBlockHash(previousBlockHash), nombreTransaction(nbtransaction),
 	transactions(tr), header(_header),blockHash()
@@ -42,15 +39,13 @@ Block::Block(string previousBlockHash, int nbtransaction,  vector<string> tr, co
 	BuildMerkleRoot();
 }
 
-//************************************
-// Method:    Block : A BlockChain Block
-// FullName:  Block::Block
-// Access:    public 
-// Returns:   
-// Qualifier: Simple Constructor only used for Packet class. This constructs a semi valid Block,
-//			  Also used to construct the first Block of the BlockChain
-// Parameter: int
-//************************************
+
+//!
+//! \brief Simple Constructor only used for Packet class. This constructs a semi valid Block,
+//!		   The Block is not valid. Should not be used, unless when creating Packet
+//! \param : p 
+//! \return :
+//!
 Block::Block(int p) :
 
 	previousBlockHash(),blockHash(Constante::FIRST_BLOCK_HASH), nombreTransaction(0), header(0), transactions()
@@ -62,6 +57,12 @@ Block::~Block()
 {
 }
 
+//!
+//! \brief Copy Constructor
+//!
+//! \param : rhs 
+//! \return :Block::Block&
+//!
 Block& Block::operator=(Block rhs)
 {
 	if (rhs == *this)
@@ -82,14 +83,12 @@ bool Block::operator==(const Block& rhs) const
 }
 
 
-//************************************
-// Method:    isValid : Check if the block is valid, all the transaction added to a Block should always be verified ! because at the end
-//						the block keep only a hash of the transaction
-// FullName:  Block::isValid
-// Access:    public 
-// Returns:   bool
-// Qualifier: const
-//************************************
+
+//!
+//! \brief Check if the block is valid, all the transaction added to a Block should always be verified ! Because at the end
+//!					the block keep only a hash of the transaction
+//! \return :bool
+//!
 bool Block::isValid() const
 {
 
@@ -113,13 +112,12 @@ bool Block::isValid() const
 }
 
 
-//************************************
-// Method:    BuildMerkleRoot
-// FullName:  Block::BuildMerkleRoot
-// Access:    public 
-// Returns:   void
-// Qualifier:
-//************************************
+
+//!
+//! \brief Build the Merkle Tree of the Block. Update the Header consequently
+//!
+//! \return :void
+//!
 void Block::BuildMerkleRoot()
 {
 	// To get a even number of transactions
@@ -146,13 +144,12 @@ void Block::BuildMerkleRoot()
 
 
 
-//************************************
-// Method:    solveProofofWork
-// FullName:  Block::solveProofofWork
-// Access:    public 
-// Returns:   paire
-// Qualifier:
-//************************************
+
+//!
+//! \brief Find a nonce that will solve the Proof the Work. See proof of Work for more information
+//! \brief The difficulty can be set in the Constante file
+//! \return :paire Return the nonce
+//!
 paire Block::solveProofofWork()
 {
 	unsigned long long nonce = 0, incr = 0;
@@ -177,6 +174,12 @@ paire Block::solveProofofWork()
 }
 
 
+//!
+//! \brief Check if a Transaction is in the Block
+//!
+//! \param : tr
+//! \return :bool Return true if the transaction is in the Block
+//!
 bool Block::containsTransactions(const Transaction& tr) const
 {
 	// There is an actually improvement possible with the Merkle Root but it isn't implemented yet

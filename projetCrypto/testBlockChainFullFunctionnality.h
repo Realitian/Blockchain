@@ -1,3 +1,4 @@
+#pragma once
 #include <unordered_map>
 #include <iostream>
 #include <cstdlib>
@@ -158,7 +159,7 @@ void test_integration_BlockCHain()
 	all_Transaction.insert(all_Transaction.end(), transactions2.begin(), transactions2.end());
 
 
-	
+
 
 	cout << "Generating random transaction : " << endl;
 	for (int i(0); i < 5000; i++)
@@ -187,9 +188,9 @@ void test_integration_BlockCHain()
 
 	std::cout << "Get an element in the database " << endl;
 	string random = SHA25::sha256("HelloYou");
-	std::cout << "Element not in the database "  << (base_de_donnee.get(random).first == 4 ? "4" : "Error" ) << std::endl;
+	std::cout << "Element not in the database " << (base_de_donnee.get(random).first == 4 ? "4" : "Error") << std::endl;
 	std::cout << "The two hashes following should be equal" << endl;
-	std::cout << "Hash of an element in the database " << 
+	std::cout << "Hash of an element in the database " <<
 		base_de_donnee.get(all_Transaction.at(5).getHashTransaction()).second.getHashTransaction() << std::endl;
 	std::cout << all_Transaction.at(5).getHashTransaction();
 
@@ -207,7 +208,7 @@ void test_integration_BlockCHain()
 	Block block2(ptr1, transactions2);
 	std::vector<Block> all_blocks;
 
-	
+
 	BlockChain blockchain;
 
 
@@ -220,10 +221,10 @@ void test_integration_BlockCHain()
 	cout << "Test on finding a transaction in the BlockChain" << endl;
 	std::cout << blockchain.push_back(block1) << std::endl;
 	cout << (blockchain.find(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
-	
+
 	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 	std::cout << blockchain.push_back(block2) << std::endl;
-	
+
 	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 
 
@@ -231,7 +232,7 @@ void test_integration_BlockCHain()
 	cout << "Exemple for a problem solving : " << endl;
 	cout << "Solving the problem" << endl;
 	std::pair<unsigned long long, unsigned long long> nonce = block1.solveProofofWork();
-	
+
 	cout << "Hash found : " << SHA25::sha256(string(block1.get_Header().get_HashMerkleRoot() + std::to_string(nonce.first) + std::to_string(nonce.second))) << endl;
 	cout << "The two nonce are" << nonce.first << " " << nonce.second << endl;
 	cout << endl;
@@ -310,7 +311,7 @@ void test_integration_BlockCHain()
 		blocx.solveProofofWork();
 		std::shared_ptr<Block> ptrX2 = ptrX;
 		ptrX = std::make_shared<Block>(blocx);
-		
+
 		// If the main chain has been extended, add the block
 		if (receiveBlock(base_de_donnee, blocx, blockchain) == 1)
 		{
@@ -351,7 +352,7 @@ void test_integration_BlockCHain()
 				std::cerr << "ERRIIR" << std::get<0>(leadingBlock) << " " << validated_Transaction.at(base_de_donnee.get(u).second) << endl;
 			}
 			nbfinal0++;
-			validated_Transaction.insert(std::pair<Transaction,int>(base_de_donnee.get(u).second,std::get<0>(leadingBlock)));
+			validated_Transaction.insert(std::pair<Transaction, int>(base_de_donnee.get(u).second, std::get<0>(leadingBlock)));
 		}
 		leadingBlock = blockchain.get_PreviousBlock(leadingBlock);
 	}

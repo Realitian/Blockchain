@@ -120,7 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Base_Donnee.cpp" />
+    <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockChain.cpp" />
     <ClCompile Include="BlockHeader.cpp" />
@@ -140,7 +140,7 @@
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Base_Donnee.h" />
+    <ClInclude Include="DataBase.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockChain.h" />
     <ClInclude Include="BlockHeader.h" />
@@ -159,6 +159,7 @@
     <ClInclude Include="Serveur.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SHA25.h" />
+    <ClInclude Include="testBlockChainFullFunctionnality.h" />
     <ClInclude Include="testLibraryCrypto.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>

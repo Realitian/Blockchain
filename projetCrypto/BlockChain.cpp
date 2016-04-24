@@ -28,14 +28,14 @@ BlockChain::~BlockChain()
 }
 
 
-//************************************
-// Method:    addBlock
-// FullName:  BlockChain::addBlock
-// Access:    public 
-// Returns:   int
-// Qualifier:
-// Parameter: const Block & bloc
-//************************************
+
+/*!
+ * 
+ * \brief Try to add to the blockchain a new block. Update the internal structure of the blockchain by switching to the main branch if necessary
+ *
+ * \param : bloc : the bloc to add. As the BlockChain is not connected to the database, there is no check if all the transactions in the block are correct, all the transactions should have been verified before
+ * \return :int : return a code corresponding to the status of the add
+*/
 int BlockChain::push_back(const Block& bloc)
 {
 	// If the block is not valid
@@ -100,8 +100,7 @@ int BlockChain::push_back(const Block& bloc)
 			};
 		}
 	}
-
-	// If a parent has not been found
+	/*!< If a parent has not been found. */
 	if (!(block_ite != blocks.end()))
 	{
 		// add it the orphans set !
@@ -120,13 +119,13 @@ int BlockChain::push_back(const Block& bloc)
 
 
 
-//************************************
-// Method:    print
-// FullName:  BlockChain::print
-// Access:    public 
-// Returns:   void
-// Qualifier: const
-//************************************
+
+
+//!
+//! \brief Print the Blockchain
+//!
+//! \return :void
+//!
 void BlockChain::print() const
 {
 	for (const auto& exp : blocks)
@@ -137,14 +136,13 @@ void BlockChain::print() const
 }
 
 
-//************************************
-// Method:    find
-// FullName:  BlockChain::find
-// Access:    public 
-// Returns:   bool
-// Qualifier:
-// Parameter: const Transaction & trans
-//************************************
+
+//!
+//! \brief Find if a transaction is in the BlockChain
+//! \deprecated As Database and Blockchain should be connected, you should check if the transaction is valid directly in the DataBase with
+//! \param : trans 
+//! \return :bool : Return a bool if the transaction is in the BlockChain
+//!
 bool BlockChain::find(const Transaction& trans) const
 {
 	if (std::any_of(blocks.rbegin(), blocks.rend(), [&trans](const Cuple& bloc) {
@@ -160,13 +158,14 @@ bool BlockChain::find(const Transaction& trans) const
 
 
 
-//************************************
-// Method:    clear
-// FullName:  BlockChain::clear
-// Access:    public 
-// Returns:   void
-// Qualifier:
-//************************************
+
+
+//!
+//! \brief Clear the blockchain by keeping only the node that are in the main chain. 
+//!		    Keep all block that are close to the leading Block. The number of Block to keep can be set in Constante.h
+//!			
+//! \return :void
+//!
 void BlockChain::clear()
 {
 	// Deleting ancient orphans that are no more useful
@@ -224,40 +223,40 @@ void BlockChain::clear()
 	}
 }
 
-//************************************
-// Method:    size : return the size of the BlockChain (the number of blocks into the blockChain
-// FullName:  BlockChain::size
-// Access:    public 
-// Returns:   size_t : 
-// Qualifier: const
-//************************************
+
+/*!
+ * 
+ * \brief Return the size of the blockchain
+ *
+ * \return :size_t : The size of the BlockChain
+*/
 size_t BlockChain::size() const
 {
 	return blocks.size() + orphans.size();
 }
 
 
-//************************************
-// Method:    get_LeadingBlock : return a const reference to the "Block" (actually the tuple) at the head of the main chain
-// FullName:  BlockChain::get_LeadingBlock
-// Access:    public 
-// Returns:   const Cuple& : because this Object should not been modified, neither copy
-// Qualifier: const
-//************************************
+
+/*!
+ * 
+ * \brief return a const reference to the "Block" (actually the tuple) at the head of the main chain
+ *
+ * \return :const Cuple : return the Block at the top of the BlockChain, the one that has higher number.
+*/
 const Cuple BlockChain::get_LeadingBlock() const
 {
 	return *leadingBlock;
 }
 
 
-//************************************
-// Method:    get_PreviousBlock : Given a Block b, it gives back the previous Block in the BlockChain referenced in the header of b as previousHash
-// FullName:  BlockChain::get_PreviousBlock
-// Access:    public 
-// Returns:   Cuple
-// Qualifier: const
-// Parameter: const Cuple & cuple
-//************************************
+
+/*!
+ * 
+ * \brief  Given a Block b, it gives back the previous Block in the BlockChain referenced in the header of b as his previous
+ *
+ * \param : cuple : A tuples composed of the block, his hash and his number 
+ * \return :Cuple : A tuples composed of the block, his hash and his number for the previous node
+*/
 Cuple BlockChain::get_PreviousBlock(const Cuple& cuple) const
 {
 	// Get the previous hash

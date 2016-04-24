@@ -69,7 +69,7 @@
     <ClCompile Include="KeyPair.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Base_Donnee.cpp">
+    <ClCompile Include="DataBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,10 +131,13 @@
     <ClInclude Include="PeerMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Base_Donnee.h">
+    <ClInclude Include="Constante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Constante.h">
+    <ClInclude Include="testBlockChainFullFunctionnality.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

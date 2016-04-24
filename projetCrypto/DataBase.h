@@ -3,12 +3,12 @@
 #include "Transaction.h"
 #include "Block.h"
 
-class Base_Donnee
+class DataBase
 {
 	using int_trans = std::pair<int, Transaction>;
 public:
-	Base_Donnee();
-	~Base_Donnee();
+	DataBase();
+	~DataBase();
 
 	int_trans get(string)		 const;
 	int    get_status(const string&) const;

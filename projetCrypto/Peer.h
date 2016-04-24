@@ -10,7 +10,7 @@
 #include "Transaction.h"
 #include "Packet.h"
 #include "Connection.h"
-#include "Base_Donnee.h"
+#include "DataBase.h"
 #include "BlockChain.h"
 
 class Client;
@@ -55,7 +55,7 @@ public:
 private:
 	ptr_Identite		    identite;
 	std::shared_ptr<Client> client;
-	Base_Donnee				base_de_donnee;
+	DataBase				base_de_donnee;
 	BlockChain				blockchain;
 	void clean_screen();
 	void showBanner();

@@ -2,6 +2,13 @@
 
 
 
+//!
+//! \brief Print the packet in a nice way
+//!
+//! \param : os 
+//! \param : p 
+//! \return :std::ostream&
+//!
 std::ostream& operator<<(std::ostream& os, const Packet& p)
 {
 	os << std::endl;

@@ -1,6 +1,15 @@
 #include "Transaction.h"
 
 
+//!
+//! \brief Default Constructor for a Transaction. 
+//! \brief A Transaction correspond is created under the name of an Identite and contains some informations added into a Message. The message will be composed of a domain name and some further informations. 
+//! \brief This informations will be added into a Database and verified by a BlockChain
+//! \param : ident The identity behind the creation of a new Transaction
+//! \param : _domaineName The domain name chosen 
+//! \param : _information  Some further information that Peer will be able to look up into the DataBase
+//! \return :
+//!
 Transaction::Transaction(const Identite& ident, const string& _domaineName, const string& _information)
 	: identiteSender(ident)
 {
@@ -16,6 +25,11 @@ Transaction::~Transaction()
 }
 
 
+//!
+//! \brief Check if a Transaction is correct. The identity name and surname should be enough long.
+//!
+//! \return :bool True if the transaction is correct
+//!
 bool Transaction::isCorrect() const
 {
 	if (identiteSender.getNom().size() <= 1 && identiteSender.getPrenom().size() <= 1)

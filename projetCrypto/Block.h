@@ -32,7 +32,6 @@ public:
 
 	bool	isValid() const;
 	bool	containsTransactions(const Transaction&) const;
-	void	BuildMerkleRoot();
 	paire	solveProofofWork();
 
 	
@@ -68,5 +67,8 @@ private:
 	BlockHeader header;
 	
 	vector<string> transactions;
+
+	void	BuildMerkleRoot();
+
 };
 

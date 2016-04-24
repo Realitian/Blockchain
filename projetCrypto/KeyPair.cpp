@@ -1,5 +1,12 @@
 #include "KeyPair.h"
 
+//!
+//! \brief Constructor of a Keypair with Key already existing pair of Key
+//!
+//! \param : pbkey A RSA::PublicKey
+//! \param : prkey A RSA::PrivateKey
+//! \return :
+//!
 KeyPair::KeyPair(const RSA::PublicKey& pbkey, const RSA::PrivateKey& prkey) :
 	publicKey(pbkey),
 	privateKey(prkey)
@@ -9,6 +16,11 @@ KeyPair::KeyPair(const RSA::PublicKey& pbkey, const RSA::PrivateKey& prkey) :
 
 
 
+//!
+//! \brief Build a new Pair of Key
+//!
+//! \return :
+//!
 KeyPair::KeyPair() :
 	publicKey(), privateKey()
 {
@@ -44,6 +56,12 @@ RSA::PrivateKey KeyPair::getPrivateKey() const
 	return privateKey;
 }
 
+//!
+//! \brief Encrypt a message with the Keypair
+//!
+//! \param : message The message to encrypt
+//! \return :string The encrypted message
+//!
 string KeyPair::encrypt(string message) {
 	AutoSeededRandomPool rng;
 	string cipher;
@@ -61,6 +79,12 @@ string KeyPair::encrypt(string message) {
 
 	return cipher;
 }
+//!
+//! \brief Decrypt a message with the KeyPair
+//!
+//! \param : cipher The cypher text
+//! \return :string The original Message
+//!
 string KeyPair::decrypt(string cipher) {
 	AutoSeededRandomPool rng;
 	string pl_text;
@@ -82,6 +106,14 @@ string KeyPair::decrypt(string cipher) {
 
 
 
+
+//!
+//! \brief Private function for saving a Key
+//!
+//! \param : filename 
+//! \param : bt 
+//! \return :void
+//!
 void KeyPair::Save(const string& filename, const CryptoPP::BufferedTransformation& bt)
 {
 
@@ -92,6 +124,13 @@ void KeyPair::Save(const string& filename, const CryptoPP::BufferedTransformatio
 
 }
 
+//!
+//! \brief Save a private Key in a file
+//!
+//! \param : filename The name of the file
+//! \param : key The Private Key to save
+//! \return :void
+//!
 void KeyPair::savePrivateKey(const string& filename, const RSA::PrivateKey& key)
 {
 	CryptoPP::ByteQueue queue;
@@ -99,6 +138,13 @@ void KeyPair::savePrivateKey(const string& filename, const RSA::PrivateKey& key)
 	Save(filename, queue);
 }
 
+//!
+//! \brief Save a public key in a file
+//!
+//! \param : filename The name of the file
+//! \param : key The Public Key to Save
+//! \return :void
+//!
 void KeyPair::savePublicKey(const string& filename, const RSA::PublicKey& key) {
 	CryptoPP::ByteQueue queue;
 	key.Save(queue);
@@ -128,6 +174,13 @@ void KeyPair::Load(const string& filename, CryptoPP::BufferedTransformation& bt)
 
 }
 
+//!
+//! \brief Load a Private Key into a file
+//!
+//! \param : filename The name of the file
+//! \param : key The Private Key that will be loaded
+//! \return :bool
+//!
 bool KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
 {
 	try {
@@ -146,6 +199,13 @@ bool KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
 	}
 }
 
+//!
+//! \brief Load a Private Key into a file
+//!
+//! \param : filename The name of the file
+//! \param : key The Public Key that will be loaded
+//! \return :bool
+//!
 bool KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
 {
 	try {

@@ -10,7 +10,13 @@
 
 #include "Identite.h"
 #include "Message.h"
-
+//!
+//! \class Transaction
+//!
+//! \brief 
+//!
+//! \author Louis Henri Franc
+//!
 class Transaction
 {
 public:

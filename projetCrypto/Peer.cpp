@@ -14,6 +14,12 @@ Peer::~Peer()
 }
 
 
+//!
+//! \brief Is called when the Peer received a new Packet. Distribute the packet to the correct function depending the type of the packet
+//!
+//! \param : packet The packet to distribute
+//! \return :void
+//!
 void Peer::receivePacket(const Packet& packet)
 {
 	std::cerr << packet;
@@ -37,6 +43,12 @@ void Peer::receivePacket(const Packet& packet)
 
 
 
+//!
+//! \brief Main method when receiving a Packet. Called by receivePacket. Make the relation between the DataBase and the BlockChain
+//!
+//! \param : packet The packet
+//! \return :int
+//!
 int Peer::receiveBlock(const Packet& packet)
 {
 	if (blockchain.size() == 0)
@@ -54,12 +66,12 @@ int Peer::receiveBlock(const Packet& packet)
 	try {
 		for (const auto& tr : packet.block.get_Transactions_List())
 		{
-			if (base_de_donnee.get_status(tr) == Base_Donnee::NOT_FOUND)
+			if (base_de_donnee.get_status(tr) == DataBase::NOT_FOUND)
 			{
 				// std::cout << "This block has transaction unknown" << endl;
 				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
 			}
-			if (base_de_donnee.get_status(tr) == Base_Donnee::VALIDATED)
+			if (base_de_donnee.get_status(tr) == DataBase::VALIDATED)
 			{
 				// std::cout << "This block has transaction already taken" << endl;
 				return Peer::WRONG_PACKET_WITH_TRANSACTION_ALREADY_VALIDATED;
@@ -97,6 +109,13 @@ int Peer::receiveBlock(const Packet& packet)
 }
 
 
+//!
+//! \brief Update the Database entries when a new correct Block is received. Is called if the new Block has a number higher than the current leading Block in the BlockChain
+//!
+//! \param : leading The previous leading Block
+//! \param : block The Block received
+//! \return :void
+//!
 void Peer::updateTransactionList(Cuple leading, const Block& block)
 {
 	using Cuple = std::tuple<int, string, Block>;
@@ -106,20 +125,26 @@ void Peer::updateTransactionList(Cuple leading, const Block& block)
 	while (num < std::get<0>(newbloc))
 	{
 
-		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
+		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED);
 		newbloc = blockchain.get_PreviousBlock(newbloc);
 	}
 	do
 	{
 
-		base_de_donnee.update(std::get<2>(leading), Base_Donnee::NOT_VALIDATED);
-		base_de_donnee.update(std::get<2>(newbloc), Base_Donnee::VALIDATED);
+		base_de_donnee.update(std::get<2>(leading), DataBase::NOT_VALIDATED);
+		base_de_donnee.update(std::get<2>(newbloc), DataBase::VALIDATED);
 
 		newbloc = blockchain.get_PreviousBlock(newbloc);
 		leading = blockchain.get_PreviousBlock(leading);
 	} while (leading != newbloc);
 }
 
+//!
+//! \brief Update the database when a new Transaction is received. Is called by receivePacket
+//!
+//! \param : packet The packet received
+//! \return :int A Code corresponding to the status of the adding
+//!
 int Peer::receiveTransaction(const Packet& packet)
 {
 	if (!packet.transaction.isCorrect())
@@ -139,6 +164,11 @@ void Peer::addClient(std::shared_ptr<Client> nvuClient)
 	client = nvuClient;
 }
 
+//!
+//! \brief Print a banner in the IHM
+//!
+//! \return :void
+//!
 void Peer::showBanner()
 {
 	clean_screen();
@@ -150,6 +180,11 @@ void Peer::showBanner()
 
 
 
+//!
+//! \brief IHM Function. Menu for the Connection
+//!
+//! \return :void
+//!
 void Peer::connexion()
 {
 	showBanner();
@@ -200,6 +235,13 @@ DEMANDE_CLE:
 }
 
 
+//!
+//! \brief IHM Function. Menu for saving a pair of Key
+//!
+//! \param : pvkey A Public Key
+//! \param : pbkey A Private Key
+//! \return :void
+//!
 void Peer::sauvegarderCle(const RSA::PrivateKey& pvkey, const RSA::PublicKey& pbkey)
 {
 	showBanner();
@@ -227,6 +269,12 @@ SAUVEGARDE_CLE:
 }
 
 
+//!
+//! \brief IHM Function
+//!
+//! \param : m 
+//! \return :void
+//!
 inline void Peer::print(const string& m) {
 	std::cout << m << std::endl;
 }
@@ -242,6 +290,11 @@ void Peer::startMining()
 }
 
 
+//!
+//! \brief IHM Function. Display the main Menu of the IHM
+//!
+//! \return :void
+//!
 void Peer::displayMenu() {
 DISPLAY_MENU:
 	print(MessageIHM::affichage_menu_principal);
@@ -279,6 +332,11 @@ DISPLAY_MENU:
 	}
 }
 
+//!
+//! \brief IHM Function. Menu for creating a new Transaction
+//!
+//! \return :std::shared_ptr<Transaction>  A pointer to the created new Transaction
+//!
 std::shared_ptr<Transaction> Peer::createTransaction()
 {
 	clean_screen();

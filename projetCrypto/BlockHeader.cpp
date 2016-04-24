@@ -2,18 +2,17 @@
 
 
 
-//************************************
-// Method:    BlockHeader : Basic implementation of a BlockHeader 
-//							called when a Block is created
-//							The blockHeader is then further fulfill with 
-//							its correct value when the Merkle root tree has been build
-//							.. and the block has been mined
-// FullName:  BlockHeader::BlockHeader
-// Access:    public 
-// Returns:   
-// Qualifier: : numeroBloc(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
-// Parameter: int _numeroBloc
-//************************************
+
+//!
+//! \brief Basic implementation of a BlockHeader 
+//!							called when a Block is created
+//!						The blockHeader is then further fulfill with 
+//!						its correct value when the Merkle root tree has been build
+//!						.. and the block has been mined
+//!
+//! \param : _numeroBloc The number of the Block
+//! \return :
+//!
 BlockHeader::BlockHeader(int _numeroBloc) :
 	numeroBloc(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
 {
@@ -24,6 +23,12 @@ BlockHeader::~BlockHeader()
 {
 }
 
+//!
+//! \brief Implementation the equal operator
+//!
+//! \param : rhs 
+//! \return :bool
+//!
 bool BlockHeader::operator==(const BlockHeader& rhs) const
 {
 	return (merkleRootHash == rhs.merkleRootHash && numeroBloc == rhs.get_NumeroBloc() && timestamp == rhs.get_Time() );

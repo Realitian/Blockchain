@@ -1,5 +1,11 @@
 #include "Room.h"
 
+//!
+//! \brief Implementing a Room for connection in the Server Side
+//!
+//! \param : server 
+//! \return :
+//!
 Room::Room(Serveur& server)
 	:m_server(server),
 	blockchain(), bdd()
@@ -7,6 +13,12 @@ Room::Room(Serveur& server)
 	std::cout << "New room" << std::endl;
 }
 
+//!
+//! \brief Add a new participant
+//!
+//! \param : participant A shared_ptr to the new Session
+//! \return :void
+//!
 void Room::join(boost::shared_ptr<Session> participant)
 {
 	m_participants.insert(participant);
@@ -15,6 +27,12 @@ void Room::join(boost::shared_ptr<Session> participant)
 	deliver(e);
 }
 
+//!
+//! \brief Deleted a Session
+//!
+//! \param : participant The session to delete
+//! \return :void
+//!
 void Room::leave(boost::shared_ptr<Session> participant)
 {
 	Packet e;
@@ -26,6 +44,12 @@ void Room::leave(boost::shared_ptr<Session> participant)
 
 
 
+//!
+//! \brief Deliver a message to all the Session
+//!
+//! \param : msg The packet to deliver
+//! \return :void
+//!
 void Room::deliver(const Packet msg)
 {
 	switch (msg.m_type)

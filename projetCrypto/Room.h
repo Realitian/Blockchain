@@ -7,7 +7,7 @@
 #include "Identite.h"
 #include "Transaction.h"
 #include "BlockChain.h"
-#include "Base_Donnee.h"
+#include "DataBase.h"
 
 class Session;
 class Serveur;
@@ -31,7 +31,7 @@ private:
 	std::vector<Identite>					identites;
 	std::vector<Transaction>				transactions;
 	BlockChain								blockchain;
-	Base_Donnee								bdd;
+	DataBase								bdd;
 };
 
 typedef std::shared_ptr<Room>	Room_ptr;

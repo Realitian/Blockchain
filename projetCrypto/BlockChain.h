@@ -4,6 +4,14 @@
 #include <tuple>
 #include "Block.h"
 #include "Constante.h"
+
+//!
+//! \class BlockChain
+//!
+//! \brief This is the main class class of the project. It is my own implementation of the BlockChain
+//!		   	
+//! \author Louis Henri Franc
+//!
 class BlockChain
 {
 	using Cuple = std::tuple<int, string, Block>; // the number of the Block, the hash of the block and the Block itself
@@ -15,6 +23,8 @@ public:
 	bool find(const Transaction&) const;
 	size_t size() const;
 	void clear();
+	
+
 	void print() const;
 
 	const Cuple  get_LeadingBlock() const;
