@@ -1,5 +1,7 @@
 #pragma once
 #include <map>
+#include <fstream>
+
 #include "Transaction.h"
 #include "Block.h"
 //!
@@ -12,13 +14,16 @@
 class DataBase
 {
 	using data_cuple = std::pair<string, std::pair<int,Message> >;
+	
 public:
 	DataBase();
 	~DataBase();
 
-	data_cuple get(string)		 const;
-	int get_statusTransaction(const string&) const;
-	int get_statusMessage(const string&,const string&) const;
+	void	   request(const string&) const;
+	data_cuple get(string)	const;
+	int		   get_statusTransaction(const string&) const;
+	int		   get_statusMessage(const string&,const string&) const;
+	void	   save(const string&) const;
 
 	void	  update(const Block&, int);
 	void	  update(const string&, int);
@@ -29,7 +34,8 @@ public:
 	enum {
 		NOT_FOUND_TRANSACTION = 0,
 		NOT_VALIDATED_TRANSACTION = 1,
-		VALIDATED_TRANSACTION = 2
+		VALIDATED_TRANSACTION = 2,
+		OTHER_SAME_TRANSACTION_ALREADY_VALID = 3
 	};
 
 private:

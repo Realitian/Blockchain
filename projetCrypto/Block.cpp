@@ -101,13 +101,10 @@ bool Block::isValid() const
 		return false;
 	std::vector<string> tr_buf = transactions;
 	std::sort(tr_buf.begin(), tr_buf.end());
-	//for (int i(0); i < tr_buf.size() - 1)
-	//{
-	//	if (tr_buf.at(i) == tr_buf.at(i + 1))
-	//		return false;
-	//}
+
 	if (std::unique(tr_buf.begin(), tr_buf.end()) != tr_buf.end())
 		return false;
+
 	return true;
 }
 

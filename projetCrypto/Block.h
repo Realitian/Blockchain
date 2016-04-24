@@ -74,7 +74,6 @@ private:
 	BlockHeader header;
 	
 	vector<string> transactions;
-
 	void	BuildMerkleRoot();
 
 };

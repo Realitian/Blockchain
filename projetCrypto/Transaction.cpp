@@ -37,6 +37,7 @@ bool Transaction::isCorrect() const
 	
 	if ((message.getHashDomainName() != SHA25::sha256(message.getNomDomaine())) ||
 		message.getinformation().size() <= 1 ||
+		message.getNomDomaine().size() <= 2  ||
 		message.getPublicKey().GetPublicExponent() == identiteSender.getPublicKey().GetPublicExponent() ||
 		hashTransaction != SHA25::sha256(identiteSender.toString() + message.getHashDomainName() + message.getinformation())
 		// TODO Something about the time
