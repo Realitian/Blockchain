@@ -87,7 +87,8 @@ public:
 		publicKey.SetPublicExponent(CryptoPP::Integer(d.c_str()));
 		publicKey.SetModulus(CryptoPP::Integer(e.c_str()));
 		// ar & f;
-		//signature = SecByteBlock(reinterpret_cast<const byte*>(f.data()), f.size());
+		signature = sign(publicKey);
+// ::qqSecByteBloc@k(reinterpret_cast<const byte*>(f.data()), f.size());
 	}
 
 	BOOST_SERIALIZATION_SPLIT_MEMBER()

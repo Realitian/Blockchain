@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Block">
-    <Position X="4.75" Y="3" Width="1.5" />
+    <Position X="4.25" Y="4.75" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>BAAEAQQAAgCgCAgAAAAAAAAABAAAAAAAAgIAAAAAgAE=</HashCode>
+      <HashCode>QAAEAQQAAoCACAAAAAJAAQAABQBAAAAAAAIkAAAAgAE=</HashCode>
       <FileName>Block.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -11,40 +11,30 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="BlockChain">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="4.75" Width="3.5" />
+    <NestedTypes>
+      <Enum Name="BlockChain::__unnamed_enum_0004_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BlockChain.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAAABgA=</HashCode>
+      <HashCode>AEUAAAAAAIAAAAAAAIEgAEAgAAAAAAAACAAAAAAABgA=</HashCode>
       <FileName>BlockChain.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="blocks" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="MinerNode">
-    <Position X="7" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACQAAUAAAAAAAAAAAAAAABAAAACgYAAQAAAAEAABA=</HashCode>
-      <FileName>MinerNode.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Node">
-    <Position X="7" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAIAAAAAAACAAAAAAAQAAAAAAEAEQIAg=</HashCode>
-      <FileName>Node.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeyPair">
-    <Position X="8.75" Y="4.75" Width="1.5" />
+    <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAgABAAAAAAAABgAAAAAACAAAAAAA=</HashCode>
+      <HashCode>BAABkIEAAICAAEAAhAAAMEAAAAgAgAAAAgACAAAAAAA=</HashCode>
       <FileName>KeyPair.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Identite">
-    <Position X="10" Y="1" Width="1.5" />
+    <Position X="11" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAgAAAAAAECAIAAAAAAAIgAAQAAAAAAgAAA=</HashCode>
+      <HashCode>AAABAAAAAIiAAACAAECAJAAAAAAAIgAAQAAAAAAgAAA=</HashCode>
       <FileName>Identite.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -52,68 +42,98 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Message">
-    <Position X="2.75" Y="3" Width="1.5" />
+    <Position X="5.5" Y="0.5" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAACAgAAAAAAAAQAAAAIAAAAAA=</HashCode>
+      <HashCode>AACAIQAAAJCAAAAABEEQCwAAAAAAAAAwAAAgIAAAAAA=</HashCode>
       <FileName>Message.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="payload" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Payload">
-    <Position X="2.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQAAABAAAAAAAAAQACAABAAAQAAAABAAAAAAAAA=</HashCode>
-      <FileName>Payload.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Peer">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+    <Position X="13.25" Y="3.75" Width="3.75" />
+    <NestedTypes>
+      <Enum Name="Peer::__unnamed_enum_0019_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Peer.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAAACAAAAgAAAAABAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAQCACAAAAAAAAACAAIAggQAABRAAAAAAgAghAEFAkA=</HashCode>
       <FileName>Peer.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="identite" />
-      <Field Name="noeud" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Serveur">
-    <Position X="0.5" Y="0.75" Width="1.5" />
+    <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAQgAAAEAAAAAAAAAACABAAAQAAAgAEEAAhAQ=</HashCode>
+      <HashCode>AAAAAAAAQgAAAEAAAAAAAAAAAAAAAAAACAgBAAAAAAA=</HashCode>
       <FileName>Serveur.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="identites" />
-      <Field Name="transactions" />
-    </ShowAsAssociation>
+  </Class>
+  <Class Name="BlockHeader">
+    <Position X="8.75" Y="4.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>ADAIACAAAICAABAIgAAAAQEAAgAAIAAAAAAAQAEQAAA=</HashCode>
+      <FileName>BlockHeader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Connection">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Connection::__unnamed_enum_000a_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Connection.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CgAAAgAQAAAAIAEAAAKAAACAAAAAAAAAACEAAAAAAAA=</HashCode>
+      <FileName>Connection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataBase">
+    <Position X="19.75" Y="5.25" Width="3.75" />
+    <NestedTypes>
+      <Enum Name="DataBase::__unnamed_enum_086b_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DataBase.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAwAQAAACACAAAAABAEAQgCAAAAAAAAAAAAAACAEAAA=</HashCode>
+      <FileName>DataBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Packet">
+    <Position X="18.25" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Packet::__unnamed_enum_0017_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Packet.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAICAAAAAAAAAAAAAAAAAACAAAAAAAAAAhCA=</HashCode>
+      <FileName>Packet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Session" Collapsed="true">
+    <Position X="17.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAQQAAAAAAAAQgAAAAIAAAABBBIAAAQAA=</HashCode>
+      <FileName>Session.h</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="Transaction">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAQAAAAAACAAAAAgIAAAAEAAAAAAAAACA=</HashCode>
+      <HashCode>AACACAAAAICAQAAAAAACBQAAAkAAAgAEAAAgAAEgACQ=</HashCode>
       <FileName>Transaction.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="message" />
-      <Field Name="identiteSender" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="BlockHeader">
-    <Position X="4.75" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ADAIAAAAAAAAAAAAgAAAAEAAAgAAACAAAAAAAAEAAAA=</HashCode>
-      <FileName>BlockHeader.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="std::vector&lt;_Ty, _Alloc&gt;" Collapsed="true">
-    <Position X="4.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>IUoEEIEqCLBMUEBAAKMIAgISAgUESAIAxQMwgwAEQgI=</HashCode>
-      <FileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vector</FileName>
-    </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />
 </ClassDiagram>

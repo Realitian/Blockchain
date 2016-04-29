@@ -42,6 +42,7 @@ void updateTransactionList(std::tuple<int, string, Block> leading, DataBase& bas
 
 	Cuple newbloc = Cuple(block.get_Header().get_NumeroBloc(), block.get_BlockHash(), block);
 	int num = std::get<0>(leading);
+	std::cout << "Update the BlockChain head from number" << std::get<0>(leading) << "to number" << block.get_Header().get_NumeroBloc() << " block" << std::endl;
 	while (num < std::get<0>(newbloc))
 	{
 
@@ -74,17 +75,35 @@ int receiveBlock(DataBase& base_de_donnee, const Block& block, BlockChain& block
 	// about this transaction before the block is received
 
 	try {
+		vector<Message> tr_buf;
 		for (const auto& tr : block.get_Transactions_List())
 		{
-			if (base_de_donnee.get_statusTransaction(tr) == DataBase::NOT_FOUND_TRANSACTION)
+			int status = base_de_donnee.get_statusTransaction(tr);
+			if (status == DataBase::NOT_FOUND_TRANSACTION)
 			{
-				// std::cout << "This block has transaction unknown" << endl;
+				std::cout << "This block has transaction unknown" << endl;
 				return 0;
 			}
-			if (base_de_donnee.get_statusTransaction(tr) == DataBase::VALIDATED_TRANSACTION)
+			if (status == DataBase::VALIDATED_TRANSACTION)
 			{
-				// std::cout << "This block has transaction already taken" << endl;
+				std::cout << "This block has transaction already in the main chain" << endl;
 				return 0;
+			}
+			if (status == DataBase::OTHER_SAME_TRANSACTION_ALREADY_VALID)
+			{
+
+				return 0;
+			}
+			tr_buf.push_back(base_de_donnee.get(tr).second.second);
+		}
+		// std::cerr << block.get_Header().get_NumeroBloc() << endl;
+
+		for (int i(0); i < tr_buf.size(); i++)
+		{
+			for (int j(i + 1); j < tr_buf.size(); j++)
+			{
+				if (tr_buf.at(i).getHashDomainName() == tr_buf.at(j).getHashDomainName())
+					return 0;
 			}
 		}
 		if (block.get_Header().get_NumeroBloc() > std::get<0>(blockchain.get_LeadingBlock()))
@@ -163,7 +182,7 @@ void test_integration_BlockCHain()
 	cout << "Generating random transaction : " << endl;
 	for (int i(0); i < 5000; i++)
 	{
-		string nom_de_domaine = random_string(15);
+		string nom_de_domaine = random_string(2);
 		string information = random_string(35);
 		all_Transaction.emplace_back(ids.at(rand() % ids.size()), nom_de_domaine, information);
 	}
@@ -185,11 +204,11 @@ void test_integration_BlockCHain()
 	}
 	cout << endl;
 
-	std::cout << "Get an element in the database " << endl;
+	std::cout << "Get an element in the database :" << endl;
 	string random = SHA25::sha256("HelloYou");
-	std::cout << "Element not in the database :" << (base_de_donnee.get(random).second.first == 4 ? "4" : "Error") << std::endl;
-	std::cout << "The two hashes following should be equal" << endl;
-	std::cout << "Hash of an element in the database " <<
+	std::cout << "Try to search for an element that is not in the database, code return :" << (base_de_donnee.get(random).second.first == 4 ? "4" : "Error") << std::endl;
+	std::cout << "The two hashes following should be equal :" << endl;
+	std::cout <<
 		base_de_donnee.get(all_Transaction.at(5).getHashTransaction()).first << std::endl;
 	std::cout << all_Transaction.at(5).getHashTransaction();
 
@@ -199,7 +218,7 @@ void test_integration_BlockCHain()
 
 	cout << "---------------------------- Test on the BlockChain ----------------------------" << endl;
 	Block genesis(0);
-	std::cout << "Genesis :" << genesis.get_BlockHash() << endl << genesis.get_PreviousBlockHash() << endl;
+	std::cout << "Generation of the \"Genesis\" bloc:" << genesis.get_BlockHash() << endl << genesis.get_PreviousBlockHash() << endl;
 	std::shared_ptr<Block> ptr0 = std::make_shared<Block>(genesis);
 
 	Block block1(ptr0, transactions1);
@@ -213,27 +232,29 @@ void test_integration_BlockCHain()
 
 	if (receiveBlock(base_de_donnee, genesis, blockchain) == 1)
 	{
-		std::cout << "Added " << genesis.get_Header().get_NumeroBloc() << endl;
+		std::cout << "Adding the Bloc number " << genesis.get_Header().get_NumeroBloc() << endl;
 		all_blocks.push_back(genesis);
 	}
 
-	cout << "Test on finding a transaction in the BlockChain" << endl;
-	std::cout << blockchain.push_back(block1) << std::endl;
-	cout << (blockchain.find(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
+	cout << "Test on finding a transaction in the BlockChain " << endl;
+	cout << "Should all return false" << endl;
+	std::cout << "Try to add a block that has not been mined : Return (1=error,3=added)" << blockchain.push_back(block1) << std::endl;
+	cout << (blockchain.find(t1) == true ? "transaction t1 exists" : "t1 doesn't exist") << endl;
 
-	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
-	std::cout << blockchain.push_back(block2) << std::endl;
+	cout << (blockchain.find(t6) == true ? "transaction t6 exists" : "t6 doesn't exist") << endl;
+	std::cout << "Try to add a block that has not been mined : Return (1=error,3=added)" << blockchain.push_back(block2) << std::endl;
 
-	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
+	cout << (blockchain.find(t6) == true ? "transaction t6 exists" : "t6 doesn't exist") << endl;
 
 
 	cout << "---------------------------- Test on the blocs ----------------------------" << endl;
-	cout << "Exemple for a problem solving : " << endl;
-	cout << "Solving the problem" << endl;
+	cout << "try to mine the BlockChain : " << endl;
+	cout << "Solving the problem with difficulty of " << Constante::DIFFICULTY_MINING << endl;
 	std::pair<unsigned long long, unsigned long long> nonce = block1.solveProofofWork();
 
 	cout << "Hash found : " << SHA25::sha256(string(block1.get_Header().get_HashMerkleRoot() + std::to_string(nonce.first) + std::to_string(nonce.second))) << endl;
 	cout << "The two nonce are" << nonce.first << " " << nonce.second << endl;
+	cout << "There are effectively " << Constante::DIFFICULTY_MINING << " at the beginning";
 	cout << endl;
 
 	// Adding second block into the blockchain
@@ -287,15 +308,17 @@ void test_integration_BlockCHain()
 				int ptrRandom = rand() % static_cast<int>(all_blocks.size() - static_cast<int>(SIMULATION_COEFF*all_blocks.size())) - 1
 					+ SIMULATION_COEFF*all_blocks.size();
 
-				// cout << "Taken as parent : " << all_blocks.at(ptrRandom).get_Header().get_NumeroBloc() << endl;
+				cout << "New random Block created which as parent : " << all_blocks.at(ptrRandom).get_Header().get_NumeroBloc() << endl;
 				std::shared_ptr<Block> ptrX1 = std::make_shared<Block>(all_blocks.at(ptrRandom));
 				blocx = Block(ptrX1, transactionX);
 				blocx.solveProofofWork();
 				if (receiveBlock(base_de_donnee, blocx, blockchain) == 1)
 				{
-					//std::cout << "Added " << blocx.get_Header().get_NumeroBloc() << endl;
+					std::cout << "The block was added" << blocx.get_Header().get_NumeroBloc() << endl;
 					all_blocks.push_back(blocx);
 				}
+				else
+					std::cout << "The block could not be added" << endl;
 			}
 		}
 
@@ -314,7 +337,7 @@ void test_integration_BlockCHain()
 		// If the main chain has been extended, add the block
 		if (receiveBlock(base_de_donnee, blocx, blockchain) == 1)
 		{
-			// std::cout << "Added " << blocx.get_Header().get_NumeroBloc() << endl;
+			std::cout << "Added " << blocx.get_Header().get_NumeroBloc() << endl;
 			all_blocks.push_back(blocx);
 		}
 		// If not, go back to the previous block
@@ -322,7 +345,8 @@ void test_integration_BlockCHain()
 			ptrX = ptrX2;
 		}
 	}
-
+	cout << "---------------------------- Test on the current state of database and blockchain after mining ----------------------------" << endl;
+	std::cout << "Printing the current state of the BlockChain when nothing was clear" << std::endl;
 	blockchain.print();
 
 	cout << endl << endl;
@@ -338,16 +362,24 @@ void test_integration_BlockCHain()
 	// blockchain.clear();
 	int nbfinal0(0);
 
-
+	std::cout << "Try to find in the main chain, transactions that are marked as not valid in the datase" << std::endl;
+	std::cout << "If not an error should be printed : " << std::endl;
 	// Checking if there is not double transaction !!!
 	while (leadingBlock != blockchain.get_PreviousBlock(leadingBlock))
 	{
+		cout << std::get<0>(leadingBlock) << endl;
 		for (auto& u : std::get<2>(leadingBlock).get_Transactions_List())
 		{
 			std::cout << (base_de_donnee.get_statusTransaction(u) == 2 ? "V" : "NV") << endl;
+			if (base_de_donnee.get_statusTransaction(u) != 2)
+			{
+				std::cout << " Code " << base_de_donnee.get_statusTransaction(u);
+				std::cout << base_de_donnee.get(u).second.second.getHashDomainName() << std::endl;
+				std::cout << base_de_donnee.get(u).second.second.getNomDomaine();
+			}
 			if (validated_Transaction.count(base_de_donnee.get(u).second.second) != 0)
 			{
-				std::cerr << "ERRIIR" << std::get<0>(leadingBlock) << " " << validated_Transaction.at(base_de_donnee.get(u).second.second) << endl;
+				std::cout << "ERROR" << std::get<0>(leadingBlock) << " " << validated_Transaction.at(base_de_donnee.get(u).second.second) << endl;
 			}
 			nbfinal0++;
 			validated_Transaction.insert(std::pair<Message, int>(base_de_donnee.get(u).second.second, std::get<0>(leadingBlock)));
@@ -365,10 +397,20 @@ void test_integration_BlockCHain()
 			cout << "Transaction validated but not in the main chain " << u.getHashTransaction() << endl;
 		if (base_de_donnee.get_statusTransaction(u.getHashTransaction()) == 2)
 			nbfinal2++;
-
 	}
-	cout << nbfinal2 << " " << nbfinal0;
+	cout << "Number of valid Transaction and number of transaction in the main BlockChain :" << nbfinal2 << " " << nbfinal0;
+	cout << "Should be equal !!!!!";
 	cout << endl << endl;
+
+
+	cout << "---------------------------- Test on the blocs ----------------------------" << endl;
+	cout << "Some random request in the DataBase" << endl;
+	for (int i(0); i < 100; i++)
+	{
+		base_de_donnee.request(all_Transaction.at(rand() % all_Transaction.size()).getMessage().getNomDomaine());
+	}
+
+
 
 	cout << endl << endl;
 
@@ -382,17 +424,22 @@ void test_integration_BlockCHain()
 	// 		std::cerr << "Same transaction";
 	// }
 
-
-
+	cout << endl << endl;
+	cout << "---------------------------- Clear the BlockChain ----------------------------" << endl;
+	cout << "Clear the BlockChain";
 	blockchain.clear();
+
+	cout << endl << endl;
+	cout << "---------------------------- Print the new updated and clear BlockChain ----------------------------" << endl;
+
 	blockchain.print();
-	std::cerr << "END";
+	std::cout << "END OF THE TESTS ON THE BLOCKCHAIN";
 }
 
 int main()
 {
 	std::freopen("test.out", "w", stdout);
-	srand(time_t(NULL));
+	srand(time(NULL));
 
 	test_integration_BlockCHain();
 	system("pause");

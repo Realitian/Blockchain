@@ -12,9 +12,9 @@
 //!
 Message::Message(string _domainName, string _info, const KeyPair& keypair) :
 	nom_de_domaine(_domainName), information(_info), hashDomainName(SHA25::sha256(nom_de_domaine)), publicKey(keypair.getClePublique()),
-	longueurMessage(nom_de_domaine.size() + information.size() + hashDomainName.size()),
-	signature(sign(keypair.getPrivateKey()))
+	longueurMessage(nom_de_domaine.size() + information.size() + hashDomainName.size())
 {
+	sign(keypair.getPrivateKey());
 }
 
 
@@ -63,13 +63,13 @@ SecByteBlock Message::sign(RSA::PrivateKey& privateKey) {
 	AutoSeededRandomPool rng;
 	CryptoPP::RSASSA_PKCS1v15_SHA_Signer signer(privateKey);
 	size_t length = signer.MaxSignatureLength();
-	SecByteBlock sig(length);
+	signature = SecByteBlock(length);
 
 	// Sign message
 	string message = nom_de_domaine + information;
 	length = signer.SignMessage(rng, (const byte*)message.c_str(),
-		message.length(), sig);
-	sig.resize(length);
-	sig = SecByteBlock(sig.data(), sig.size());
-	return sig;
+		message.length(), signature);
+	signature.resize(length);
+	signature = SecByteBlock(signature.data(), signature.size());
+	return signature;
 }

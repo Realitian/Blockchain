@@ -14,9 +14,10 @@
 //!
 class BlockChain
 {
-	using Cuple = std::tuple<int, string, Block>; // the number of the Block, the hash of the block and the Block itself
 												  // there is a redundancy in this tuples, but it help for handling the blockchain 
 public:
+	using Cuple = std::tuple<int, string, Block>; // the number of the Block, the hash of the block and the Block itself
+
 	BlockChain();
 	~BlockChain();
 	int  push_back(const Block&);

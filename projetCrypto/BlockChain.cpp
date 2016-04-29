@@ -1,7 +1,5 @@
 #include "BlockChain.h"
 using Cuple = std::tuple<int, string, Block>;
-
-
 BlockChain::BlockChain() :
 	blocks([](const Cuple& x, const Cuple& y)
 {
@@ -38,6 +36,7 @@ BlockChain::~BlockChain()
 */
 int BlockChain::push_back(const Block& bloc)
 {
+
 	// If the block is not valid
 	if (!bloc.isValid())
 		return BlockChain::ERROR_BLOCK_INVALID;

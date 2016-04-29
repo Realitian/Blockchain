@@ -32,9 +32,9 @@ Block::Block(const ptr_Block prevBloc, const vector<Transaction>& _transaction) 
 //! \param : _header A Header 
 //! \return :
 //!
-Block::Block(string previousBlockHash, int nbtransaction,  vector<string> tr, const BlockHeader _header) :
+Block::Block(string previousBlockHash, int nbtransaction, vector<string> tr, const BlockHeader _header) :
 	previousBlockHash(previousBlockHash), nombreTransaction(nbtransaction),
-	transactions(tr), header(_header),blockHash()
+	transactions(tr), header(_header), blockHash()
 {
 	BuildMerkleRoot();
 }
@@ -121,7 +121,6 @@ void Block::BuildMerkleRoot()
 	if (transactions.size() & 1) {
 		transactions.push_back(transactions.at(transactions.size() - 1)); nombreTransaction++;
 	}
-
 	int N = transactions.size();
 
 	vector<string> hashTree;
@@ -147,13 +146,16 @@ void Block::BuildMerkleRoot()
 //! \brief The difficulty can be set in the Constante file
 //! \return :paire Return the nonce
 //!
-paire Block::solveProofofWork()
+paire Block::solveProofofWork(bool& stop)
 {
-	unsigned long long nonce = 0, incr = 0;
-	unsigned long long limit = std::numeric_limits<unsigned long long>::max();
+	unsigned long long nonce = 0,incr = 0;
+	unsigned long long const limit = std::numeric_limits<unsigned long long>::max();
 
 	string sol(Constante::DIFFICULTY_MINING, '0');
 	while (true) {
+		if (stop) {
+			break;
+		}
 		string hash = SHA25::sha256(string(header.get_HashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
 		if (hash.substr(0, Constante::DIFFICULTY_MINING) == sol)
 			break;
@@ -170,8 +172,6 @@ paire Block::solveProofofWork()
 	return paire(incr, nonce);
 }
 
-
-//!
 //! \brief Check if a Transaction is in the Block
 //!
 //! \param : tr

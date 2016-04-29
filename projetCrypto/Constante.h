@@ -4,7 +4,7 @@
 
 namespace Constante
 {
-	static int DIFFICULTY_MINING = 2;
+	static int DIFFICULTY_MINING = 9;
 	static int MAX_SIZE_ORPHANS = 50;
 	static int DEPTH_DELETION = 20;
 

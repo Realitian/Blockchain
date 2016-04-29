@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+
 #include <vector>
 #include <boost/serialization/vector.hpp>
 #include "Transaction.h"
@@ -36,10 +37,11 @@ public:
 	const BlockHeader&   get_Header() const;
 	string			     get_PreviousBlockHash() const;
 	string			     get_BlockHash() const;
+	
 
 	bool	isValid() const;
 	bool	containsTransactions(const Transaction&) const;
-	paire	solveProofofWork();
+	paire	solveProofofWork(bool&);
 
 	
 	template<class Archive>
@@ -70,7 +72,6 @@ private:
 	string blockHash;		  // Hash of the Block
 
 	int nombreTransaction;
-
 	BlockHeader header;
 	
 	vector<string> transactions;

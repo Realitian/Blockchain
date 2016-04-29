@@ -64,17 +64,34 @@ int Peer::receiveBlock(const Packet& packet)
 	// about this transaction before the block is received
 
 	try {
+		vector<Message> tr_buf;
 		for (const auto& tr : packet.block.get_Transactions_List())
 		{
-			if (base_de_donnee.get_statusTransaction(tr) == DataBase::NOT_FOUND_TRANSACTION)
+			int status = base_de_donnee.get_statusTransaction(tr);
+
+			if (status == DataBase::NOT_FOUND_TRANSACTION)
 			{
 				// std::cout << "This block has transaction unknown" << endl;
 				return Peer::WRONG_BLOCK_WITH_TRANSACTIONS_UNKNOWN;
 			}
-			if (base_de_donnee.get_statusTransaction(tr) == DataBase::VALIDATED_TRANSACTION)
+			if (status == DataBase::VALIDATED_TRANSACTION)
 			{
 				// std::cout << "This block has transaction already taken" << endl;
 				return Peer::WRONG_PACKET_WITH_TRANSACTION_ALREADY_VALIDATED;
+			}
+			if (status == DataBase::OTHER_SAME_TRANSACTION_ALREADY_VALID)
+			{
+				return 0;
+			}
+			tr_buf.push_back(base_de_donnee.get(tr).second.second);
+		}
+		// I could have done O(nLogn) I know TODO
+		for (int i(0); i < tr_buf.size(); i++)
+		{
+			for (int j(i + 1); j < tr_buf.size(); j++)
+			{
+				if (tr_buf.at(i).getHashDomainName() == tr_buf.at(j).getHashDomainName())
+					return 0;
 			}
 		}
 		if (packet.block.get_Header().get_NumeroBloc() > std::get<0>(blockchain.get_LeadingBlock()))

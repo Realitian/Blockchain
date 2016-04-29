@@ -65,10 +65,10 @@ public:
 		ar & message;
 		ar & hashTransaction;
 		ar & timestamp;
+		message.sign(identiteSender.getKeyPair().getPrivateKey());
 	}
 
-	BOOST_SERIALIZATION_SPLIT_MEMBER()
-
+	BOOST_SERIALIZATION_SPLIT_MEMBER();
 private:
 	Identite identiteSender;
 	Message message;

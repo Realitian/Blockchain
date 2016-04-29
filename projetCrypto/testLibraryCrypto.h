@@ -60,29 +60,27 @@ void testBlock()
 
 	cout << "---------------------------- Test sur la BlockChain ----------------------------" << endl;
 	BlockChain blockchain;
-	blockchain.addBlock(genesis);
-	blockchain.addBlock(block1);
+	blockchain.push_back(genesis);
+	blockchain.push_back(block1);
 	cout << (blockchain.find(t1) == true ? "la transaction t1 existe" : "t1 n'existe pas") << endl;
 
 	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
-	blockchain.addBlock(block2);
+	blockchain.push_back(block2);
 	cout << (blockchain.find(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 
-	cout << (block2.getParent()->containsTransactions(t6) == true ? "la transaction t6 existe" : "t6 n'existe pas") << endl;
 
 	cout << "---------------------------- Test sur les blocs ----------------------------" << endl;
 	cout << "Construction de l'arbre de Merkle" << endl;
-	block2.BuildMerkleRoot();
 	cout << "Resolution du probleme" << endl;
 	std::pair<unsigned long long, unsigned long long> nonce = block1.solveProofofWork();
 
-	cout << "Hash trouvé : " << SHA25::sha256(string(block1.getHeader().getHashMerkleRoot() + std::to_string(nonce.first) + std::to_string(nonce.second))) << endl;
+	cout << "Hash trouvé : " << SHA25::sha256(string(block1.get_Header().get_HashMerkleRoot() + std::to_string(nonce.first) + std::to_string(nonce.second))) << endl;
 	cout << "Les 2 nonces sont" << nonce.first << " " << nonce.second << endl;
 	cout << endl;
 	cout << "Test copie bloc" << endl;
 	Block b3 = block2;
-	cout << b3.getHeader().getHashMerkleRoot() << " " << b3.getHeader().getNumeroBloc() << b3.getHeader().getTime() << endl;
-	cout << block2.getHeader().getHashMerkleRoot() << " " << block2.getHeader().getNumeroBloc() << block2.getHeader().getTime() << endl;
+	cout << b3.get_Header().get_HashMerkleRoot() << " " << b3.get_Header().get_NumeroBloc()<< b3.get_Header().get_Time() << endl;
+	cout << block2.get_Header().get_HashMerkleRoot() << " " << block2.get_Header().get_NumeroBloc() << block2.get_Header().get_Time() << endl;
 
 	cout << endl << endl;
 
@@ -243,7 +241,7 @@ void testTransaction()
 
 void functionTestLibrairieCrypto()
 {
-	/*
+	
 	srand(time(NULL));
 	// Puissance
 	unsigned long g(4918615616), h(4918615616);
@@ -264,7 +262,7 @@ void functionTestLibrairieCrypto()
 	std::cout << " 994616153143 is a prime :" << (math_crypto::Is_Prime(y) ? "oui" : "non") << std::endl;
 	y++;
 	std::cout << " 994616153144 is a prime :" << (math_crypto::Is_Prime(y) ? "oui" : "non") << std::endl;
-	std::cout << CORRECT << std::endl;
+	std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl; 
 	std::cout << std::endl;
 	std::cout << "------------------- Test Euclide Etendu & Euclide -------------------" << std::endl;
 	x=1191981919;
@@ -279,8 +277,7 @@ void functionTestLibrairieCrypto()
 	assert(x*a + y*b == math_crypto::Euclid_GCD(x, y));
 
 	std::cout << "* Pgcd : " << math_crypto::Euclid_GCD(x, y) << std::endl;
-	std::cout << CORRECT << std::endl;
-
+	std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
 	std::cout << std::endl;
 
 
@@ -291,14 +288,14 @@ void functionTestLibrairieCrypto()
 	{
 	assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
 	}
-	std::cout << CORRECT << std::endl;
+	std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl; 
 	NB = 30;
 	std::cout << "Generation de nombre entre 0 et " << BigInteger(2).pow(NB) << std::endl;
 	for (int i = 0; i < 200; i++)
 	{
 	assert(a.randBigInteger(NB) <= BigInteger(2).pow(NB));
 	}
-	std::cout << CORRECT << std::endl;
+	std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl; 
 	BigInteger mini = BigInteger(2).pow(10);
 	BigInteger maxi = BigInteger(2).pow(100);
 
@@ -308,16 +305,16 @@ void functionTestLibrairieCrypto()
 	assert(a.randBigInteger(mini, maxi) <= maxi);
 	assert(a.randBigInteger(mini, maxi) >= mini);
 	}
-	std::cout << CORRECT << std::endl;
+	std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl;
 
 	std::cout << "------------------- Test RSA -------------------" << std::endl;
 	auto R = rsa::generation();
-	std::cout << CORRECT << std::endl;
+	std::cout << "\033[1;32;40mCorrect\033[0m" << std::endl; 
 	std::cout << "Encryption & Decryptage:" << std::endl;
 	BigInteger msg(BigInteger(h)*BigInteger(g));
 	auto cipher = rsa::simple_encryption(msg, std::get<1>(R));
 	auto res = rsa::simple_decryption(cipher, std::get<0>(R));
 	// assert(res == msg);
 	// std::cout << "FONCTIONS CORRECTEMENT IMPLEMENTE" << std::endl;
-	*/
+	
 }
