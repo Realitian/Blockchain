@@ -13,8 +13,8 @@ using std::cin;
 std::random_device rd;
 std::mt19937 gen(rd());
 
-const long float alpha = 0.85;
-const long float convergence = 0.001;
+const long double alpha = 0.85;
+const long double convergence = 0.001;
 
 
 
@@ -64,16 +64,16 @@ int main()
 			outgoing_link_null.push_back(i);
 	}
 
-	long float coeff2 = (1 - alpha) / N;
+	long double coeff2 = (1 - alpha) / N;
 
 
 	i = 0;
 
 
 
-	std::deque<long float> PR(N, 1 / static_cast<float>(N)); // The final PageRank
+	std::deque<long double> PR(N, 1 / static_cast<float>(N)); // The final PageRank
 
-	std::deque<long float> buffer(N, 0); // 
+	std::deque<long double> buffer(N, 0); // 
 	double res(0);
 	bool stop = false;
 	int nombre_iteration = 0;

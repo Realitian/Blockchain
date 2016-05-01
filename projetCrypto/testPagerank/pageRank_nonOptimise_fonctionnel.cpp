@@ -12,8 +12,8 @@ using std::cin;
 std::random_device rd;
 std::mt19937 gen(rd());
 
-const long float alpha = 0.85;
-const long float convergence = 0.000000001;
+const long double alpha = 0.85;
+const long double convergence = 0.000000001;
 
 
 
@@ -60,9 +60,9 @@ int main()
 		in_degree.at(b).push_back(a);
 		out_degree.at(a).push_back(b);
 	}
-	long float coeff2 = (1 - alpha) / N;
+	long double coeff2 = (1 - alpha) / N;
 
-	std::deque < std::deque<long float>> H(N, std::deque<long float>(N, coeff2));
+	std::deque < std::deque<long double>> H(N, std::deque<long double>(N, coeff2));
 
 	i = 0;
 
@@ -70,7 +70,7 @@ int main()
 	{
 		for (const auto &y : x)
 		{
-			H.at(i).at(y) += alpha*static_cast<long float>(1 / static_cast<long float>(out_degree.at(y).size()));
+			H.at(i).at(y) += alpha*static_cast<long double>(1 / static_cast<long double>(out_degree.at(y).size()));
 		}
 		i++;
 	}
@@ -83,9 +83,9 @@ int main()
 				H.at(j).at(i) += alpha / static_cast<double>(N);
 		i++;
 	}
-	std::deque<long float> PR(N, 1 / static_cast<double>(N)); // The final PageRank
+	std::deque<long double> PR(N, 1 / static_cast<double>(N)); // The final PageRank
 
-	std::deque<long float> buffer(N, 0); // 
+	std::deque<long double> buffer(N, 0); // 
 	double res(0);
 	bool stop = false;
 	int nombre_iteration = 0;
