@@ -16,128 +16,149 @@
     <Filter Include="BlockChain">
       <UniqueIdentifier>{6cc07f3a-6197-4115-a22f-52fa622b52a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{1336e94d-7217-4f5f-a8c7-8374e0969d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\blockchain">
+      <UniqueIdentifier>{6ef48da1-cfb3-4ccc-a004-72291c554132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\network">
+      <UniqueIdentifier>{ce7f7f5d-b254-4077-bdfb-f28205531c62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\database">
+      <UniqueIdentifier>{ea566228-0c51-4755-9548-1ffac1f6e78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ihm">
+      <UniqueIdentifier>{ad439c3e-20c6-437e-8c8c-b9714d3b2db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\other">
+      <UniqueIdentifier>{7325954d-79b8-43f0-92cc-7b022942776f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\blockchain\Block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blockchain\BlockChain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blockchain\BlockHeader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blockchain\Identite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blockchain\KeyPair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blockchain\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blockchain\Transaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\DataBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Identite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Peer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transaction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Message.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Serveur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockChain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Block.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockHeader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MinerNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Session.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Packet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Connection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Client.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyPair.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DataBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Identite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Peer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transaction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Serveur.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockChain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Block.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MinerNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyPair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SHA25.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="testLibraryCrypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Session.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Packet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Connection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PeerMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Constante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="testBlockChainFullFunctionnality.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockChain.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockHeader.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="Identite.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyPair.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="Transaction.h">
+      <Filter>include\blockchain</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Serveur.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="PeerMessage.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="MinerNode.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Connection.h">
+      <Filter>include\network</Filter>
+    </ClInclude>
     <ClInclude Include="DataBase.h">
+      <Filter>include\database</Filter>
+    </ClInclude>
+    <ClInclude Include="Peer.h">
+      <Filter>include\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="Constante.h">
+      <Filter>include\other</Filter>
+    </ClInclude>
+    <ClInclude Include="SHA25.h">
+      <Filter>include\other</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\Block.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\BlockChain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\BlockHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\Identite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\KeyPair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\blockchain\Transaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\DataBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\other\Constante.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\other\SHA25.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Packet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -145,8 +166,5 @@
     <None Include="IHM.cpp~" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram.cd">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

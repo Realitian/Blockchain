@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 #include <set>
-#include "Node.h"
-#include "BlockChain.h"
-#include "Block.h"
+#include "include/network/Node.h"
+#include "include/blockchain/BlockChain.h"
+#include "include/blockchain/Block.h"
 using std::shared_ptr;
 using std::vector;
 
@@ -28,7 +28,7 @@ public:
 private:
 	std::shared_ptr<BlockChain> blockChain;
 	std::set<Transaction> unconfirmedTransaction;
-	
+
 
 };
 

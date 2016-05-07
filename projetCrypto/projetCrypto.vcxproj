@@ -88,7 +88,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\Boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>C:\Users\lh\C-Stuff\projetCrypto\cryptopp\Debug\cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\libs\cryptocpp\cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -120,34 +120,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DataBase.cpp" />
-    <ClCompile Include="Block.cpp" />
-    <ClCompile Include="BlockChain.cpp" />
-    <ClCompile Include="BlockHeader.cpp" />
-    <ClCompile Include="Client.cpp" />
-    <ClCompile Include="Connection.cpp" />
-    <ClCompile Include="Identite.cpp" />
-    <ClCompile Include="KeyPair.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Message.cpp" />
-    <ClCompile Include="MinerNode.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Packet.cpp" />
-    <ClCompile Include="Peer.cpp" />
-    <ClCompile Include="Room.cpp" />
-    <ClCompile Include="Serveur.cpp" />
-    <ClCompile Include="Session.cpp" />
-    <ClCompile Include="Transaction.cpp" />
+    <ClCompile Include="src\blockchain\Block.cpp" />
+    <ClCompile Include="src\blockchain\BlockChain.cpp" />
+    <ClCompile Include="src\blockchain\BlockHeader.cpp" />
+    <ClCompile Include="src\blockchain\Identite.cpp" />
+    <ClCompile Include="src\blockchain\KeyPair.cpp" />
+    <ClCompile Include="src\blockchain\Message.cpp" />
+    <ClCompile Include="src\blockchain\Transaction.cpp" />
+    <ClCompile Include="src\database\DataBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBase.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockChain.h" />
     <ClInclude Include="BlockHeader.h" />
-    <ClInclude Include="Client.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Constante.h" />
     <ClInclude Include="Identite.h" />
+    <ClInclude Include="include\blockchain\Block.h" />
+    <ClInclude Include="include\blockchain\BlockChain.h" />
+    <ClInclude Include="include\blockchain\BlockHeader.h" />
+    <ClInclude Include="include\blockchain\Identite.h" />
+    <ClInclude Include="include\blockchain\KeyPair.h" />
+    <ClInclude Include="include\blockchain\Message.h" />
+    <ClInclude Include="include\blockchain\Transaction.h" />
+    <ClInclude Include="include\database\DataBase.h" />
+    <ClInclude Include="include\network\Packet.h" />
+    <ClInclude Include="include\other\Constante.h" />
+    <ClInclude Include="include\other\SHA25.h" />
     <ClInclude Include="KeyPair.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MinerNode.h" />
@@ -164,7 +165,6 @@
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="IHM.cpp~" />
