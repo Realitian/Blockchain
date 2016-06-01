@@ -1,4 +1,4 @@
-#include "../include/BigIntegerAlgorithms.h"
+#include "BigIntegerAlgorithms.h"
 
 BigUnsigned gcd(BigUnsigned a, BigUnsigned b) {
 	BigUnsigned trash;

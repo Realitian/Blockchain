@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-
+#include <iostream>
 #include <vector>
 #include <boost/serialization/vector.hpp>
 #include "Transaction.h"
@@ -42,6 +42,7 @@ public:
 	bool	isValid() const;
 	bool	containsTransactions(const Transaction&) const;
 	paire	solveProofofWork();
+	friend std::ostream& operator<<(std::ostream& os, const Block& p);
 
 
 	template<class Archive>
@@ -65,7 +66,6 @@ public:
 	}
 
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
-
 
 private:
 	string previousBlockHash; // SHA256(SHA256(previousblock.header.merkleroothash))

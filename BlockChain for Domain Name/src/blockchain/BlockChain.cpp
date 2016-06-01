@@ -125,11 +125,11 @@ int BlockChain::push_back(const Block& bloc)
 //!
 //! \return :void
 //!
-void BlockChain::print() const
+void BlockChain::print(std::ostream& os) const
 {
 	for (const auto& exp : blocks)
 	{
-		std::cout << std::get<0>(exp) << " " << std::get<1>(exp) << std::endl
+		os << std::get<0>(exp) << " " << std::get<1>(exp) << std::endl
 			<< std::endl;
 	}
 }
@@ -165,7 +165,7 @@ bool BlockChain::find(const Transaction& trans) const
 //!			
 //! \return :void
 //!
-void BlockChain::clear()
+void BlockChain::clear(std::ostream& os)
 {
 	// Deleting ancient orphans that are no more useful
 	while (orphans.size() > Constante::MAX_SIZE_ORPHANS)
@@ -185,13 +185,13 @@ void BlockChain::clear()
 
 	// The Hash of the previous Block
 	string previous_Block_Hash = std::get<2>(*leadingBlock).get_PreviousBlockHash();
-	std::cerr << "Last hash : " << previous_Block_Hash << std::endl;
+	os << "Last hash : " << previous_Block_Hash << std::endl;
 	while (block_ite != blocks.end())
 	{
 		// If it is to early to delete the bloc
 		if (std::get<2>(*block_ite).get_Header().get_NumeroBloc() > std::get<2>(*leadingBlock).get_Header().get_NumeroBloc() - Constante::DEPTH_DELETION) {
 
-			std::cout << "To early to delete " << std::get<0>(*block_ite) << std::endl;
+			os << "To early to delete " << std::get<0>(*block_ite) << std::endl;
 
 			// If the block is in the main chain, update the local variable previous_Block_Hash
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
@@ -207,7 +207,7 @@ void BlockChain::clear()
 			// If it is in the main chain
 			if (std::get<2>(*block_ite).get_BlockHash() == previous_Block_Hash)
 			{
-				std::cout << "No deletion : " << std::get<0>(*block_ite) << std::endl;
+				os << "No deletion : " << std::get<0>(*block_ite) << std::endl;
 
 				previous_Block_Hash = std::get<2>(*block_ite).get_PreviousBlockHash();
 				block_ite++;
@@ -215,7 +215,7 @@ void BlockChain::clear()
 			// else delete it
 			else
 			{
-				std::cout << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
+				os << "No too early but deletion : " << std::get<0>(*block_ite) << std::endl;
 				block_ite = blocks.erase(block_ite);
 			}
 		}

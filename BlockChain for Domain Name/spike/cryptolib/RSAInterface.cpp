@@ -1,4 +1,4 @@
-#include "../include/RSAInterface.h"
+#include "RSAInterface.h"
 
 
 namespace rsa

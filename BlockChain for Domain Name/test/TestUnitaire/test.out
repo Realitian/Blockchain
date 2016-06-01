@@ -7434,7 +7434,7 @@ New random Block created which as parent : 175
 The block could not be added
 This block has transaction already in the main chain
 New random Block created which as parent : 169
-The block could not be added
+	The block could not be added
 ---------------------------- Test on the current state of database and blockchain after mining ----------------------------
 Printing the current state of the BlockChain when nothing was clear
 185 9FF6EFD650FF1E9A13167346B6D1C00A102FB3C1DC092BE47239280F05722B33

@@ -5,4 +5,4 @@
 #include "BigInteger.h"
 #include "BigIntegerAlgorithms.h"
 #include "BigUnsignedInABase.h"
-#include "BigIntegerUtils.hs"
+#include "BigIntegerUtils.h"

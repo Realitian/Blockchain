@@ -13,23 +13,25 @@
 //!
 class DataBase
 {
-	using data_cuple = std::pair<string, std::pair<int,Message> >;
-	
+	using data_cuple = std::pair<string, std::pair<int, Message> >;
+
 public:
 	DataBase();
 	~DataBase();
 
-	void	   request(const string&) const;
+	void	   request(const string&, std::ostream&) const;
+	void	   request(const string& domainName) const;
+
 	data_cuple get(string)	const;
 	int		   get_statusTransaction(const string&) const;
-	int		   get_statusMessage(const string&,const string&) const;
+	int		   get_statusMessage(const string&, const string&) const;
 	void	   save(const string&) const;
 
 	void	  update(const Block&, int);
 	void	  update(const string&, int);
 	void	  print() const;
 	bool      push_back(const Transaction&);
-
+	size_t    size() const;
 
 	enum {
 		NOT_FOUND_TRANSACTION = 0,

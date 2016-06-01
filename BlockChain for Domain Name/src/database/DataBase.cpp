@@ -167,6 +167,32 @@ void DataBase::update(const string& tr, int code)
 //! \param : domainName The domain name in question
 //! \return :void
 //!
+void  DataBase::request(const string& domainName, std::ostream& os) const
+{
+	os << std::endl;
+	os << "***************************************************************************" << std::endl;
+	auto ppp = hashMessage_to_Message.equal_range(SHA25::sha256(domainName));
+	os << "Request for the domain name : " << domainName << std::endl;
+	os << "Hash of the Domain name     : " << SHA25::sha256(domainName) << std::endl;
+	os << "Number of message for the DN: " << hashMessage_to_Message.count(SHA25::sha256(domainName)) << std::endl;
+	for (auto it2 = ppp.first;
+		it2 != ppp.second;
+		++it2)
+	{
+		os << "Message  " << ((*it2).second.second.first == DataBase::VALIDATED_TRANSACTION ? "VALIDATED  " : "NOT VALIDATED ") << std::endl;
+		os << "  Information in the Message : " << (*it2).second.second.second.getinformation() << std::endl;
+		os << "  Public Exponent Key of the Sender   : " << (*it2).second.second.second.getPublicKey().GetPublicExponent() << std::endl;
+		os << "  Modulus Key of the Sender   : " << (*it2).second.second.second.getPublicKey().GetModulus() << std::endl;
+
+		os << "  Validity of the Message  : " << ((*it2).second.second.second.verifier() == true ? "correct " : "non correct") << std::endl;
+		os << std::endl;
+		os << std::endl;
+
+	}
+	os << "***************************************************************************" << std::endl;
+}
+
+
 void  DataBase::request(const string& domainName) const
 {
 	std::cout << std::endl;
@@ -189,16 +215,22 @@ void  DataBase::request(const string& domainName) const
 		std::cout << std::endl;
 
 	}
-	std::cout << "***************************************************************************" << std::endl;
+	std::cout<< "***************************************************************************" << std::endl;
 }
-
 void DataBase::save(const string& fichier) const
 {
 
-	std::freopen(fichier.c_str(), "w", stdout);
+	std::ofstream is(fichier);
+	if (!is.is_open())
+		return;
 	for (auto it = hashMessage_to_Message.begin(); it != hashMessage_to_Message.end(); it++)
 	{
-		request(it->first);
+		request(it->first, is);
 	}
+	is.close();
 }
 
+size_t    DataBase::size() const
+{
+	return hashMessage_to_Message.size();
+}

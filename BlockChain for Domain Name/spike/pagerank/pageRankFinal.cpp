@@ -1,4 +1,5 @@
-﻿#define _CRT_SECURE_NO_DEPRECATE
+﻿/*
+#define _CRT_SECURE_NO_DEPRECATE
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -15,18 +16,17 @@ std::random_device rd;
 std::mt19937 gen(rd());
 
 const long float alpha = 0.85;
-const long float convergence = 0.001;
+const long float convergence = 0.00001;
 
 
 
 
 int main()
 {
-	//std::freopen("test", "r", stdin);
+	std::freopen("test.in", "r", stdin);
 	int N;
 	std::cout << "Nombre de noeuds pour le graphe" << std::endl;
 	std::cin >> N;
-
 	auto start = std::chrono::high_resolution_clock::now();
 	//
 	std::freopen("test.out", "w", stdout);
@@ -41,26 +41,27 @@ int main()
 	std::uniform_int_distribution<int> rand_Node(0, N - 1);
 	std::function<int()> f2 = std::bind(rand_Node, std::ref(gen));
 
-	int M = f();
+	//int M = f();
+	int M;
 	int i(0), j(0);
-	// cin >> M;
+	cin >> M;
 	while (i < M)
 	{
 		int a, b;
-		a = f2();
-		b = f2();
-	// 	cin >> a >> b;
-	// 	a--; b--;
+		//a = f2();
+		//b = f2();
+		cin >> a >> b;
+		// a--; b--;
 		in_degree.at(b).push_back(a);
 		out_degree.at(a).push_back(b);
 		i++;
 	}
 
-	std::map<int,bool> outgoing_link_null;
+	std::map<int, bool> outgoing_link_null;
 	for (int i(0); i < N; i++)
 	{
 		if (out_degree.at(i).size() == 0)
-			outgoing_link_null.insert(std::pair<int, bool>(i,true));
+			outgoing_link_null.insert(std::pair<int, bool>(i, true));
 	}
 
 	long float coeff2 = (1 - alpha) / N;
@@ -70,7 +71,7 @@ int main()
 
 
 
-	std::deque<long float> PR(N, 1 / static_cast<long float > (N)); // The final PageRank
+	std::deque<long float> PR(N, 1 / static_cast<long float> (N)); // The final PageRank
 
 	std::deque<long float> buffer(N, 0); // 
 	long float res(0);
@@ -85,7 +86,7 @@ int main()
 		long float sum3 = 0;
 		auto end = outgoing_link_null.end();
 		i = 0;
-		std::for_each(PR.begin(), PR.end(), [&sum2,&end,&i,&outgoing_link_null,&sum3](const auto& n) {
+		std::for_each(PR.begin(), PR.end(), [&sum2, &end, &i, &outgoing_link_null, &sum3](const auto& n) {
 			sum2 += n;
 			if (outgoing_link_null.find(i) != end)
 				sum3 += n;
@@ -94,7 +95,7 @@ int main()
 		for (i = 0; i < N; i++)
 		{
 			res = 0;
-			std::for_each(in_degree.at(i).begin(), in_degree.at(i).end(), [&res,&PR,&out_degree](const auto& x) {
+			std::for_each(in_degree.at(i).begin(), in_degree.at(i).end(), [&res, &PR, &out_degree](const auto& x) {
 				res += 0.85*(1 / static_cast<long float>(out_degree.at(x).size()))* PR.at(x);
 			});
 
@@ -115,7 +116,7 @@ int main()
 				stop = true;
 		}
 	}
-	i = 1;
+	i = 0;
 	auto fin = std::chrono::high_resolution_clock::now();
 	std::cout << "Time in millisecond :" << std::chrono::duration_cast<std::chrono::milliseconds>(fin - start).count() << std::endl;
 	std::cout << "Number of iterations :" << nombre_iteration << std::endl;
@@ -123,12 +124,6 @@ int main()
 	{
 		std::cout << "PageRank " << i++ << "  : " << x << std::endl;
 	}
-
-
-	system("pause");
-
-	system("pause");
-	system("pause");
-
 	return 0;
 }
+*/

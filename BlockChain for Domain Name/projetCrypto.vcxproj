@@ -121,6 +121,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="spike\cryptolib\BigInteger.cpp" />
+    <ClCompile Include="spike\cryptolib\BigIntegerAlgorithms.cpp" />
+    <ClCompile Include="spike\cryptolib\BigIntegerUtils.cpp" />
+    <ClCompile Include="spike\cryptolib\BigUnsigned.cpp" />
+    <ClCompile Include="spike\cryptolib\BigUnsignedInABase.cpp" />
+    <ClCompile Include="spike\cryptolib\MathCrypto.cpp" />
+    <ClCompile Include="spike\cryptolib\RSAInterface.cpp" />
     <ClCompile Include="src\blockchain\Block.cpp" />
     <ClCompile Include="src\blockchain\BlockChain.cpp" />
     <ClCompile Include="src\blockchain\BlockHeader.cpp" />
@@ -160,14 +167,24 @@
     <ClInclude Include="Serveur.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SHA25.h" />
-    <ClInclude Include="testBlockChainFullFunctionnality.h" />
+    <ClInclude Include="spike\cryptolib\BigInteger.h" />
+    <ClInclude Include="spike\cryptolib\BigIntegerAlgorithms.h" />
+    <ClInclude Include="spike\cryptolib\BigIntegerLibrary.h" />
+    <ClInclude Include="spike\cryptolib\BigIntegerUtils.h" />
+    <ClInclude Include="spike\cryptolib\BigUnsigned.h" />
+    <ClInclude Include="spike\cryptolib\BigUnsignedInABase.h" />
+    <ClInclude Include="spike\cryptolib\MathCrypto.h" />
+    <ClInclude Include="spike\cryptolib\NumberlikeArray.h" />
+    <ClInclude Include="spike\cryptolib\RSAInterface.h" />
     <ClInclude Include="testLibraryCrypto.h" />
+    <ClInclude Include="test\TestUnitaire\testBlockChainFullFunctionnality.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="IHM.cpp~" />
+    <None Include="spike\cryptolib\NumberlikeArray.h~" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

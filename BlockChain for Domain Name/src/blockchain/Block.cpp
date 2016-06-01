@@ -208,4 +208,21 @@ const vector<string> Block::get_Transactions_List() const
 	return transactions;
 }
 
-
+std::ostream& operator<<(std::ostream& os, const Block& p)
+{
+	os << std::endl;
+	os << "***************************************************************************" << std::endl;
+	os << "Bloc hash         : " << p.blockHash << std::endl;
+	os << "Previous hash     : " << p.previousBlockHash << std::endl;
+	os << "Numero bloc       : " << p.get_Header().get_NumeroBloc() << std::endl;
+	os << "Nonce             : " << p.get_Header().get_Nonce().second << std::endl;
+	os << "Time mined        : " << p.get_Header().get_Time() << std::endl;
+	os << "Liste des transactions" << std::endl;
+	for (const auto& tr : p.get_Transactions_List())
+	{
+		std::cout << "    " << tr << std::endl;
+	}
+	os << "***************************************************************************" << std::endl;
+	os << std::endl;
+	return os;
+}

@@ -1,4 +1,4 @@
-#include "../include/BigInteger.h"
+#include "BigInteger.h"
 #include <iostream>
 
 void BigInteger::operator =(const BigInteger &x)

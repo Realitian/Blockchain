@@ -1,5 +1,6 @@
 #pragma once
 #include <set>
+#include <iostream>
 #include <algorithm>
 #include <tuple>
 #include "Block.h"
@@ -23,10 +24,10 @@ public:
 	int  push_back(const Block&);
 	bool find(const Transaction&) const;
 	size_t size() const;
-	void clear();
+	void clear(std::ostream&);
 
 
-	void print() const;
+	void print(std::ostream&) const;
 
 	const Cuple  get_LeadingBlock() const;
 	Cuple		 get_PreviousBlock(const Cuple& cuple) const;

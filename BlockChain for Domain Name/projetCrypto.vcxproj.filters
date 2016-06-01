@@ -63,12 +63,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="spike\cryptolib\BigInteger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spike\cryptolib\BigIntegerAlgorithms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spike\cryptolib\BigIntegerUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spike\cryptolib\BigUnsigned.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spike\cryptolib\BigUnsignedInABase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spike\cryptolib\MathCrypto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spike\cryptolib\RSAInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="testLibraryCrypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testBlockChainFullFunctionnality.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
@@ -161,10 +179,41 @@
     <ClInclude Include="include\network\Packet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test\TestUnitaire\testBlockChainFullFunctionnality.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\BigInteger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\BigIntegerAlgorithms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\BigIntegerLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\BigIntegerUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\BigUnsigned.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\BigUnsignedInABase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\MathCrypto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\NumberlikeArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spike\cryptolib\RSAInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="IHM.cpp~" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="spike\cryptolib\NumberlikeArray.h~" />
   </ItemGroup>
 </Project>
