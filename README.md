@@ -45,7 +45,7 @@ blockchain.push_back(block1)
 DataBase database;
 
 // Get all transaction of a block
-vector all_transaction = std::get<2>(leadingBlock).get_Transactions_List()
+vector all_transaction = std::get<2>(block1).get_Transactions_List()
 
 // Get the entry of the last transaction in the database
 database.get(all_transaction.back())
